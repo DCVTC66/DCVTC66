@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DCVTC66 — Chauffeur VTC à Perpignan</title>
+  <meta name="description" content="DCVTC66, chauffeur VTC à Perpignan, propose des trajets fiables et confortables pour vos déplacements personnels ou professionnels. Transferts gares et aéroports, longue distance, disponibilité 24/7 et réservation simple. Ponctualité, sécurité et service adapté à vos besoins. Disponible sur tout le département 66 pour des trajets courts ou longs." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">DCVTC66 — Chauffeur VTC</h1>
+      <nav>
+        <ul class="nav">
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#tarifs">Tarifs</a></li>
+          <li><a href="#reservation">Réservation</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section id="accueil" class="hero">
+    <div class="container">
+      <h2>Chauffeur VTC à Perpignan</h2>
+      <p class="lead">DCVTC66, chauffeur VTC à Perpignan, propose des trajets fiables et confortables pour vos déplacements personnels ou professionnels. Transferts gares et aéroports, longue distance, disponibilité 24/7 et réservation simple. Ponctualité, sécurité et service adapté à vos besoins. Disponible sur tout le département 66 pour des trajets courts ou longs.</p>
+      <a href="#reservation" class="cta">Réserver maintenant</a>
+    </div>
+  </section>
+
+  <section id="services" class="section container">
+    <h3>Nos services</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>Transferts aéroports</h4>
+        <p>Transferts vers/depuis l'aéroport et prise en charge ponctuelle.</p>
+      </div>
+      <div class="card">
+        <h4>Transferts gares</h4>
+        <p>Gares de Perpignan, Narbonne et correspondances.</p>
+      </div>
+      <div class="card">
+        <h4>Déplacements pros</h4>
+        <p>Trajets pour rendez-vous professionnels et déplacements entreprise.</p>
+      </div>
+      <div class="card">
+        <h4>Mise à disposition</h4>
+        <p>Événements, mariages, soirées et journées de travail.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tarifs" class="section container">
+    <h3>Tarifs (exemples)</h3>
+    <ul>
+      <li>Perpignan aéroport → centre-ville : dès 35€</li>
+      <li>Gare Perpignan → hôtel : à partir de 20€</li>
+      <li>Service longue distance : devis sur demande</li>
+    </ul>
+    <p class="note">Les tarifs indiqués sont à titre indicatif. Contactez-nous pour un devis précis.</p>
+  </section>
+
+  <section id="reservation" class="section container">
+    <h3>Réservation</h3>
+    <p>Remplissez le formulaire ci-dessous ou contactez-nous par téléphone pour réserver.</p>
+
+    <!-- Replace the form action with your Formspree/Netlify/form backend -->
+    <form id="contact-form" action="https://formspree.io/f/xxxxxxx" method="POST" class="form">
+      <label>Nom
+        <input type="text" name="Nom" required>
+      </label>
+      <label>Téléphone
+        <input type="tel" name="Téléphone" required>
+      </label>
+      <label>Point de départ
+        <input type="text" name="Départ" required>
+      </label>
+      <label>Destination
+        <input type="text" name="Arrivee" required>
+      </label>
+      <label>Date et heure
+        <input type="datetime-local" name="DateHeure" required>
+      </label>
+      <label>Commentaires (optionnel)
+        <textarea name="Message" rows="4"></textarea>
+      </label>
+      <button type="submit">Envoyer la demande</button>
+    </form>
+  </section>
+
+  <section id="contact" class="section container">
+    <h3>Contact</h3>
+    <p>📞 Téléphone : <strong>06 00 00 00 00</strong> (remplace par ton numéro)</p>
+    <p>📧 Email : <strong>contact@dcvtc66.fr</strong> (remplace par ton adresse)</p>
+    <p>📍 Basé à Perpignan — Déplacements sur tout le département 66 et trajets longue distance.</p>
+  </section>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> DCVTC66 — Chauffeur VTC à Perpignan</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
