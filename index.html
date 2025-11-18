@@ -5,72 +5,82 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DCVTC66 — Chauffeur VTC à Perpignan</title>
   <meta name="description" content="DCVTC66, chauffeur VTC à Perpignan, propose des trajets fiables, confortables et ponctuels dans tout le département 66 et au-delà. Réservation simple et rapide." />
+
+  <!-- Google Fonts pour belle calligraphie pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
 </head>
 
 <body>
 
-  <!-- HEADER -->
+  <!-- HEADER / HERO -->
   <header class="header">
     <div class="container header-inner">
-      <img src="LOGO DCVTC66.png" alt="Logo DCVTC66" class="logo">
-      <h1 class="site-title">DCVTC66 — Chauffeur VTC à Perpignan</h1>
+      <div class="branding">
+        <img src="LOGO DCVTC66.png" alt="Logo DCVTC66" class="logo">
+        <h1 class="site-title">DCVTC66</h1>
+        <p class="site-subtitle">Votre chauffeur VTC privé à Perpignan et dans tout le 66</p>
 
-      <nav class="nav">
-        <ul>
-          <li><a href="#accueil">Accueil</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#reservation">Réservation</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+        <div class="hero-badges">
+          <span>✔ Service 7j/7</span>
+          <span>✔ Chauffeur professionnel et ponctuel</span>
+          <span>✔ Réservation simple et rapide</span>
+        </div>
+
+        <div class="hero-actions">
+          <a href="tel:0663463716" class="btn-primary">📞 Appeler le chauffeur</a>
+          <a href="https://wa.me/33663463716" target="_blank" class="btn-secondary">
+            💬 WhatsApp
+          </a>
+          <a href="#reservation" class="btn-outline">📝 Réserver un trajet</a>
+        </div>
+      </div>
     </div>
   </header>
 
-  <!-- ACCUEIL -->
-  <section id="accueil" class="hero">
-    <div class="container hero-inner">
-      <h2>Votre chauffeur VTC privé à Perpignan</h2>
-      <p class="lead">
-        DCVTC66 vous accompagne pour tous vos trajets : personnels, professionnels,
-        gares, aéroports, longues distances et événements.
-      </p>
-
-      <ul class="hero-highlights">
-        <li>✔ Service 7j/7</li>
-        <li>✔ Chauffeur professionnel et ponctuel</li>
-        <li>✔ Réservation simple et rapide</li>
+  <!-- NAV SIMPLE (ANCRAGES) -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#reservation">Réservation</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
-
-      <a href="#reservation" class="btn-primary">Réserver maintenant</a>
     </div>
-  </section>
+  </nav>
 
   <!-- SERVICES -->
   <section id="services" class="section">
     <div class="container">
-      <h3 class="section-title">Nos services</h3>
+      <h2 class="section-title">Nos services</h2>
+      <p class="section-intro">
+        DCVTC66 vous accompagne pour tous vos déplacements personnels et professionnels,
+        dans tout le département des Pyrénées-Orientales et au-delà.
+      </p>
 
       <div class="grid">
 
         <article class="card">
-          <h4>Transferts aéroports</h4>
-          <p>Déplacement vers Perpignan, Toulouse, Carcassonne, Montpellier ou Barcelone.</p>
+          <h3>Transferts aéroports</h3>
+          <p>Déplacements vers Perpignan, Toulouse, Carcassonne, Montpellier ou Barcelone.</p>
         </article>
 
         <article class="card">
-          <h4>Transferts gares</h4>
+          <h3>Transferts gares</h3>
           <p>Prise en charge à la gare de Perpignan, Narbonne et dans la région.</p>
         </article>
 
         <article class="card">
-          <h4>Déplacements professionnels</h4>
-          <p>Idéal pour vos rendez-vous, séminaires, clients ou missions ponctuelles.</p>
+          <h3>Déplacements professionnels</h3>
+          <p>Rendez-vous, séminaires, visites de clients ou missions ponctuelles.</p>
         </article>
 
         <article class="card">
-          <h4>Mise à disposition</h4>
+          <h3>Mise à disposition</h3>
           <p>Chauffeur pour événements, mariages, soirées ou journées complètes.</p>
         </article>
 
@@ -81,9 +91,13 @@
   <!-- RÉSERVATION -->
   <section id="reservation" class="section section-alt">
     <div class="container">
-      <h3 class="section-title">Réserver un trajet</h3>
+      <h2 class="section-title">Réserver un trajet</h2>
+      <p class="section-intro">
+        Remplissez ce formulaire : votre téléphone ouvrira automatiquement un SMS prêt à être envoyé
+        au chauffeur avec tous les détails de votre trajet.
+      </p>
 
-      <form action="https://formspree.io/f/xxxxxxx" method="POST" class="form">
+      <form id="reservation-form" class="form">
         <label>Nom
           <input type="text" name="Nom" required>
         </label>
@@ -108,7 +122,7 @@
           <textarea name="Message" rows="4"></textarea>
         </label>
 
-        <button type="submit" class="btn-primary btn-full">Envoyer la demande</button>
+        <button type="submit" class="btn-primary btn-full">Envoyer la demande par SMS</button>
       </form>
     </div>
   </section>
@@ -116,11 +130,18 @@
   <!-- CONTACT -->
   <section id="contact" class="section">
     <div class="container">
-      <h3 class="section-title">Contact</h3>
+      <h2 class="section-title">Contact</h2>
 
-      <p>📞 Téléphone : <strong>06 63 46 37 16</strong></p>
-      <p>📧 Email : <strong>contact@dcvtc66.fr</strong></p>
-      <p>📍 Basé à Perpignan — déplacements dans tout le 66 et au-delà.</p>
+      <div class="contact-grid">
+        <div>
+          <p>📞 Téléphone : <a href="tel:0663463716"><strong>06 63 46 37 16</strong></a></p>
+          <p>💬 WhatsApp : <a href="https://wa.me/33663463716" target="_blank"><strong>Discuter sur WhatsApp</strong></a></p>
+        </div>
+        <div>
+          <p>📧 Email : <strong>contact@dcvtc66.fr</strong></p>
+          <p>📍 Basé à Perpignan — déplacements dans tout le 66 et au-delà.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -131,8 +152,46 @@
     </div>
   </footer>
 
+  <!-- BOUTONS FLOTTANTS -->
+  <a href="tel:0663463716" class="fab fab-call" aria-label="Appeler DCVTC66">
+    📞
+  </a>
+
+  <a href="https://wa.me/33663463716" target="_blank" class="fab fab-whatsapp" aria-label="WhatsApp DCVTC66">
+    💬
+  </a>
+
   <script>
+    // Année automatique dans le footer
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Envoi du formulaire par SMS (ouvre l'application SMS du client)
+    const form = document.getElementById('reservation-form');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const nom = form.Nom.value;
+      const tel = form["Téléphone"].value;
+      const depart = form["Départ"].value;
+      const arrivee = form["Arrivee"].value;
+      const dateHeure = form["DateHeure"].value;
+      const messageClient = form["Message"].value;
+
+      let sms = "Nouvelle demande de réservation DCVTC66 :\n\n";
+      sms += "Nom : " + nom + "\n";
+      sms += "Téléphone : " + tel + "\n";
+      sms += "Départ : " + depart + "\n";
+      sms += "Destination : " + arrivee + "\n";
+      sms += "Date & heure : " + dateHeure + "\n";
+      if (messageClient.trim() !== "") {
+        sms += "Commentaires : " + messageClient + "\n";
+      }
+
+      // Ouvre l'application SMS du téléphone avec le message pré-rempli
+      const numero = "0663463716";
+      const url = "sms:" + numero + "?&body=" + encodeURIComponent(sms);
+      window.location.href = url;
+    });
   </script>
 
 </body>
