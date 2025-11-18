@@ -5,27 +5,24 @@
   box-sizing: border-box;
 }
 
-/* BASE */
 body {
   font-family: Arial, sans-serif;
-  background: #f1f1f1;
+  background: #f7f7f7;
   color: #222;
-  font-size: 14px; /* même taille de base partout */
+  line-height: 1.5;
 }
 
-/* CONTENEUR TYPE TÉLÉPHONE (MÊME SUR PC) */
 .container {
-  width: 100%;
-  max-width: 420px;         /* largeur type écran de téléphone */
-  margin: 0 auto;           /* centré sur l’écran */
-  padding: 0 10px;
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
 }
 
-/* ===== HEADER / BARRE D’APPLICATION ===== */
+/* HEADER */
 .header {
-  background: #e3e3e3;            /* gris clair moderne */
-  border-bottom: 1px solid #c5c5c5;
-  padding: 8px 0;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
   position: sticky;
   top: 0;
   z-index: 50;
@@ -37,157 +34,114 @@ body {
   justify-content: space-between;
 }
 
-/* Texte DCVTC66 */
-.title {
-  font-size: 15px;
-  font-weight: bold;
+.logo {
+  width: 50px;
+}
+
+.site-title {
+  flex: 1;
+  font-size: 20px;
+  margin-left: 15px;
   color: #222;
 }
 
-/* LOGO ENTRE DCVTC66 ET ACCUEIL + AGRANDI */
-.logo {
-  width: 38px;      /* un peu plus grand, mais pas énorme */
-  height: auto;
-  margin: 0 10px;
+/* MENU */
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
 }
 
-/* MENU À DROITE */
 .nav a {
-  font-size: 13px;
-  margin-left: 10px;
-  text-decoration: none;
   color: #333;
-  padding: 4px 6px;
-  border-radius: 6px;
-  transition: 0.15s;
+  text-decoration: none;
+  font-size: 15px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: 0.2s;
 }
 
 .nav a:hover {
-  background: #d4d4d4;     /* gris hover */
+  background: #eee;
 }
 
 /* HERO */
 .hero {
   text-align: center;
-  padding: 24px 0;
-  background: #ffffff;
-  border-bottom: 1px solid #ddd;
+  padding: 50px 20px;
+  background: white;
 }
 
-.hero-title {
-  font-size: 18px;
-  margin-bottom: 6px;
-}
-
-.hero-text {
-  font-size: 12px;
-  margin-bottom: 10px;
+.hero .lead {
+  max-width: 650px;
+  margin: auto;
   color: #555;
 }
 
-/* Bouton compact */
-.btn {
-  display: inline-block;
-  padding: 7px 12px;
-  background: #222;
+.hero-highlights {
+  margin: 15px 0;
+  list-style: none;
+}
+
+.hero-highlights li {
+  margin: 4px 0;
+}
+
+.btn-primary {
+  padding: 10px 18px;
+  background: #000;
   color: #fff;
-  border-radius: 4px;
-  font-size: 12px;
   text-decoration: none;
+  border-radius: 5px;
+  display: inline-block;
+  margin-top: 10px;
 }
 
 /* SECTIONS */
 .section {
-  padding: 20px 0;
+  padding: 50px 20px;
 }
 
 .section-title {
-  font-size: 15px;
-  margin-bottom: 10px;
   text-align: center;
+  font-size: 24px;
+  margin-bottom: 25px;
 }
 
-/* CARDS (1 COLONNE POUR ÊTRE IDENTIQUE PC / MOBILE) */
+/* GRID */
 .grid {
   display: grid;
-  grid-template-columns: 1fr;   /* 1 seule colonne : comme sur téléphone */
-  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
 }
 
 .card {
   background: #fff;
+  padding: 20px;
+  border-radius: 8px;
   border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
-  font-size: 12px;
 }
 
-.card h3 {
-  font-size: 13px;
-  margin-bottom: 4px;
-}
-
-/* FORMULAIRE COMPACT */
+/* FORM */
 .form {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  display: grid;
+  gap: 15px;
+  max-width: 500px;
+  margin: auto;
 }
 
 .form input,
 .form textarea {
-  padding: 6px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 12px;
-}
-
-.btn-full {
-  padding: 7px;
-  background: #000;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 12px;
-  cursor: pointer;
 }
 
 /* FOOTER */
 .footer {
   text-align: center;
-  padding: 12px 0 18px;
-  font-size: 11px;
-  color: #555;
-}
-
-/* ===== BARRE D’APPLICATION EN BAS (MOBILE) ===== */
-.appbar-bottom {
-  display: none; /* cachée par défaut, visible sur mobile plus bas */
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #e3e3e3;      /* gris */
-  border-top: 1px solid #c5c5c5;
-  padding: 8px 0;
-  justify-content: space-around;
-  z-index: 100;
-}
-
-.appbar-bottom a {
-  color: #333;
-  font-size: 13px;
-  font-weight: bold;
-  text-decoration: none;
-  padding: 6px 12px;
-  border-radius: 6px;
+  padding: 25px 0;
   background: #fff;
-  border: 1px solid #ccc;
-}
-
-/* Affichage mobile uniquement */
-@media (max-width: 650px) {
-  .appbar-bottom {
-    display: flex;
-  }
+  margin-top: 40px;
 }
