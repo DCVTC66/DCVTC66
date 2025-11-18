@@ -3,88 +3,177 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DCVTC66 — Chauffeur VTC</title>
+  <title>DCVTC66 — Chauffeur VTC à Perpignan</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
 </head>
 
 <body>
 
-<header class="header">
-  <div class="container header-inner">
-    <img src="LOGO DCVTC66.png" class="logo" alt="logo">
-    <span class="title">DCVTC66</span>
+  <!-- HEADER / BARRE D'APPLICATION -->
+  <header class="header">
+    <div class="container header-inner">
+      <span class="title">DCVTC66</span>
 
-    <nav class="nav">
-      <a href="#accueil">Accueil</a>
-      <a href="#services">Services</a>
-      <a href="#reservation">Réserver</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</header>
+      <img src="LOGO DCVTC66.png" class="logo" alt="Logo DCVTC66">
 
-<main>
-
-<section id="accueil" class="hero">
-  <div class="container">
-    <h1 class="hero-title">Chauffeur VTC — Perpignan</h1>
-    <p class="hero-text">
-      Disponible 7j/7 — Trajets gares, aéroports, longues distances.
-    </p>
-    <a href="#reservation" class="btn">Réserver</a>
-  </div>
-</section>
-
-<section id="services" class="section">
-  <div class="container">
-    <h2 class="section-title">Services</h2>
-
-    <div class="grid">
-      <div class="card"><h3>Transferts Aéroports</h3><p>Service rapide et fiable.</p></div>
-      <div class="card"><h3>Transferts Gares</h3><p>Perpignan & Narbonne.</p></div>
-      <div class="card"><h3>Déplacements Pros</h3><p>Rendez-vous & entreprises.</p></div>
-      <div class="card"><h3>Mise à Disposition</h3><p>Événements & longues durées.</p></div>
+      <nav class="nav">
+        <a href="#accueil">Accueil</a>
+        <a href="#services">Services</a>
+        <a href="#reservation">Réserver</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
+  </header>
+
+  <main>
+
+    <!-- ACCUEIL -->
+    <section id="accueil" class="hero">
+      <div class="container">
+        <h1 class="hero-title">Votre chauffeur VTC à Perpignan et dans tout le 66</h1>
+
+        <p class="hero-text">
+          DCVTC66 vous propose un service de transport privé fiable, confortable et disponible 7j/7
+          pour tous vos déplacements : gares, aéroports, rendez-vous professionnels, trajets longue distance
+          ou simples courses du quotidien.
+        </p>
+
+        <p class="hero-text">
+          Avec DCVTC66, vous profitez d’un chauffeur ponctuel, discret et attentif à votre confort,
+          que vous soyez particulier ou professionnel.
+        </p>
+
+        <a href="#reservation" class="btn">Réserver un trajet</a>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section">
+      <div class="container">
+        <h2 class="section-title">Nos services VTC</h2>
+
+        <div class="grid">
+
+          <div class="card">
+            <h3>Transferts aéroports</h3>
+            <p>
+              Prise en charge depuis et vers les principaux aéroports (Perpignan, Carcassonne, Toulouse,
+              Montpellier, Barcelone, etc.).
+            </p>
+            <p>
+              Suivi des horaires de vol, accueil soigné et trajet serein à l’arrivée comme au départ.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Transferts gares</h3>
+            <p>
+              Déplacements vers et depuis les gares de Perpignan, Narbonne et autres gares de la région.
+            </p>
+            <p>
+              Votre chauffeur vous attend et vous conduit directement à votre adresse finale, sans stress ni attente.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Déplacements professionnels</h3>
+            <p>
+              Service adapté aux besoins des entreprises, indépendants et clients professionnels :
+            </p>
+            <p>
+              rendez-vous, séminaires, hôtels, visites de sites… Vous voyagez dans un cadre calme
+              et confortable, idéal pour rester concentré sur votre activité.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Mise à disposition</h3>
+            <p>
+              Possibilité de réserver le chauffeur pour plusieurs heures ou pour la journée.
+            </p>
+            <p>
+              Idéal pour les événements, mariages, soirées, visites touristiques ou déplacements
+              avec plusieurs étapes. Tarif sur devis selon votre projet.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- RÉSERVATION -->
+    <section id="reservation" class="section">
+      <div class="container">
+        <h2 class="section-title">Réserver un trajet</h2>
+
+        <p class="hero-text" style="text-align:center; margin-bottom:12px;">
+          Remplissez le formulaire ci-dessous pour faire une demande de réservation.<br>
+          Vous recevrez une confirmation rapide et, si besoin, un devis personnalisé.
+        </p>
+
+        <form action="https://formspree.io/f/xxxxxxx" method="POST" class="form">
+          <input name="Nom" placeholder="Nom" required>
+          <input name="Téléphone" placeholder="Téléphone" required>
+          <input name="Départ" placeholder="Point de départ" required>
+          <input name="Arrivee" placeholder="Destination" required>
+          <input type="datetime-local" name="DateHeure" required>
+          <input name="Passagers" placeholder="Nombre de passagers (optionnel)">
+          <textarea name="Message" rows="3" placeholder="Commentaires : bagages, enfants, demande spéciale... (optionnel)"></textarea>
+          <button class="btn-full">Envoyer la demande</button>
+        </form>
+
+        <p class="hero-text" style="text-align:center; margin-top:10px;">
+          Pour une demande urgente ou un départ rapide, le plus simple est de nous appeler directement.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="container">
+        <h2 class="section-title">Contact & zone d’intervention</h2>
+
+        <p style="text-align:center; margin-bottom:6px;">
+          📍 <strong>DCVTC66 — Chauffeur VTC à Perpignan</strong>
+        </p>
+        <p style="text-align:center; margin-bottom:6px;">
+          Basé à Perpignan, déplacements dans tout le département 66 (Pyrénées-Orientales)
+          et au-delà sur demande (France & Espagne).
+        </p>
+
+        <p style="text-align:center; margin-bottom:4px;">
+          📞 <strong>06 63 46 37 16</strong>
+        </p>
+        <p style="text-align:center; margin-bottom:8px;">
+          📧 <strong>contact@dcvtc66.fr</strong>
+        </p>
+
+        <p style="text-align:center; font-size:12px; color:#555;">
+          N’hésitez pas à demander un devis pour les trajets longue distance, les événements,
+          les déplacements professionnels ou les transferts réguliers.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BARRE D’APPLICATION EN BAS (MOBILE) -->
+  <div class="appbar-bottom">
+    <a href="#reservation">🚗 Réserver</a>
+    <a href="tel:0663463716">📞 Appeler</a>
   </div>
-</section>
 
-<section id="reservation" class="section">
-  <div class="container">
-    <h2 class="section-title">Réserver un trajet</h2>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      © <span id="year"></span> DCVTC66 — Chauffeur VTC à Perpignan
+    </div>
+  </footer>
 
-    <form action="https://formspree.io/f/xxxxxxx" method="POST" class="form">
-      <input name="Nom" placeholder="Nom" required>
-      <input name="Téléphone" placeholder="Téléphone" required>
-      <input name="Départ" placeholder="Point de départ" required>
-      <input name="Arrivee" placeholder="Destination" required>
-      <input type="datetime-local" name="DateHeure" required>
-      <textarea name="Message" rows="3" placeholder="Commentaires (optionnel)"></textarea>
-      <button class="btn-full">Envoyer</button>
-    </form>
-  </div>
-</section>
-
-<section id="contact" class="section">
-  <div class="container">
-    <h2 class="section-title">Contact</h2>
-    <p>📞 06 63 46 37 16</p>
-    <p>📧 contact@dcvtc66.fr</p>
-    <p>📍 Perpignan — Déplacements 66 & longue distance</p>
-  </div>
-</section>
-
-</main>
-
-<footer class="footer">
-  <div class="container">
-    © <span id="year"></span> DCVTC66
-  </div>
-</footer>
-
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 
 </body>
 </html>
