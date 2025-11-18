@@ -1,141 +1,151 @@
 /* RESET */
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-  font-family: Arial, sans-serif;
-  background:#f1f1f1;
-  color:#222;
-  font-size:14px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* STRUCTURE */
+/* BASE */
+body {
+  font-family: Arial, sans-serif;
+  background: #f1f1f1;
+  color: #222;
+  font-size: 14px; /* même taille de base partout */
+}
+
+/* CONTENEUR TYPE TÉLÉPHONE (MÊME SUR PC) */
 .container {
-  width:100%;
-  max-width:800px;
-  margin:auto;
-  padding:0 12px;
+  width: 100%;
+  max-width: 420px;         /* largeur type écran de téléphone */
+  margin: 0 auto;           /* centré sur l’écran */
+  padding: 0 10px;
 }
 
 /* HEADER */
 .header {
-  background:#fff;
-  border-bottom:1px solid #ddd;
-  padding:8px 0;
-  position:sticky;
-  top:0;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 6px 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .header-inner {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
+/* Logo très petit */
 .logo {
-  width:28px;  /* LOGO TRÈS PETIT */
-  height:auto;
+  width: 22px;   /* encore plus petit */
+  height: auto;
 }
 
 .title {
-  font-size:14px;
-  font-weight:bold;
+  font-size: 13px;
+  font-weight: bold;
 }
 
+/* Navigation compacte */
 .nav a {
-  font-size:12px;
-  margin-left:10px;
-  text-decoration:none;
-  color:#333;
+  font-size: 11px;
+  margin-left: 8px;
+  text-decoration: none;
+  color: #333;
 }
 
 /* HERO */
 .hero {
-  text-align:center;
-  padding:40px 0;
-  background:#ffffff;
-  border-bottom:1px solid #ddd;
+  text-align: center;
+  padding: 24px 0;
+  background: #ffffff;
+  border-bottom: 1px solid #ddd;
 }
 
 .hero-title {
-  font-size:20px;
-  margin-bottom:6px;
+  font-size: 18px;
+  margin-bottom: 4px;
 }
 
 .hero-text {
-  font-size:13px;
-  margin-bottom:12px;
-  color:#555;
+  font-size: 12px;
+  margin-bottom: 10px;
+  color: #555;
 }
 
+/* Bouton compact */
 .btn {
-  display:inline-block;
-  padding:8px 14px;
-  background:#222;
-  color:#fff;
-  border-radius:4px;
-  font-size:12px;
-  text-decoration:none;
+  display: inline-block;
+  padding: 6px 10px;
+  background: #222;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 11px;
+  text-decoration: none;
 }
 
-/* SECTIONS GÉNÉRALES */
+/* SECTIONS */
 .section {
-  padding:25px 0;
+  padding: 18px 0;
 }
 
 .section-title {
-  font-size:16px;
-  margin-bottom:12px;
-  text-align:center;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
-/* CARDS */
+/* CARDS (1 COLONNE POUR QUE CE SOIT PAREIL PARTOUT) */
 .grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
+  display: grid;
+  grid-template-columns: 1fr;   /* 1 seule colonne : comme sur téléphone */
+  gap: 8px;
 }
 
 .card {
-  background:#fff;
-  border:1px solid #ddd;
-  border-radius:6px;
-  padding:12px;
-  font-size:12px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 12px;
 }
 
 .card h3 {
-  font-size:13px;
-  margin-bottom:4px;
+  font-size: 12px;
+  margin-bottom: 3px;
 }
 
-/* FORMULAIRE */
+/* FORMULAIRE COMPACT */
 .form {
-  display:flex;
-  flex-direction:column;
-  gap:8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .form input,
 .form textarea {
-  padding:8px;
-  border:1px solid #ccc;
-  border-radius:4px;
-  font-size:13px;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 12px;
 }
 
 .btn-full {
-  padding:8px;
-  background:#000;
-  color:#fff;
-  border:none;
-  border-radius:4px;
-  font-size:13px;
-  cursor:pointer;
+  padding: 7px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
 }
 
 /* FOOTER */
 .footer {
-  text-align:center;
-  padding:15px 0;
-  font-size:12px;
-  color:#555;
+  text-align: center;
+  padding: 12px 0 18px;
+  font-size: 11px;
+  color: #555;
 }
