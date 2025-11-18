@@ -21,14 +21,14 @@ body {
   padding: 0 10px;
 }
 
-/* HEADER */
+/* ===== HEADER / BARRE D’APPLICATION ===== */
 .header {
-  background: #fff;
-  border-bottom: 1px solid #ddd;
-  padding: 6px 0;
+  background: #e3e3e3;            /* gris clair moderne */
+  border-bottom: 1px solid #c5c5c5;
+  padding: 8px 0;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 50;
 }
 
 .header-inner {
@@ -37,23 +37,33 @@ body {
   justify-content: space-between;
 }
 
-/* Logo très petit */
-.logo {
-  width: 22px;   /* encore plus petit */
-  height: auto;
-}
-
+/* Texte DCVTC66 */
 .title {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: bold;
+  color: #222;
 }
 
-/* Navigation compacte */
+/* LOGO ENTRE DCVTC66 ET ACCUEIL + AGRANDI */
+.logo {
+  width: 38px;      /* un peu plus grand, mais pas énorme */
+  height: auto;
+  margin: 0 10px;
+}
+
+/* MENU À DROITE */
 .nav a {
-  font-size: 11px;
-  margin-left: 8px;
+  font-size: 13px;
+  margin-left: 10px;
   text-decoration: none;
   color: #333;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: 0.15s;
+}
+
+.nav a:hover {
+  background: #d4d4d4;     /* gris hover */
 }
 
 /* HERO */
@@ -66,7 +76,7 @@ body {
 
 .hero-title {
   font-size: 18px;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .hero-text {
@@ -78,26 +88,26 @@ body {
 /* Bouton compact */
 .btn {
   display: inline-block;
-  padding: 6px 10px;
+  padding: 7px 12px;
   background: #222;
   color: #fff;
   border-radius: 4px;
-  font-size: 11px;
+  font-size: 12px;
   text-decoration: none;
 }
 
 /* SECTIONS */
 .section {
-  padding: 18px 0;
+  padding: 20px 0;
 }
 
 .section-title {
-  font-size: 14px;
+  font-size: 15px;
   margin-bottom: 10px;
   text-align: center;
 }
 
-/* CARDS (1 COLONNE POUR QUE CE SOIT PAREIL PARTOUT) */
+/* CARDS (1 COLONNE POUR ÊTRE IDENTIQUE PC / MOBILE) */
 .grid {
   display: grid;
   grid-template-columns: 1fr;   /* 1 seule colonne : comme sur téléphone */
@@ -113,8 +123,8 @@ body {
 }
 
 .card h3 {
-  font-size: 12px;
-  margin-bottom: 3px;
+  font-size: 13px;
+  margin-bottom: 4px;
 }
 
 /* FORMULAIRE COMPACT */
@@ -148,4 +158,36 @@ body {
   padding: 12px 0 18px;
   font-size: 11px;
   color: #555;
+}
+
+/* ===== BARRE D’APPLICATION EN BAS (MOBILE) ===== */
+.appbar-bottom {
+  display: none; /* cachée par défaut, visible sur mobile plus bas */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #e3e3e3;      /* gris */
+  border-top: 1px solid #c5c5c5;
+  padding: 8px 0;
+  justify-content: space-around;
+  z-index: 100;
+}
+
+.appbar-bottom a {
+  color: #333;
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: #fff;
+  border: 1px solid #ccc;
+}
+
+/* Affichage mobile uniquement */
+@media (max-width: 650px) {
+  .appbar-bottom {
+    display: flex;
+  }
 }
