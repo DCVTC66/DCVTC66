@@ -3,186 +3,131 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DCVTC66 — Chauffeur VTC privé à Perpignan</title>
-  <meta name="description" content="DCVTC66, chauffeur VTC privé à Perpignan, assure vos trajets gares, aéroports, rendez-vous professionnels et longues distances dans tout le 66 et au-delà. Réservation simple, service sérieux et ponctuel." />
+  <title>DCVTC66 — Chauffeur VTC à Perpignan</title>
+  <meta name="description" content="DCVTC66, chauffeur VTC à Perpignan, propose des trajets fiables, confortables et ponctuels dans tout le département 66 et au-delà. Réservation simple et rapide." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
 </head>
 
 <body>
 
-  <!-- HEADER / BARRE D’APPLICATION -->
+  <!-- HEADER -->
   <header class="header">
     <div class="container header-inner">
+      <img src="LOGO DCVTC66.png" alt="Logo DCVTC66" class="logo">
+      <h1 class="site-title">DCVTC66 — Chauffeur VTC à Perpignan</h1>
 
-      <!-- À GAUCHE : NOM -->
-      <span class="title">DCVTC66</span>
-
-      <!-- AU MILIEU : LOGO (ENTRE DCVTC66 ET ACCUEIL) -->
-      <img src="LOGO DCVTC66.png" class="logo" alt="Logo DCVTC66">
-
-      <!-- À DROITE : MENU -->
       <nav class="nav">
-        <a href="#accueil">Accueil</a>
-        <a href="#services">Services</a>
-        <a href="#reservation">Réserver</a>
-        <a href="#contact">Contact</a>
+        <ul>
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#reservation">Réservation</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
       </nav>
-
     </div>
   </header>
 
-  <main>
+  <!-- ACCUEIL -->
+  <section id="accueil" class="hero">
+    <div class="container hero-inner">
+      <h2>Votre chauffeur VTC privé à Perpignan</h2>
+      <p class="lead">
+        DCVTC66 vous accompagne pour tous vos trajets : personnels, professionnels,
+        gares, aéroports, longues distances et événements.
+      </p>
 
-    <!-- SECTION ACCUEIL -->
-    <section id="accueil" class="hero">
-      <div class="container">
-        <h1 class="hero-title">Chauffeur VTC privé à Perpignan</h1>
+      <ul class="hero-highlights">
+        <li>✔ Service 7j/7</li>
+        <li>✔ Chauffeur professionnel et ponctuel</li>
+        <li>✔ Réservation simple et rapide</li>
+      </ul>
 
-        <p class="hero-text">
-          DCVTC66 vous accompagne pour tous vos déplacements dans Perpignan, les Pyrénées-Orientales (66)
-          et les départements voisins. Service sérieux, confortable et ponctuel pour les particuliers
-          comme pour les professionnels.
-        </p>
+      <a href="#reservation" class="btn-primary">Réserver maintenant</a>
+    </div>
+  </section>
 
-        <p class="hero-text">
-          Gares, aéroports, rendez-vous médicaux, professionnels, événements ou longs trajets :
-          votre chauffeur privé s’occupe de vous conduire en toute tranquillité.
-        </p>
+  <!-- SERVICES -->
+  <section id="services" class="section">
+    <div class="container">
+      <h3 class="section-title">Nos services</h3>
 
-        <a href="#reservation" class="btn">Réserver un trajet maintenant</a>
+      <div class="grid">
+
+        <article class="card">
+          <h4>Transferts aéroports</h4>
+          <p>Déplacement vers Perpignan, Toulouse, Carcassonne, Montpellier ou Barcelone.</p>
+        </article>
+
+        <article class="card">
+          <h4>Transferts gares</h4>
+          <p>Prise en charge à la gare de Perpignan, Narbonne et dans la région.</p>
+        </article>
+
+        <article class="card">
+          <h4>Déplacements professionnels</h4>
+          <p>Idéal pour vos rendez-vous, séminaires, clients ou missions ponctuelles.</p>
+        </article>
+
+        <article class="card">
+          <h4>Mise à disposition</h4>
+          <p>Chauffeur pour événements, mariages, soirées ou journées complètes.</p>
+        </article>
+
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- SECTION SERVICES -->
-    <section id="services" class="section">
-      <div class="container">
-        <h2 class="section-title">Nos services VTC</h2>
+  <!-- RÉSERVATION -->
+  <section id="reservation" class="section section-alt">
+    <div class="container">
+      <h3 class="section-title">Réserver un trajet</h3>
 
-        <div class="grid">
+      <form action="https://formspree.io/f/xxxxxxx" method="POST" class="form">
+        <label>Nom
+          <input type="text" name="Nom" required>
+        </label>
 
-          <!-- Service 1 -->
-          <div class="card">
-            <h3>Transferts aéroports</h3>
-            <p>
-              Prise en charge vers et depuis les principaux aéroports de la région
-              (Perpignan, Carcassonne, Toulouse, Montpellier, Barcelone…).
-            </p>
-            <p>
-              Votre chauffeur suit les horaires de vol, vous attend à l’arrivée si besoin
-              et vous dépose au plus près de votre terminal ou de votre adresse.
-            </p>
-          </div>
+        <label>Téléphone
+          <input type="tel" name="Téléphone" required>
+        </label>
 
-          <!-- Service 2 -->
-          <div class="card">
-            <h3>Transferts gares</h3>
-            <p>
-              Départs et arrivées aux gares de Perpignan, Narbonne et autres gares proches.
-            </p>
-            <p>
-              Plus de stress à la sortie du train : votre chauffeur vous attend et vous emmène
-              directement à votre domicile, hôtel, lieu de travail ou rendez-vous.
-            </p>
-          </div>
+        <label>Point de départ
+          <input type="text" name="Départ" required>
+        </label>
 
-          <!-- Service 3 -->
-          <div class="card">
-            <h3>Déplacements professionnels</h3>
-            <p>
-              Service adapté aux besoins des entreprises, indépendants et clients professionnels.
-            </p>
-            <p>
-              Idéal pour les rendez-vous clients, visites de sites, séminaires, hôtels ou transferts
-              entre gares, aéroports et bureaux. Discrétion, ponctualité et sérieux garantis.
-            </p>
-          </div>
+        <label>Destination
+          <input type="text" name="Arrivee" required>
+        </label>
 
-          <!-- Service 4 -->
-          <div class="card">
-            <h3>Mise à disposition</h3>
-            <p>
-              Réservez votre chauffeur pour plusieurs heures ou pour une journée complète.
-            </p>
-            <p>
-              Parfait pour les événements, mariages, soirées, circuits touristiques ou journées
-              de déplacements multiples. Un devis personnalisé peut être établi selon vos besoins.
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION RÉSERVATION -->
-    <section id="reservation" class="section">
-      <div class="container">
-        <h2 class="section-title">Réserver un trajet</h2>
-
-        <p class="hero-text" style="text-align:center; margin-bottom:12px;">
-          Utilisez le formulaire ci-dessous pour faire une demande de réservation.<br>
-          Vous recevrez une réponse rapide avec la confirmation et, si nécessaire, une proposition de tarif.
-        </p>
-
-        <form action="https://formspree.io/f/xxxxxxx" method="POST" class="form">
-          <input name="Nom" placeholder="Nom" required>
-          <input name="Téléphone" placeholder="Téléphone" required>
-          <input name="Départ" placeholder="Point de départ" required>
-          <input name="Arrivee" placeholder="Destination" required>
+        <label>Date et heure
           <input type="datetime-local" name="DateHeure" required>
-          <input name="Passagers" placeholder="Nombre de passagers (optionnel)">
-          <textarea name="Message" rows="3" placeholder="Commentaires (bagages, enfants, horaires particuliers, entreprise, etc.)"></textarea>
-          <button class="btn-full">Envoyer ma demande de réservation</button>
-        </form>
+        </label>
 
-        <p class="hero-text" style="text-align:center; margin-top:10px;">
-          Pour une demande urgente ou un départ dans un délai très court,
-          vous pouvez appeler directement le chauffeur.
-        </p>
-      </div>
-    </section>
+        <label>Commentaires (optionnel)
+          <textarea name="Message" rows="4"></textarea>
+        </label>
 
-    <!-- SECTION CONTACT -->
-    <section id="contact" class="section">
-      <div class="container">
-        <h2 class="section-title">Contact & zone d’intervention</h2>
+        <button type="submit" class="btn-primary btn-full">Envoyer la demande</button>
+      </form>
+    </div>
+  </section>
 
-        <p style="text-align:center; margin-bottom:6px;">
-          📍 <strong>DCVTC66 — Chauffeur VTC privé à Perpignan</strong>
-        </p>
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h3 class="section-title">Contact</h3>
 
-        <p style="text-align:center; margin-bottom:6px;">
-          Basé à Perpignan, votre chauffeur assure vos déplacements dans tout le département des
-          Pyrénées-Orientales (66) et peut se déplacer plus loin, en France ou en Espagne, sur demande.
-        </p>
-
-        <p style="text-align:center; margin-bottom:4px;">
-          📞 <strong>06 63 46 37 16</strong>
-        </p>
-
-        <p style="text-align:center; margin-bottom:8px;">
-          📧 <strong>contact@dcvtc66.fr</strong>
-        </p>
-
-        <p style="text-align:center; font-size:12px; color:#555;">
-          N’hésitez pas à nous contacter pour un devis, une question particulière
-          ou l’organisation de trajets réguliers (professionnels ou personnels).
-        </p>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- BARRE D’APPLICATION EN BAS (MOBILE) -->
-  <div class="appbar-bottom">
-    <a href="#reservation">🚗 Réserver</a>
-    <a href="tel:0663463716">📞 Appeler</a>
-  </div>
+      <p>📞 Téléphone : <strong>06 63 46 37 16</strong></p>
+      <p>📧 Email : <strong>contact@dcvtc66.fr</strong></p>
+      <p>📍 Basé à Perpignan — déplacements dans tout le 66 et au-delà.</p>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      © <span id="year"></span> DCVTC66 — Chauffeur VTC privé à Perpignan
+      © <span id="year"></span> DCVTC66 — Chauffeur VTC à Perpignan
     </div>
   </footer>
 
