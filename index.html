@@ -11,11 +11,296 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
 
-  <!-- Styles spécifiques bouton + tarif flottant + actions -->
+  <!-- STYLES COMPLETS -->
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #111827;
+      background-color: #f3f4f6;
+      line-height: 1.5;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* HEADER / HERO */
+    .header {
+      background: radial-gradient(circle at top left, #111827, #020617);
+      color: #f9fafb;
+      padding: 2.5rem 0 3rem;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 220px;
+    }
+
+    .branding {
+      max-width: 560px;
+    }
+
+    .logo {
+      height: 70px;
+      width: auto;
+      margin-bottom: 1rem;
+    }
+
+    .site-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.25rem;
+    }
+
+    .site-subtitle {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #e5e7eb;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badges span {
+      font-size: 0.85rem;
+      background: rgba(15,23,42,0.7);
+      border-radius: 999px;
+      padding: 0.4rem 0.8rem;
+      border: 1px solid rgba(148,163,184,0.4);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    /* NAV */
+    .nav {
+      background: #0f172a;
+      color: #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: center;
+    }
+
+    .nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      padding: 0.75rem 0;
+      font-size: 0.95rem;
+    }
+
+    .nav a {
+      position: relative;
+      padding-bottom: 0.15rem;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 2px;
+      background: #facc15;
+      transition: width 0.2s ease;
+    }
+
+    .nav a:hover::after {
+      width: 100%;
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 2.5rem 0;
+    }
+
+    .section-alt {
+      background: #f9fafb;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      margin-bottom: 0.75rem;
+      text-align: center;
+      color: #111827;
+    }
+
+    .section-intro {
+      max-width: 620px;
+      margin: 0 auto 2rem;
+      text-align: center;
+      font-size: 0.98rem;
+      color: #4b5563;
+    }
+
+    /* GRID SERVICES */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 0.9rem;
+      padding: 1.25rem 1.2rem;
+      box-shadow: 0 10px 25px rgba(15,23,42,0.06);
+      border: 1px solid #e5e7eb;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+      color: #111827;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: #4b5563;
+    }
+
+    /* FORMULAIRE */
+    .form {
+      background: #ffffff;
+      border-radius: 1.1rem;
+      padding: 1.75rem 1.5rem;
+      box-shadow: 0 12px 30px rgba(15,23,42,0.06);
+      border: 1px solid #e5e7eb;
+    }
+
+    .form label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      color: #111827;
+    }
+
+    .form input,
+    .form textarea {
+      width: 100%;
+      margin-top: 0.35rem;
+      padding: 0.55rem 0.7rem;
+      border-radius: 0.5rem;
+      border: 1px solid #d1d5db;
+      font-family: inherit;
+      font-size: 0.94rem;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      background-color: #f9fafb;
+    }
+
+    .form input:focus,
+    .form textarea:focus {
+      border-color: #0f766e;
+      box-shadow: 0 0 0 1px rgba(15,118,110,0.35);
+      background-color: #ffffff;
+    }
+
+    .form textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    /* BOUTONS GÉNÉRAUX */
+    .btn-primary,
+    .btn-secondary,
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.8rem 1.4rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: #facc15;
+      color: #111827;
+      box-shadow: 0 10px 25px rgba(234,179,8,0.4);
+    }
+
+    .btn-primary:hover {
+      background: #eab308;
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(234,179,8,0.6);
+    }
+
+    .btn-secondary {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-color: #1f2937;
+    }
+
+    .btn-secondary:hover {
+      background: #020617;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #e5e7eb;
+      border-color: rgba(249,250,251,0.7);
+    }
+
+    .btn-outline:hover {
+      background: rgba(15,23,42,0.8);
+      transform: translateY(-1px);
+    }
+
+    .btn-full {
+      width: 100%;
+    }
+
+    /* BOUTON D'ESTIMATION MODERNISÉ */
     .btn-estimate {
       display: inline-flex;
       align-items: center;
@@ -61,14 +346,74 @@
       flex: 1 1 180px;
     }
 
+    /* CONTACT */
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      font-size: 0.95rem;
+      color: #374151;
+    }
+
+    .contact-grid p + p {
+      margin-top: 0.35rem;
+    }
+
+    /* MAP SECTION */
+    .map-wrapper {
+      margin-top: 1rem;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 14px 35px rgba(15,23,42,0.15);
+      border: 1px solid #e5e7eb;
+      background: #000;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #020617;
+      color: #9ca3af;
+      font-size: 0.85rem;
+      padding: 1rem 0;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    /* FAB BOUTONS FLOTTANTS TEL / WHATSAPP */
+    .fab {
+      position: fixed;
+      bottom: 1.25rem;
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: #f9fafb;
+      box-shadow: 0 16px 35px rgba(15,23,42,0.45);
+      z-index: 60;
+      text-decoration: none;
+    }
+
+    .fab-call {
+      right: 1.25rem;
+      background: #111827;
+    }
+
+    .fab-whatsapp {
+      right: 4.25rem;
+      background: #16a34a;
+    }
+
     @media (max-width: 640px) {
-      .btn-estimate {
-        width: 100%;
-        justify-content: center;
+      .fab-whatsapp {
+        right: 1.25rem;
+        bottom: 4.2rem;
       }
     }
 
-    /* Carte flottante estimation */
+    /* TARIF FLOTTANT TRÈS VISIBLE + ANIMATION */
     #tarif-flottant {
       position: fixed;
       bottom: 24px;
@@ -77,26 +422,68 @@
       display: none;
       align-items: center;
       gap: 0.75rem;
-      padding: 0.75rem 1.1rem;
+      padding: 0.9rem 1.3rem;
       border-radius: 999px;
-      background: rgba(15, 23, 42, 0.98);
-      color: #f9fafb;
-      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.6);
-      font-size: 0.9rem;
-      font-weight: 500;
+      background: linear-gradient(135deg, #16a34a, #22c55e);
+      color: #022c22;
+      box-shadow: 0 16px 40px rgba(22, 163, 74, 0.7);
+      font-size: 0.95rem;
+      font-weight: 600;
       max-width: 90vw;
+      border: 1px solid rgba(6, 95, 70, 0.75);
+      animation: pulseTarif 1.6s ease-in-out infinite;
     }
 
     #tarif-flottant .icon {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
 
     @media (max-width: 768px) {
       #tarif-flottant {
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
+        left: 16px;
+        right: 16px;
         bottom: 16px;
+        justify-content: center;
+      }
+    }
+
+    @keyframes pulseTarif {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55);
+      }
+      50% {
+        transform: scale(1.06);
+        box-shadow: 0 18px 45px rgba(22, 163, 74, 0.85);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55);
+      }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .header-inner {
+        min-height: auto;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form {
+        padding: 1.4rem 1.1rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
       }
     }
   </style>
@@ -211,10 +598,6 @@
         <!-- Bloc info estimation -->
         <div id="estimation" class="tarif-estimate" style="margin-top: 1.5rem; border-radius: 16px; background: #ffffff; padding: 1.2rem; box-shadow: 0 6px 18px rgba(0,0,0,0.05);">
           <h3 style="margin-top:0; margin-bottom:0.5rem; font-size:1.1rem;">Simulation de tarif (optionnel)</h3>
-          <p style="margin-top:0; margin-bottom:0.75rem; font-size:0.95rem; color:#555;">
-            Utilisez vos adresses de <strong>point de départ</strong> et de <strong>destination</strong> ci-dessus
-            pour obtenir une estimation du kilométrage, du temps de trajet et du montant indicatif de la course.
-          </p>
 
           <div id="erreur-tarif" style="
             display:none;
@@ -285,8 +668,8 @@
         La carte ci-dessous affiche l’itinéraire et les informations principales après une estimation de votre trajet.
       </p>
 
-      <div class="map-wrapper" style="position:relative;width:100%;height:320px;border-radius:12px;overflow:hidden;">
-        <div id="map" style="width:100%;height:100%;"></div>
+      <div class="map-wrapper">
+        <div id="map" style="width:100%;height:320px;"></div>
         <div id="tarif-overlay" style="
           display:none;
           position:absolute;
@@ -346,22 +729,22 @@
       const dateHeure = form["DateHeure"].value;
       const messageClient = form["Message"].value;
 
-      let sms = "Nouvelle demande de réservation – DCVTC66 :\\n\\n";
-      sms += "Nom : " + nom + "\\n";
-      sms += "Téléphone : " + tel + "\\n";
-      sms += "Départ : " + depart + "\\n";
-      sms += "Destination : " + arrivee + "\\n";
-      sms += "Date & heure : " + dateHeure + "\\n";
+      let sms = "Nouvelle demande de réservation – DCVTC66 :\n\n";
+      sms += "Nom : " + nom + "\n";
+      sms += "Téléphone : " + tel + "\n";
+      sms += "Départ : " + depart + "\n";
+      sms += "Destination : " + arrivee + "\n";
+      sms += "Date & heure : " + dateHeure + "\n";
       if (messageClient.trim() !== "") {
-        sms += "Commentaires : " + messageClient + "\\n";
+        sms += "Commentaires : " + messageClient + "\n";
       }
 
       // Ajout de l'estimation si disponible
       if (derniereEstimation) {
-        sms += "\\n--- Estimation indicative ---\\n";
-        sms += "Distance : " + derniereEstimation.distanceKm + " km\\n";
-        sms += "Durée : " + derniereEstimation.dureeTexte + "\\n";
-        sms += "Tarif estimé : " + derniereEstimation.tarif.toFixed(2) + " €\\n";
+        sms += "\n--- Estimation indicative ---\n";
+        sms += "Distance : " + derniereEstimation.distanceKm + " km\n";
+        sms += "Durée : " + derniereEstimation.dureeTexte + "\n";
+        sms += "Tarif estimé : " + derniereEstimation.tarif.toFixed(2) + " €\n";
       }
 
       const numero = "0663463716";
@@ -511,6 +894,8 @@
             "Tarif estimé (indicatif) : <strong>" + tarif.toFixed(2) + " €</strong><br><br>" +
             "<em>(Estimation basée sur l&#39;API Google Maps, pour un trajet routier standard.)</em>";
 
+          resDiv.style.display = "block";
+
           // Overlay sur la carte (section du bas)
           overlay.innerHTML =
             "<strong>Simulation de votre trajet</strong><br>" +
@@ -519,7 +904,7 @@
             "Tarif estimatif : " + tarif.toFixed(2) + " €";
           overlay.style.display = "block";
 
-          // Affichage flottant du tarif
+          // Affichage flottant du tarif – bien visible
           if (flottant && flottantTexte) {
             flottantTexte.textContent =
               "Estimation : " + tarif.toFixed(2) + " € • " +
@@ -549,7 +934,7 @@
     }
   </script>
 
-  <!-- GOOGLE MAPS API -->
+  <!-- GOOGLE MAPS API (garde ta clé, tu peux la changer dans la console Google) -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDW4LNM6rw5DKJ3KjMP1hEvk03k5pCKg4c&callback=initMap&libraries=places" async defer></script>
 
 </body>
