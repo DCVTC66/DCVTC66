@@ -13,6 +13,93 @@
 
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
+
+  <!-- Styles spécifiques bouton + tarif flottant + actions -->
+  <style>
+    .btn-estimate {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.6rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #111827, #1f2933);
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.35);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .btn-estimate span.icon {
+      font-size: 1.15rem;
+    }
+
+    .btn-estimate:hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.45);
+      background: linear-gradient(135deg, #0b1120, #111827);
+    }
+
+    .btn-estimate:active {
+      transform: translateY(0) scale(0.99);
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.35);
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .form-actions button {
+      flex: 1 1 180px;
+    }
+
+    @media (max-width: 640px) {
+      .btn-estimate {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* Carte flottante estimation */
+    #tarif-flottant {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.1rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.98);
+      color: #f9fafb;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.6);
+      font-size: 0.9rem;
+      font-weight: 500;
+      max-width: 90vw;
+    }
+
+    #tarif-flottant .icon {
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+      #tarif-flottant {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        bottom: 16px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -121,44 +208,16 @@
           <textarea name="Message" rows="4" placeholder="Ex : Nombre de passagers, bagages, siège enfant..."></textarea>
         </label>
 
-        <!-- ESTIMATION TARIFAIRE (OPTIONNELLE) -->
-        <div id="estimation" class="tarif-estimate" style="margin-top: 2rem; border-radius: 16px; background: #ffffff; padding: 1.5rem; box-shadow: 0 8px 24px rgba(0,0,0,0.06);">
-          <h3 style="margin-top:0; margin-bottom:0.5rem; font-size:1.2rem;">Simulation de tarif (optionnel)</h3>
-          <p style="margin-top:0; margin-bottom:1rem; font-size:0.95rem; color:#555;">
+        <!-- Bloc info estimation -->
+        <div id="estimation" class="tarif-estimate" style="margin-top: 1.5rem; border-radius: 16px; background: #ffffff; padding: 1.2rem; box-shadow: 0 6px 18px rgba(0,0,0,0.05);">
+          <h3 style="margin-top:0; margin-bottom:0.5rem; font-size:1.1rem;">Simulation de tarif (optionnel)</h3>
+          <p style="margin-top:0; margin-bottom:0.75rem; font-size:0.95rem; color:#555;">
             Utilisez vos adresses de <strong>point de départ</strong> et de <strong>destination</strong> ci-dessus
-            afin d’obtenir une estimation du kilométrage, du temps de trajet et du montant de la course,
-            selon la grille tarifaire DCVTC66.
+            pour obtenir une estimation du kilométrage, du temps de trajet et du montant indicatif de la course.
           </p>
-
-          <!-- BOUTON MODERNISÉ -->
-          <button
-            type="button"
-            id="btn-tarif"
-            class="btn-secondary btn-estimate"
-            style="
-              display:inline-flex;
-              align-items:center;
-              gap:0.5rem;
-              padding:0.85rem 1.4rem;
-              border-radius:999px;
-              font-weight:500;
-              font-size:0.95rem;
-              letter-spacing:0.02em;
-              text-transform:uppercase;
-              background:linear-gradient(135deg,#111827,#1f2933);
-              color:#ffffff;
-              border:none;
-              box-shadow:0 10px 25px rgba(15,23,42,0.35);
-              cursor:pointer;
-              transition:transform .18s ease, box-shadow .18s ease;
-              ">
-            <span style="font-size:1.1rem;">✨</span>
-            <span>Estimer mon trajet et le tarif</span>
-          </button>
 
           <div id="erreur-tarif" style="
             display:none;
-            margin-top:0.75rem;
             margin-bottom:0.75rem;
             padding:0.75rem;
             border-radius:8px;
@@ -169,7 +228,7 @@
 
           <div id="resultat-tarif" style="
             display:none;
-            margin-bottom:0.75rem;
+            margin-bottom:0.25rem;
             padding:0.75rem;
             border-radius:8px;
             background:#f0f7ff;
@@ -177,33 +236,25 @@
             font-size:0.95rem;">
           </div>
 
-          <div class="map-wrapper" style="position:relative;width:100%;height:320px;border-radius:12px;overflow:hidden;">
-            <div id="map" style="width:100%;height:100%;"></div>
-            <div id="tarif-overlay" style="
-              display:none;
-              position:absolute;
-              top:10px;
-              left:10px;
-              background:rgba(255,255,255,0.96);
-              border-radius:10px;
-              padding:10px 12px;
-              box-shadow:0 4px 16px rgba(0,0,0,0.15);
-              font-size:0.9rem;
-              max-width:260px;
-              line-height:1.4;">
-            </div>
-          </div>
-
-          <p style="margin-top:0.75rem; font-size:0.8rem; color:#777;">
-            Cette estimation est fournie à titre purement indicatif à partir des données Google Maps.
-            Le tarif final pourra varier en fonction des conditions réelles de circulation et des demandes
-            spécifiques (attente, détours, arrêts supplémentaires, etc.).
+          <p style="margin-top:0.4rem; font-size:0.8rem; color:#777;">
+            Estimation fournie à titre indicatif. Le tarif final pourra varier en fonction des conditions réelles et des demandes spécifiques.
           </p>
         </div>
 
-        <button type="submit" class="btn-primary btn-full" style="margin-top:1.5rem;">
-          Envoyer ma demande par SMS
-        </button>
+        <!-- BOUTONS ENSEMBLE SOUS LE FORMULAIRE -->
+        <div class="form-actions">
+          <button
+            type="button"
+            id="btn-tarif"
+            class="btn-estimate">
+            <span class="icon">✨</span>
+            <span>Estimer le tarif</span>
+          </button>
+
+          <button type="submit" class="btn-primary btn-full">
+            Envoyer ma demande
+          </button>
+        </div>
       </form>
     </div>
   </section>
@@ -226,6 +277,33 @@
     </div>
   </section>
 
+  <!-- SECTION MAP TOUT EN BAS DE LA PAGE -->
+  <section id="itineraire" class="section">
+    <div class="container">
+      <h2 class="section-title">Carte du trajet estimé</h2>
+      <p class="section-intro">
+        La carte ci-dessous affiche l’itinéraire et les informations principales après une estimation de votre trajet.
+      </p>
+
+      <div class="map-wrapper" style="position:relative;width:100%;height:320px;border-radius:12px;overflow:hidden;">
+        <div id="map" style="width:100%;height:100%;"></div>
+        <div id="tarif-overlay" style="
+          display:none;
+          position:absolute;
+          top:10px;
+          left:10px;
+          background:rgba(255,255,255,0.96);
+          border-radius:10px;
+          padding:10px 12px;
+          box-shadow:0 4px 16px rgba(0,0,0,0.15);
+          font-size:0.9rem;
+          max-width:260px;
+          line-height:1.4;">
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
@@ -242,10 +320,19 @@
     💬
   </a>
 
+  <!-- AFFICHAGE TARIF FLOTTANT -->
+  <div id="tarif-flottant">
+    <span class="icon">💰</span>
+    <span id="tarif-flottant-texte">Estimation en cours…</span>
+  </div>
+
   <!-- JS : SMS -->
   <script>
     // Année automatique dans le footer
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Variable globale pour stocker la dernière estimation
+    let derniereEstimation = null;
 
     // Envoi du formulaire par SMS
     const form = document.getElementById('reservation-form');
@@ -259,14 +346,22 @@
       const dateHeure = form["DateHeure"].value;
       const messageClient = form["Message"].value;
 
-      let sms = "Nouvelle demande de réservation – DCVTC66 :\n\n";
-      sms += "Nom : " + nom + "\n";
-      sms += "Téléphone : " + tel + "\n";
-      sms += "Départ : " + depart + "\n";
-      sms += "Destination : " + arrivee + "\n";
-      sms += "Date & heure : " + dateHeure + "\n";
+      let sms = "Nouvelle demande de réservation – DCVTC66 :\\n\\n";
+      sms += "Nom : " + nom + "\\n";
+      sms += "Téléphone : " + tel + "\\n";
+      sms += "Départ : " + depart + "\\n";
+      sms += "Destination : " + arrivee + "\\n";
+      sms += "Date & heure : " + dateHeure + "\\n";
       if (messageClient.trim() !== "") {
-        sms += "Commentaires : " + messageClient + "\n";
+        sms += "Commentaires : " + messageClient + "\\n";
+      }
+
+      // Ajout de l'estimation si disponible
+      if (derniereEstimation) {
+        sms += "\\n--- Estimation indicative ---\\n";
+        sms += "Distance : " + derniereEstimation.distanceKm + " km\\n";
+        sms += "Durée : " + derniereEstimation.dureeTexte + "\\n";
+        sms += "Tarif estimé : " + derniereEstimation.tarif.toFixed(2) + " €\\n";
       }
 
       const numero = "0663463716";
@@ -336,6 +431,8 @@
       const resDiv = document.getElementById("resultat-tarif");
       const errDiv = document.getElementById("erreur-tarif");
       const overlay = document.getElementById("tarif-overlay");
+      const flottant = document.getElementById("tarif-flottant");
+      const flottantTexte = document.getElementById("tarif-flottant-texte");
 
       const depart = form["Départ"].value.trim();
       const arrivee = form["Arrivee"].value.trim();
@@ -347,6 +444,9 @@
       resDiv.textContent = "";
       overlay.style.display = "none";
       overlay.textContent = "";
+      if (flottant) {
+        flottant.style.display = "none";
+      }
 
       if (!depart || !arrivee) {
         errDiv.textContent = "Veuillez renseigner le point de départ et la destination dans le formulaire.";
@@ -397,6 +497,13 @@
           }
           tarif = Math.round(tarif * 100) / 100; // 2 décimales
 
+          // Stockage global pour l'ajout dans le SMS
+          derniereEstimation = {
+            distanceKm: distanceKm,
+            dureeTexte: dureeTexte,
+            tarif: tarif
+          };
+
           // Texte détaillé sous le formulaire
           resDiv.innerHTML =
             "Distance estimée : <strong>" + distanceKm + " km</strong><br>" +
@@ -404,13 +511,21 @@
             "Tarif estimé (indicatif) : <strong>" + tarif.toFixed(2) + " €</strong><br><br>" +
             "<em>(Estimation basée sur l&#39;API Google Maps, pour un trajet routier standard.)</em>";
 
-          // Overlay sur la carte
+          // Overlay sur la carte (section du bas)
           overlay.innerHTML =
             "<strong>Simulation de votre trajet</strong><br>" +
             "Distance : " + distanceKm + " km<br>" +
             "Durée : " + dureeTexte + "<br>" +
             "Tarif estimatif : " + tarif.toFixed(2) + " €";
           overlay.style.display = "block";
+
+          // Affichage flottant du tarif
+          if (flottant && flottantTexte) {
+            flottantTexte.textContent =
+              "Estimation : " + tarif.toFixed(2) + " € • " +
+              distanceKm + " km • " + dureeTexte;
+            flottant.style.display = "flex";
+          }
 
           // Tracé de l'itinéraire sur la carte
           if (directionsService && directionsRenderer) {
