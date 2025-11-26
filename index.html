@@ -6,7 +6,7 @@
   <title>DCVTC66 — Chauffeur VTC à Perpignan</title>
   <meta name="description" content="DCVTC66, chauffeur VTC à Perpignan, propose des trajets fiables, confortables et ponctuels dans tout le département 66 et au-delà. Réservation simple et rapide." />
 
-  <!-- Google Fonts pour belle calligraphie pro -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -42,13 +42,13 @@
     </div>
   </header>
 
-  <!-- NAV SIMPLE (ANCRAGES) -->
+  <!-- NAV -->
   <nav class="nav">
     <div class="container nav-inner">
       <ul>
         <li><a href="#services">Services</a></li>
         <li><a href="#reservation">Réservation</a></li>
-        <li><a href="#simulateur-tarif">Estimation tarif</a></li>
+        <li><a href="#estimation">Estimation tarif</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -64,7 +64,6 @@
       </p>
 
       <div class="grid">
-
         <article class="card">
           <h3>Transferts aéroports</h3>
           <p>Déplacements vers Perpignan, Toulouse, Carcassonne, Montpellier ou Barcelone.</p>
@@ -84,12 +83,11 @@
           <h3>Mise à disposition</h3>
           <p>Chauffeur pour événements, mariages, soirées ou journées complètes.</p>
         </article>
-
       </div>
     </div>
   </section>
 
-  <!-- RÉSERVATION -->
+  <!-- RÉSERVATION + ESTIMATION -->
   <section id="reservation" class="section section-alt">
     <div class="container">
       <h2 class="section-title">Réserver un trajet</h2>
@@ -108,11 +106,11 @@
         </label>
 
         <label>Point de départ
-          <input type="text" name="Départ" required>
+          <input type="text" name="Départ" placeholder="Ex : 12 Rue ..., Perpignan" required>
         </label>
 
         <label>Destination
-          <input type="text" name="Arrivee" required>
+          <input type="text" name="Arrivee" placeholder="Ex : Aéroport Perpignan-Rivesaltes" required>
         </label>
 
         <label>Date et heure
@@ -120,72 +118,68 @@
         </label>
 
         <label>Commentaires (optionnel)
-          <textarea name="Message" rows="4"></textarea>
+          <textarea name="Message" rows="4" placeholder="Ex : Nombre de passagers, bagages, siège enfant..."></textarea>
         </label>
 
-        <button type="submit" class="btn-primary btn-full">Envoyer la demande par SMS</button>
-      </form>
-    </div>
-  </section>
+        <!-- ESTIMATION TARIFAIRE (OPTIONNELLE) -->
+        <div id="estimation" class="tarif-estimate" style="margin-top: 2rem; border-radius: 16px; background: #ffffff; padding: 1.5rem; box-shadow: 0 8px 24px rgba(0,0,0,0.06);">
+          <h3 style="margin-top:0; margin-bottom:0.5rem; font-size:1.2rem;">Estimation du trajet (optionnel)</h3>
+          <p style="margin-top:0; margin-bottom:1rem; font-size:0.95rem; color:#555;">
+            Utilise les champs <strong>Point de départ</strong> et <strong>Destination</strong> ci-dessus pour
+            estimer le kilométrage, le temps de trajet et le tarif selon la grille DCVTC66.
+          </p>
 
-  <!-- CALCUL DE TARIF AVEC GOOGLE MAPS -->
-  <section id="simulateur-tarif" class="section">
-    <div class="container">
-      <h2 class="section-title">Calculer un tarif estimatif</h2>
-      <p class="section-intro">
-        Saisissez votre point de départ et votre destination pour obtenir une estimation
-        du kilométrage, du temps de trajet et du tarif DCVTC66.
-      </p>
+          <button type="button" id="btn-tarif" class="btn-secondary" style="margin-bottom:1rem;">
+            Estimer le kilométrage, le temps et le tarif
+          </button>
 
-      <div class="form" style="margin-bottom: 1rem;">
-        <label>Adresse de départ
-          <input type="text" id="depart-map" placeholder="Ex : Gare de Perpignan">
-        </label>
+          <div id="erreur-tarif" style="
+            display:none;
+            margin-bottom:0.75rem;
+            padding:0.75rem;
+            border-radius:8px;
+            background:#ffecec;
+            color:#a40000;
+            font-size:0.9rem;">
+          </div>
 
-        <label>Adresse d'arrivée
-          <input type="text" id="arrivee-map" placeholder="Ex : Aéroport Perpignan-Rivesaltes">
-        </label>
+          <div id="resultat-tarif" style="
+            display:none;
+            margin-bottom:0.75rem;
+            padding:0.75rem;
+            border-radius:8px;
+            background:#f0f7ff;
+            color:#1b3b68;
+            font-size:0.95rem;">
+          </div>
 
-        <button type="button" id="btn-tarif" class="btn-primary btn-full">
-          Calculer le kilométrage, le temps et le tarif
-        </button>
-      </div>
+          <div class="map-wrapper" style="position:relative;width:100%;height:320px;border-radius:12px;overflow:hidden;">
+            <div id="map" style="width:100%;height:100%;"></div>
+            <div id="tarif-overlay" style="
+              display:none;
+              position:absolute;
+              top:10px;
+              left:10px;
+              background:rgba(255,255,255,0.96);
+              border-radius:10px;
+              padding:10px 12px;
+              box-shadow:0 4px 16px rgba(0,0,0,0.15);
+              font-size:0.9rem;
+              max-width:260px;
+              line-height:1.4;">
+            </div>
+          </div>
 
-      <div id="erreur-tarif" style="
-        display:none;
-        margin-bottom:0.75rem;
-        padding:0.75rem;
-        border-radius:8px;
-        background:#ffecec;
-        color:#a40000;
-        font-size:0.9rem;">
-      </div>
-
-      <div id="resultat-tarif" style="
-        display:none;
-        margin-bottom:0.75rem;
-        padding:0.75rem;
-        border-radius:8px;
-        background:#f0f7ff;
-        color:#1b3b68;
-        font-size:0.95rem;">
-      </div>
-
-      <div class="map-wrapper" style="position:relative;width:100%;height:350px;border-radius:12px;overflow:hidden;">
-        <div id="map" style="width:100%;height:100%;"></div>
-        <div id="tarif-overlay" style="
-          display:none;
-          position:absolute;
-          top:10px;
-          left:10px;
-          background:rgba(255,255,255,0.95);
-          border-radius:10px;
-          padding:10px 12px;
-          box-shadow:0 2px 8px rgba(0,0,0,0.15);
-          font-size:0.9rem;
-          max-width:260px;">
+          <p style="margin-top:0.75rem; font-size:0.8rem; color:#777;">
+            Estimation fournie à titre indicatif à partir des données Google Maps. Le tarif final peut varier
+            en fonction des conditions réelles de circulation et des demandes spécifiques.
+          </p>
         </div>
-      </div>
+
+        <button type="submit" class="btn-primary btn-full" style="margin-top:1.5rem;">
+          Envoyer la demande par SMS
+        </button>
+      </form>
     </div>
   </section>
 
@@ -223,6 +217,7 @@
     💬
   </a>
 
+  <!-- JS EXISTANT : SMS -->
   <script>
     // Année automatique dans le footer
     document.getElementById("year").textContent = new Date().getFullYear();
@@ -249,14 +244,13 @@
         sms += "Commentaires : " + messageClient + "\n";
       }
 
-      // Ouvre l'application SMS du téléphone avec le message pré-rempli
       const numero = "0663463716";
       const url = "sms:" + numero + "?&body=" + encodeURIComponent(sms);
       window.location.href = url;
     });
   </script>
 
-  <!-- Script calcul de distance + temps + tarif avec Google Maps -->
+  <!-- JS : Google Maps / Distance / Temps / Tarif -->
   <script>
     const BASE_KM = 7;
     const BASE_TARIF = 20;      // 0 à 7 km = 20 €
@@ -267,18 +261,17 @@
     let directionsService;
     let directionsRenderer;
 
-    // Appelé automatiquement par Google Maps (callback)
+    // Appelé automatiquement par Google Maps (callback=initMap dans le script)
     function initMap() {
-      // Carte centrée sur Perpignan
-      map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 42.6986, lng: 2.8956 },
+      const mapElement = document.getElementById("map");
+      if (!mapElement) return;
+
+      map = new google.maps.Map(mapElement, {
+        center: { lat: 42.6986, lng: 2.8956 }, // Perpignan
         zoom: 11,
       });
 
-      // Service de calcul de distance par la route
       distanceService = new google.maps.DistanceMatrixService();
-
-      // Service d'itinéraire (pour tracer le trajet sur la carte)
       directionsService = new google.maps.DirectionsService();
       directionsRenderer = new google.maps.DirectionsRenderer({
         map: map,
@@ -292,14 +285,12 @@
     }
 
     function calculerTarif() {
-      const departInput = document.getElementById("depart-map");
-      const arriveeInput = document.getElementById("arrivee-map");
       const resDiv = document.getElementById("resultat-tarif");
       const errDiv = document.getElementById("erreur-tarif");
       const overlay = document.getElementById("tarif-overlay");
 
-      const depart = departInput.value.trim();
-      const arrivee = arriveeInput.value.trim();
+      const depart = form["Départ"].value.trim();
+      const arrivee = form["Arrivee"].value.trim();
 
       // Reset affichages
       errDiv.style.display = "none";
@@ -310,12 +301,15 @@
       overlay.textContent = "";
 
       if (!depart || !arrivee) {
-        errDiv.textContent = "Merci de remplir les deux adresses.";
+        errDiv.textContent = "Merci de renseigner le point de départ et la destination dans le formulaire.";
         errDiv.style.display = "block";
         return;
       }
 
-      // Calcul de distance + durée
+      // Petit message pendant le calcul
+      resDiv.style.display = "block";
+      resDiv.innerHTML = "Calcul de l&#39;itinéraire en cours...";
+
       distanceService.getDistanceMatrix(
         {
           origins: [depart],
@@ -325,6 +319,7 @@
         },
         (response, status) => {
           if (status !== "OK") {
+            resDiv.style.display = "none";
             errDiv.textContent = "Erreur Google Maps : " + status;
             errDiv.style.display = "block";
             return;
@@ -332,17 +327,19 @@
 
           const element = response.rows[0].elements[0];
           if (element.status !== "OK") {
-            errDiv.textContent = "Distance introuvable pour ces adresses.";
+            resDiv.style.display = "none";
+            errDiv.textContent = "Distance introuvable pour ces adresses. Vérifiez l&#39;orthographe.";
             errDiv.style.display = "block";
             return;
           }
 
           const distanceMetres = element.distance.value; // en mètres
           let distanceKm = distanceMetres / 1000;
-          distanceKm = Math.round(distanceKm * 10) / 10; // arrondi au 0,1 km
+          distanceKm = Math.round(distanceKm * 10) / 10; // 0,1 km
 
           const dureeTexte = element.duration.text; // ex : "25 min"
 
+          // Calcul tarif
           let tarif = BASE_TARIF;
           if (distanceKm > BASE_KM) {
             const kmSupp = distanceKm - BASE_KM;
@@ -350,15 +347,14 @@
           }
           tarif = Math.round(tarif * 100) / 100; // 2 décimales
 
-          // Affichage texte sous le formulaire
+          // Texte détaillé sous le formulaire
           resDiv.innerHTML =
             "Distance estimée : <strong>" + distanceKm + " km</strong><br>" +
             "Temps de trajet estimé : <strong>" + dureeTexte + "</strong><br>" +
             "Tarif estimé : <strong>" + tarif.toFixed(2) + " €</strong><br><br>" +
             "<em>(Estimation calculée avec l&#39;API Google Maps, trajet routier.)</em>";
-          resDiv.style.display = "block";
 
-          // Fenêtre overlay sur la carte
+          // Overlay sur la carte
           overlay.innerHTML =
             "<strong>Estimation trajet</strong><br>" +
             "Distance : " + distanceKm + " km<br>" +
@@ -387,8 +383,10 @@
     }
   </script>
 
-  <!-- ⚠️ ICI TU DOIS COLLER TA VRAIE CLÉ API À LA PLACE DE COLLE_TA_CLE_API_ICI -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AlzaSyDW4LNM6rw5DKJ3KjMP1hEvk03k5pCKg4c&callback=initMap" async defer></script>
+  <!-- GOOGLE MAPS API
+       ⚠️ REMPLACE VOTRE_CLE_API_ICI PAR TA CLÉ SÉCURISÉE (NE PAS LA PUBLIER)
+  -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=VOTRE_CLE_API_ICI&callback=initMap" async defer></script>
 
 </body>
 </html>
