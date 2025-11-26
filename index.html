@@ -11,239 +11,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+  <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
 
-  <!-- TOUT LE CSS DIRECTEMENT ICI -->
+  <!-- Styles ajoutés pour les nouveaux éléments (boutons + tarif flottant + alignement) -->
   <style>
-    :root {
-      --bg-main: #0f172a;
-      --bg-alt: #f3f4f6;
-      --text-main: #0f172a;
-      --text-muted: #6b7280;
-      --accent: #2563eb;
-      --accent-soft: #dbeafe;
-      --card-bg: #ffffff;
-      --border-soft: #e5e7eb;
-      --radius-lg: 18px;
-      --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.12);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--text-main);
-      background: #f9fafb;
-      line-height: 1.5;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 1.25rem;
-    }
-
-    /* NAV TOUT EN HAUT */
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(15, 23, 42, 0.98);
-      backdrop-filter: blur(12px);
-      color: #e5e7eb;
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.5);
-    }
-
-    .nav-inner {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 3.5rem;
-    }
-
-    .nav ul {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .nav a {
-      position: relative;
-      padding-bottom: 0.2rem;
-    }
-
-    .nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      background: #22c55e;
-      transition: width 0.2s ease;
-    }
-
-    .nav a:hover::after {
-      width: 100%;
-    }
-
-    /* HEADER / HERO */
-    .header {
-      background: radial-gradient(circle at top left, #1d4ed8 0, #0f172a 42%, #020617 100%);
-      color: #f9fafb;
-      padding: 2.5rem 0 2rem;
-    }
-
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .branding {
-      max-width: 640px;
-      margin: 0 auto;
-    }
-
-    .logo {
-      width: 110px;
-      height: auto;
-      margin: 0 auto 0.75rem;
-      border-radius: 999px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-      background: rgba(15, 23, 42, 0.4);
-      padding: 0.25rem;
-    }
-
-    .site-title {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(2.1rem, 3vw, 2.6rem);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .site-subtitle {
-      margin-top: 0.4rem;
-      font-size: 0.98rem;
-      color: #e5e7eb;
-    }
-
-    /* BOUTONS HERO – SUR LA MÊME LIGNE */
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 1.25rem;
-      justify-content: center;
-    }
-
-    .hero-actions a {
-      flex: 1 1 180px;
-      text-align: center;
-    }
-
-    /* BADGES SOUS LES BOUTONS */
-    .hero-badges {
-      margin-top: 1.1rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.5rem;
-      font-size: 0.82rem;
-    }
-
-    .hero-badges span {
-      background: rgba(15, 23, 42, 0.7);
-      border-radius: 999px;
-      padding: 0.35rem 0.75rem;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      white-space: nowrap;
-    }
-
-    @media (max-width: 600px) {
-      .hero-actions {
-        flex-direction: column;
-      }
-      .hero-badges {
-        justify-content: center;
-      }
-    }
-
-    /* BOUTONS GLOBAUX */
-    .btn-primary,
-    .btn-secondary,
-    .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.75rem 1.4rem;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 0.92rem;
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
-    }
-
-    .btn-primary {
-      background: #22c55e;
-      color: #064e3b;
-      box-shadow: 0 10px 25px rgba(22, 163, 74, 0.5);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 32px rgba(22, 163, 74, 0.7);
-      background: #16a34a;
-    }
-
-    .btn-secondary {
-      background: #0ea5e9;
-      color: #f9fafb;
-      box-shadow: 0 10px 25px rgba(14, 165, 233, 0.4);
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 32px rgba(14, 165, 233, 0.6);
-      background: #0284c7;
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: #e5e7eb;
-      border-color: rgba(148, 163, 184, 0.9);
-    }
-
-    .btn-outline:hover {
-      background: rgba(15, 23, 42, 0.4);
-      transform: translateY(-1px);
-    }
-
-    .btn-full {
-      width: 100%;
-      justify-content: center;
-    }
-
     /* Bouton d'estimation modernisé */
     .btn-estimate {
       display: inline-flex;
@@ -298,219 +70,7 @@
       }
     }
 
-    /* SECTIONS */
-    .section {
-      padding: 2.5rem 0;
-      background: #f9fafb;
-    }
-
-    .section-alt {
-      background: #ffffff;
-      padding: 2.5rem 0 3rem;
-      box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.08);
-    }
-
-    .section-title {
-      font-family: "Playfair Display", serif;
-      font-size: 1.7rem;
-      margin-bottom: 0.4rem;
-      text-align: center;
-    }
-
-    .section-intro {
-      text-align: center;
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      max-width: 620px;
-      margin: 0 auto 1.8rem;
-    }
-
-    .section-subtitle {
-      font-size: 1.1rem;
-      margin-bottom: 0.4rem;
-    }
-
-    /* FORMULAIRE */
-    .form {
-      max-width: 650px;
-      margin: 0 auto;
-      background: #ffffff;
-      padding: 1.5rem 1.5rem 2rem;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(15, 23, 42, 0.04);
-    }
-
-    .form label {
-      display: block;
-      font-size: 0.9rem;
-      margin-bottom: 0.9rem;
-    }
-
-    .form input,
-    .form textarea {
-      width: 100%;
-      margin-top: 0.35rem;
-      padding: 0.65rem 0.75rem;
-      border-radius: 0.75rem;
-      border: 1px solid var(--border-soft);
-      font-family: inherit;
-      font-size: 0.9rem;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-      background: #f9fafb;
-    }
-
-    .form input:focus,
-    .form textarea:focus {
-      outline: none;
-      border-color: #2563eb;
-      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.3);
-      background: #ffffff;
-    }
-
-    .form textarea {
-      resize: vertical;
-      min-height: 90px;
-    }
-
-    /* MESSAGES TARIF */
-    #erreur-tarif {
-      display: none;
-      margin-top: 1rem;
-      margin-bottom: 0.75rem;
-      padding: 0.75rem;
-      border-radius: 8px;
-      background: #ffecec;
-      color: #a40000;
-      font-size: 0.9rem;
-    }
-
-    #resultat-tarif {
-      display: none;
-      margin-bottom: 0.25rem;
-      padding: 0.75rem;
-      border-radius: 8px;
-      background: #f0f7ff;
-      color: #1b3b68;
-      font-size: 0.95rem;
-    }
-
-    /* CARTE DANS LA SECTION RÉSERVATION */
-    .map-reservation-wrapper {
-      margin-top: 1.8rem;
-    }
-
-    .map-wrapper {
-      position: relative;
-      width: 100%;
-      height: 320px;
-      border-radius: 12px;
-      overflow: hidden;
-      margin-top: 0.75rem;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-    }
-
-    #map {
-      width: 100%;
-      height: 100%;
-    }
-
-    #tarif-overlay {
-      display: none;
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: rgba(255, 255, 255, 0.96);
-      border-radius: 10px;
-      padding: 10px 12px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-      font-size: 0.9rem;
-      max-width: 260px;
-      line-height: 1.4;
-    }
-
-    /* SECTION SERVICES EN BAS */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.2rem;
-      margin-top: 1.5rem;
-    }
-
-    .card {
-      background: var(--card-bg);
-      border-radius: 1rem;
-      padding: 1.1rem 1.1rem 1.2rem;
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
-      border: 1px solid rgba(15, 23, 42, 0.05);
-    }
-
-    .card h3 {
-      font-size: 1.05rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .card p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    /* CONTACT */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-      font-size: 0.95rem;
-    }
-
-    .contact-grid p {
-      margin-bottom: 0.5rem;
-    }
-
-    .contact-grid a {
-      color: #2563eb;
-      font-weight: 600;
-    }
-
-    /* FOOTER */
-    .footer {
-      padding: 1.4rem 0 1.6rem;
-      background: #020617;
-      color: #9ca3af;
-      font-size: 0.85rem;
-      text-align: center;
-      margin-top: 1rem;
-    }
-
-    /* BOUTONS FLOTTANTS TÉLÉPHONE + WHATSAPP */
-    .fab {
-      position: fixed;
-      right: 18px;
-      width: 52px;
-      height: 52px;
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.35rem;
-      box-shadow: 0 16px 35px rgba(15, 23, 42, 0.5);
-      color: #f9fafb;
-      z-index: 60;
-      cursor: pointer;
-    }
-
-    .fab-call {
-      bottom: 90px;
-      background: #22c55e;
-    }
-
-    .fab-whatsapp {
-      bottom: 24px;
-      background: #16a34a;
-    }
-
-    /* BOUTON VERT FLOTTANT DU PRIX – EN HAUT DE LA PAGE */
+    /* Carte flottante d'estimation – déplacée EN HAUT de la page */
     #tarif-flottant {
       position: fixed;
       top: 24px;
@@ -558,6 +118,30 @@
         box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55);
       }
     }
+
+    /* Mise sur la même ligne des 3 boutons dans le hero */
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .hero-actions a {
+      flex: 1 1 180px;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .hero-actions {
+        flex-direction: column;
+      }
+    }
+
+    /* Petite marge au-dessus de la carte dans la section réservation */
+    .map-reservation-wrapper {
+      margin-top: 1.5rem;
+    }
   </style>
 </head>
 
@@ -582,7 +166,7 @@
         <h1 class="site-title">DCVTC66</h1>
         <p class="site-subtitle">Votre chauffeur VTC privé à Perpignan et dans tout le 66</p>
 
-        <!-- Boutons sur la même ligne -->
+        <!-- BOUTONS D'ABORD -->
         <div class="hero-actions">
           <a href="tel:0663463716" class="btn-primary">📞 Appeler le chauffeur</a>
           <a href="https://wa.me/33663463716" target="_blank" class="btn-secondary">
@@ -591,7 +175,7 @@
           <a href="#reservation" class="btn-outline">📝 Réserver un trajet</a>
         </div>
 
-        <!-- Badges en dessous des boutons -->
+        <!-- ENSUITE LES BADGES -->
         <div class="hero-badges">
           <span>✔ Service 7j/7</span>
           <span>✔ Chauffeur professionnel et ponctuel</span>
@@ -601,7 +185,7 @@
     </div>
   </header>
 
-  <!-- RÉSERVATION + ESTIMATION (SOUS LE BLOC LOGO) -->
+  <!-- RÉSERVATION + ESTIMATION (PLACÉE SOUS LE CADRE DU LOGO) -->
   <section id="reservation" class="section section-alt">
     <div class="container">
       <h2 class="section-title">Réserver un trajet</h2>
@@ -613,19 +197,19 @@
 
       <form id="reservation-form" class="form">
         <label>Nom
-          <input type="text" name="Nom" autocomplete="name" required>
+          <input type="text" name="Nom" required>
         </label>
 
         <label>Téléphone
-          <input type="tel" name="Téléphone" autocomplete="tel" required>
+          <input type="tel" name="Téléphone" required>
         </label>
 
         <label>Point de départ
-          <input type="text" name="Départ" autocomplete="street-address" placeholder="Ex : Gare de Perpignan" required>
+          <input type="text" name="Départ" placeholder="Ex : Gare de Perpignan" required>
         </label>
 
         <label>Destination
-          <input type="text" name="Arrivee" autocomplete="street-address" placeholder="Ex : Aéroport Perpignan-Rivesaltes" required>
+          <input type="text" name="Arrivee" placeholder="Ex : Aéroport Perpignan-Rivesaltes" required>
         </label>
 
         <label>Date et heure
@@ -651,27 +235,57 @@
           </button>
         </div>
 
-        <!-- Messages d’erreur et résultat tarif (sans grand cadre) -->
-        <div id="erreur-tarif"></div>
-        <div id="resultat-tarif"></div>
+        <!-- Messages d’erreur et résultat tarif (SANS le grand cadre "Simulation") -->
+        <div id="erreur-tarif" style="
+            display:none;
+            margin-top:1rem;
+            margin-bottom:0.75rem;
+            padding:0.75rem;
+            border-radius:8px;
+            background:#ffecec;
+            color:#a40000;
+            font-size:0.9rem;">
+        </div>
 
-        <!-- Carte du trajet directement sous les boutons / messages -->
+        <div id="resultat-tarif" style="
+            display:none;
+            margin-bottom:0.25rem;
+            padding:0.75rem;
+            border-radius:8px;
+            background:#f0f7ff;
+            color:#1b3b68;
+            font-size:0.95rem;">
+        </div>
+
+        <!-- CARTE DU TRAJET JUSTE EN DESSOUS DES BOUTONS -->
         <div class="map-reservation-wrapper">
-          <h3 class="section-subtitle">Carte du trajet estimé</h3>
-          <p class="section-intro">
-            La carte ci-dessous affiche l’itinéraire et les informations principales après une estimation de votre trajet.
+          <h3 style="margin-top:0; margin-bottom:0.5rem; font-size:1.1rem;">Carte du trajet estimé</h3>
+          <p style="margin-top:0; font-size:0.85rem; color:#777;">
+            L’itinéraire s’affiche ici après avoir lancé une estimation du trajet.
           </p>
 
-          <div class="map-wrapper">
-            <div id="map"></div>
-            <div id="tarif-overlay"></div>
+          <div class="map-wrapper" style="position:relative;width:100%;height:320px;border-radius:12px;overflow:hidden;margin-top:0.75rem;">
+            <div id="map" style="width:100%;height:100%;"></div>
+            <div id="tarif-overlay" style="
+              display:none;
+              position:absolute;
+              top:10px;
+              left:10px;
+              background:rgba(255,255,255,0.96);
+              border-radius:10px;
+              padding:10px 12px;
+              box-shadow:0 4px 16px rgba(0,0,0,0.15);
+              font-size:0.9rem;
+              max-width:260px;
+              line-height:1.4;">
+            </div>
           </div>
         </div>
       </form>
     </div>
   </section>
 
-  <!-- SERVICES DÉPLACÉ EN BAS, AVANT CONTACT -->
+  <!-- SERVICES DÉPLACÉ TOUT EN BAS, JUSTE AVANT CONTACT -->
   <section id="services" class="section">
     <div class="container">
       <h2 class="section-title">Nos services</h2>
@@ -704,7 +318,7 @@
     </div>
   </section>
 
-  <!-- CONTACT EN BAS -->
+  <!-- CONTACT -->
   <section id="contact" class="section">
     <div class="container">
       <h2 class="section-title">Contact</h2>
@@ -738,7 +352,7 @@
     💬
   </a>
 
-  <!-- BOUTON VERT FLOTTANT DU PRIX EN HAUT -->
+  <!-- AFFICHAGE TARIF FLOTTANT (EN HAUT) -->
   <div id="tarif-flottant">
     <span class="icon">💰</span>
     <span id="tarif-flottant-texte">Estimation en cours…</span>
@@ -764,23 +378,12 @@
       const dateHeure = form["DateHeure"].value;
       const messageClient = form["Message"].value;
 
-      let dateHeureAffichee = dateHeure;
-      if (dateHeure) {
-        const d = new Date(dateHeure);
-        if (!isNaN(d.getTime())) {
-          dateHeureAffichee = d.toLocaleString("fr-FR", {
-            dateStyle: "short",
-            timeStyle: "short"
-          });
-        }
-      }
-
       let sms = "Nouvelle demande de réservation – DCVTC66 :\n\n";
       sms += "Nom : " + nom + "\n";
       sms += "Téléphone : " + tel + "\n";
       sms += "Départ : " + depart + "\n";
       sms += "Destination : " + arrivee + "\n";
-      sms += "Date & heure : " + dateHeureAffichee + "\n";
+      sms += "Date & heure : " + dateHeure + "\n";
       if (messageClient.trim() !== "") {
         sms += "Commentaires : " + messageClient + "\n";
       }
@@ -983,7 +586,7 @@
   </script>
 
   <!-- GOOGLE MAPS API -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDW4LNM6rw5DKJ3KjMP1hEvk03k5pCKj4c&callback=initMap&libraries=places" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDW4LNM6rw5DKJ3KjMP1hEvk03k5pCKg4L&callback=initMap&libraries=places" async defer></script>
 
 </body>
 </html>
