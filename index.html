@@ -91,9 +91,9 @@
     <div class="container">
       <h2 class="section-title">Réserver un trajet</h2>
       <p class="section-intro">
-        Remplissez ce formulaire : votre téléphone ouvrira automatiquement un SMS prêt à être envoyé
-        au chauffeur avec tous les détails de votre trajet. Vous pouvez également estimer le kilométrage,
-        le temps de trajet et le tarif avant d’envoyer.
+        Remplissez le formulaire ci-dessous : votre téléphone générera automatiquement un SMS prérempli
+        à destination de votre chauffeur, avec l’ensemble des informations nécessaires à votre prise en charge.
+        Vous pouvez également simuler le kilométrage, la durée estimée et le tarif de votre course avant l’envoi.
       </p>
 
       <form id="reservation-form" class="form">
@@ -123,18 +123,42 @@
 
         <!-- ESTIMATION TARIFAIRE (OPTIONNELLE) -->
         <div id="estimation" class="tarif-estimate" style="margin-top: 2rem; border-radius: 16px; background: #ffffff; padding: 1.5rem; box-shadow: 0 8px 24px rgba(0,0,0,0.06);">
-          <h3 style="margin-top:0; margin-bottom:0.5rem; font-size:1.2rem;">Estimation du trajet (optionnel)</h3>
+          <h3 style="margin-top:0; margin-bottom:0.5rem; font-size:1.2rem;">Simulation de tarif (optionnel)</h3>
           <p style="margin-top:0; margin-bottom:1rem; font-size:0.95rem; color:#555;">
-            Utilise les champs <strong>Point de départ</strong> et <strong>Destination</strong> ci-dessus pour
-            estimer le kilométrage, le temps de trajet et le tarif selon la grille DCVTC66.
+            Utilisez vos adresses de <strong>point de départ</strong> et de <strong>destination</strong> ci-dessus
+            afin d’obtenir une estimation du kilométrage, du temps de trajet et du montant de la course,
+            selon la grille tarifaire DCVTC66.
           </p>
 
-          <button type="button" id="btn-tarif" class="btn-secondary" style="margin-bottom:1rem;">
-            Estimer le kilométrage, le temps et le tarif
+          <!-- BOUTON MODERNISÉ -->
+          <button
+            type="button"
+            id="btn-tarif"
+            class="btn-secondary btn-estimate"
+            style="
+              display:inline-flex;
+              align-items:center;
+              gap:0.5rem;
+              padding:0.85rem 1.4rem;
+              border-radius:999px;
+              font-weight:500;
+              font-size:0.95rem;
+              letter-spacing:0.02em;
+              text-transform:uppercase;
+              background:linear-gradient(135deg,#111827,#1f2933);
+              color:#ffffff;
+              border:none;
+              box-shadow:0 10px 25px rgba(15,23,42,0.35);
+              cursor:pointer;
+              transition:transform .18s ease, box-shadow .18s ease;
+              ">
+            <span style="font-size:1.1rem;">✨</span>
+            <span>Estimer mon trajet et le tarif</span>
           </button>
 
           <div id="erreur-tarif" style="
             display:none;
+            margin-top:0.75rem;
             margin-bottom:0.75rem;
             padding:0.75rem;
             border-radius:8px;
@@ -171,13 +195,14 @@
           </div>
 
           <p style="margin-top:0.75rem; font-size:0.8rem; color:#777;">
-            Estimation fournie à titre indicatif à partir des données Google Maps. Le tarif final peut varier
-            en fonction des conditions réelles de circulation et des demandes spécifiques.
+            Cette estimation est fournie à titre purement indicatif à partir des données Google Maps.
+            Le tarif final pourra varier en fonction des conditions réelles de circulation et des demandes
+            spécifiques (attente, détours, arrêts supplémentaires, etc.).
           </p>
         </div>
 
         <button type="submit" class="btn-primary btn-full" style="margin-top:1.5rem;">
-          Envoyer la demande par SMS
+          Envoyer ma demande par SMS
         </button>
       </form>
     </div>
@@ -234,7 +259,7 @@
       const dateHeure = form["DateHeure"].value;
       const messageClient = form["Message"].value;
 
-      let sms = "Nouvelle demande de réservation DCVTC66 :\n\n";
+      let sms = "Nouvelle demande de réservation – DCVTC66 :\n\n";
       sms += "Nom : " + nom + "\n";
       sms += "Téléphone : " + tel + "\n";
       sms += "Départ : " + depart + "\n";
@@ -324,7 +349,7 @@
       overlay.textContent = "";
 
       if (!depart || !arrivee) {
-        errDiv.textContent = "Merci de renseigner le point de départ et la destination dans le formulaire.";
+        errDiv.textContent = "Veuillez renseigner le point de départ et la destination dans le formulaire.";
         errDiv.style.display = "block";
         return;
       }
@@ -353,7 +378,7 @@
           if (element.status !== "OK") {
             console.error("Element status:", element.status);
             resDiv.style.display = "none";
-            errDiv.textContent = "Distance introuvable pour ces adresses. Vérifiez l&#39;orthographe.";
+            errDiv.textContent = "Distance introuvable pour ces adresses. Veuillez vérifier l&#39;orthographe ou préciser la commune.";
             errDiv.style.display = "block";
             return;
           }
@@ -376,15 +401,15 @@
           resDiv.innerHTML =
             "Distance estimée : <strong>" + distanceKm + " km</strong><br>" +
             "Temps de trajet estimé : <strong>" + dureeTexte + "</strong><br>" +
-            "Tarif estimé : <strong>" + tarif.toFixed(2) + " €</strong><br><br>" +
-            "<em>(Estimation calculée avec l&#39;API Google Maps, trajet routier.)</em>";
+            "Tarif estimé (indicatif) : <strong>" + tarif.toFixed(2) + " €</strong><br><br>" +
+            "<em>(Estimation basée sur l&#39;API Google Maps, pour un trajet routier standard.)</em>";
 
           // Overlay sur la carte
           overlay.innerHTML =
-            "<strong>Estimation trajet</strong><br>" +
+            "<strong>Simulation de votre trajet</strong><br>" +
             "Distance : " + distanceKm + " km<br>" +
             "Durée : " + dureeTexte + "<br>" +
-            "Tarif : " + tarif.toFixed(2) + " €";
+            "Tarif estimatif : " + tarif.toFixed(2) + " €";
           overlay.style.display = "block";
 
           // Tracé de l'itinéraire sur la carte
@@ -409,10 +434,7 @@
     }
   </script>
 
-  <!-- GOOGLE MAPS API
-       ⚠️ REMPLACE VOTRE_CLE_API_ICI PAR TA CLÉ SÉCURISÉE
-       (et vérifie que Places API est bien activée dans la console Google Cloud)
-  -->
+  <!-- GOOGLE MAPS API -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDW4LNM6rw5DKJ3KjMP1hEvk03k5pCKg4c&callback=initMap&libraries=places" async defer></script>
 
 </body>
