@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
 
-  <!-- Styles ajoutés pour les nouveaux éléments (boutons + tarif flottant) -->
+  <!-- Styles ajoutés / modifiés -->
   <style>
     /* Bouton d'estimation modernisé */
     .btn-estimate {
@@ -70,11 +70,12 @@
       }
     }
 
-    /* Carte flottante d'estimation très visible avec animation */
+    /* Carte flottante d'estimation – déplacée en haut de la page */
     #tarif-flottant {
       position: fixed;
-      bottom: 24px;
+      top: 24px;
       right: 24px;
+      bottom: auto;
       z-index: 9999;
       display: none;
       align-items: center;
@@ -99,7 +100,7 @@
       #tarif-flottant {
         left: 16px;
         right: 16px;
-        bottom: 16px;
+        top: 70px;
         justify-content: center;
       }
     }
@@ -118,37 +119,36 @@
         box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55);
       }
     }
+
+    /* Alignement des 3 boutons dans le hero */
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .hero-actions a {
+      flex: 1 1 180px;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .hero-actions {
+        flex-direction: column;
+      }
+    }
+
+    /* Petit espace au-dessus de la carte dans la section réservation */
+    .map-reservation-wrapper {
+      margin-top: 1.8rem;
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER / HERO -->
-  <header class="header">
-    <div class="container header-inner">
-      <div class="branding">
-        <img src="LOGO DCVTC66.png" alt="Logo DCVTC66" class="logo">
-        <h1 class="site-title">DCVTC66</h1>
-        <p class="site-subtitle">Votre chauffeur VTC privé à Perpignan et dans tout le 66</p>
-
-        <div class="hero-badges">
-          <span>✔ Service 7j/7</span>
-          <span>✔ Chauffeur professionnel et ponctuel</span>
-          <span>✔ Réservation simple et rapide</span>
-        </div>
-
-        <div class="hero-actions">
-          <a href="tel:0663463716" class="btn-primary">📞 Appeler le chauffeur</a>
-          <a href="https://wa.me/33663463716" target="_blank" class="btn-secondary">
-            💬 WhatsApp
-          </a>
-          <a href="#reservation" class="btn-outline">📝 Réserver un trajet</a>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- NAV -->
+  <!-- NAV TOUT EN HAUT -->
   <nav class="nav">
     <div class="container nav-inner">
       <ul>
@@ -159,7 +159,134 @@
     </div>
   </nav>
 
-  <!-- SERVICES -->
+  <!-- HEADER / HERO -->
+  <header class="header">
+    <div class="container header-inner">
+      <div class="branding">
+        <img src="LOGO DCVTC66.png" alt="Logo DCVTC66" class="logo">
+        <h1 class="site-title">DCVTC66</h1>
+        <p class="site-subtitle">Votre chauffeur VTC privé à Perpignan et dans tout le 66</p>
+
+        <!-- Boutons sur la même ligne -->
+        <div class="hero-actions">
+          <a href="tel:0663463716" class="btn-primary">📞 Appeler le chauffeur</a>
+          <a href="https://wa.me/33663463716" target="_blank" class="btn-secondary">
+            💬 WhatsApp
+          </a>
+          <a href="#reservation" class="btn-outline">📝 Réserver un trajet</a>
+        </div>
+
+        <!-- Badges déplacés en dessous des boutons -->
+        <div class="hero-badges">
+          <span>✔ Service 7j/7</span>
+          <span>✔ Chauffeur professionnel et ponctuel</span>
+          <span>✔ Réservation simple et rapide</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- RÉSERVATION + ESTIMATION (SOUS LE BLOC LOGO) -->
+  <section id="reservation" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Réserver un trajet</h2>
+      <p class="section-intro">
+        Remplissez ce formulaire : votre téléphone ouvrira automatiquement un SMS prêt à être envoyé
+        au chauffeur avec tous les détails de votre trajet. Vous pouvez également estimer le kilométrage,
+        le temps de trajet et le tarif avant d’envoyer.
+      </p>
+
+      <form id="reservation-form" class="form">
+        <label>Nom
+          <input type="text" name="Nom" autocomplete="name" required>
+        </label>
+
+        <label>Téléphone
+          <input type="tel" name="Téléphone" autocomplete="tel" required>
+        </label>
+
+        <label>Point de départ
+          <input type="text" name="Départ" autocomplete="street-address" placeholder="Ex : Gare de Perpignan" required>
+        </label>
+
+        <label>Destination
+          <input type="text" name="Arrivee" autocomplete="street-address" placeholder="Ex : Aéroport Perpignan-Rivesaltes" required>
+        </label>
+
+        <label>Date et heure
+          <input type="datetime-local" name="DateHeure" required>
+        </label>
+
+        <label>Commentaires (optionnel)
+          <textarea name="Message" rows="4" placeholder="Ex : Nombre de passagers, bagages, siège enfant..."></textarea>
+        </label>
+
+        <!-- BOUTONS ENSEMBLE SOUS LE FORMULAIRE -->
+        <div class="form-actions">
+          <button
+            type="button"
+            id="btn-tarif"
+            class="btn-estimate">
+            <span class="icon">✨</span>
+            <span>Estimer le tarif</span>
+          </button>
+
+          <button type="submit" class="btn-primary btn-full">
+            Envoyer ma demande par SMS
+          </button>
+        </div>
+
+        <!-- Messages d’erreur et résultat tarif (sans le grand cadre blanc) -->
+        <div id="erreur-tarif" style="
+            display:none;
+            margin-top:1rem;
+            margin-bottom:0.75rem;
+            padding:0.75rem;
+            border-radius:8px;
+            background:#ffecec;
+            color:#a40000;
+            font-size:0.9rem;">
+        </div>
+
+        <div id="resultat-tarif" style="
+            display:none;
+            margin-bottom:0.25rem;
+            padding:0.75rem;
+            border-radius:8px;
+            background:#f0f7ff;
+            color:#1b3b68;
+            font-size:0.95rem;">
+        </div>
+
+        <!-- Carte du trajet directement sous les boutons et messages -->
+        <div class="map-reservation-wrapper">
+          <h3 class="section-subtitle">Carte du trajet estimé</h3>
+          <p class="section-intro">
+            La carte ci-dessous affiche l’itinéraire et les informations principales après une estimation de votre trajet.
+          </p>
+
+          <div class="map-wrapper" style="position:relative;width:100%;height:320px;border-radius:12px;overflow:hidden;">
+            <div id="map" style="width:100%;height:100%;"></div>
+            <div id="tarif-overlay" style="
+              display:none;
+              position:absolute;
+              top:10px;
+              left:10px;
+              background:rgba(255,255,255,0.96);
+              border-radius:10px;
+              padding:10px 12px;
+              box-shadow:0 4px 16px rgba(0,0,0,0.15);
+              font-size:0.9rem;
+              max-width:260px;
+              line-height:1.4;">
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- SERVICES DÉPLACÉ EN BAS, AVANT CONTACT -->
   <section id="services" class="section">
     <div class="container">
       <h2 class="section-title">Nos services</h2>
@@ -192,89 +319,7 @@
     </div>
   </section>
 
-  <!-- RÉSERVATION + ESTIMATION -->
-  <section id="reservation" class="section section-alt">
-    <div class="container">
-      <h2 class="section-title">Réserver un trajet</h2>
-      <p class="section-intro">
-        Remplissez ce formulaire : votre téléphone ouvrira automatiquement un SMS prêt à être envoyé
-        au chauffeur avec tous les détails de votre trajet. Vous pouvez également estimer le kilométrage,
-        le temps de trajet et le tarif avant d’envoyer.
-      </p>
-
-      <form id="reservation-form" class="form">
-        <label>Nom
-          <input type="text" name="Nom" required>
-        </label>
-
-        <label>Téléphone
-          <input type="tel" name="Téléphone" required>
-        </label>
-
-        <label>Point de départ
-          <input type="text" name="Départ" placeholder="Ex : Gare de Perpignan" required>
-        </label>
-
-        <label>Destination
-          <input type="text" name="Arrivee" placeholder="Ex : Aéroport Perpignan-Rivesaltes" required>
-        </label>
-
-        <label>Date et heure
-          <input type="datetime-local" name="DateHeure" required>
-        </label>
-
-        <label>Commentaires (optionnel)
-          <textarea name="Message" rows="4" placeholder="Ex : Nombre de passagers, bagages, siège enfant..."></textarea>
-        </label>
-
-        <!-- ESTIMATION TARIFAIRE (OPTIONNELLE) -->
-        <div id="estimation" class="tarif-estimate" style="margin-top: 1.5rem; border-radius: 16px; background: #ffffff; padding: 1.2rem; box-shadow: 0 6px 18px rgba(0,0,0,0.05);">
-          <h3 style="margin-top:0; margin-bottom:0.5rem; font-size:1.1rem;">Simulation de tarif (optionnel)</h3>
-
-          <div id="erreur-tarif" style="
-            display:none;
-            margin-bottom:0.75rem;
-            padding:0.75rem;
-            border-radius:8px;
-            background:#ffecec;
-            color:#a40000;
-            font-size:0.9rem;">
-          </div>
-
-          <div id="resultat-tarif" style="
-            display:none;
-            margin-bottom:0.25rem;
-            padding:0.75rem;
-            border-radius:8px;
-            background:#f0f7ff;
-            color:#1b3b68;
-            font-size:0.95rem;">
-          </div>
-
-          <p style="margin-top:0.4rem; font-size:0.8rem; color:#777;">
-            Estimation fournie à titre indicatif. Le tarif final pourra varier en fonction des conditions réelles et des demandes spécifiques.
-          </p>
-        </div>
-
-        <!-- BOUTONS ENSEMBLE SOUS LE FORMULAIRE -->
-        <div class="form-actions">
-          <button
-            type="button"
-            id="btn-tarif"
-            class="btn-estimate">
-            <span class="icon">✨</span>
-            <span>Estimer le tarif</span>
-          </button>
-
-          <button type="submit" class="btn-primary btn-full">
-            Envoyer ma demande par SMS
-          </button>
-        </div>
-      </form>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
+  <!-- CONTACT (RESTE EN BAS DE PAGE) -->
   <section id="contact" class="section">
     <div class="container">
       <h2 class="section-title">Contact</h2>
@@ -287,33 +332,6 @@
         <div>
           <p>📧 Email : <strong>contact@dcvtc66.fr</strong></p>
           <p>📍 Basé à Perpignan — déplacements dans tout le 66 et au-delà.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION MAP TOUT EN BAS DE LA PAGE -->
-  <section id="itineraire" class="section section-alt">
-    <div class="container">
-      <h2 class="section-title">Carte du trajet estimé</h2>
-      <p class="section-intro">
-        La carte ci-dessous affiche l’itinéraire et les informations principales après une estimation de votre trajet.
-      </p>
-
-      <div class="map-wrapper" style="position:relative;width:100%;height:320px;border-radius:12px;overflow:hidden;">
-        <div id="map" style="width:100%;height:100%;"></div>
-        <div id="tarif-overlay" style="
-          display:none;
-          position:absolute;
-          top:10px;
-          left:10px;
-          background:rgba(255,255,255,0.96);
-          border-radius:10px;
-          padding:10px 12px;
-          box-shadow:0 4px 16px rgba(0,0,0,0.15);
-          font-size:0.9rem;
-          max-width:260px;
-          line-height:1.4;">
         </div>
       </div>
     </div>
@@ -335,7 +353,7 @@
     💬
   </a>
 
-  <!-- AFFICHAGE TARIF FLOTTANT -->
+  <!-- AFFICHAGE TARIF FLOTTANT (EN HAUT) -->
   <div id="tarif-flottant">
     <span class="icon">💰</span>
     <span id="tarif-flottant-texte">Estimation en cours…</span>
@@ -361,12 +379,23 @@
       const dateHeure = form["DateHeure"].value;
       const messageClient = form["Message"].value;
 
+      let dateHeureAffichee = dateHeure;
+      if (dateHeure) {
+        const d = new Date(dateHeure);
+        if (!isNaN(d.getTime())) {
+          dateHeureAffichee = d.toLocaleString("fr-FR", {
+            dateStyle: "short",
+            timeStyle: "short"
+          });
+        }
+      }
+
       let sms = "Nouvelle demande de réservation – DCVTC66 :\n\n";
       sms += "Nom : " + nom + "\n";
       sms += "Téléphone : " + tel + "\n";
       sms += "Départ : " + depart + "\n";
       sms += "Destination : " + arrivee + "\n";
-      sms += "Date & heure : " + dateHeure + "\n";
+      sms += "Date & heure : " + dateHeureAffichee + "\n";
       if (messageClient.trim() !== "") {
         sms += "Commentaires : " + messageClient + "\n";
       }
@@ -466,6 +495,8 @@
       if (!depart || !arrivee) {
         errDiv.textContent = "Veuillez renseigner le point de départ et la destination dans le formulaire.";
         errDiv.style.display = "block";
+
+        form.scrollIntoView({ behavior: "smooth", block: "start" });
         return;
       }
 
@@ -536,7 +567,7 @@
             "Tarif estimatif : " + tarif.toFixed(2) + " €";
           overlay.style.display = "block";
 
-          // Affichage flottant du tarif – bien visible
+          // Affichage flottant du tarif – bien visible (en haut)
           if (flottant && flottantTexte) {
             flottantTexte.textContent =
               "Estimation : " + tarif.toFixed(2) + " € • " +
