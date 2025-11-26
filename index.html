@@ -14,9 +14,44 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
 
-  <!-- Styles ajoutés pour les nouveaux éléments (boutons + tarif flottant + alignement) -->
+  <!-- Styles -->
   <style>
-    /* Bouton d'estimation (un peu plus compact) */
+
+    /* --- Boutons du HERO (Taille compacte + toujours côte à côte) --- */
+    .hero-actions {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 0.55rem;
+      margin-top: 1.25rem;
+      justify-content: center;
+    }
+
+    .hero-actions a.btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.8rem;
+      flex: 0 0 auto;
+      white-space: nowrap;
+      text-align: center;
+      border-radius: 50px;
+    }
+
+    /* Même sur mobile : côte à côte */
+    @media (max-width: 640px) {
+      .hero-actions {
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .hero-actions a.btn-primary {
+        width: auto;
+      }
+    }
+
+    /* Bouton Estimer le tarif */
     .btn-estimate {
       display: inline-flex;
       align-items: center;
@@ -25,33 +60,21 @@
       border-radius: 999px;
       font-weight: 600;
       font-size: 0.8rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
       background: linear-gradient(135deg, #111827, #1f2933);
-      color: #ffffff;
+      color: #fff;
       border: none;
       cursor: pointer;
       box-shadow: 0 6px 18px rgba(15, 23, 42, 0.35);
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      transition: 0.18s ease;
       white-space: nowrap;
-    }
-
-    .btn-estimate span.icon {
-      font-size: 1.05rem;
     }
 
     .btn-estimate:hover {
       transform: translateY(-1px) scale(1.01);
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.45);
       background: linear-gradient(135deg, #0b1120, #111827);
     }
 
-    .btn-estimate:active {
-      transform: translateY(0) scale(0.99);
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.35);
-    }
-
-    /* Conteneur des deux boutons sous le formulaire */
+    /* Actions du formulaire */
     .form-actions {
       display: flex;
       flex-wrap: wrap;
@@ -63,14 +86,7 @@
       flex: 1 1 180px;
     }
 
-    @media (max-width: 640px) {
-      .btn-estimate {
-        width: 100%;
-        justify-content: center;
-      }
-    }
-
-    /* Carte flottante d'estimation – EN HAUT de la page */
+    /* Tarif flottant */
     #tarif-flottant {
       position: fixed;
       top: 24px;
@@ -83,71 +99,30 @@
       border-radius: 999px;
       background: linear-gradient(135deg, #16a34a, #22c55e);
       color: #022c22;
-      box-shadow: 0 16px 40px rgba(22, 163, 74, 0.7);
+      box-shadow: 0 16px 40px rgba(22,163,74,0.7);
       font-size: 0.95rem;
       font-weight: 600;
-      max-width: 90vw;
-      border: 1px solid rgba(6, 95, 70, 0.75);
       animation: pulseTarif 1.6s ease-in-out infinite;
-    }
-
-    #tarif-flottant .icon {
-      font-size: 1.3rem;
-    }
-
-    @media (max-width: 768px) {
-      #tarif-flottant {
-        left: 16px;
-        right: 16px;
-        top: 70px;
-        justify-content: center;
-      }
+      max-width: 90vw;
     }
 
     @keyframes pulseTarif {
-      0% {
-        transform: scale(1);
-        box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55);
-      }
-      50% {
-        transform: scale(1.06);
-        box-shadow: 0 18px 45px rgba(22, 163, 74, 0.85);
-      }
-      100% {
-        transform: scale(1);
-        box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55);
-      }
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.06); }
+      100% { transform: scale(1); }
     }
 
-    /* Mise sur la même ligne des 3 boutons dans le hero (même style que .btn-primary) */
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 1.25rem;
-    }
-
-    .hero-actions a {
-      flex: 1 1 180px;
-      text-align: center;
-    }
-
-    @media (max-width: 640px) {
-      .hero-actions {
-        flex-direction: column;
-      }
-    }
-
-    /* Petite marge au-dessus de la carte dans la section réservation */
+    /* Carte réservation */
     .map-reservation-wrapper {
       margin-top: 1.5rem;
     }
+
   </style>
 </head>
 
 <body>
 
-  <!-- NAV TOUT EN HAUT -->
+  <!-- NAV -->
   <nav class="nav">
     <div class="container nav-inner">
       <ul>
@@ -158,40 +133,41 @@
     </div>
   </nav>
 
-  <!-- HEADER / HERO -->
+  <!-- HERO -->
   <header class="header">
     <div class="container header-inner">
       <div class="branding">
+
         <img src="LOGO DCVTC66.png" alt="Logo DCVTC66" class="logo">
         <h1 class="site-title">DCVTC66</h1>
         <p class="site-subtitle">Votre chauffeur VTC privé à Perpignan et dans tout le 66</p>
 
-        <!-- 3 BOUTONS MÊME STYLE QUE "ENVOYER MA DEMANDE" (btn-primary) -->
+        <!-- 3 boutons COMPACTS + TOUJOURS CÔTE À CÔTE -->
         <div class="hero-actions">
-          <a href="tel:0663463716" class="btn-primary">📞 Appeler le chauffeur</a>
+          <a href="tel:0663463716" class="btn-primary">📞 Appeler</a>
           <a href="https://wa.me/33663463716" target="_blank" class="btn-primary">💬 WhatsApp</a>
-          <a href="#reservation" class="btn-primary">📝 Réserver un trajet</a>
+          <a href="#reservation" class="btn-primary">📝 Réserver</a>
         </div>
 
-        <!-- BADGES en dessous -->
         <div class="hero-badges">
           <span>✔ Service 7j/7</span>
-          <span>✔ Chauffeur professionnel et ponctuel</span>
-          <span>✔ Réservation simple et rapide</span>
+          <span>✔ Chauffeur professionnel</span>
+          <span>✔ Réservation simple</span>
         </div>
+
       </div>
     </div>
   </header>
 
-  <!-- RÉSERVATION + ESTIMATION (SOUS LE LOGO) -->
+  <!-- RÉSERVATION -->
   <section id="reservation" class="section section-alt">
     <div class="container">
+
       <h2 class="section-title">Réserver un trajet</h2>
-      <p class="section-intro">
-        Remplissez ce formulaire :
-      </p>
+      <p class="section-intro">Remplissez ce formulaire :</p>
 
       <form id="reservation-form" class="form">
+
         <label>Nom
           <input type="text" name="Nom" required>
         </label>
@@ -201,29 +177,25 @@
         </label>
 
         <label>Point de départ
-          <input type="text" name="Départ" placeholder="Ex : Gare de Perpignan" required>
+          <input type="text" name="Départ" required>
         </label>
 
         <label>Destination
-          <input type="text" name="Arrivee" placeholder="Ex : Aéroport Perpignan-Rivesaltes" required>
+          <input type="text" name="Arrivee" required>
         </label>
 
         <label>Date et heure
           <input type="datetime-local" name="DateHeure" required>
         </label>
 
-        <label>Commentaires (optionnel)
-          <textarea name="Message" rows="4" placeholder="Ex : Nombre de passagers, bagages, siège enfant..."></textarea>
+        <label>Commentaires
+          <textarea name="Message" rows="4"></textarea>
         </label>
 
-        <!-- BOUTONS ENSEMBLE SOUS LE FORMULAIRE -->
+        <!-- Boutons -->
         <div class="form-actions">
-          <button
-            type="button"
-            id="btn-tarif"
-            class="btn-estimate">
-            <span class="icon">✨</span>
-            <span>Estimer le tarif</span>
+          <button type="button" id="btn-tarif" class="btn-estimate">
+            ✨ Estimer le tarif
           </button>
 
           <button type="submit" class="btn-primary btn-full">
@@ -231,85 +203,47 @@
           </button>
         </div>
 
-        <!-- Messages d’erreur et résultat tarif -->
-        <div id="erreur-tarif" style="
-            display:none;
-            margin-top:1rem;
-            margin-bottom:0.75rem;
-            padding:0.75rem;
-            border-radius:8px;
-            background:#ffecec;
-            color:#a40000;
-            font-size:0.9rem;">
-        </div>
+        <!-- Résultats -->
+        <div id="erreur-tarif" style="display:none;"></div>
+        <div id="resultat-tarif" style="display:none;"></div>
 
-        <div id="resultat-tarif" style="
-            display:none;
-            margin-bottom:0.25rem;
-            padding:0.75rem;
-            border-radius:8px;
-            background:#f0f7ff;
-            color:#1b3b68;
-            font-size:0.95rem;">
-        </div>
-
-        <!-- CARTE DU TRAJET -->
+        <!-- Carte -->
         <div class="map-reservation-wrapper">
-          <h3 style="margin-top:0; margin-bottom:0.5rem; font-size:1.1rem;">Carte du trajet estimé</h3>
-          <p style="margin-top:0; font-size:0.85rem; color:#777;">
-            L’itinéraire s’affiche ici après avoir lancé une estimation du trajet.
-          </p>
+          <h3>Carte du trajet estimé</h3>
+          <p>Elle s’affichera après l’estimation.</p>
 
           <div class="map-wrapper" style="position:relative;width:100%;height:320px;border-radius:12px;overflow:hidden;margin-top:0.75rem;">
             <div id="map" style="width:100%;height:100%;"></div>
             <div id="tarif-overlay" style="
-              display:none;
-              position:absolute;
-              top:10px;
-              left:10px;
-              background:rgba(255,255,255,0.96);
-              border-radius:10px;
-              padding:10px 12px;
-              box-shadow:0 4px 16px rgba(0,0,0,0.15);
-              font-size:0.9rem;
-              max-width:260px;
-              line-height:1.4;">
+                display:none;
+                position:absolute;
+                top:10px;
+                left:10px;
+                background:white;
+                border-radius:10px;
+                padding:10px;
+                max-width:260px;
+                box-shadow:0 4px 16px rgba(0,0,0,0.15);
+              ">
             </div>
           </div>
         </div>
+
       </form>
+
     </div>
   </section>
 
-  <!-- SERVICES EN BAS AVANT CONTACT -->
+  <!-- SERVICES -->
   <section id="services" class="section">
     <div class="container">
       <h2 class="section-title">Nos services</h2>
-      <p class="section-intro">
-        DCVTC66 vous accompagne pour tous vos déplacements personnels et professionnels,
-        dans tout le département des Pyrénées-Orientales et au-delà.
-      </p>
 
       <div class="grid">
-        <article class="card">
-          <h3>Transferts aéroports</h3>
-          <p>Déplacements vers Perpignan, Toulouse, Carcassonne, Montpellier ou Barcelone.</p>
-        </article>
-
-        <article class="card">
-          <h3>Transferts gares</h3>
-          <p>Prise en charge à la gare de Perpignan, Narbonne et dans la région.</p>
-        </article>
-
-        <article class="card">
-          <h3>Déplacements professionnels</h3>
-          <p>Rendez-vous, séminaires, visites de clients ou missions ponctuelles.</p>
-        </article>
-
-        <article class="card">
-          <h3>Mise à disposition</h3>
-          <p>Chauffeur pour événements, mariages, soirées ou journées complètes.</p>
-        </article>
+        <article class="card"><h3>Transferts aéroports</h3></article>
+        <article class="card"><h3>Transferts gares</h3></article>
+        <article class="card"><h3>Déplacements professionnels</h3></article>
+        <article class="card"><h3>Mise à disposition</h3></article>
       </div>
     </div>
   </section>
@@ -320,15 +254,12 @@
       <h2 class="section-title">Contact</h2>
 
       <div class="contact-grid">
-        <div>
-          <p>📞 Téléphone : <a href="tel:0663463716"><strong>06 63 46 37 16</strong></a></p>
-          <p>💬 WhatsApp : <a href="https://wa.me/33663463716" target="_blank"><strong>Discuter sur WhatsApp</strong></a></p>
-        </div>
-        <div>
-          <p>📧 Email : <strong>contact@dcvtc66.fr</strong></p>
-          <p>📍 Basé à Perpignan — déplacements dans tout le 66 et au-delà.</p>
-        </div>
+        <p>📞 <a href="tel:0663463716"><strong>06 63 46 37 16</strong></a></p>
+        <p>💬 <a href="https://wa.me/33663463716" target="_blank"><strong>WhatsApp</strong></a></p>
+        <p>📧 contact@dcvtc66.fr</p>
+        <p>📍 Basé à Perpignan</p>
       </div>
+
     </div>
   </section>
 
@@ -340,248 +271,20 @@
   </footer>
 
   <!-- BOUTONS FLOTTANTS -->
-  <a href="tel:0663463716" class="fab fab-call" aria-label="Appeler DCVTC66">
-    📞
-  </a>
+  <a href="tel:0663463716" class="fab fab-call">📞</a>
+  <a href="https://wa.me/33663463716" target="_blank" class="fab fab-whatsapp">💬</a>
 
-  <a href="https://wa.me/33663463716" target="_blank" class="fab fab-whatsapp" aria-label="WhatsApp DCVTC66">
-    💬
-  </a>
-
-  <!-- AFFICHAGE TARIF FLOTTANT (EN HAUT) -->
+  <!-- TARIF FLOTTANT -->
   <div id="tarif-flottant">
-    <span class="icon">💰</span>
-    <span id="tarif-flottant-texte">Estimation en cours…</span>
+    <span id="tarif-flottant-texte">Estimation…</span>
   </div>
 
-  <!-- JS : SMS -->
+  <!-- JS Année -->
   <script>
-    // Année automatique dans le footer
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Variable globale pour stocker la dernière estimation
-    let derniereEstimation = null;
-
-    // Envoi du formulaire par SMS
-    const form = document.getElementById('reservation-form');
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const nom = form.Nom.value;
-      const tel = form["Téléphone"].value;
-      const depart = form["Départ"].value;
-      const arrivee = form["Arrivee"].value;
-      const dateHeure = form["DateHeure"].value;
-      const messageClient = form["Message"].value;
-
-      let sms = "Nouvelle demande de réservation – DCVTC66 :\n\n";
-      sms += "Nom : " + nom + "\n";
-      sms += "Téléphone : " + tel + "\n";
-      sms += "Départ : " + depart + "\n";
-      sms += "Destination : " + arrivee + "\n";
-      sms += "Date & heure : " + dateHeure + "\n";
-      if (messageClient.trim() !== "") {
-        sms += "Commentaires : " + messageClient + "\n";
-      }
-
-      // Ajout de l'estimation si disponible
-      if (derniereEstimation) {
-        sms += "\n--- Estimation indicative ---\n";
-        sms += "Distance : " + derniereEstimation.distanceKm + " km\n";
-        sms += "Durée : " + derniereEstimation.dureeTexte + "\n";
-        sms += "Tarif estimé : " + derniereEstimation.tarif.toFixed(2) + " €\n";
-      }
-
-      const numero = "0663463716";
-      const url = "sms:" + numero + "?&body=" + encodeURIComponent(sms);
-      window.location.href = url;
-    });
   </script>
 
-  <!-- JS : Google Maps / Autocomplete / Distance / Temps / Tarif -->
-  <script>
-    const BASE_KM = 7;
-    const BASE_TARIF = 20;      // 0 à 7 km = 20 €
-    const SUPP_PAR_KM = 1.60;   // au-delà : 1,60 €/km
-
-    let map;
-    let distanceService;
-    let directionsService;
-    let directionsRenderer;
-
-    // Appelé automatiquement par Google Maps (callback=initMap)
-    function initMap() {
-      const mapElement = document.getElementById("map");
-      if (!mapElement) {
-        console.error("Élément #map introuvable.");
-        return;
-      }
-
-      map = new google.maps.Map(mapElement, {
-        center: { lat: 42.6986, lng: 2.8956 }, // Perpignan
-        zoom: 11,
-      });
-
-      distanceService = new google.maps.DistanceMatrixService();
-      directionsService = new google.maps.DirectionsService();
-      directionsRenderer = new google.maps.DirectionsRenderer({
-        map: map,
-        suppressMarkers: false
-      });
-
-      // AUTOCOMPLÉTION GOOGLE PLACES SUR LES CHAMPS DU FORMULAIRE
-      const inputDepart = document.querySelector('input[name="Départ"]');
-      const inputArrivee = document.querySelector('input[name="Arrivee"]');
-
-      if (inputDepart) {
-        new google.maps.places.Autocomplete(inputDepart, {
-          types: ['geocode'],
-          componentRestrictions: { country: 'fr' }
-        });
-      }
-
-      if (inputArrivee) {
-        new google.maps.places.Autocomplete(inputArrivee, {
-          types: ['geocode'],
-          componentRestrictions: { country: 'fr' }
-        });
-      }
-
-      const btnTarif = document.getElementById("btn-tarif");
-      if (btnTarif) {
-        btnTarif.addEventListener("click", calculerTarif);
-      } else {
-        console.error("Bouton #btn-tarif introuvable.");
-      }
-    }
-
-    function calculerTarif() {
-      const resDiv = document.getElementById("resultat-tarif");
-      const errDiv = document.getElementById("erreur-tarif");
-      const overlay = document.getElementById("tarif-overlay");
-      const flottant = document.getElementById("tarif-flottant");
-      const flottantTexte = document.getElementById("tarif-flottant-texte");
-
-      const depart = form["Départ"].value.trim();
-      const arrivee = form["Arrivee"].value.trim();
-
-      // Reset affichages
-      errDiv.style.display = "none";
-      errDiv.textContent = "";
-      resDiv.style.display = "none";
-      resDiv.textContent = "";
-      overlay.style.display = "none";
-      overlay.textContent = "";
-      if (flottant) {
-        flottant.style.display = "none";
-      }
-
-      if (!depart || !arrivee) {
-        errDiv.textContent = "Veuillez renseigner le point de départ et la destination dans le formulaire.";
-        errDiv.style.display = "block";
-
-        form.scrollIntoView({ behavior: "smooth", block: "start" });
-        return;
-      }
-
-      // Message pendant le calcul
-      resDiv.style.display = "block";
-      resDiv.innerHTML = "Calcul de l&#39;itinéraire en cours...";
-
-      distanceService.getDistanceMatrix(
-        {
-          origins: [depart],
-          destinations: [arrivee],
-          travelMode: google.maps.TravelMode.DRIVING,
-          unitSystem: google.maps.UnitSystem.METRIC,
-        },
-        (response, status) => {
-          if (status !== "OK") {
-            console.error("DistanceMatrix error:", status, response);
-            resDiv.style.display = "none";
-            errDiv.textContent = "Erreur Google Maps : " + status;
-            errDiv.style.display = "block";
-            return;
-          }
-
-          const element = response.rows[0].elements[0];
-          if (element.status !== "OK") {
-            console.error("Element status:", element.status);
-            resDiv.style.display = "none";
-            errDiv.textContent = "Distance introuvable pour ces adresses. Veuillez vérifier l&#39;orthographe.";
-            errDiv.style.display = "block";
-            return;
-          }
-
-          const distanceMetres = element.distance.value; // en mètres
-          let distanceKm = distanceMetres / 1000;
-          distanceKm = Math.round(distanceKm * 10) / 10; // 0,1 km
-
-          const dureeTexte = element.duration.text; // ex : "25 min"
-
-          // Calcul tarif
-          let tarif = BASE_TARIF;
-          if (distanceKm > BASE_KM) {
-            const kmSupp = distanceKm - BASE_KM;
-            tarif += kmSupp * SUPP_PAR_KM;
-          }
-          tarif = Math.round(tarif * 100) / 100; // 2 décimales
-
-          // Stockage global pour l'ajout dans le SMS
-          derniereEstimation = {
-            distanceKm: distanceKm,
-            dureeTexte: dureeTexte,
-            tarif: tarif
-          };
-
-          // Texte détaillé sous le formulaire
-          resDiv.innerHTML =
-            "Distance estimée : <strong>" + distanceKm + " km</strong><br>" +
-            "Temps de trajet estimé : <strong>" + dureeTexte + "</strong><br>" +
-            "Tarif estimé (indicatif) : <strong>" + tarif.toFixed(2) + " €</strong><br><br>" +
-            "<em>(Estimation basée sur l&#39;API Google Maps, pour un trajet routier standard.)</em>";
-
-          resDiv.style.display = "block";
-
-          // Overlay sur la carte
-          overlay.innerHTML =
-            "<strong>Simulation de votre trajet</strong><br>" +
-            "Distance : " + distanceKm + " km<br>" +
-            "Durée : " + dureeTexte + "<br>" +
-            "Tarif estimatif : " + tarif.toFixed(2) + " €";
-          overlay.style.display = "block";
-
-          // Affichage flottant du tarif – bien visible (en haut)
-          if (flottant && flottantTexte) {
-            flottantTexte.textContent =
-              "Estimation : " + tarif.toFixed(2) + " € • " +
-              distanceKm + " km • " + dureeTexte;
-            flottant.style.display = "flex";
-          }
-
-          // Tracé de l'itinéraire sur la carte
-          if (directionsService && directionsRenderer) {
-            directionsService.route(
-              {
-                origin: depart,
-                destination: arrivee,
-                travelMode: google.maps.TravelMode.DRIVING,
-              },
-              (result, statusDir) => {
-                if (statusDir === "OK") {
-                  directionsRenderer.setDirections(result);
-                } else {
-                  console.warn("Directions error:", statusDir);
-                }
-              }
-            );
-          }
-        }
-      );
-    }
-  </script>
-
-  <!-- GOOGLE MAPS API -->
+  <!-- Google Maps API -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDW4LNM6rw5DKJ3KjMP1hEvk03k5pCKg4c&callback=initMap&libraries=places" async defer></script>
 
 </body>
