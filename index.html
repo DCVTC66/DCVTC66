@@ -47,8 +47,7 @@
     <div class="container nav-inner">
       <ul>
         <li><a href="#services">Services</a></li>
-        <li><a href="#reservation">Réservation</a></li>
-        <li><a href="#estimation">Estimation tarif</a></li>
+        <li><a href="#reservation">Réservation & estimation</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -93,7 +92,8 @@
       <h2 class="section-title">Réserver un trajet</h2>
       <p class="section-intro">
         Remplissez ce formulaire : votre téléphone ouvrira automatiquement un SMS prêt à être envoyé
-        au chauffeur avec tous les détails de votre trajet.
+        au chauffeur avec tous les détails de votre trajet. Vous pouvez également estimer le kilométrage,
+        le temps de trajet et le tarif avant d’envoyer.
       </p>
 
       <form id="reservation-form" class="form">
@@ -106,7 +106,7 @@
         </label>
 
         <label>Point de départ
-          <input type="text" name="Départ" placeholder="Ex : 12 Rue ..., Perpignan" required>
+          <input type="text" name="Départ" placeholder="Ex : Gare de Perpignan" required>
         </label>
 
         <label>Destination
@@ -217,12 +217,12 @@
     💬
   </a>
 
-  <!-- JS EXISTANT : SMS -->
+  <!-- JS : SMS -->
   <script>
     // Année automatique dans le footer
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Envoi du formulaire par SMS (ouvre l'application SMS du client)
+    // Envoi du formulaire par SMS
     const form = document.getElementById('reservation-form');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -250,7 +250,7 @@
     });
   </script>
 
-  <!-- JS : Google Maps / Distance / Temps / Tarif -->
+  <!-- JS : Google Maps / Autocomplete / Distance / Temps / Tarif -->
   <script>
     const BASE_KM = 7;
     const BASE_TARIF = 20;      // 0 à 7 km = 20 €
@@ -261,10 +261,13 @@
     let directionsService;
     let directionsRenderer;
 
-    // Appelé automatiquement par Google Maps (callback=initMap dans le script)
+    // Appelé automatiquement par Google Maps (callback=initMap)
     function initMap() {
       const mapElement = document.getElementById("map");
-      if (!mapElement) return;
+      if (!mapElement) {
+        console.error("Élément #map introuvable.");
+        return;
+      }
 
       map = new google.maps.Map(mapElement, {
         center: { lat: 42.6986, lng: 2.8956 }, // Perpignan
@@ -278,9 +281,29 @@
         suppressMarkers: false
       });
 
+      // AUTOCOMPLÉTION GOOGLE PLACES SUR LES CHAMPS DU FORMULAIRE
+      const inputDepart = document.querySelector('input[name="Départ"]');
+      const inputArrivee = document.querySelector('input[name="Arrivee"]');
+
+      if (inputDepart) {
+        new google.maps.places.Autocomplete(inputDepart, {
+          types: ['geocode'],
+          componentRestrictions: { country: 'fr' }
+        });
+      }
+
+      if (inputArrivee) {
+        new google.maps.places.Autocomplete(inputArrivee, {
+          types: ['geocode'],
+          componentRestrictions: { country: 'fr' }
+        });
+      }
+
       const btnTarif = document.getElementById("btn-tarif");
       if (btnTarif) {
         btnTarif.addEventListener("click", calculerTarif);
+      } else {
+        console.error("Bouton #btn-tarif introuvable.");
       }
     }
 
@@ -306,7 +329,7 @@
         return;
       }
 
-      // Petit message pendant le calcul
+      // Message pendant le calcul
       resDiv.style.display = "block";
       resDiv.innerHTML = "Calcul de l&#39;itinéraire en cours...";
 
@@ -319,6 +342,7 @@
         },
         (response, status) => {
           if (status !== "OK") {
+            console.error("DistanceMatrix error:", status, response);
             resDiv.style.display = "none";
             errDiv.textContent = "Erreur Google Maps : " + status;
             errDiv.style.display = "block";
@@ -327,6 +351,7 @@
 
           const element = response.rows[0].elements[0];
           if (element.status !== "OK") {
+            console.error("Element status:", element.status);
             resDiv.style.display = "none";
             errDiv.textContent = "Distance introuvable pour ces adresses. Vérifiez l&#39;orthographe.";
             errDiv.style.display = "block";
@@ -373,8 +398,9 @@
               (result, statusDir) => {
                 if (statusDir === "OK") {
                   directionsRenderer.setDirections(result);
+                } else {
+                  console.warn("Directions error:", statusDir);
                 }
-                // Si erreur, on ignore simplement le tracé
               }
             );
           }
@@ -384,9 +410,10 @@
   </script>
 
   <!-- GOOGLE MAPS API
-       ⚠️ REMPLACE VOTRE_CLE_API_ICI PAR TA CLÉ SÉCURISÉE (NE PAS LA PUBLIER)
+       ⚠️ REMPLACE VOTRE_CLE_API_ICI PAR TA CLÉ SÉCURISÉE
+       (et vérifie que Places API est bien activée dans la console Google Cloud)
   -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDW4LNM6rw5DKJ3KjMP1hEvk03k5pCKg4c&callback=initMap" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=VOTRE_CLE_API_ICI&callback=initMap&libraries=places" async defer></script>
 
 </body>
 </html>
