@@ -298,3 +298,13 @@ body {
     font-size: 1.75rem;
   }
 }
+/* Contact – téléphone & WhatsApp en jaune */
+#contact a {
+  color: #facc15;   /* jaune */
+  font-weight: 700;
+}
+
+#contact a:hover {
+  color: #fde047;   /* jaune clair au survol */
+  text-decoration: underline;
+}
