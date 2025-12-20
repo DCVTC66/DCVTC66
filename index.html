@@ -683,6 +683,15 @@
         body += "Message : " + message + "\n\n";
       }
 
+      /* ✅✅ AJOUT : Estimation de tarif dans le mail (si disponible) */
+      if (typeof derniereEstimation !== "undefined" && derniereEstimation) {
+        body +=
+          "--- Estimation indicative ---\n" +
+          "Distance : " + derniereEstimation.distanceKm + " km\n" +
+          "Durée : " + derniereEstimation.dureeTexte + "\n" +
+          "Tarif estimé : " + Number(derniereEstimation.tarif).toFixed(2) + " €\n\n";
+      }
+
       body += "Envoyé depuis dcvtc66.fr";
 
       const subject = "Demande de réservation DCVTC66";
@@ -736,6 +745,15 @@
           "Destination : " + arrivee + "\n" +
           "Date et heure : " + dateHeure + "\n\n" +
           "Message : " + messageClient;
+
+        /* ✅✅ AJOUT : Estimation de tarif dans le mail (si disponible) */
+        if (derniereEstimation) {
+          body +=
+            "\n\n--- Estimation indicative ---\n" +
+            "Distance : " + derniereEstimation.distanceKm + " km\n" +
+            "Durée : " + derniereEstimation.dureeTexte + "\n" +
+            "Tarif estimé : " + Number(derniereEstimation.tarif).toFixed(2) + " €\n";
+        }
 
         const email = "driveconfort66@gmail.com";
 
