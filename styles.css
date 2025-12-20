@@ -95,6 +95,7 @@ body {
   flex-wrap: wrap;
   gap: 1.4rem;          /* ← PLUS D’ESPACE ENTRE LES BOUTONS */
   margin-top: 0.6rem;  /* ← AIR AU-DESSUS */
+  margin-bottom: 2rem;
 }
 
 /* BOUTONS */
