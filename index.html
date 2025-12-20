@@ -86,12 +86,10 @@
       font-size: 1.05rem;
     }
 
- .btn-estimate:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 28px rgba(37, 99, 235, 0.45);
-}
-
-
+    .btn-estimate:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(37, 99, 235, 0.45);
+    }
 
     .btn-estimate:active {
       transform: translateY(0) scale(0.99);
@@ -262,18 +260,10 @@
 
         <!-- 3 BOUTONS COMPACTS CÔTE À CÔTÉ -->
         <div class="hero-actions">
-  <a href="tel:0663463716" class="btn-primary">📞 Appeler le chauffeur</a>
-
-  <a href="https://wa.me/33663463716" target="_blank" class="btn-primary">
-    💬 WhatsApp
-  </a>
-
-  <a href="#reservation" class="btn-primary">
-    📝 Réserver un trajet
-  </a>
-
-</div>
-
+          <a href="tel:0663463716" class="btn-primary">📞 Appeler le chauffeur</a>
+          <a href="https://wa.me/33663463716" target="_blank" class="btn-primary">💬 WhatsApp</a>
+          <a href="#reservation" class="btn-primary">📝 Réserver un trajet</a>
+        </div>
 
         <!-- BADGES en dessous -->
         <div class="hero-badges">
@@ -320,10 +310,7 @@
 
         <!-- BOUTONS ENSEMBLE SOUS LE FORMULAIRE -->
         <div class="form-actions">
-          <button
-            type="button"
-            id="btn-tarif"
-            class="btn-estimate">
+          <button type="button" id="btn-tarif" class="btn-estimate">
             <span class="icon">✨</span>
             <span>Estimer le tarif</span>
           </button>
@@ -331,10 +318,8 @@
           <button type="submit" class="btn-primary btn-full">
             Envoyer ma demande par SMS
           </button>
-          <a href="#" id="btn-email" class="btn-primary btn-full">
-  📧 Envoyer par email
-</a>
 
+          <a href="#" id="btn-email" class="btn-primary btn-full">📧 Envoyer par email</a>
         </div>
 
         <!-- Messages d’erreur et résultat tarif -->
@@ -446,13 +431,8 @@
   </footer>
 
   <!-- BOUTONS FLOTTANTS -->
-  <a href="tel:0663463716" class="fab fab-call" aria-label="Appeler DCVTC66">
-    📞
-  </a>
-
-  <a href="https://wa.me/33663463716" target="_blank" class="fab fab-whatsapp" aria-label="WhatsApp DCVTC66">
-    💬
-  </a>
+  <a href="tel:0663463716" class="fab fab-call" aria-label="Appeler DCVTC66">📞</a>
+  <a href="https://wa.me/33663463716" target="_blank" class="fab fab-whatsapp" aria-label="WhatsApp DCVTC66">💬</a>
 
   <!-- AFFICHAGE TARIF FLOTTANT -->
   <div id="tarif-flottant">
@@ -464,6 +444,12 @@
   <script>
     // Année automatique dans le footer
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ✅ Fonction : remplace "T" par " à " (ex: 2025-12-27T04:52 -> 2025-12-27 à 04:52)
+    function formatDateHeureFR(value) {
+      if (!value) return "";
+      return value.replace("T", " à ");
+    }
 
     // Variable globale pour stocker la dernière estimation
     let derniereEstimation = null;
@@ -477,7 +463,10 @@
       const tel = form["Téléphone"].value;
       const depart = form["Départ"].value;
       const arrivee = form["Arrivee"].value;
-      const dateHeure = form["DateHeure"].value;
+
+      // ✅ formatage de la date/heure
+      const dateHeure = formatDateHeureFR(form["DateHeure"].value);
+
       const messageClient = form["Message"].value;
 
       let sms = "Nouvelle demande de réservation – DCVTC66 :\n\n";
@@ -507,15 +496,14 @@
   <!-- JS : Google Maps / Autocomplete / Distance / Temps / Tarif -->
   <script>
     const BASE_KM = 7;
-    const BASE_TARIF = 20;      // 0 à 7 km = 20 €
-    const SUPP_PAR_KM = 1.60;   // au-delà : 1,60 €/km
+    const BASE_TARIF = 20;
+    const SUPP_PAR_KM = 1.60;
 
     let map;
     let distanceService;
     let directionsService;
     let directionsRenderer;
 
-    // Appelé automatiquement par Google Maps (callback=initMap)
     function initMap() {
       const mapElement = document.getElementById("map");
       if (!mapElement) {
@@ -524,7 +512,7 @@
       }
 
       map = new google.maps.Map(mapElement, {
-        center: { lat: 42.6986, lng: 2.8956 }, // Perpignan
+        center: { lat: 42.6986, lng: 2.8956 },
         zoom: 11,
       });
 
@@ -535,7 +523,6 @@
         suppressMarkers: false
       });
 
-      // AUTOCOMPLÉTION GOOGLE PLACES SUR LES CHAMPS DU FORMULAIRE
       const inputDepart = document.querySelector('input[name="Départ"]');
       const inputArrivee = document.querySelector('input[name="Arrivee"]');
 
@@ -571,26 +558,21 @@
       const depart = form["Départ"].value.trim();
       const arrivee = form["Arrivee"].value.trim();
 
-      // Reset affichages
       errDiv.style.display = "none";
       errDiv.textContent = "";
       resDiv.style.display = "none";
       resDiv.textContent = "";
       overlay.style.display = "none";
       overlay.textContent = "";
-      if (flottant) {
-        flottant.style.display = "none";
-      }
+      if (flottant) flottant.style.display = "none";
 
       if (!depart || !arrivee) {
         errDiv.textContent = "Veuillez renseigner le point de départ et la destination dans le formulaire.";
         errDiv.style.display = "block";
-
         form.scrollIntoView({ behavior: "smooth", block: "start" });
         return;
       }
 
-      // Message pendant le calcul
       resDiv.style.display = "block";
       resDiv.innerHTML = "Calcul de l&#39;itinéraire en cours...";
 
@@ -603,7 +585,6 @@
         },
         (response, status) => {
           if (status !== "OK") {
-            console.error("DistanceMatrix error:", status, response);
             resDiv.style.display = "none";
             errDiv.textContent = "Erreur Google Maps : " + status;
             errDiv.style.display = "block";
@@ -612,35 +593,27 @@
 
           const element = response.rows[0].elements[0];
           if (element.status !== "OK") {
-            console.error("Element status:", element.status);
             resDiv.style.display = "none";
             errDiv.textContent = "Distance introuvable pour ces adresses. Veuillez vérifier l&#39;orthographe.";
             errDiv.style.display = "block";
             return;
           }
 
-          const distanceMetres = element.distance.value; // en mètres
+          const distanceMetres = element.distance.value;
           let distanceKm = distanceMetres / 1000;
-          distanceKm = Math.round(distanceKm * 10) / 10; // 0,1 km
+          distanceKm = Math.round(distanceKm * 10) / 10;
 
-          const dureeTexte = element.duration.text; // ex : "25 min"
+          const dureeTexte = element.duration.text;
 
-          // Calcul tarif
           let tarif = BASE_TARIF;
           if (distanceKm > BASE_KM) {
             const kmSupp = distanceKm - BASE_KM;
             tarif += kmSupp * SUPP_PAR_KM;
           }
-          tarif = Math.round(tarif * 100) / 100; // 2 décimales
+          tarif = Math.round(tarif * 100) / 100;
 
-          // Stockage global pour l'ajout dans le SMS
-          derniereEstimation = {
-            distanceKm: distanceKm,
-            dureeTexte: dureeTexte,
-            tarif: tarif
-          };
+          derniereEstimation = { distanceKm, dureeTexte, tarif };
 
-          // Texte détaillé sous le formulaire
           resDiv.innerHTML =
             "Distance estimée : <strong>" + distanceKm + " km</strong><br>" +
             "Temps de trajet estimé : <strong>" + dureeTexte + "</strong><br>" +
@@ -649,7 +622,6 @@
 
           resDiv.style.display = "block";
 
-          // Overlay sur la carte
           overlay.innerHTML =
             "<strong>Simulation de votre trajet</strong><br>" +
             "Distance : " + distanceKm + " km<br>" +
@@ -657,7 +629,6 @@
             "Tarif estimatif : " + tarif.toFixed(2) + " €";
           overlay.style.display = "block";
 
-          // Affichage flottant du tarif – bien visible (en haut)
           if (flottant && flottantTexte) {
             flottantTexte.textContent =
               "Estimation : " + tarif.toFixed(2) + " € • " +
@@ -665,7 +636,6 @@
             flottant.style.display = "flex";
           }
 
-          // Tracé de l'itinéraire sur la carte
           if (directionsService && directionsRenderer) {
             directionsService.route(
               {
@@ -676,8 +646,6 @@
               (result, statusDir) => {
                 if (statusDir === "OK") {
                   directionsRenderer.setDirections(result);
-                } else {
-                  console.warn("Directions error:", statusDir);
                 }
               }
             );
@@ -690,92 +658,109 @@
   <!-- GOOGLE MAPS API -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDW4LNM6rw5DKJ3KjMP1hEvk03k5pCKg4c&callback=initMap&libraries=places" async defer></script>
 
-<script>
-function envoyerEmail() {
-  const nom = document.querySelector('input[name="Nom"]')?.value || "";
-  const tel = document.querySelector('input[name="Téléphone"]')?.value || "";
-  const depart = document.querySelector('input[name="Départ"]')?.value || "";
-  const arrivee = document.querySelector('input[name="Arrivee"]')?.value || "";
-  const dateHeure = document.querySelector('input[name="DateHeure"]')?.value || "";
-  const message = document.querySelector('textarea[name="Message"]')?.value || "";
+  <!-- EMAIL (Mobile: mailto / PC: Gmail Web) -->
+  <script>
+    function envoyerEmail() {
+      const nom = document.querySelector('input[name="Nom"]')?.value || "";
+      const tel = document.querySelector('input[name="Téléphone"]')?.value || "";
+      const depart = document.querySelector('input[name="Départ"]')?.value || "";
+      const arrivee = document.querySelector('input[name="Arrivee"]')?.value || "";
 
-  let body =
-    "Demande de réservation DCVTC66\n\n" +
-    "Nom : " + nom + "\n" +
-    "Téléphone : " + tel + "\n" +
-    "Départ : " + depart + "\n" +
-    "Destination : " + arrivee + "\n" +
-    "Date et heure : " + dateHeure + "\n\n";
+      // ✅ formatage de la date/heure
+      const dateHeure = formatDateHeureFR(document.querySelector('input[name="DateHeure"]')?.value || "");
 
-  if (message.trim() !== "") {
-    body += "Message : " + message + "\n\n";
-  }
-
-  body += "Envoyé depuis dcvtc66.fr";
-
-  const subject = "Demande de réservation DCVTC66";
-  const to = "driveconfort66@gmail.com";
-
-  // 📱 Mobile → app mail
-  if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-    const mailto =
-      "mailto:" + to +
-      "?subject=" + encodeURIComponent(subject) +
-      "&body=" + encodeURIComponent(body);
-
-    window.location.href = mailto;
-  }
-  // 💻 PC → Gmail Web
-  else {
-    const gmail =
-      "https://mail.google.com/mail/?view=cm&fs=1" +
-      "&to=" + encodeURIComponent(to) +
-      "&su=" + encodeURIComponent(subject) +
-      "&body=" + encodeURIComponent(body);
-
-    window.open(gmail, "_blank");
-  }
-}
-</script>
-<script>
-  const btnEmail = document.getElementById("btn-email");
-
-  if (btnEmail) {
-    btnEmail.addEventListener("click", function (e) {
-      e.preventDefault();
-
-      const form = document.getElementById("reservation-form");
-
-      const nom = form.Nom.value;
-      const tel = form["Téléphone"].value;
-      const depart = form["Départ"].value;
-      const arrivee = form["Arrivee"].value;
-      const dateHeure = form["DateHeure"].value;
-      const messageClient = form["Message"].value;
-
-      const sujet = "Demande de réservation DCVTC66";
+      const message = document.querySelector('textarea[name="Message"]')?.value || "";
 
       let body =
-        "Bonjour,%0D%0A%0D%0A" +
-        "Nouvelle demande de réservation :%0D%0A%0D%0A" +
-        "Nom : " + nom + "%0D%0A" +
-        "Téléphone : " + tel + "%0D%0A" +
-        "Départ : " + depart + "%0D%0A" +
-        "Destination : " + arrivee + "%0D%0A" +
-        "Date et heure : " + dateHeure + "%0D%0A%0D%0A" +
-        "Message : " + messageClient;
+        "Demande de réservation DCVTC66\n\n" +
+        "Nom : " + nom + "\n" +
+        "Téléphone : " + tel + "\n" +
+        "Départ : " + depart + "\n" +
+        "Destination : " + arrivee + "\n" +
+        "Date et heure : " + dateHeure + "\n\n";
 
-      const email = "driveconfort66@gmail.com";
+      if (message.trim() !== "") {
+        body += "Message : " + message + "\n\n";
+      }
 
-      const url =
-        "https://mail.google.com/mail/?view=cm&fs=1" +
-        "&to=" + email +
-        "&su=" + encodeURIComponent(sujet) +
-        "&body=" + body;
+      body += "Envoyé depuis dcvtc66.fr";
 
-      window.open(url, "_blank");
-    });
-  }
-</script>
+      const subject = "Demande de réservation DCVTC66";
+      const to = "driveconfort66@gmail.com";
+
+      if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        const mailto =
+          "mailto:" + to +
+          "?subject=" + encodeURIComponent(subject) +
+          "&body=" + encodeURIComponent(body);
+
+        window.location.href = mailto;
+      } else {
+        const gmail =
+          "https://mail.google.com/mail/?view=cm&fs=1" +
+          "&to=" + encodeURIComponent(to) +
+          "&su=" + encodeURIComponent(subject) +
+          "&body=" + encodeURIComponent(body);
+
+        window.open(gmail, "_blank");
+      }
+    }
+  </script>
+
+  <!-- Bouton Email -->
+  <script>
+    const btnEmail = document.getElementById("btn-email");
+
+    if (btnEmail) {
+      btnEmail.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const nom = form.Nom.value;
+        const tel = form["Téléphone"].value;
+        const depart = form["Départ"].value;
+        const arrivee = form["Arrivee"].value;
+
+        // ✅ formatage de la date/heure
+        const dateHeure = formatDateHeureFR(form["DateHeure"].value);
+
+        const messageClient = form["Message"].value;
+
+        const sujet = "Demande de réservation DCVTC66";
+
+        let body =
+          "Bonjour,\n\n" +
+          "Nouvelle demande de réservation :\n\n" +
+          "Nom : " + nom + "\n" +
+          "Téléphone : " + tel + "\n" +
+          "Départ : " + depart + "\n" +
+          "Destination : " + arrivee + "\n" +
+          "Date et heure : " + dateHeure + "\n\n" +
+          "Message : " + messageClient;
+
+        const email = "driveconfort66@gmail.com";
+
+        // 📱 Mobile : mailto (plus simple)
+        if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+          const mailto =
+            "mailto:" + email +
+            "?subject=" + encodeURIComponent(sujet) +
+            "&body=" + encodeURIComponent(body);
+
+          window.location.href = mailto;
+        }
+        // 💻 PC : Gmail Web
+        else {
+          const url =
+            "https://mail.google.com/mail/?view=cm&fs=1" +
+            "&to=" + encodeURIComponent(email) +
+            "&su=" + encodeURIComponent(sujet) +
+            "&body=" + encodeURIComponent(body);
+
+          window.open(url, "_blank");
+        }
+      });
+    }
+  </script>
+
 </body>
 </html>
