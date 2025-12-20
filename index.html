@@ -693,5 +693,52 @@
   <!-- GOOGLE MAPS API -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDW4LNM6rw5DKJ3KjMP1hEvk03k5pCKg4c&callback=initMap&libraries=places" async defer></script>
 
+<script>
+function envoyerEmail() {
+  const nom = document.querySelector('input[name="Nom"]')?.value || "";
+  const tel = document.querySelector('input[name="Téléphone"]')?.value || "";
+  const depart = document.querySelector('input[name="Départ"]')?.value || "";
+  const arrivee = document.querySelector('input[name="Arrivee"]')?.value || "";
+  const dateHeure = document.querySelector('input[name="DateHeure"]')?.value || "";
+  const message = document.querySelector('textarea[name="Message"]')?.value || "";
+
+  let body =
+    "Demande de réservation DCVTC66\n\n" +
+    "Nom : " + nom + "\n" +
+    "Téléphone : " + tel + "\n" +
+    "Départ : " + depart + "\n" +
+    "Destination : " + arrivee + "\n" +
+    "Date et heure : " + dateHeure + "\n\n";
+
+  if (message.trim() !== "") {
+    body += "Message : " + message + "\n\n";
+  }
+
+  body += "Envoyé depuis dcvtc66.fr";
+
+  const subject = "Demande de réservation DCVTC66";
+  const to = "driveconfort66@gmail.com";
+
+  // 📱 Mobile → app mail
+  if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    const mailto =
+      "mailto:" + to +
+      "?subject=" + encodeURIComponent(subject) +
+      "&body=" + encodeURIComponent(body);
+
+    window.location.href = mailto;
+  }
+  // 💻 PC → Gmail Web
+  else {
+    const gmail =
+      "https://mail.google.com/mail/?view=cm&fs=1" +
+      "&to=" + encodeURIComponent(to) +
+      "&su=" + encodeURIComponent(subject) +
+      "&body=" + encodeURIComponent(body);
+
+    window.open(gmail, "_blank");
+  }
+}
+</script>
 </body>
 </html>
