@@ -338,6 +338,10 @@
           <button type="submit" class="btn-primary btn-full">
             Envoyer ma demande par SMS
           </button>
+          <a href="#" id="btn-email" class="btn-primary btn-full">
+  📧 Envoyer par email
+</a>
+
         </div>
 
         <!-- Messages d’erreur et résultat tarif -->
@@ -739,6 +743,46 @@ function envoyerEmail() {
     window.open(gmail, "_blank");
   }
 }
+</script>
+<script>
+  const btnEmail = document.getElementById("btn-email");
+
+  if (btnEmail) {
+    btnEmail.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const form = document.getElementById("reservation-form");
+
+      const nom = form.Nom.value;
+      const tel = form["Téléphone"].value;
+      const depart = form["Départ"].value;
+      const arrivee = form["Arrivee"].value;
+      const dateHeure = form["DateHeure"].value;
+      const messageClient = form["Message"].value;
+
+      const sujet = "Demande de réservation DCVTC66";
+
+      let body =
+        "Bonjour,%0D%0A%0D%0A" +
+        "Nouvelle demande de réservation :%0D%0A%0D%0A" +
+        "Nom : " + nom + "%0D%0A" +
+        "Téléphone : " + tel + "%0D%0A" +
+        "Départ : " + depart + "%0D%0A" +
+        "Destination : " + arrivee + "%0D%0A" +
+        "Date et heure : " + dateHeure + "%0D%0A%0D%0A" +
+        "Message : " + messageClient;
+
+      const email = "driveconfort66@gmail.com";
+
+      const url =
+        "https://mail.google.com/mail/?view=cm&fs=1" +
+        "&to=" + email +
+        "&su=" + encodeURIComponent(sujet) +
+        "&body=" + body;
+
+      window.open(url, "_blank");
+    });
+  }
 </script>
 </body>
 </html>
