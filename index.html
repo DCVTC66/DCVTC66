@@ -787,10 +787,43 @@
     }
   </script>
 <script>
+  // 1) Service Worker
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("/sw.js");
   }
+
+  // 2) Bouton Installer (Android / Chrome / Edge)
+  let deferredPrompt = null;
+  const btnInstall = document.getElementById("btn-install");
+
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (btnInstall) btnInstall.style.display = "inline-flex";
+  });
+
+  btnInstall?.addEventListener("click", async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    btnInstall.style.display = "none";
+  });
+
+  // 3) iPhone (Safari) : pas d'installation automatique -> message d'aide
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isInStandalone =
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone;
+
+  if (isIOS && !isInStandalone && btnInstall) {
+    btnInstall.style.display = "inline-flex";
+    btnInstall.addEventListener("click", () => {
+      alert("Sur iPhone : Safari → Partager (⬆️) → “Sur l’écran d’accueil”.");
+    });
+  }
 </script>
+
 
 </body>
 </html>
