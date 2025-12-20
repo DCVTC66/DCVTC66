@@ -79,29 +79,25 @@ body {
   margin-bottom: 1.8rem;
 }
 
-/* BADGES */
+/* 🔵 BADGES */
 .hero-badges {
   display: flex;
   justify-content: center;
   gap: 0.6rem;
   flex-wrap: wrap;
+  margin-top: 1.5rem;   /* ✅ SEULE MODIFICATION : séparation jaune / bleu */
   margin-bottom: 2rem;
-  margin-top: 1.3rem; /* ← AJOUTE ÇA : espace entre jaune et bleu */
 }
 
-}
-
-/* 🔥 BOUTONS (MODIFIÉ ICI) */
+/* 🟡 BOUTONS */
 .hero-actions {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 1.4rem;          /* ← PLUS D’ESPACE ENTRE LES BOUTONS */
-  margin-top: 0.6rem;  /* ← AIR AU-DESSUS */
-  margin-bottom: 2rem;
+  gap: 1.4rem;
+  margin-top: 0.6rem;
 }
 
-/* BOUTONS */
 .btn-primary,
 .btn-secondary,
 .btn-outline {
