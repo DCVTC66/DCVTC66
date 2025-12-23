@@ -339,3 +339,42 @@ body {
   color: #fde047;   /* jaune clair au survol */
   text-decoration: underline;
 }
+/* Groupe des boutons du formulaire */
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+/* Style commun – taille NORMALE */
+.form-actions .btn {
+  width: 100%;
+  padding: 0.65rem 1rem;   /* 👈 hauteur identique */
+  font-size: 0.85rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border: none;
+  cursor: pointer;
+}
+
+/* 🔥 Estimer le tarif : juste un peu plus visible */
+.btn-tarif {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  font-size: 0.95rem;        /* 👈 légèrement plus grand */
+  box-shadow: 0 0 18px rgba(37, 99, 235, 0.6);
+}
+
+/* SMS */
+.btn-sms {
+  background: linear-gradient(135deg, #fde047, #facc15);
+  color: #0b1733;
+}
+
+/* Email → MÊME TAILLE que SMS */
+.btn-email {
+  background: linear-gradient(135deg, #fde047, #facc15);
+  color: #0b1733;
+}
