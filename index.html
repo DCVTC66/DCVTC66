@@ -532,10 +532,11 @@
 
       distanceService = new google.maps.DistanceMatrixService();
       directionsService = new google.maps.DirectionsService();
-      directionsRenderer = new google.maps.DirectionsRenderer({
-        map: map,
-        suppressMarkers: false
-      });
+     directionsRenderer = new google.maps.DirectionsRenderer({
+  map: map,
+  suppressMarkers: false,
+  suppressInfoWindows: true
+});
 
       const inputDepart = document.querySelector('input[name="Départ"]');
       const inputArrivee = document.querySelector('input[name="Arrivee"]');
