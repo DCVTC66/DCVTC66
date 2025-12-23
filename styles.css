@@ -339,32 +339,35 @@ body {
   color: #fde047;   /* jaune clair au survol */
   text-decoration: underline;
 }
-/* Groupe des boutons du formulaire */
+/* ===== BOUTONS FORMULAIRE (TAILLES PROPRES) ===== */
+
 .form-actions {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: 0.6rem;
 }
 
-/* Style commun – taille NORMALE */
-.form-actions .btn {
+/* Taille de référence (EMAIL) */
+.form-actions .btn,
+.form-actions button,
+.form-actions a {
   width: 100%;
-  padding: 0.65rem 1rem;   /* 👈 hauteur identique */
-  font-size: 0.85rem;
+  padding: 0.55rem 1rem;     /* 👈 taille NORMALE */
+  font-size: 0.82rem;
   border-radius: 999px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   border: none;
-  cursor: pointer;
 }
 
-/* 🔥 Estimer le tarif : juste un peu plus visible */
-.btn-tarif {
+/* ESTIMER LE TARIF → JUSTE un peu plus grand */
+#btn-tarif {
+  padding: 0.62rem 1rem;    /* 👈 +0.07rem seulement */
+  font-size: 0.88rem;       /* 👈 légèrement plus lisible */
   background: linear-gradient(135deg, #2563eb, #1d4ed8);
   color: #ffffff;
-  font-size: 0.95rem;        /* 👈 légèrement plus grand */
-  box-shadow: 0 0 18px rgba(37, 99, 235, 0.6);
+  box-shadow: 0 0 14px rgba(37, 99, 235, 0.55);
 }
 
 /* SMS */
@@ -373,8 +376,9 @@ body {
   color: #0b1733;
 }
 
-/* Email → MÊME TAILLE que SMS */
+/* EMAIL = TAILLE DE RÉFÉRENCE */
 .btn-email {
   background: linear-gradient(135deg, #fde047, #facc15);
   color: #0b1733;
 }
+
