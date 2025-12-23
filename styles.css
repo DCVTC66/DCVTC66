@@ -179,8 +179,8 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 1rem 2rem; /* Agrandir le bouton */
-  font-size: 1.1rem; /* Augmenter la taille du texte */
+  padding: 0.65rem 1.1rem; /* Agrandir le bouton */
+  font-size: 0.88rem; /* Augmenter la taille du texte */
   border-radius: 999px;
   font-weight: 700; /* Renforcer la police */
   text-transform: uppercase;
