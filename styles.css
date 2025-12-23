@@ -168,6 +168,12 @@ body {
   box-shadow: 0 12px 28px rgba(250, 204, 21, 0.45);
   text-decoration: none;
 }
+/* Aligner la largeur des boutons du formulaire */
+.form-actions .btn-primary,
+.form-actions .btn-estimate {
+  width: 100%;
+  justify-content: center;
+}
 
 .btn-primary:hover {
   transform: translateY(-1px);
