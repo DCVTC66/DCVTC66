@@ -368,3 +368,18 @@ body {
   background: linear-gradient(135deg, #fde047, #facc15);
   color: #0b1733;
 }
+/* ===== ALIGNER LES TAILLES SUR "ENVOYER PAR EMAIL" ===== */
+
+/* Estimer le tarif */
+.btn-estimate {
+  padding: 0.45rem 1rem !important;
+  font-size: 0.8rem !important;
+  line-height: 1.1 !important;
+}
+
+/* Envoyer ma demande par SMS */
+.form-actions button[type="submit"] {
+  padding: 0.45rem 1rem !important;
+  font-size: 0.8rem !important;
+  line-height: 1.1 !important;
+}
