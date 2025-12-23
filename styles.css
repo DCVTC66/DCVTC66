@@ -339,35 +339,32 @@ body {
   color: #fde047;   /* jaune clair au survol */
   text-decoration: underline;
 }
-/* ===== FORM ACTIONS – TAILLE NORMALE PRO ===== */
+/* ===== FORMULAIRE – BOUTONS TOUS IDENTIQUES ===== */
 .form-actions {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
 }
 
-/* Tous les boutons du formulaire */
+/* Taille UNIQUE pour les 3 boutons */
 .form-actions button,
 .form-actions a {
   width: 100%;
-  padding: 0.55rem 1rem;   /* ⬅️ PLUS PETIT */
-  font-size: 0.85rem;      /* ⬅️ texte plus fin */
+  padding: 0.45rem 1rem;   /* ⬅️ taille = bouton email */
+  font-size: 0.8rem;       /* ⬅️ texte = bouton email */
   font-weight: 600;
   border-radius: 999px;
+  line-height: 1.1;
   text-align: center;
-  line-height: 1.2;
 }
 
-/* Estimer le tarif (légèrement mis en avant, pas énorme) */
+/* Couleurs uniquement (pas de taille différente) */
 .btn-estimate {
   background: linear-gradient(135deg, #2563eb, #1d4ed8);
   color: #ffffff;
-  box-shadow: 0 0 12px rgba(37, 99, 235, 0.45);
 }
 
-/* SMS & EMAIL : même taille exacte */
 .form-actions .btn-primary {
   background: linear-gradient(135deg, #fde047, #facc15);
   color: #0b1733;
-  box-shadow: 0 8px 18px rgba(250, 204, 21, 0.35);
 }
