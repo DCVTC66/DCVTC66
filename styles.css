@@ -339,47 +339,11 @@ body {
   color: #fde047;   /* jaune clair au survol */
   text-decoration: underline;
 }
-/* ===== FORMULAIRE – BOUTONS TOUS IDENTIQUES ===== */
-.form-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-/* Taille UNIQUE pour les 3 boutons */
+/* ===== BOUTONS FORMULAIRE : TAILLE PETITE ET UNIFORME ===== */
 .form-actions button,
 .form-actions a {
-  width: 100%;
-  padding: 0.45rem 1rem;   /* ⬅️ taille = bouton email */
-  font-size: 0.8rem;       /* ⬅️ texte = bouton email */
-  font-weight: 600;
-  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
   line-height: 1.1;
-  text-align: center;
-}
-
-/* Couleurs uniquement (pas de taille différente) */
-.btn-estimate {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  color: #ffffff;
-}
-
-.form-actions .btn-primary {
-  background: linear-gradient(135deg, #fde047, #facc15);
-  color: #0b1733;
-}
-/* ===== ALIGNER LES TAILLES SUR "ENVOYER PAR EMAIL" ===== */
-
-/* Estimer le tarif */
-.btn-estimate {
-  padding: 0.45rem 1rem !important;
-  font-size: 0.8rem !important;
-  line-height: 1.1 !important;
-}
-
-/* Envoyer ma demande par SMS */
-.form-actions button[type="submit"] {
-  padding: 0.45rem 1rem !important;
-  font-size: 0.8rem !important;
-  line-height: 1.1 !important;
+  border-radius: 999px;
 }
