@@ -19,225 +19,155 @@
 
   <!-- Styles spécifiques + overrides mobile -->
   <style>
-    /* Base / reset léger */
-    html, body {
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden; /* évite le décalage et le scroll horizontal sur mobile */
+  /* =========================
+     BASE / RESET LÉGER
+  ========================== */
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* évite le scroll horizontal mobile */
+  }
+
+  /* =========================
+     NAV – ajustements HTML
+  ========================== */
+  .nav-inner ul {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  .nav-inner ul li a {
+    text-decoration: none;
+  }
+
+  /* =========================
+     TARIF FLOTTANT
+  ========================== */
+  #tarif-flottant {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1.3rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+    color: #022c22;
+    box-shadow: 0 16px 40px rgba(22, 163, 74, 0.7);
+    font-size: 0.95rem;
+    font-weight: 600;
+    max-width: 90vw;
+    border: 1px solid rgba(6, 95, 70, 0.75);
+    animation: pulseTarif 1.6s ease-in-out infinite;
+  }
+
+  #tarif-flottant .icon {
+    font-size: 1.3rem;
+  }
+
+  @keyframes pulseTarif {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55);
+    }
+    50% {
+      transform: scale(1.06);
+      box-shadow: 0 18px 45px rgba(22, 163, 74, 0.85);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55);
+    }
+  }
+
+  /* =========================
+     MAP / RÉSERVATION
+  ========================== */
+  .map-reservation-wrapper {
+    margin-top: 1.5rem;
+  }
+
+  /* =========================
+     MOBILE & TABLETTE
+  ========================== */
+  @media (max-width: 768px) {
+    .nav-inner ul {
+      justify-content: center;
+      flex-wrap: wrap;
+      text-align: center;
     }
 
-    .container {
-      max-width: 1100px;
+    .header-inner,
+    .branding {
+      text-align: center;
+    }
+
+    .branding {
+      max-width: 480px;
       margin: 0 auto;
-      padding: 0 1.5rem;
+    }
+
+    .logo {
+      margin: 0 auto;
+      display: block;
+    }
+
+    .site-title {
+      margin-bottom: 0.25rem;
+    }
+
+    .site-subtitle {
+      margin-top: 0;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    .section,
+    .section-alt {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
       box-sizing: border-box;
     }
 
-    /* NAV : mieux centrée sur mobile */
-    .nav-inner ul {
-      display: flex;
-      gap: 1rem;
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
+    .form {
+      max-width: 480px;
+      margin: 0 auto;
     }
 
-    .nav-inner ul li a {
-      text-decoration: none;
-    }
-
-    /* HERO : 3 boutons compacts */
-    .hero-actions {
-      display: flex;
-      gap: 0.55rem;
-      margin-top: 1.25rem;
-      justify-content: center;
-    }
-
-    .hero-actions a.btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.45rem 0.9rem;
-      font-size: 0.8rem;
-      border-radius: 999px;
+    .contact-grid,
+    .grid {
       text-align: center;
-      white-space: nowrap;
     }
+  }
 
-    /* Bouton estimation */
-    .btn-estimate {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.45rem 0.9rem;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 0.8rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      color: #ffffff;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 0 22px rgba(250, 204, 21, 0.8);
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-      white-space: nowrap;
-    }
-
-    .btn-estimate span.icon {
-      font-size: 1.05rem;
-    }
-
-    .btn-estimate:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 28px rgba(37, 99, 235, 0.45);
-    }
-
-    .btn-estimate:active {
-      transform: translateY(0) scale(0.99);
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.35);
-    }
-
-    .form-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .form-actions button {
-      flex: 1 1 180px;
-    }
-
-    /* Carte flottante d'estimation – EN HAUT de la page */
+  /* =========================
+     TRÈS PETITS ÉCRANS
+  ========================== */
+  @media (max-width: 640px) {
     #tarif-flottant {
-      position: fixed;
-      top: 24px;
-      right: 24px;
-      z-index: 9999;
-      display: none;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.9rem 1.3rem;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #16a34a, #22c55e);
-      color: #022c22;
-      box-shadow: 0 16px 40px rgba(22, 163, 74, 0.7);
-      font-size: 0.95rem;
-      font-weight: 600;
-      max-width: 90vw;
-      border: 1px solid rgba(6, 95, 70, 0.75);
-      animation: pulseTarif 1.6s ease-in-out infinite;
+      left: 16px;
+      right: 16px;
+      top: 70px;
+      justify-content: center;
     }
 
-    #tarif-flottant .icon {
-      font-size: 1.3rem;
+    .map-wrapper {
+      height: 260px !important;
     }
+  }
+</style>
 
-    @keyframes pulseTarif {
-      0% {
-        transform: scale(1);
-        box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55);
-      }
-      50% {
-        transform: scale(1.06);
-        box-shadow: 0 18px 45px rgba(22, 163, 74, 0.85);
-      }
-      100% {
-        transform: scale(1);
-        box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55);
-      }
-    }
-
-    .map-reservation-wrapper {
-      margin-top: 1.5rem;
-    }
-
-    /* ==== VERSION MOBILE (améliorée) ==== */
-    @media (max-width: 768px) {
-      .nav-inner ul {
-        justify-content: center;
-        flex-wrap: wrap;
-        text-align: center;
-      }
-
-      .header-inner,
-      .branding {
-        text-align: center;
-      }
-
-      .branding {
-        max-width: 480px;
-        margin: 0 auto;
-      }
-
-      .logo {
-        margin: 0 auto;
-        display: block;
-      }
-
-      .site-title {
-        margin-bottom: 0.25rem;
-      }
-
-      .site-subtitle {
-        margin-top: 0;
-      }
-
-      .hero-badges {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.4rem;
-      }
-
-      .section,
-      .section-alt {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-        box-sizing: border-box;
-      }
-
-      .form {
-        max-width: 480px;
-        margin: 0 auto;
-      }
-
-      .contact-grid,
-      .grid {
-        text-align: center;
-      }
-    }
-
-    /* Très petit écran (iPhone SE / Android petit) */
-    @media (max-width: 640px) {
-      .hero-actions {
-        justify-content: center;
-        gap: 0.3rem;
-      }
-
-      /* 3 colonnes côte à côte sans déborder */
-      .hero-actions a.btn-primary {
-        flex: 1 1 0;
-        font-size: 0.72rem;
-        padding: 0.35rem 0.25rem;
-        white-space: normal;   /* le texte peut aller sur 2 lignes dans le bouton */
-        line-height: 1.2;
-      }
-
-      #tarif-flottant {
-        left: 16px;
-        right: 16px;
-        top: 70px;
-        justify-content: center;
-      }
-
-      .map-wrapper {
-        height: 260px !important;
-      }
-    }
-  </style>
+>
 </head>
 
 <body>
