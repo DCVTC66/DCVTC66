@@ -14,9 +14,8 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
   <link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#2563eb">
-<link rel="apple-touch-icon" href="/icon-192.png">
-
+  <meta name="theme-color" content="#2563eb">
+  <link rel="apple-touch-icon" href="/icon-192.png">
 
   <!-- Styles spécifiques + overrides mobile -->
   <style>
@@ -265,12 +264,13 @@
         <!-- 3 BOUTONS COMPACTS CÔTE À CÔTÉ -->
         <div class="hero-actions">
           <a href="tel:0663463716" class="btn-primary">📞 Appeler le chauffeur</a>
-          <a href="https://wa.me/33663463716" target="_blank" class="btn-primary">💬 WhatsApp</a>
+          <a href="https://wa.me/33663463716" target="_blank" rel="noopener noreferrer" class="btn-primary">💬 WhatsApp</a>
           <a href="#reservation" class="btn-primary">📝 Réserver un trajet</a>
         </div>
-<button id="btn-install" class="btn-primary" style="display:none; margin-top:10px;">
-  📲 Installer l’application
-</button>
+
+        <button id="btn-install" class="btn-primary" style="display:none; margin-top:10px;">
+          📲 Installer l’application
+        </button>
 
         <!-- BADGES en dessous -->
         <div class="hero-badges">
@@ -420,7 +420,7 @@
       <div class="contact-grid">
         <div>
           <p>📞 Téléphone : <a href="tel:0663463716"><strong>06 63 46 37 16</strong></a></p>
-          <p>💬 WhatsApp : <a href="https://wa.me/33663463716" target="_blank"><strong>Discuter sur WhatsApp</strong></a></p>
+          <p>💬 WhatsApp : <a href="https://wa.me/33663463716" target="_blank" rel="noopener noreferrer"><strong>Discuter sur WhatsApp</strong></a></p>
         </div>
         <div>
           <p>📧 Email : <strong>driveconfort66@gmail.com</strong></p>
@@ -432,21 +432,21 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-  <div class="container footer-legal">
-    <p>
-      © <span id="year"></span> DCVTC66 — Tous droits réservés
-    </p>
-    <p class="footer-links">
-      <a href="mentions-legales.html">Mentions légales</a> ·
-      <a href="politique-confidentialite.html">Politique de confidentialité</a> ·
-      <a href="plan-du-site.html">Plan du site</a>
-    </p>
-  </div>
-</footer>
+    <div class="container footer-legal">
+      <p>
+        © <span id="year"></span> DCVTC66 — Tous droits réservés
+      </p>
+      <p class="footer-links">
+        <a href="mentions-legales.html">Mentions légales</a> ·
+        <a href="politique-confidentialite.html">Politique de confidentialité</a> ·
+        <a href="plan-du-site.html">Plan du site</a>
+      </p>
+    </div>
+  </footer>
 
   <!-- BOUTONS FLOTTANTS -->
   <a href="tel:0663463716" class="fab fab-call" aria-label="Appeler DCVTC66">📞</a>
-  <a href="https://wa.me/33663463716" target="_blank" class="fab fab-whatsapp" aria-label="WhatsApp DCVTC66">💬</a>
+  <a href="https://wa.me/33663463716" target="_blank" rel="noopener noreferrer" class="fab fab-whatsapp" aria-label="WhatsApp DCVTC66">💬</a>
 
   <!-- AFFICHAGE TARIF FLOTTANT -->
   <div id="tarif-flottant">
@@ -502,7 +502,8 @@
       }
 
       const numero = "0663463716";
-      const url = "sms:" + numero + "?&body=" + encodeURIComponent(sms);
+      // ✅ Correction compat : ?body= (au lieu de ?&body=)
+      const url = "sms:" + numero + "?body=" + encodeURIComponent(sms);
       window.location.href = url;
     });
   </script>
@@ -532,11 +533,11 @@
 
       distanceService = new google.maps.DistanceMatrixService();
       directionsService = new google.maps.DirectionsService();
-     directionsRenderer = new google.maps.DirectionsRenderer({
-  map: map,
-  suppressMarkers: false,
-  suppressInfoWindows: true
-});
+      directionsRenderer = new google.maps.DirectionsRenderer({
+        map: map,
+        suppressMarkers: false,
+        suppressInfoWindows: true
+      });
 
       const inputDepart = document.querySelector('input[name="Départ"]');
       const inputArrivee = document.querySelector('input[name="Arrivee"]');
@@ -726,7 +727,7 @@
           "&su=" + encodeURIComponent(subject) +
           "&body=" + encodeURIComponent(body);
 
-        window.open(gmail, "_blank");
+        window.open(gmail, "_blank", "noopener,noreferrer");
       }
     }
   </script>
@@ -789,93 +790,72 @@
             "&su=" + encodeURIComponent(sujet) +
             "&body=" + encodeURIComponent(body);
 
-          window.open(url, "_blank");
+          window.open(url, "_blank", "noopener,noreferrer");
         }
       });
     }
   </script>
-<script>
-  // 1) Service Worker
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/sw.js");
-  }
 
-  // 2) Bouton Installer (Android / Chrome / Edge)
-  let deferredPrompt = null;
-  const btnInstall = document.getElementById("btn-install");
-
-  window.addEventListener("beforeinstallprompt", (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    if (btnInstall) btnInstall.style.display = "inline-flex";
-  });
-
-  btnInstall?.addEventListener("click", async () => {
-    if (!deferredPrompt) return;
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    deferredPrompt = null;
-    btnInstall.style.display = "none";
-  });
-
-  // 3) iPhone (Safari) : pas d'installation automatique -> message d'aide
-  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-  const isInStandalone =
-    window.matchMedia("(display-mode: standalone)").matches ||
-    window.navigator.standalone;
-
-  if (isIOS && !isInStandalone && btnInstall) {
-    btnInstall.style.display = "inline-flex";
-    btnInstall.addEventListener("click", () => {
-      alert("Sur iPhone : Safari → Partager (⬆️) → “Sur l’écran d’accueil”.");
-    });
-  }
-</script>
-
-<script>
-  let deferredPrompt;
-  const installBtn = document.getElementById('btn-install');
-
-  // Vérifie si on est déjà dans l'app installée
-  const isInStandaloneMode =
-    window.matchMedia('(display-mode: standalone)').matches ||
-    window.navigator.standalone === true;
-
-  if (isInStandaloneMode && installBtn) {
-    installBtn.style.display = 'none';
-  }
-
-  // Détection de l'installation possible (Android / Chrome)
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-
-    if (!isInStandaloneMode && installBtn) {
-      installBtn.style.display = 'inline-flex';
+  <!-- ✅ PWA : script unique (sans doublon) -->
+  <script>
+    // Service Worker
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js").catch(console.error);
     }
-  });
 
-  // Clic sur le bouton Installer
-  if (installBtn) {
-    installBtn.addEventListener('click', async () => {
-      if (!deferredPrompt) return;
+    let deferredPrompt = null;
+    const installBtn = document.getElementById('btn-install');
 
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
+    // Vérifie si on est déjà dans l'app installée
+    const isInStandaloneMode =
+      window.matchMedia('(display-mode: standalone)').matches ||
+      window.navigator.standalone === true;
 
-      if (outcome === 'accepted') {
-        installBtn.style.display = 'none';
+    if (isInStandaloneMode && installBtn) {
+      installBtn.style.display = 'none';
+    }
+
+    // Détection de l'installation possible (Android / Chrome)
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+
+      if (!isInStandaloneMode && installBtn) {
+        installBtn.style.display = 'inline-flex';
       }
-
-      deferredPrompt = null;
     });
-  }
 
-  // Après installation réussie
-  window.addEventListener('appinstalled', () => {
-    if (installBtn) installBtn.style.display = 'none';
-  });
-</script>
+    // iPhone (Safari) : pas de prompt -> message d'aide
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    if (isIOS && !isInStandaloneMode && installBtn) {
+      installBtn.style.display = 'inline-flex';
+      installBtn.addEventListener('click', () => {
+        alert("Sur iPhone : Safari → Partager (⬆️) → “Sur l’écran d’accueil”.");
+      });
+    }
+
+    // Clic sur le bouton Installer (Android)
+    if (installBtn) {
+      installBtn.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+
+        if (outcome === 'accepted') {
+          installBtn.style.display = 'none';
+        }
+
+        deferredPrompt = null;
+      });
+    }
+
+    // Après installation réussie
+    window.addEventListener('appinstalled', () => {
+      if (installBtn) installBtn.style.display = 'none';
+    });
+  </script>
 
 </body>
 </html>
+
