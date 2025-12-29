@@ -167,16 +167,7 @@ body {
   cursor: pointer;
   box-shadow: 0 12px 28px rgba(250, 204, 21, 0.45);
   text-decoration: none;
-
-  /* ✅ Ajout : animation fluide (aucun changement visuel) */
   transition: transform 0.18s ease, box-shadow 0.18s ease;
-}
-
-/* Aligner la largeur des boutons du formulaire */
-.form-actions .btn-primary,
-.form-actions .btn-estimate {
-  width: 100%;
-  justify-content: center;
 }
 
 .btn-primary:hover {
@@ -184,36 +175,10 @@ body {
   box-shadow: 0 16px 34px rgba(250, 204, 21, 0.6);
 }
 
-/* ===== BOUTON ESTIMER LE TARIF ===== */
-/* (On garde TON style orange, pas de changement visuel) */
-.btn-estimate {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.75rem 1.3rem; /* Agrandir le bouton */
-  font-size: 0.95rem; /* Augmenter la taille du texte */
-  border-radius: 999px;
-  font-weight: 700; /* Renforcer la police */
-  text-transform: uppercase;
-  background: linear-gradient(135deg, #ff6f00, #ff9100); /* Orange visible */
-  color: #ffffff;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 0 24px rgba(255, 165, 0, 0.8); /* Effet lumineux */
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-  white-space: nowrap;
-}
-
-.btn-estimate:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 36px rgba(255, 165, 0, 0.6);
-  background: linear-gradient(135deg, #ff7f00, #ff8e00);
-}
-
-.btn-estimate:active {
-  transform: translateY(0) scale(0.98);
-  box-shadow: 0 4px 14px rgba(255, 165, 0, 0.35);
-}
+/* ✅ Important : on ne définit PAS .btn-estimate ici
+   car il est déjà défini en BLEU dans le <style> HTML (comme avant)
+   => ça évite les doublons et les conflits.
+*/
 
 /* ===== SECTIONS ===== */
 .section {
@@ -326,17 +291,9 @@ body {
 }
 
 /* ===== MOBILE ===== */
-/* ✅ Correction : on évite le conflit avec ton style HTML (boutons hero) */
+/* ✅ On ne force rien ici sur .hero-actions mobile,
+   car ton HTML gère déjà les boutons compacts (comme avant) */
 @media (max-width: 640px) {
-  .hero-actions {
-    flex-direction: row; /* reste cohérent avec ton HTML (3 boutons compacts) */
-    flex-wrap: wrap;
-  }
-
-  .hero-actions a {
-    width: auto;
-  }
-
   .site-title {
     font-size: 1.75rem;
   }
@@ -344,21 +301,13 @@ body {
 
 /* Contact – téléphone & WhatsApp en jaune */
 #contact a {
-  color: #facc15;   /* jaune */
+  color: #facc15;
   font-weight: 700;
 }
 
 #contact a:hover {
-  color: #fde047;   /* jaune clair au survol */
+  color: #fde047;
   text-decoration: underline;
-}
-
-/* Garde ton override (inutile mais sans danger) */
-@media (max-width: 640px) {
-  .btn-estimate{
-    padding: 0.75rem 1.3rem !important;
-    font-size: 0.95rem !important;
-  }
 }
 
 /* Footer legal */
@@ -383,7 +332,7 @@ body {
   text-decoration: underline;
 }
 
-/* ✅ Accessibilité : focus clavier visible (aucun impact souris) */
+/* Accessibilité : focus clavier visible */
 a:focus-visible,
 button:focus-visible {
   outline: 2px solid var(--primary);
