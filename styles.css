@@ -167,7 +167,11 @@ body {
   cursor: pointer;
   box-shadow: 0 12px 28px rgba(250, 204, 21, 0.45);
   text-decoration: none;
+
+  /* ✅ Ajout : animation fluide (aucun changement visuel) */
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
+
 /* Aligner la largeur des boutons du formulaire */
 .form-actions .btn-primary,
 .form-actions .btn-estimate {
@@ -181,6 +185,7 @@ body {
 }
 
 /* ===== BOUTON ESTIMER LE TARIF ===== */
+/* (On garde TON style orange, pas de changement visuel) */
 .btn-estimate {
   display: inline-flex;
   align-items: center;
@@ -190,23 +195,23 @@ body {
   border-radius: 999px;
   font-weight: 700; /* Renforcer la police */
   text-transform: uppercase;
-  background: linear-gradient(135deg, #ff6f00, #ff9100); /* Couleur plus visible (orange) */
+  background: linear-gradient(135deg, #ff6f00, #ff9100); /* Orange visible */
   color: #ffffff;
   border: none;
   cursor: pointer;
-  box-shadow: 0 0 24px rgba(255, 165, 0, 0.8); /* Effet lumineux autour du bouton */
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; /* Ajouter une animation fluide */
+  box-shadow: 0 0 24px rgba(255, 165, 0, 0.8); /* Effet lumineux */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   white-space: nowrap;
 }
 
 .btn-estimate:hover {
-  transform: translateY(-2px); /* Animation au survol */
-  box-shadow: 0 16px 36px rgba(255, 165, 0, 0.6); /* Légèrement plus lumineux au survol */
-  background: linear-gradient(135deg, #ff7f00, #ff8e00); /* Changer la couleur au survol */
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(255, 165, 0, 0.6);
+  background: linear-gradient(135deg, #ff7f00, #ff8e00);
 }
 
 .btn-estimate:active {
-  transform: translateY(0) scale(0.98); /* Légère réduction à l'appui */
+  transform: translateY(0) scale(0.98);
   box-shadow: 0 4px 14px rgba(255, 165, 0, 0.35);
 }
 
@@ -321,13 +326,15 @@ body {
 }
 
 /* ===== MOBILE ===== */
+/* ✅ Correction : on évite le conflit avec ton style HTML (boutons hero) */
 @media (max-width: 640px) {
   .hero-actions {
-    flex-direction: column;
+    flex-direction: row; /* reste cohérent avec ton HTML (3 boutons compacts) */
+    flex-wrap: wrap;
   }
 
   .hero-actions a {
-    width: 100%;
+    width: auto;
   }
 
   .site-title {
@@ -345,12 +352,16 @@ body {
   color: #fde047;   /* jaune clair au survol */
   text-decoration: underline;
 }
+
+/* Garde ton override (inutile mais sans danger) */
 @media (max-width: 640px) {
   .btn-estimate{
     padding: 0.75rem 1.3rem !important;
     font-size: 0.95rem !important;
   }
 }
+
+/* Footer legal */
 .footer-legal {
   text-align: center;
   font-size: 0.8rem;
@@ -370,4 +381,11 @@ body {
 .footer-links a:hover {
   color: var(--primary);
   text-decoration: underline;
+}
+
+/* ✅ Accessibilité : focus clavier visible (aucun impact souris) */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
 }
