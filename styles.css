@@ -376,6 +376,7 @@ body {
   display: inline-flex;
   margin: 12px auto 0;
 }
+/* Splash screen premium */
 #splash-screen {
   position: fixed;
   inset: 0;
@@ -385,23 +386,37 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 99999;
+  transition: opacity 320ms ease;
 }
 
 #splash-screen img {
   width: 96px;
   height: 96px;
   margin-bottom: 12px;
-  animation: pulse 1.2s infinite;
+  border-radius: 18px;
+
+  /* Effet premium */
+  filter: drop-shadow(0 14px 28px rgba(250, 204, 21, 0.22));
+  animation: splashPremium 1.6s ease-in-out infinite;
+  transform-origin: 50% 50%;
 }
 
 #splash-screen p {
   color: #facc15;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.10em;
+  margin: 0;
+  opacity: 0.9;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); opacity: .8; }
-  50% { transform: scale(1.05); opacity: 1; }
-  100% { transform: scale(1); opacity: .8; }
+/* Rotation douce + zoom léger */
+@keyframes splashPremium {
+  0%   { transform: rotate(-2deg) scale(0.98); opacity: 0.88; }
+  50%  { transform: rotate( 2deg) scale(1.04); opacity: 1;    }
+  100% { transform: rotate(-2deg) scale(0.98); opacity: 0.88; }
+}
+
+/* Optionnel: respecte les réglages accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  #splash-screen img { animation: none; }
 }
