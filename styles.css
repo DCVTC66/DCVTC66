@@ -376,3 +376,32 @@ body {
   display: inline-flex;
   margin: 12px auto 0;
 }
+#splash-screen {
+  position: fixed;
+  inset: 0;
+  background: #0b1224;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+#splash-screen img {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 12px;
+  animation: pulse 1.2s infinite;
+}
+
+#splash-screen p {
+  color: #facc15;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: .8; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: .8; }
+}
