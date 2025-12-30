@@ -794,87 +794,53 @@
     }
   </script>
 <script>
-  // 1) Service Worker
+  // Service Worker
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/sw.js");
+    navigator.serviceWorker.register("sw.js");
   }
 
-  // 2) Bouton Installer (Android / Chrome / Edge)
+  // Bouton Installer
   let deferredPrompt = null;
   const btnInstall = document.getElementById("btn-install");
 
+  const isStandalone =
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone === true;
+
+  // Si déjà installé : cacher le bouton
+  if (isStandalone && btnInstall) {
+    btnInstall.style.display = "none";
+  }
+
+  // Android/Chrome/Edge : installation possible
   window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();
     deferredPrompt = e;
     if (btnInstall) btnInstall.style.display = "inline-flex";
   });
 
+  // Clic sur bouton
   btnInstall?.addEventListener("click", async () => {
+    // iPhone : pas de prompt automatique
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    if (isIOS) {
+      alert("Sur iPhone : Safari → Partager (⬆️) → “Sur l’écran d’accueil”.");
+      return;
+    }
+
     if (!deferredPrompt) return;
     deferredPrompt.prompt();
     await deferredPrompt.userChoice;
     deferredPrompt = null;
-    btnInstall.style.display = "none";
+    if (btnInstall) btnInstall.style.display = "none";
   });
 
-  // 3) iPhone (Safari) : pas d'installation automatique -> message d'aide
-  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-  const isInStandalone =
-    window.matchMedia("(display-mode: standalone)").matches ||
-    window.navigator.standalone;
-
-  if (isIOS && !isInStandalone && btnInstall) {
-    btnInstall.style.display = "inline-flex";
-    btnInstall.addEventListener("click", () => {
-      alert("Sur iPhone : Safari → Partager (⬆️) → “Sur l’écran d’accueil”.");
-    });
-  }
-</script>
-
-<script>
-  let deferredPrompt;
-  const installBtn = document.getElementById('btn-install');
-
-  // Vérifie si on est déjà dans l'app installée
-  const isInStandaloneMode =
-    window.matchMedia('(display-mode: standalone)').matches ||
-    window.navigator.standalone === true;
-
-  if (isInStandaloneMode && installBtn) {
-    installBtn.style.display = 'none';
-  }
-
-  // Détection de l'installation possible (Android / Chrome)
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-
-    if (!isInStandaloneMode && installBtn) {
-      installBtn.style.display = 'inline-flex';
-    }
-  });
-
-  // Clic sur le bouton Installer
-  if (installBtn) {
-    installBtn.addEventListener('click', async () => {
-      if (!deferredPrompt) return;
-
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-
-      if (outcome === 'accepted') {
-        installBtn.style.display = 'none';
-      }
-
-      deferredPrompt = null;
-    });
-  }
-
-  // Après installation réussie
-  window.addEventListener('appinstalled', () => {
-    if (installBtn) installBtn.style.display = 'none';
+  // Après installation
+  window.addEventListener("appinstalled", () => {
+    if (btnInstall) btnInstall.style.display = "none";
   });
 </script>
+
 
 </body>
 </html>
