@@ -381,3 +381,26 @@ details.opt summary {
   font-weight: 600;
   letter-spacing: 0.1em;
 }
+/* ===== AJUSTEMENT BOUTONS SUR MOBILE ===== */
+@media (max-width: 600px) {
+
+  .btn-primary,
+  .btn-estimate {
+    padding: 0.6rem 0.9rem;   /* moins haut */
+    font-size: 0.8rem;       /* texte plus petit */
+    border-radius: 999px;
+  }
+
+  .actions-secondary .btn-primary {
+    padding: 0.6rem 0.9rem;  /* boutons email / whatsapp */
+    font-size: 0.8rem;
+  }
+
+  .actions-compact {
+    gap: 0.5rem; /* rapproche les boutons */
+  }
+
+  .actions-secondary {
+    gap: 0.5rem;
+  }
+}
