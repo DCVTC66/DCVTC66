@@ -17,7 +17,6 @@ self.addEventListener("install", (event) => {
       try {
         await cache.addAll(FILES_TO_CACHE);
       } catch (e) {
-        // Si offline.html n'existe pas, on évite de casser l'installation
         await cache.addAll(FILES_TO_CACHE.filter((f) => f !== "/offline.html"));
       }
     })
@@ -35,17 +34,14 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Fetch :
-// - Navigation (page) => "network-first" + fallback cache + fallback offline
-// - Assets (css, images, manifest) => "cache-first" + fallback network
+// Fetch
 self.addEventListener("fetch", (event) => {
   const req = event.request;
   const url = new URL(req.url);
 
-  // Ignore les requêtes non GET
   if (req.method !== "GET") return;
 
-  // Pour les pages (navigation)
+  // Pages (navigation) : network-first
   if (req.mode === "navigate") {
     event.respondWith(
       fetch(req)
@@ -62,7 +58,7 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Pour les assets du site (même origine)
+  // Assets : cache-first
   if (url.origin === self.location.origin) {
     event.respondWith(
       caches.match(req).then((cached) => {
