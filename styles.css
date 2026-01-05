@@ -1,422 +1,120 @@
-:root {
-  /* ===== PALETTE BLEU ROYAL + NÉONS ===== */
-  --bg-main: #0b1733;      /* bleu nuit luxe */
-  --bg-light: #102a5c;     /* bleu royal */
-  --bg-alt: #1e4696;       /* bleu lumineux */
+/* =========================================================
+   OPTIMISATION "1 ÉCRAN" — Réservation compacte (sans couleur)
+   À coller TOUT EN BAS du fichier styles.css
+========================================================= */
 
-  --primary: #facc15;      /* jaune premium */
-  --primary-soft: rgba(250, 204, 21, 0.22);
-
-  --text-main: #f8fafc;    /* blanc doux */
-  --text-muted: #b6ccff;   /* bleu clair élégant */
-
-  --card-bg: rgba(16, 42, 92, 0.88);
-  --border-soft: rgba(186, 204, 255, 0.35);
-
-  --error: #f87171;
-  --shadow-soft: 0 20px 50px rgba(2, 6, 23, 0.6);
+/* le bloc réservation plus compact (moins de hauteur) */
+#reservation .section-intro{
+  margin-bottom: .9rem !important;
 }
 
-/* ===== RESET ===== */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+/* Form compact : grille + labels plus courts */
+.form.form-compact{
+  max-width: 560px;
+  padding: 1.25rem 1.15rem !important;
 }
 
-/* ===== BODY / FOND GLOBAL ===== */
-body {
-  margin: 0;
-  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  color: var(--text-main);
-
-  background:
-    radial-gradient(circle at 15% 10%, rgba(250, 204, 21, 0.25), transparent 45%),
-    radial-gradient(circle at 85% 20%, rgba(56, 189, 248, 0.45), transparent 50%),
-    linear-gradient(
-      to bottom,
-      var(--bg-main),
-      var(--bg-light) 45%,
-      var(--bg-alt)
-    );
+.form-compact .row{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .6rem;
 }
 
-/* ===== CONTAINER ===== */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
+@media (max-width: 520px){
+  .form-compact .row{ grid-template-columns: 1fr; }
 }
 
-/* ===== NAV ===== */
-.nav {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  backdrop-filter: blur(12px);
-  background: rgba(11, 23, 51, 0.85);
-  border-bottom: 1px solid var(--border-soft);
+/* Labels/inputs plus "premium" et lisibles */
+.form-compact label{
+  display:flex !important;
+  flex-direction:column;
+  gap:.25rem;
+  margin-bottom:.65rem !important;
+  font-size:.85rem;
+  font-weight:500;
+  letter-spacing:.02em;
 }
 
-.nav-inner {
-  display: flex;
-  justify-content: center;
+.form-compact input,
+.form-compact textarea{
+  padding:.75rem .85rem !important;
+  border-radius:14px !important;
+  font-size:.92rem;
 }
 
-.nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0.6rem 0;
-  display: flex;
-  gap: 1.5rem;
+/* Options repliées (évite le scroll) */
+details.opt{
+  margin-top: .1rem;
+}
+details.opt summary{
+  cursor:pointer;
+  font-weight:700;
+  opacity:.9;
+  margin:.25rem 0 .35rem;
 }
 
-.nav a {
-  text-decoration: none;
-  font-size: 0.9rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+/* 2 actions max (Estimer + Envoyer) */
+.actions-compact{
+  display:grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap:.6rem;
+  margin-top:.55rem;
+}
+
+/* IMPORTANT: on annule le width:100% imposé par .form-actions */
+.actions-compact .btn-primary,
+.actions-compact .btn-estimate{
+  width:auto !important;
+}
+
+/* Buttons compacts (couleurs inchangées) */
+.actions-compact .btn-primary{
+  padding:.9rem 1rem !important;
+  font-weight:800 !important;
+}
+.actions-compact .btn-estimate{
+  padding:.9rem 1rem !important;
+  font-weight:800 !important;
+  text-transform:none !important;
+}
+
+/* lien email discret */
+.link-mini{
+  display:inline-block;
+  margin-top:.55rem;
+  font-size:.85rem;
+  text-decoration: underline;
+  opacity:.9;
   color: var(--text-muted);
 }
-
-.nav a:hover {
+.link-mini:hover{
   color: var(--primary);
 }
 
-/* ===== HEADER / HERO ===== */
-.header {
-  padding: 2.5rem 0 2rem;
+/* résultat estimation compact */
+.result-compact{
+  margin-top:.6rem !important;
+  padding:.65rem .75rem !important;
+  border-radius:12px !important;
+  font-size:.85rem !important;
+  line-height:1.35 !important;
+  background:#f0f7ff;
+  color:#1b3b68;
+}
+.error-compact{
+  margin-top:.6rem !important;
+  padding:.65rem .75rem !important;
+  border-radius:12px !important;
+  font-size:.85rem !important;
+  line-height:1.35 !important;
+  background:#ffecec;
+  color:#a40000;
 }
 
-.header-inner {
-  display: flex;
-  justify-content: center;
+/* Carte masquée (et compacte quand ouverte) */
+#map-wrapper{
+  margin-top:.65rem;
 }
-
-.branding {
-  text-align: center;
-  max-width: 650px;
-  background: radial-gradient(circle at top, rgba(16, 42, 92, 0.95), rgba(16, 42, 92, 0.98));
-  border-radius: 1.6rem;
-  padding: 2.5rem 2rem;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid var(--border-soft);
-  backdrop-filter: blur(18px);
-}
-
-.logo {
-  width: 120px;
-  border-radius: 999px;
-  border: 2px solid var(--primary);
-  padding: 4px;
-  background: var(--bg-main);
-  margin-bottom: 1.2rem;
-}
-
-.site-title {
-  font-family: "Playfair Display", serif;
-  font-size: 2.3rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  margin: 0 0 0.4rem;
-}
-
-.site-subtitle {
-  font-size: 0.95rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 1.5rem;
-}
-
-/* ===== BADGES ===== */
-.hero-badges {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1.4rem;
-}
-
-.hero-badges span {
-  font-size: 0.85rem;
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid var(--border-soft);
-  background: rgba(16, 42, 92, 0.85);
-}
-
-/* ===== BOUTONS ===== */
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, #fde047, #facc15);
-  color: #0b1733;
-  padding: 0.5rem 1.1rem;
-  border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 12px 28px rgba(250, 204, 21, 0.45);
-  text-decoration: none;
-}
-/* Aligner la largeur des boutons du formulaire */
-.form-actions .btn-primary,
-.form-actions .btn-estimate {
-  width: 100%;
-  justify-content: center;
-}
-
-.btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 16px 34px rgba(250, 204, 21, 0.6);
-}
-
-/* ===== BOUTON ESTIMER LE TARIF ===== */
-.btn-estimate {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.75rem 1.3rem; /* Agrandir le bouton */
-  font-size: 0.95rem; /* Augmenter la taille du texte */
-  border-radius: 999px;
-  font-weight: 700; /* Renforcer la police */
-  text-transform: uppercase;
-  background: linear-gradient(135deg, #ff6f00, #ff9100); /* Couleur plus visible (orange) */
-  color: #ffffff;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 0 24px rgba(255, 165, 0, 0.8); /* Effet lumineux autour du bouton */
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; /* Ajouter une animation fluide */
-  white-space: nowrap;
-}
-
-.btn-estimate:hover {
-  transform: translateY(-2px); /* Animation au survol */
-  box-shadow: 0 16px 36px rgba(255, 165, 0, 0.6); /* Légèrement plus lumineux au survol */
-  background: linear-gradient(135deg, #ff7f00, #ff8e00); /* Changer la couleur au survol */
-}
-
-.btn-estimate:active {
-  transform: translateY(0) scale(0.98); /* Légère réduction à l'appui */
-  box-shadow: 0 4px 14px rgba(255, 165, 0, 0.35);
-}
-
-/* ===== SECTIONS ===== */
-.section {
-  padding: 3rem 0;
-}
-
-.section-alt {
-  background: radial-gradient(circle at top, rgba(56, 189, 248, 0.25), rgba(16, 42, 92, 0.95));
-}
-
-.section-title {
-  text-align: center;
-  font-family: "Playfair Display", serif;
-  font-size: 1.9rem;
-  margin-bottom: 0.8rem;
-}
-
-.section-intro {
-  text-align: center;
-  max-width: 620px;
-  margin: 0 auto 2.2rem;
-  color: var(--text-muted);
-}
-
-/* ===== CARDS ===== */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.4rem;
-}
-
-.card {
-  background: var(--card-bg);
-  border-radius: 1.3rem;
-  padding: 1.4rem;
-  border: 1px solid var(--border-soft);
-  box-shadow: var(--shadow-soft);
-}
-
-/* ===== FORM ===== */
-.form {
-  max-width: 520px;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.06);
-  padding: 1.9rem 1.6rem;
-  border-radius: 1.4rem;
-  border: 1px solid var(--border-soft);
-  box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(14px);
-}
-
-.form label {
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.form input,
-.form textarea {
-  width: 100%;
-  padding: 0.65rem 0.8rem;
-  margin-top: 0.35rem;
-  border-radius: 0.6rem;
-  border: 1px solid var(--border-soft);
-  background: rgba(11, 23, 51, 0.35);
-  color: var(--text-main);
-}
-
-.form input:focus,
-.form textarea:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 1px rgba(250, 204, 21, 0.6);
-}
-
-/* ===== FOOTER ===== */
-.footer {
-  padding: 1.6rem 0;
-  text-align: center;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  background: rgba(11, 23, 51, 0.65);
-  border-top: 1px solid var(--border-soft);
-}
-
-/* ===== FLOATING BUTTONS ===== */
-.fab {
-  position: fixed;
-  right: 1.2rem;
-  width: 52px;
-  height: 52px;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
-  text-decoration: none;
-  z-index: 20;
-}
-
-.fab-call {
-  bottom: 1.2rem;
-  background: linear-gradient(135deg, #fde047, #facc15);
-  color: #0b1733;
-}
-
-.fab-whatsapp {
-  bottom: 4.5rem;
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-  color: #ecfdf5;
-}
-
-/* ===== MOBILE ===== */
-@media (max-width: 640px) {
-  .hero-actions {
-    flex-direction: column;
-  }
-
-  .hero-actions a {
-    width: 100%;
-  }
-
-  .site-title {
-    font-size: 1.75rem;
-  }
-}
-
-/* Contact – téléphone & WhatsApp en jaune */
-#contact a {
-  color: #facc15;   /* jaune */
-  font-weight: 700;
-}
-
-#contact a:hover {
-  color: #fde047;   /* jaune clair au survol */
-  text-decoration: underline;
-}
-@media (max-width: 640px) {
-  .btn-estimate{
-    padding: 0.75rem 1.3rem !important;
-    font-size: 0.95rem !important;
-  }
-}
-.footer-legal {
-  text-align: center;
-  font-size: 0.8rem;
-  line-height: 1.5;
-}
-
-.footer-legal p {
-  margin: 0.3rem 0;
-}
-
-.footer-links a {
-  color: var(--text-muted);
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.footer-links a:hover {
-  color: var(--primary);
-  text-decoration: underline;
-}
-.form-actions .btn-primary.btn-email {
-  width: fit-content;
-  display: inline-flex;
-  margin: 12px auto 0;
-}
-/* Splash screen premium */
-#splash-screen {
-  position: fixed;
-  inset: 0;
-  background: #0b1224;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 99999;
-  transition: opacity 320ms ease;
-}
-
-#splash-screen img {
-  width: 96px;
-  height: 96px;
-  margin-bottom: 12px;
-  border-radius: 18px;
-
-  /* Effet premium */
-  filter: drop-shadow(0 14px 28px rgba(250, 204, 21, 0.22));
-  animation: splashPremium 1.6s ease-in-out infinite;
-  transform-origin: 50% 50%;
-}
-
-#splash-screen p {
-  color: #facc15;
-  font-weight: 600;
-  letter-spacing: 0.10em;
-  margin: 0;
-  opacity: 0.9;
-}
-
-/* Rotation douce + zoom léger */
-@keyframes splashPremium {
-  0%   { transform: rotate(-2deg) scale(0.98); opacity: 0.88; }
-  50%  { transform: rotate( 2deg) scale(1.04); opacity: 1;    }
-  100% { transform: rotate(-2deg) scale(0.98); opacity: 0.88; }
-}
-
-/* Optionnel: respecte les réglages accessibilité */
-@media (prefers-reduced-motion: reduce) {
-  #splash-screen img { animation: none; }
+#map-wrapper .map-wrapper-inner{
+  height: 260px;
 }
