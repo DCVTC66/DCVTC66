@@ -799,7 +799,7 @@
     navigator.serviceWorker.register("sw.js");
   }
 
-  // Bouton Installer
+  // Bouton Installer (PWA)
   let deferredPrompt = null;
   const btnInstall = document.getElementById("btn-install");
 
@@ -820,35 +820,35 @@
   });
 
   // Clic sur bouton
-  btnInstall?.addEventListener("click", async () => {
-    // iPhone : pas de prompt automatique
-    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-    if (isIOS) {
-      alert("Sur iPhone : Safari → Partager (⬆️) → “Sur l’écran d’accueil”.");
-      return;
-    }
+  if (btnInstall) {
+    btnInstall.addEventListener("click", async () => {
+      // iPhone : pas de prompt automatique
+      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+      if (isIOS) {
+        alert('Sur iPhone : Safari → Partager (⬆️) → "Sur l’écran d’accueil".');
+        return;
+      }
 
-    if (!deferredPrompt) return;
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    deferredPrompt = null;
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      btnInstall.style.display = "none";
+    });
+  }
+
+  // Après installation
+  window.addEventListener("appinstalled", () => {
     if (btnInstall) btnInstall.style.display = "none";
   });
 
-<script>
-// Après installation
-window.addEventListener("appinstalled", () => {
-  if (btnInstall) btnInstall.style.display = "none";
-});
-</script>
-
-<script>
-window.addEventListener("load", () => {
-  const splash = document.getElementById("splash-screen");
-  if (!splash) return;
-  splash.style.opacity = "0";
-  setTimeout(() => splash.remove(), 600);
-});
+  // Splash screen
+  window.addEventListener("load", () => {
+    const splash = document.getElementById("splash-screen");
+    if (!splash) return;
+    splash.style.opacity = "0";
+    setTimeout(() => splash.remove(), 600);
+  });
 </script>
 
 <div id="splash-screen" aria-label="Chargement">
