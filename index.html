@@ -14,17 +14,15 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
   <link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#2563eb">
-<link rel="apple-touch-icon" href="/icon-192.png">
+  <meta name="theme-color" content="#2563eb">
+  <link rel="apple-touch-icon" href="/icon-192.png">
 
-
-  <!-- Styles spécifiques + overrides mobile -->
   <style>
     /* Base / reset léger */
     html, body {
       margin: 0;
       padding: 0;
-      overflow-x: hidden; /* évite le décalage et le scroll horizontal sur mobile */
+      overflow-x: hidden;
     }
 
     .container {
@@ -34,7 +32,7 @@
       box-sizing: border-box;
     }
 
-    /* NAV : mieux centrée sur mobile */
+    /* NAV */
     .nav-inner ul {
       display: flex;
       gap: 1rem;
@@ -42,19 +40,16 @@
       padding-left: 0;
       margin: 0;
     }
+    .nav-inner ul li a { text-decoration: none; }
 
-    .nav-inner ul li a {
-      text-decoration: none;
-    }
-
-    /* HERO : 3 boutons compacts */
+    /* HERO : boutons compacts */
     .hero-actions {
       display: flex;
       gap: 0.55rem;
-      margin-top: 1.25rem;
+      margin-top: 1.05rem;
       justify-content: center;
+      flex-wrap: wrap;
     }
-
     .hero-actions a.btn-primary {
       display: inline-flex;
       align-items: center;
@@ -66,52 +61,31 @@
       white-space: nowrap;
     }
 
-    /* Bouton estimation */
+    /* Bouton estimation (garde tes couleurs) */
     .btn-estimate {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0.45rem 0.9rem;
+      justify-content: center;
+      padding: 0.8rem 1rem;
       border-radius: 999px;
-      font-weight: 600;
-      font-size: 0.8rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: none;
       background: linear-gradient(135deg, #2563eb, #1d4ed8);
       color: #ffffff;
       border: none;
       cursor: pointer;
       box-shadow: 0 0 22px rgba(250, 204, 21, 0.8);
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
       white-space: nowrap;
     }
-
-    .btn-estimate span.icon {
-      font-size: 1.05rem;
-    }
-
     .btn-estimate:hover {
       transform: translateY(-1px);
       box-shadow: 0 14px 28px rgba(37, 99, 235, 0.45);
     }
 
-    .btn-estimate:active {
-      transform: translateY(0) scale(0.99);
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.35);
-    }
-
-    .form-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .form-actions button {
-      flex: 1 1 180px;
-    }
-
-    /* Carte flottante d'estimation – EN HAUT de la page */
+    /* Carte flottante d'estimation */
     #tarif-flottant {
       position: fixed;
       top: 24px;
@@ -131,123 +105,138 @@
       border: 1px solid rgba(6, 95, 70, 0.75);
       animation: pulseTarif 1.6s ease-in-out infinite;
     }
-
-    #tarif-flottant .icon {
-      font-size: 1.3rem;
-    }
-
+    #tarif-flottant .icon { font-size: 1.3rem; }
     @keyframes pulseTarif {
-      0% {
-        transform: scale(1);
-        box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55);
-      }
-      50% {
-        transform: scale(1.06);
-        box-shadow: 0 18px 45px rgba(22, 163, 74, 0.85);
-      }
-      100% {
-        transform: scale(1);
-        box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55);
-      }
+      0% { transform: scale(1); box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55); }
+      50% { transform: scale(1.06); box-shadow: 0 18px 45px rgba(22, 163, 74, 0.85); }
+      100% { transform: scale(1); box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55); }
     }
 
-    .map-reservation-wrapper {
-      margin-top: 1.5rem;
+    /* ===== PARCOURS CLIENT 1 ÉCRAN (FORMULAIRE COMPACT) ===== */
+    .section-intro { margin-bottom: 0.75rem; }
+
+    .form-compact { max-width: 560px; margin: 0 auto; }
+    .form-compact .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .6rem;
+    }
+    .form-compact label {
+      display: flex;
+      flex-direction: column;
+      gap: .25rem;
+      font-size: .85rem;
+      font-weight: 500;
+      letter-spacing: .02em;
+    }
+    .form-compact input,
+    .form-compact textarea {
+      padding: .75rem .85rem;
+      border-radius: 14px;
+      font-size: .92rem;
+      line-height: 1.4;
+    }
+    .form-compact textarea {
+      resize: vertical;
+      min-height: 72px;
     }
 
-    /* ==== VERSION MOBILE (améliorée) ==== */
+    details.opt {
+      margin-top: .45rem;
+    }
+    details.opt summary {
+      cursor: pointer;
+      font-weight: 700;
+      opacity: .9;
+      margin: .35rem 0 .25rem;
+    }
+
+    .actions-compact{
+      display:grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap:.6rem;
+      margin-top:.75rem;
+    }
+    .actions-compact .btn-primary,
+    .actions-compact .btn-estimate{
+      border-radius:999px;
+      padding:.9rem 1rem;
+      font-weight:800;
+      letter-spacing:.02em;
+    }
+
+    .link-mini{
+      display:inline-block;
+      margin-top:.55rem;
+      font-size:.85rem;
+      text-decoration:underline;
+      opacity:.9;
+    }
+
+    .result-compact, .error-compact{
+      margin-top:.6rem;
+      padding:.65rem .75rem;
+      border-radius:12px;
+      font-size:.85rem;
+      line-height:1.35;
+    }
+    .result-compact{ background:#f0f7ff; color:#1b3b68; }
+    .error-compact{ background:#ffecec; color:#a40000; }
+
+    /* Carte cachée par défaut */
+    .map-wrapper { margin-top: .7rem; border-radius: 16px; overflow: hidden; }
+    .map-wrapper-inner { position:relative; width:100%; height:260px; }
+    #map { width:100%; height:100%; }
+
+    #tarif-overlay{
+      display:none;
+      position:absolute;
+      top:10px;
+      left:10px;
+      background:rgba(255,255,255,0.96);
+      border-radius:10px;
+      padding:10px 12px;
+      box-shadow:0 4px 16px rgba(0,0,0,0.15);
+      font-size:0.9rem;
+      max-width:260px;
+      line-height:1.4;
+    }
+
+    /* MOBILE */
     @media (max-width: 768px) {
-      .nav-inner ul {
-        justify-content: center;
-        flex-wrap: wrap;
-        text-align: center;
-      }
-
-      .header-inner,
-      .branding {
-        text-align: center;
-      }
-
-      .branding {
-        max-width: 480px;
-        margin: 0 auto;
-      }
-
-      .logo {
-        margin: 0 auto;
-        display: block;
-      }
-
-      .site-title {
-        margin-bottom: 0.25rem;
-      }
-
-      .site-subtitle {
-        margin-top: 0;
-      }
-
+      .nav-inner ul { justify-content: center; flex-wrap: wrap; text-align: center; }
+      .header-inner, .branding { text-align: center; }
+      .branding { max-width: 520px; margin: 0 auto; }
+      .logo { margin: 0 auto; display: block; }
+      .site-title { margin-bottom: 0.25rem; }
+      .site-subtitle { margin-top: 0; }
       .hero-badges {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         gap: 0.4rem;
       }
-
-      .section,
-      .section-alt {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
+      .section, .section-alt {
+        padding-left: 1.1rem;
+        padding-right: 1.1rem;
         box-sizing: border-box;
-      }
-
-      .form {
-        max-width: 480px;
-        margin: 0 auto;
-      }
-
-      .contact-grid,
-      .grid {
-        text-align: center;
       }
     }
 
-    /* Très petit écran (iPhone SE / Android petit) */
-    @media (max-width: 640px) {
-      .hero-actions {
-        justify-content: center;
-        gap: 0.3rem;
-      }
-
-      /* 3 colonnes côte à côte sans déborder */
-      .hero-actions a.btn-primary {
-        flex: 1 1 0;
-        font-size: 0.72rem;
-        padding: 0.35rem 0.25rem;
-        white-space: normal;   /* le texte peut aller sur 2 lignes dans le bouton */
-        line-height: 1.2;
-      }
-
-      #tarif-flottant {
-        left: 16px;
-        right: 16px;
-        top: 70px;
-        justify-content: center;
-      }
-
-      .map-wrapper {
-        height: 260px !important;
-      }
+    @media (max-width: 520px){
+      .form-compact .row{ grid-template-columns: 1fr; }
+      #tarif-flottant { left: 16px; right: 16px; top: 70px; justify-content: center; }
     }
   </style>
 </head>
-<body>
 
-  <!-- NAV TOUT EN HAUT -->
+<body>
+  <!-- NAV -->
   <nav class="nav">
     <div class="container nav-inner">
       <ul>
+        <li><a href="#reservation">Réservation</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#reservation">Réservation & estimation</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -259,119 +248,81 @@
       <div class="branding">
         <img src="LOGO DCVTC66.png" alt="Logo DCVTC66" class="logo">
         <h1 class="site-title">DCVTC66</h1>
-        <p class="site-subtitle">Votre chauffeur VTC privé à Perpignan et dans tout le 66</p>
+        <p class="site-subtitle">Chauffeur VTC privé à Perpignan et dans tout le 66</p>
 
-        <!-- 3 BOUTONS COMPACTS CÔTE À CÔTÉ -->
         <div class="hero-actions">
-          <a href="tel:0663463716" class="btn-primary">📞 Appeler le chauffeur</a>
+          <a href="tel:0663463716" class="btn-primary">📞 Appeler</a>
           <a href="https://wa.me/33663463716" target="_blank" class="btn-primary">💬 WhatsApp</a>
-          <a href="#reservation" class="btn-primary">📝 Réserver un trajet</a>
+          <a href="#reservation" class="btn-primary">📝 Réserver</a>
         </div>
-<button id="btn-install" class="btn-primary" style="display:none; margin-top:10px;">
-  📲 Installer l’application
-</button>
 
-        <!-- BADGES en dessous -->
+        <button id="btn-install" class="btn-primary" style="display:none; margin-top:10px;">
+          📲 Installer l’application
+        </button>
+
         <div class="hero-badges">
-          <span>✔ Service 7j/7</span>
-          <span>✔ Chauffeur professionnel et ponctuel</span>
-          <span>✔ Réservation simple et rapide</span>
+          <span>✔ 7j/7</span>
+          <span>✔ Ponctuel</span>
+          <span>✔ Confort</span>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- RÉSERVATION + ESTIMATION -->
+  <!-- RÉSERVATION : 1 ÉCRAN -->
   <section id="reservation" class="section section-alt">
     <div class="container">
-      <h2 class="section-title">Réserver un trajet</h2>
-      <p class="section-intro">
-        Remplissez ce formulaire :
-      </p>
+      <h2 class="section-title">Réservation</h2>
+      <p class="section-intro">Réponse rapide. Estimation en 1 clic.</p>
 
-      <form id="reservation-form" class="form">
-        <label>Nom
-          <input type="text" name="Nom" required>
+      <form id="reservation-form" class="form form-compact">
+        <div class="row">
+          <label>Nom
+            <input type="text" name="Nom" placeholder="Nom & prénom" required>
+          </label>
+
+          <label>Téléphone
+            <input type="tel" name="Téléphone" placeholder="06…" required>
+          </label>
+        </div>
+
+        <label>Départ
+          <input type="text" name="Départ" placeholder="Adresse de prise en charge" required>
         </label>
 
-        <label>Téléphone
-          <input type="tel" name="Téléphone" required>
+        <label>Arrivée
+          <input type="text" name="Arrivee" placeholder="Adresse de destination" required>
         </label>
 
-        <label>Point de départ
-          <input type="text" name="Départ" placeholder="Ex : Gare de Perpignan" required>
-        </label>
-
-        <label>Destination
-          <input type="text" name="Arrivee" placeholder="Ex : Aéroport Perpignan-Rivesaltes" required>
-        </label>
-
-        <label>Date et heure
+        <label>Date & heure
           <input type="datetime-local" name="DateHeure" required>
         </label>
 
-        <label>Commentaires (optionnel)
-          <textarea name="Message" rows="4" placeholder="Ex : Nombre de passagers, bagages, siège enfant..."></textarea>
-        </label>
+        <details class="opt">
+          <summary>+ Options</summary>
+          <label>Informations
+            <textarea name="Message" rows="2" placeholder="Bagages, siège enfant, n° de vol…"></textarea>
+          </label>
+        </details>
 
-        <!-- BOUTONS ENSEMBLE SOUS LE FORMULAIRE -->
-        <div class="form-actions">
-          <button type="button" id="btn-tarif" class="btn-estimate">
-            <span class="icon">✨</span>
-            <span>Estimer le tarif</span>
-          </button>
-
-          <button type="submit" class="btn-primary btn-full">
-            Envoyer ma demande par SMS
-          </button>
-
-          <a href="#" id="btn-email" class="btn-primary btn-full">📧 Envoyer par email</a>
+        <div class="actions-compact">
+          <button type="button" id="btn-tarif" class="btn-estimate">Estimer</button>
+          <button type="submit" class="btn-primary">Envoyer</button>
         </div>
 
-        <!-- Messages d’erreur et résultat tarif -->
-        <div id="erreur-tarif" style="
-            display:none;
-            margin-top:1rem;
-            margin-bottom:0.75rem;
-            padding:0.75rem;
-            border-radius:8px;
-            background:#ffecec;
-            color:#a40000;
-            font-size:0.9rem;">
-        </div>
+        <a href="#" id="btn-email" class="link-mini">Envoyer par email</a>
 
-        <div id="resultat-tarif" style="
-            display:none;
-            margin-bottom:0.25rem;
-            padding:0.75rem;
-            border-radius:8px;
-            background:#f0f7ff;
-            color:#1b3b68;
-            font-size:0.95rem;">
-        </div>
+        <div id="erreur-tarif" class="error-compact" style="display:none;"></div>
+        <div id="resultat-tarif" class="result-compact" style="display:none;"></div>
 
-        <!-- CARTE DU TRAJET -->
-        <div class="map-reservation-wrapper">
-          <h3 style="margin-top:0; margin-bottom:0.5rem; font-size:1.1rem;">Carte du trajet estimé</h3>
-          <p style="margin-top:0; font-size:0.85rem; color:#777;">
-            L’itinéraire s’affiche ici après avoir lancé une estimation du trajet.
-          </p>
+        <button type="button" id="btn-toggle-map" class="link-mini" style="display:none;">
+          Voir la carte du trajet
+        </button>
 
-          <div class="map-wrapper" style="position:relative;width:100%;height:320px;border-radius:12px;overflow:hidden;margin-top:0.75rem;">
-            <div id="map" style="width:100%;height:100%;"></div>
-            <div id="tarif-overlay" style="
-              display:none;
-              position:absolute;
-              top:10px;
-              left:10px;
-              background:rgba(255,255,255,0.96);
-              border-radius:10px;
-              padding:10px 12px;
-              box-shadow:0 4px 16px rgba(0,0,0,0.15);
-              font-size:0.9rem;
-              max-width:260px;
-              line-height:1.4;">
-            </div>
+        <div class="map-wrapper" id="map-wrapper" style="display:none;">
+          <div class="map-wrapper-inner">
+            <div id="map"></div>
+            <div id="tarif-overlay"></div>
           </div>
         </div>
       </form>
@@ -383,29 +334,28 @@
     <div class="container">
       <h2 class="section-title">Nos services</h2>
       <p class="section-intro">
-        DCVTC66 vous accompagne pour tous vos déplacements personnels et professionnels,
-        dans tout le département des Pyrénées-Orientales et au-delà.
+        Transferts, gares, aéroports, déplacements pro et mise à disposition.
       </p>
 
       <div class="grid">
         <article class="card">
-          <h3>Transferts aéroports</h3>
-          <p>Déplacements vers Perpignan, Toulouse, Carcassonne, Montpellier ou Barcelone.</p>
+          <h3>Aéroports</h3>
+          <p>Perpignan, Toulouse, Montpellier, Barcelone…</p>
         </article>
 
         <article class="card">
-          <h3>Transferts gares</h3>
-          <p>Prise en charge à la gare de Perpignan, Narbonne et dans la région.</p>
+          <h3>Gares</h3>
+          <p>Perpignan, Narbonne et alentours.</p>
         </article>
 
         <article class="card">
-          <h3>Déplacements professionnels</h3>
-          <p>Rendez-vous, séminaires, visites de clients ou missions ponctuelles.</p>
+          <h3>Professionnel</h3>
+          <p>RDV, séminaires, déplacements business.</p>
         </article>
 
         <article class="card">
           <h3>Mise à disposition</h3>
-          <p>Chauffeur pour événements, mariages, soirées ou journées complètes.</p>
+          <p>Événements, mariages, soirées, journée.</p>
         </article>
       </div>
     </div>
@@ -418,12 +368,12 @@
 
       <div class="contact-grid">
         <div>
-          <p>📞 Téléphone : <a href="tel:0663463716"><strong>06 63 46 37 16</strong></a></p>
-          <p>💬 WhatsApp : <a href="https://wa.me/33663463716" target="_blank"><strong>Discuter sur WhatsApp</strong></a></p>
+          <p>📞 <a href="tel:0663463716"><strong>06 63 46 37 16</strong></a></p>
+          <p>💬 <a href="https://wa.me/33663463716" target="_blank"><strong>WhatsApp</strong></a></p>
         </div>
         <div>
-          <p>📧 Email : <strong>driveconfort66@gmail.com</strong></p>
-          <p>📍 Basé à Perpignan — déplacements dans tout le 66 et au-delà.</p>
+          <p>📧 <strong>driveconfort66@gmail.com</strong></p>
+          <p>📍 Perpignan — déplacements 66 & au-delà</p>
         </div>
       </div>
     </div>
@@ -431,17 +381,15 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-  <div class="container footer-legal">
-    <p>
-      © <span id="year"></span> DCVTC66 — Tous droits réservés
-    </p>
-    <p class="footer-links">
-      <a href="mentions-legales.html">Mentions légales</a> ·
-      <a href="politique-confidentialite.html">Politique de confidentialité</a> ·
-      <a href="plan-du-site.html">Plan du site</a>
-    </p>
-  </div>
-</footer>
+    <div class="container footer-legal">
+      <p>© <span id="year"></span> DCVTC66 — Tous droits réservés</p>
+      <p class="footer-links">
+        <a href="mentions-legales.html">Mentions légales</a> ·
+        <a href="politique-confidentialite.html">Politique de confidentialité</a> ·
+        <a href="plan-du-site.html">Plan du site</a>
+      </p>
+    </div>
+  </footer>
 
   <!-- BOUTONS FLOTTANTS -->
   <a href="tel:0663463716" class="fab fab-call" aria-label="Appeler DCVTC66">📞</a>
@@ -453,21 +401,23 @@
     <span id="tarif-flottant-texte">Estimation en cours…</span>
   </div>
 
+  <!-- SPLASH SCREEN -->
+  <div id="splash-screen" aria-label="Chargement">
+    <img src="icon-192.png" alt="DCVTC66">
+    <p>Connexion à votre chauffeur privé…</p>
+  </div>
+
   <!-- JS : année + SMS -->
   <script>
-    // Année automatique dans le footer
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // ✅ Fonction : remplace "T" par " à " (ex: 2025-12-27T04:52 -> 2025-12-27 à 04:52)
     function formatDateHeureFR(value) {
       if (!value) return "";
       return value.replace("T", " à ");
     }
 
-    // Variable globale pour stocker la dernière estimation
     let derniereEstimation = null;
 
-    // Envoi du formulaire par SMS
     const form = document.getElementById('reservation-form');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -476,33 +426,26 @@
       const tel = form["Téléphone"].value;
       const depart = form["Départ"].value;
       const arrivee = form["Arrivee"].value;
-
-      // ✅ formatage de la date/heure
       const dateHeure = formatDateHeureFR(form["DateHeure"].value);
-
       const messageClient = form["Message"].value;
 
-      let sms = "Nouvelle demande de réservation – DCVTC66 :\n\n";
+      let sms = "Nouvelle demande – DCVTC66 :\n\n";
       sms += "Nom : " + nom + "\n";
       sms += "Téléphone : " + tel + "\n";
       sms += "Départ : " + depart + "\n";
-      sms += "Destination : " + arrivee + "\n";
+      sms += "Arrivée : " + arrivee + "\n";
       sms += "Date & heure : " + dateHeure + "\n";
-      if (messageClient.trim() !== "") {
-        sms += "Commentaires : " + messageClient + "\n";
-      }
+      if (messageClient.trim() !== "") sms += "Infos : " + messageClient + "\n";
 
-      // Ajout de l'estimation si disponible
       if (derniereEstimation) {
-        sms += "\n--- Estimation indicative ---\n";
+        sms += "\n--- Estimation ---\n";
         sms += "Distance : " + derniereEstimation.distanceKm + " km\n";
         sms += "Durée : " + derniereEstimation.dureeTexte + "\n";
-        sms += "Tarif estimé : " + derniereEstimation.tarif.toFixed(2) + " €\n";
+        sms += "Tarif : " + derniereEstimation.tarif.toFixed(2) + " €\n";
       }
 
       const numero = "0663463716";
-      const url = "sms:" + numero + "?&body=" + encodeURIComponent(sms);
-      window.location.href = url;
+      window.location.href = "sms:" + numero + "?&body=" + encodeURIComponent(sms);
     });
   </script>
 
@@ -519,10 +462,7 @@
 
     function initMap() {
       const mapElement = document.getElementById("map");
-      if (!mapElement) {
-        console.error("Élément #map introuvable.");
-        return;
-      }
+      if (!mapElement) return;
 
       map = new google.maps.Map(mapElement, {
         center: { lat: 42.6986, lng: 2.8956 },
@@ -531,11 +471,11 @@
 
       distanceService = new google.maps.DistanceMatrixService();
       directionsService = new google.maps.DirectionsService();
-     directionsRenderer = new google.maps.DirectionsRenderer({
-  map: map,
-  suppressMarkers: false,
-  suppressInfoWindows: true
-});
+      directionsRenderer = new google.maps.DirectionsRenderer({
+        map: map,
+        suppressMarkers: false,
+        suppressInfoWindows: true
+      });
 
       const inputDepart = document.querySelector('input[name="Départ"]');
       const inputArrivee = document.querySelector('input[name="Arrivee"]');
@@ -555,11 +495,7 @@
       }
 
       const btnTarif = document.getElementById("btn-tarif");
-      if (btnTarif) {
-        btnTarif.addEventListener("click", calculerTarif);
-      } else {
-        console.error("Bouton #btn-tarif introuvable.");
-      }
+      if (btnTarif) btnTarif.addEventListener("click", calculerTarif);
     }
 
     function calculerTarif() {
@@ -581,14 +517,14 @@
       if (flottant) flottant.style.display = "none";
 
       if (!depart || !arrivee) {
-        errDiv.textContent = "Veuillez renseigner le point de départ et la destination dans le formulaire.";
+        errDiv.textContent = "Veuillez renseigner le départ et l’arrivée.";
         errDiv.style.display = "block";
         form.scrollIntoView({ behavior: "smooth", block: "start" });
         return;
       }
 
       resDiv.style.display = "block";
-      resDiv.innerHTML = "Calcul de l&#39;itinéraire en cours...";
+      resDiv.innerHTML = "Calcul en cours…";
 
       distanceService.getDistanceMatrix(
         {
@@ -608,39 +544,33 @@
           const element = response.rows[0].elements[0];
           if (element.status !== "OK") {
             resDiv.style.display = "none";
-            errDiv.textContent = "Distance introuvable pour ces adresses. Veuillez vérifier l&#39;orthographe.";
+            errDiv.textContent = "Adresse introuvable. Vérifiez l’orthographe.";
             errDiv.style.display = "block";
             return;
           }
 
           const distanceMetres = element.distance.value;
-          let distanceKm = distanceMetres / 1000;
-          distanceKm = Math.round(distanceKm * 10) / 10;
-
+          let distanceKm = Math.round((distanceMetres / 1000) * 10) / 10;
           const dureeTexte = element.duration.text;
 
           let tarif = BASE_TARIF;
           if (distanceKm > BASE_KM) {
-            const kmSupp = distanceKm - BASE_KM;
-            tarif += kmSupp * SUPP_PAR_KM;
+            tarif += (distanceKm - BASE_KM) * SUPP_PAR_KM;
           }
           tarif = Math.round(tarif * 100) / 100;
 
           derniereEstimation = { distanceKm, dureeTexte, tarif };
 
           resDiv.innerHTML =
-            "Distance estimée : <strong>" + distanceKm + " km</strong><br>" +
-            "Temps de trajet estimé : <strong>" + dureeTexte + "</strong><br>" +
-            "Tarif estimé (indicatif) : <strong>" + tarif.toFixed(2) + " €</strong><br><br>" +
-            "<em>(Estimation basée sur l&#39;API Google Maps, pour un trajet routier standard.)</em>";
-
-          resDiv.style.display = "block";
+            "Distance : <strong>" + distanceKm + " km</strong> • " +
+            "Durée : <strong>" + dureeTexte + "</strong><br>" +
+            "Estimation : <strong>" + tarif.toFixed(2) + " €</strong>";
 
           overlay.innerHTML =
-            "<strong>Simulation de votre trajet</strong><br>" +
+            "<strong>Trajet</strong><br>" +
             "Distance : " + distanceKm + " km<br>" +
             "Durée : " + dureeTexte + "<br>" +
-            "Tarif estimatif : " + tarif.toFixed(2) + " €";
+            "Estimation : " + tarif.toFixed(2) + " €";
           overlay.style.display = "block";
 
           if (flottant && flottantTexte) {
@@ -650,90 +580,40 @@
             flottant.style.display = "flex";
           }
 
+          // Afficher le bouton de carte après estimation
+          const btnToggleMap = document.getElementById("btn-toggle-map");
+          if (btnToggleMap) btnToggleMap.style.display = "inline-block";
+
           if (directionsService && directionsRenderer) {
             directionsService.route(
-              {
-                origin: depart,
-                destination: arrivee,
-                travelMode: google.maps.TravelMode.DRIVING,
-              },
-              (result, statusDir) => {
-                if (statusDir === "OK") {
-                  directionsRenderer.setDirections(result);
-                }
-              }
+              { origin: depart, destination: arrivee, travelMode: google.maps.TravelMode.DRIVING },
+              (result, statusDir) => { if (statusDir === "OK") directionsRenderer.setDirections(result); }
             );
           }
         }
       );
     }
+
+    // Toggle carte
+    (function(){
+      const btn = document.getElementById("btn-toggle-map");
+      const wrap = document.getElementById("map-wrapper");
+      if (!btn || !wrap) return;
+
+      btn.addEventListener("click", () => {
+        const isHidden = wrap.style.display === "none" || wrap.style.display === "";
+        wrap.style.display = isHidden ? "block" : "none";
+        btn.textContent = isHidden ? "Masquer la carte" : "Voir la carte du trajet";
+      });
+    })();
   </script>
 
   <!-- GOOGLE MAPS API -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDW4LNM6rw5DKJ3KjMP1hEvk03k5pCKg4c&callback=initMap&libraries=places" async defer></script>
 
-  <!-- EMAIL (Mobile: mailto / PC: Gmail Web) -->
-  <script>
-    function envoyerEmail() {
-      const nom = document.querySelector('input[name="Nom"]')?.value || "";
-      const tel = document.querySelector('input[name="Téléphone"]')?.value || "";
-      const depart = document.querySelector('input[name="Départ"]')?.value || "";
-      const arrivee = document.querySelector('input[name="Arrivee"]')?.value || "";
-
-      // ✅ formatage de la date/heure
-      const dateHeure = formatDateHeureFR(document.querySelector('input[name="DateHeure"]')?.value || "");
-
-      const message = document.querySelector('textarea[name="Message"]')?.value || "";
-
-      let body =
-        "Demande de réservation DCVTC66\n\n" +
-        "Nom : " + nom + "\n" +
-        "Téléphone : " + tel + "\n" +
-        "Départ : " + depart + "\n" +
-        "Destination : " + arrivee + "\n" +
-        "Date et heure : " + dateHeure + "\n\n";
-
-      if (message.trim() !== "") {
-        body += "Message : " + message + "\n\n";
-      }
-
-      /* ✅✅ AJOUT : Estimation de tarif dans le mail (si disponible) */
-      if (typeof derniereEstimation !== "undefined" && derniereEstimation) {
-        body +=
-          "--- Estimation indicative ---\n" +
-          "Distance : " + derniereEstimation.distanceKm + " km\n" +
-          "Durée : " + derniereEstimation.dureeTexte + "\n" +
-          "Tarif estimé : " + Number(derniereEstimation.tarif).toFixed(2) + " €\n\n";
-      }
-
-      body += "Envoyé depuis dcvtc66.fr";
-
-      const subject = "Demande de réservation DCVTC66";
-      const to = "driveconfort66@gmail.com";
-
-      if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-        const mailto =
-          "mailto:" + to +
-          "?subject=" + encodeURIComponent(subject) +
-          "&body=" + encodeURIComponent(body);
-
-        window.location.href = mailto;
-      } else {
-        const gmail =
-          "https://mail.google.com/mail/?view=cm&fs=1" +
-          "&to=" + encodeURIComponent(to) +
-          "&su=" + encodeURIComponent(subject) +
-          "&body=" + encodeURIComponent(body);
-
-        window.open(gmail, "_blank");
-      }
-    }
-  </script>
-
-  <!-- Bouton Email -->
+  <!-- EMAIL -->
   <script>
     const btnEmail = document.getElementById("btn-email");
-
     if (btnEmail) {
       btnEmail.addEventListener("click", function (e) {
         e.preventDefault();
@@ -742,119 +622,97 @@
         const tel = form["Téléphone"].value;
         const depart = form["Départ"].value;
         const arrivee = form["Arrivee"].value;
-
-        // ✅ formatage de la date/heure
         const dateHeure = formatDateHeureFR(form["DateHeure"].value);
-
         const messageClient = form["Message"].value;
 
-        const sujet = "Demande de réservation DCVTC66";
+        const sujet = "Réservation — DCVTC66";
 
         let body =
           "Bonjour,\n\n" +
-          "Nouvelle demande de réservation :\n\n" +
+          "Demande de réservation :\n\n" +
           "Nom : " + nom + "\n" +
           "Téléphone : " + tel + "\n" +
           "Départ : " + depart + "\n" +
-          "Destination : " + arrivee + "\n" +
-          "Date et heure : " + dateHeure + "\n\n" +
-          "Message : " + messageClient;
+          "Arrivée : " + arrivee + "\n" +
+          "Date & heure : " + dateHeure + "\n";
 
-        /* ✅✅ AJOUT : Estimation de tarif dans le mail (si disponible) */
+        if (messageClient.trim() !== "") body += "\nInfos : " + messageClient + "\n";
+
         if (derniereEstimation) {
           body +=
-            "\n\n--- Estimation indicative ---\n" +
+            "\n--- Estimation ---\n" +
             "Distance : " + derniereEstimation.distanceKm + " km\n" +
             "Durée : " + derniereEstimation.dureeTexte + "\n" +
-            "Tarif estimé : " + Number(derniereEstimation.tarif).toFixed(2) + " €\n";
+            "Tarif : " + Number(derniereEstimation.tarif).toFixed(2) + " €\n";
         }
 
         const email = "driveconfort66@gmail.com";
 
-        // 📱 Mobile : mailto (plus simple)
         if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-          const mailto =
+          window.location.href =
             "mailto:" + email +
             "?subject=" + encodeURIComponent(sujet) +
             "&body=" + encodeURIComponent(body);
-
-          window.location.href = mailto;
-        }
-        // 💻 PC : Gmail Web
-        else {
-          const url =
+        } else {
+          window.open(
             "https://mail.google.com/mail/?view=cm&fs=1" +
             "&to=" + encodeURIComponent(email) +
             "&su=" + encodeURIComponent(sujet) +
-            "&body=" + encodeURIComponent(body);
-
-          window.open(url, "_blank");
+            "&body=" + encodeURIComponent(body),
+            "_blank"
+          );
         }
       });
     }
   </script>
-<script>
-  // Service Worker
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js");
-  }
 
-  // Bouton Installer (PWA)
-  let deferredPrompt = null;
-  const btnInstall = document.getElementById("btn-install");
+  <!-- PWA : Service Worker + Install -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js");
+    }
 
-  const isStandalone =
-    window.matchMedia("(display-mode: standalone)").matches ||
-    window.navigator.standalone === true;
+    let deferredPrompt = null;
+    const btnInstall = document.getElementById("btn-install");
 
-  // Si déjà installé : cacher le bouton
-  if (isStandalone && btnInstall) {
-    btnInstall.style.display = "none";
-  }
+    const isStandalone =
+      window.matchMedia("(display-mode: standalone)").matches ||
+      window.navigator.standalone === true;
 
-  // Android/Chrome/Edge : installation possible
-  window.addEventListener("beforeinstallprompt", (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    if (btnInstall) btnInstall.style.display = "inline-flex";
-  });
+    if (isStandalone && btnInstall) btnInstall.style.display = "none";
 
-  // Clic sur bouton
-  if (btnInstall) {
-    btnInstall.addEventListener("click", async () => {
-      // iPhone : pas de prompt automatique
-      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-      if (isIOS) {
-        alert('Sur iPhone : Safari → Partager (⬆️) → "Sur l’écran d’accueil".');
-        return;
-      }
-
-      if (!deferredPrompt) return;
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice;
-      deferredPrompt = null;
-      btnInstall.style.display = "none";
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      if (btnInstall) btnInstall.style.display = "inline-flex";
     });
-  }
 
-  // Après installation
-  window.addEventListener("appinstalled", () => {
-    if (btnInstall) btnInstall.style.display = "none";
-  });
+    if (btnInstall) {
+      btnInstall.addEventListener("click", async () => {
+        const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+        if (isIOS) {
+          alert('Sur iPhone : Safari → Partager (⬆️) → "Sur l’écran d’accueil".');
+          return;
+        }
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+        btnInstall.style.display = "none";
+      });
+    }
 
-  // Splash screen
-  window.addEventListener("load", () => {
-    const splash = document.getElementById("splash-screen");
-    if (!splash) return;
-    splash.style.opacity = "0";
-    setTimeout(() => splash.remove(), 600);
-  });
-</script>
+    window.addEventListener("appinstalled", () => {
+      if (btnInstall) btnInstall.style.display = "none";
+    });
 
-<div id="splash-screen" aria-label="Chargement">
-  <img src="icon-192.png" alt="DCVTC66">
-  <p>Connexion à votre chauffeur privé…</p>
-</div>
+    window.addEventListener("load", () => {
+      const splash = document.getElementById("splash-screen");
+      if (!splash) return;
+      splash.style.opacity = "0";
+      setTimeout(() => splash.remove(), 600);
+    });
+  </script>
 
 </body>
 </html>
