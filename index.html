@@ -61,30 +61,6 @@
       white-space: nowrap;
     }
 
-    /* Bouton estimation (garde tes couleurs) */
-    .btn-estimate {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.8rem 1rem;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.85rem;
-      letter-spacing: 0.04em;
-      text-transform: none;
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      color: #ffffff;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 0 22px rgba(250, 204, 21, 0.8);
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-      white-space: nowrap;
-    }
-    .btn-estimate:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 28px rgba(37, 99, 235, 0.45);
-    }
-
     /* Carte flottante d'estimation */
     #tarif-flottant {
       position: fixed;
@@ -561,6 +537,7 @@
 
           derniereEstimation = { distanceKm, dureeTexte, tarif };
 
+          resDiv.style.display = "block";
           resDiv.innerHTML =
             "Distance : <strong>" + distanceKm + " km</strong> • " +
             "Durée : <strong>" + dureeTexte + "</strong><br>" +
@@ -580,7 +557,6 @@
             flottant.style.display = "flex";
           }
 
-          // Afficher le bouton de carte après estimation
           const btnToggleMap = document.getElementById("btn-toggle-map");
           if (btnToggleMap) btnToggleMap.style.display = "inline-block";
 
@@ -594,7 +570,6 @@
       );
     }
 
-    // Toggle carte
     (function(){
       const btn = document.getElementById("btn-toggle-map");
       const wrap = document.getElementById("map-wrapper");
@@ -669,7 +644,7 @@
   <!-- PWA : Service Worker + Install -->
   <script>
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("sw.js");
+      navigator.serviceWorker.register("/sw.js");
     }
 
     let deferredPrompt = null;
