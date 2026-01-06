@@ -100,14 +100,21 @@
       .section, .section-alt { padding-left: 1.1rem; padding-right: 1.1rem; box-sizing: border-box; }
     }
 
-    /* ✅ Android : réduire la taille des boutons (pour éviter “trop grand”) */
+    /* ✅ Android : boutons PLUS PETITS + EN COLONNE */
     @media (max-width: 520px){
       .form-compact .row{ grid-template-columns: 1fr; }
       #tarif-flottant { left: 16px; right: 16px; top: 70px; justify-content: center; }
 
+      /* ✅ ICI le fix principal: 1 colonne */
+      .actions-compact{
+        grid-template-columns: 1fr;  /* Estimer puis SMS l’un sous l’autre */
+        gap: .55rem;
+      }
+
       .actions-compact .btn-primary,
       .actions-compact .btn-estimate,
       .email-action{
+        width: 100%;
         padding: .7rem .85rem;
         font-size: .85rem;
       }
