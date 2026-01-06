@@ -1,4 +1,4 @@
-const CACHE_NAME = "dcvtc66-v8"; // augmente le numéro à chaque changement
+const CACHE_NAME = "dcvtc66-v6"; // augmente le numéro à chaque changement
 
 const FILES_TO_CACHE = [
   "/",
