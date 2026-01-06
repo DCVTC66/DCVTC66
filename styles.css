@@ -12,6 +12,7 @@
   --card-bg: rgba(16, 42, 92, 0.88);
   --border-soft: rgba(186, 204, 255, 0.35);
 
+  --error: #f87171;
   --shadow-soft: 0 20px 50px rgba(2, 6, 23, 0.6);
 }
 
@@ -32,13 +33,6 @@ body {
     radial-gradient(circle at 85% 20%, rgba(56, 189, 248, 0.45), transparent 50%),
     linear-gradient(to bottom, var(--bg-main), var(--bg-light) 45%, var(--bg-alt));
 }
-
-/* Liens : pas de bleu */
-a {
-  color: var(--primary);
-  text-decoration: none;
-}
-a:hover { text-decoration: underline; }
 
 /* CONTAINER */
 .container {
@@ -65,16 +59,24 @@ a:hover { text-decoration: underline; }
   gap: 1.5rem;
 }
 .nav a {
+  text-decoration: none;
   font-size: 0.85rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
-.nav a:hover { color: var(--primary); }
+.nav a:hover {
+  color: var(--primary);
+}
 
 /* HEADER */
-.header { padding: 2.5rem 0 2rem; }
-.header-inner { display: flex; justify-content: center; }
+.header {
+  padding: 2.5rem 0 2rem;
+}
+.header-inner {
+  display: flex;
+  justify-content: center;
+}
 .branding {
   text-align: center;
   max-width: 650px;
@@ -97,14 +99,14 @@ a:hover { text-decoration: underline; }
   font-size: 2.3rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  margin: 0.2rem 0 0.3rem;
+  margin: 0.25rem 0 0.2rem;
 }
 .site-subtitle {
   font-size: 0.9rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin: 0 0 1.4rem;
+  margin: 0.2rem 0 1.4rem;
 }
 
 /* HERO ACTIONS */
@@ -123,12 +125,14 @@ a:hover { text-decoration: underline; }
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  text-decoration: none;
   border: none;
   cursor: pointer;
   box-shadow: 0 12px 28px rgba(250, 204, 21, 0.45);
-  transition: transform 0.12s ease;
 }
-.btn-primary:hover { transform: translateY(-1px); }
+.btn-primary:hover {
+  transform: translateY(-1px);
+}
 
 /* BADGES */
 .hero-badges {
@@ -147,7 +151,9 @@ a:hover { text-decoration: underline; }
 }
 
 /* SECTIONS */
-.section { padding: 3rem 0; }
+.section {
+  padding: 3rem 0;
+}
 .section-alt {
   background: radial-gradient(circle at top, rgba(56,189,248,0.25), rgba(16,42,92,0.95));
 }
@@ -155,7 +161,7 @@ a:hover { text-decoration: underline; }
   text-align: center;
   font-family: "Playfair Display", serif;
   font-size: 1.8rem;
-  margin: 0 0 0.8rem;
+  margin: 0 0 0.6rem;
 }
 .section-intro {
   text-align: center;
@@ -164,7 +170,49 @@ a:hover { text-decoration: underline; }
   color: var(--text-muted);
 }
 
-/* FORM */
+/* =========================
+   ✅ SERVICES : GRILLE + CADRES (RÉTABLI)
+   ========================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+
+.card {
+  background: rgba(16, 42, 92, 0.92);
+  border: 1px solid var(--border-soft);
+  border-radius: 1.25rem;
+  padding: 1.2rem 1.2rem;
+  box-shadow: var(--shadow-soft);
+  text-align: left;
+}
+
+.card h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.card p {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .card {
+    text-align: center;
+  }
+}
+
+/* FORMULAIRE */
 .form {
   max-width: 560px;
   margin: 0 auto;
@@ -194,13 +242,16 @@ a:hover { text-decoration: underline; }
   outline: none;
   border-color: var(--primary);
 }
+
 .form .row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.6rem;
 }
 @media (max-width: 520px) {
-  .form .row { grid-template-columns: 1fr; }
+  .form .row {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* OPTIONS */
@@ -208,7 +259,6 @@ details.opt summary {
   cursor: pointer;
   font-weight: 700;
   margin: 0.3rem 0;
-  color: var(--text-main);
 }
 
 /* ACTIONS */
@@ -218,6 +268,19 @@ details.opt summary {
   gap: 0.6rem;
   margin-top: 0.6rem;
 }
+
+.actions-secondary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+}
+
+.btn-full {
+  width: 100%;
+  text-align: center;
+}
+
 .btn-estimate {
   background: linear-gradient(135deg, #ff6f00, #ff9100);
   color: #fff;
@@ -226,13 +289,6 @@ details.opt summary {
   font-weight: 800;
   border: none;
   cursor: pointer;
-}
-.link-mini {
-  display: inline-block;
-  margin-top: 0.55rem;
-  font-size: 0.85rem;
-  color: var(--primary);
-  text-decoration: underline;
 }
 
 /* RESULTATS */
@@ -253,70 +309,20 @@ details.opt summary {
   font-size: 0.85rem;
 }
 
-/* ===== NOS SERVICES EN CADRES (IMPORTANT) ===== */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  margin-top: 1.4rem;
-}
-
-@media (max-width: 800px) {
-  .grid { grid-template-columns: 1fr; }
-}
-
-.card {
-  background: rgba(16, 42, 92, 0.92);
-  border: 1px solid var(--border-soft);
-  border-radius: 1.3rem;
-  padding: 1.25rem 1.15rem;
-  box-shadow: 0 16px 40px rgba(2, 6, 23, 0.55);
-  transition: transform 0.12s ease, border-color 0.12s ease;
-}
-
-.card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(250, 204, 21, 0.55);
-}
-
-.card h3 {
-  margin: 0 0 0.45rem;
-  font-size: 1.08rem;
-  letter-spacing: 0.03em;
-  color: var(--text-main);
-}
-
-.card p {
-  margin: 0;
-  color: var(--text-muted);
-  line-height: 1.55;
-}
-
-/* CONTACT EN CADRE (comme avant) */
+/* CONTACT */
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  align-items: start;
   margin-top: 1.2rem;
 }
-
-@media (max-width: 800px) {
-  .contact-grid { grid-template-columns: 1fr; }
+@media (max-width: 720px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
 }
-
-.contact-grid > div {
-  background: rgba(16, 42, 92, 0.88);
-  border: 1px solid var(--border-soft);
-  border-radius: 1.3rem;
-  padding: 1.25rem 1.15rem;
-  box-shadow: 0 16px 40px rgba(2, 6, 23, 0.55);
-}
-
-.contact-grid p {
-  margin: 0 0 0.7rem;
-  color: var(--text-muted);
-}
-.contact-grid strong { color: var(--text-main); }
 
 /* FOOTER */
 .footer {
@@ -327,8 +333,12 @@ details.opt summary {
   background: rgba(11,23,51,0.65);
   border-top: 1px solid var(--border-soft);
 }
-.footer-links a { color: var(--text-muted); }
-.footer-links a:hover { color: var(--primary); }
+.footer-links a {
+  color: var(--text-muted);
+}
+.footer-links a:hover {
+  color: var(--primary);
+}
 
 /* FLOATING BUTTONS */
 .fab {
@@ -380,4 +390,21 @@ details.opt summary {
   color: var(--primary);
   font-weight: 600;
   letter-spacing: 0.1em;
+}
+
+/* ✅ ANDROID : boutons moins gros (mobile only) */
+@media (max-width: 700px) {
+  .btn-primary {
+    padding: 0.55rem 0.9rem !important;
+    font-size: 0.78rem !important;
+    box-shadow: 0 10px 22px rgba(250, 204, 21, 0.35) !important;
+    line-height: 1.1 !important;
+  }
+  .btn-estimate {
+    padding: 0.55rem 0.9rem !important;
+    font-size: 0.78rem !important;
+    line-height: 1.1 !important;
+  }
+  .actions-compact { gap: 0.45rem !important; }
+  .actions-secondary { gap: 0.45rem !important; }
 }
