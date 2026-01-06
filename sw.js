@@ -1,9 +1,9 @@
-const CACHE_NAME = "dcvtc66-v6"; // augmente le numéro à chaque changement
+const CACHE_NAME = "dcvtc66-v9"; // ✅ augmente le numéro à chaque changement
 
 const FILES_TO_CACHE = [
   "/",
   "/index.html",
-  "/styles.css",
+  "/styles.css?v=9",   // ✅ important (car ton index charge ?v=9)
   "/manifest.json",
   "/icon-192.png",
   "/icon-512.png",
@@ -41,7 +41,7 @@ self.addEventListener("fetch", (event) => {
 
   if (req.method !== "GET") return;
 
-  // Pages (navigation) : network-first
+  // Pages
   if (req.mode === "navigate") {
     event.respondWith(
       fetch(req)
@@ -58,7 +58,7 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Assets : cache-first
+  // Assets même origine
   if (url.origin === self.location.origin) {
     event.respondWith(
       caches.match(req).then((cached) => {
