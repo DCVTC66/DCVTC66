@@ -399,4 +399,8 @@ details.opt summary {
 #btn-tarif {
   color: #000;
 }
+#btn-tarif {
+  background: linear-gradient(135deg, #25D366, #1ebe5d);
+  color: #000;
+}
 
