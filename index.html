@@ -201,7 +201,7 @@
           <button type="submit" class="btn-primary">📩 Envoyer par SMS</button>
         </div>
 
-        <button type="button" id="btn-email" class="btn-primary email-action">📧 Envoyer par email</button>
+        <!-- ✅ BOUTON EMAIL SUPPRIMÉ ICI -->
 
         <div id="erreur-tarif" class="error-compact" style="display:none;"></div>
         <div id="resultat-tarif" class="result-compact" style="display:none;"></div>
@@ -453,56 +453,7 @@
 
  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA5J7_7fNdWgVsGRLWRfQZaO6qgCEqq_Y&callback=initMap&libraries=places" async defer></script>
 
-  <script>
-    const btnEmail = document.getElementById("btn-email");
-    if (btnEmail) {
-      btnEmail.addEventListener("click", function () {
-        const nom = form.Nom.value;
-        const tel = form["Téléphone"].value;
-        const depart = form["Départ"].value;
-        const arrivee = form["Arrivee"].value;
-        const dateHeure = formatDateHeureFR(form["DateHeure"].value);
-        const messageClient = form["Message"].value;
-
-        const sujet = "Réservation — DCVTC66";
-        let body =
-          "Bonjour,\n\n" +
-          "Demande de réservation :\n\n" +
-          "Nom : " + nom + "\n" +
-          "Téléphone : " + tel + "\n" +
-          "Départ : " + depart + "\n" +
-          "Arrivée : " + arrivee + "\n" +
-          "Date & heure : " + dateHeure + "\n";
-
-        if (messageClient.trim() !== "") body += "\nInfos : " + messageClient + "\n";
-
-        if (derniereEstimation) {
-          body +=
-            "\n--- Estimation ---\n" +
-            "Distance : " + derniereEstimation.distanceKm + " km\n" +
-            "Durée : " + derniereEstimation.dureeTexte + "\n" +
-            "Tarif : " + Number(derniereEstimation.tarif).toFixed(2) + " €\n";
-        }
-
-        const email = "driveconfort66@gmail.com";
-
-        if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-          window.location.href =
-            "mailto:" + email +
-            "?subject=" + encodeURIComponent(sujet) +
-            "&body=" + encodeURIComponent(body);
-        } else {
-          window.open(
-            "https://mail.google.com/mail/?view=cm&fs=1" +
-            "&to=" + encodeURIComponent(email) +
-            "&su=" + encodeURIComponent(sujet) +
-            "&body=" + encodeURIComponent(body),
-            "_blank"
-          );
-        }
-      });
-    }
-  </script>
+  <!-- ✅ SCRIPT EMAIL SUPPRIMÉ ICI -->
 
   <script>
     if ("serviceWorker" in navigator) {
@@ -550,6 +501,7 @@
       setTimeout(() => splash.remove(), 600);
     });
   </script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
