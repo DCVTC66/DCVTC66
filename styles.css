@@ -405,3 +405,18 @@ details.opt summary {
   background: linear-gradient(135deg, #25D366, #1ebe5d);
   color: #000;
 }
+
+/* ✅ FIX: SELECT même couleur que les inputs (et options foncées) */
+.form select {
+  background: rgba(11,23,51,0.35) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border-soft) !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.form select option {
+  background: #0b1733;
+  color: var(--text-main);
+}
