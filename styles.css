@@ -420,3 +420,38 @@ details.opt summary {
   background: #0b1733;
   color: var(--text-main);
 }
+/* ===== PLACEHOLDERS INPUTS (date incluse) ===== */
+.form input::placeholder {
+  color: rgba(182, 204, 255, 0.75);
+}
+
+/* Chrome / Edge / Safari */
+.form input[type="datetime-local"]::-webkit-datetime-edit {
+  color: rgba(182, 204, 255, 0.75);
+}
+
+/* Quand une date est sélectionnée → blanc */
+.form input[type="datetime-local"]:valid::-webkit-datetime-edit {
+  color: var(--text-main);
+}
+
+/* ===== SELECT : même gris que les placeholders ===== */
+.form select {
+  background: rgba(11,23,51,0.35);
+  border: 1px solid var(--border-soft);
+  color: rgba(182, 204, 255, 0.75); /* gris */
+  border-radius: 14px;
+  padding: 0.75rem 0.85rem;
+  appearance: none;
+}
+
+/* Quand une vraie valeur est choisie → blanc */
+.form select:valid {
+  color: var(--text-main);
+}
+
+/* Liste déroulante */
+.form select option {
+  background: #0b1733;
+  color: var(--text-main);
+}
