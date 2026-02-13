@@ -496,3 +496,6 @@ details.opt summary {
     background: url("hero.jpg") center/cover no-repeat;
   }
 }
+.branding{
+  backdrop-filter: blur(6px);
+}
