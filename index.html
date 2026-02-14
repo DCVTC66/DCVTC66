@@ -411,7 +411,7 @@ Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un
   <script>
     const BASE_KM = 7;
     const BASE_TARIF = 20;
-    const SUPP_PAR_KM = 1.60;
+    const SUPP_PAR_KM = 1.70;
 
     let map;
     let distanceService;
@@ -506,9 +506,27 @@ Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un
           let distanceKm = Math.round((distanceMetres / 1000) * 10) / 10;
           const dureeTexte = element.duration.text;
 
-          let tarif = BASE_TARIF;
-          if (distanceKm > BASE_KM) tarif += (distanceKm - BASE_KM) * SUPP_PAR_KM;
-          tarif = Math.round(tarif * 100) / 100;
+         let tarif = BASE_TARIF;
+
+if (distanceKm > BASE_KM) {
+  tarif += (distanceKm - BASE_KM) * SUPP_PAR_KM;
+}
+
+// ✅ Détection tarif de nuit (21h → 7h)
+const dateInput = form["DateHeure"].value;
+let heure = 12;
+
+if (dateInput) {
+  const dateObj = new Date(dateInput);
+  heure = dateObj.getHours();
+}
+
+// Si entre 21h et 7h → +20%
+if (heure >= 21 || heure < 7) {
+  tarif = tarif * 1.20;
+}
+
+tarif = Math.round(tarif * 100) / 100;
 
           derniereEstimation = { distanceKm, dureeTexte, tarif };
 
