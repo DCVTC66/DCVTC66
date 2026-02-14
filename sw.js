@@ -1,9 +1,9 @@
-const CACHE_NAME = "dcvtc66-v15"; // ✅ augmente le numéro à chaque changement
+const CACHE_NAME = "dcvtc66-v16"; // ✅ augmente le numéro à chaque changement
 
 const FILES_TO_CACHE = [
   "/",
   "/index.html",
-  "/styles.css?v=10",   // ✅ doit matcher ton index (v=10)
+  "/styles.css?v=11",   // ✅ doit matcher ton index (v=10)
   "/manifest.json",
   "/icon-192.png",
   "/icon-512.png",
