@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- ✅ Cache-buster -->
-  <link rel="stylesheet" href="styles.css?v=10" />
+  <!-- ✅ Cache-buster (incrémenté pour forcer la maj) -->
+  <link rel="stylesheet" href="styles.css?v=11" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#2563eb">
@@ -47,14 +47,12 @@
     .form-compact .row { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
     .form-compact label { display: flex; flex-direction: column; gap: .25rem; font-size: .85rem; font-weight: 500; letter-spacing: .02em; }
     .form-compact input, .form-compact textarea { padding: .75rem .85rem; border-radius: 14px; font-size: .92rem; line-height: 1.4; }
-    /* ✅ AJOUT MINIMAL: style du select (pour les nouveaux champs) */
     .form-compact select { padding: .75rem .85rem; border-radius: 14px; font-size: .92rem; line-height: 1.4; }
     .form-compact textarea { resize: vertical; min-height: 72px; }
 
     details.opt { margin-top: .45rem; }
     details.opt summary { cursor: pointer; font-weight: 700; opacity: .9; margin: .35rem 0 .25rem; }
 
-    /* Ligne actions (Estimer + SMS) */
     .actions-compact{
       display:grid;
       grid-template-columns: 1fr 1.15fr;
@@ -69,7 +67,6 @@
       letter-spacing:.02em;
     }
 
-    /* Bouton Email pleine largeur */
     .email-action{
       margin-top: .6rem;
       width: 100%;
@@ -86,7 +83,6 @@
     .result-compact{ background:#f0f7ff; color:#1b3b68; }
     .error-compact{ background:#ffecec; color:#a40000; }
 
-    /* Carte TOUJOURS visible */
     .map-wrapper { margin-top: .7rem; border-radius: 16px; overflow: hidden; }
     .map-wrapper-inner { position:relative; width:100%; height:320px; }
     #map { width:100%; height:100%; }
@@ -102,14 +98,12 @@
       .section, .section-alt { padding-left: 1.1rem; padding-right: 1.1rem; box-sizing: border-box; }
     }
 
-    /* ✅ Android : boutons PLUS PETITS + EN COLONNE */
     @media (max-width: 520px){
       .form-compact .row{ grid-template-columns: 1fr; }
       #tarif-flottant { left: 16px; right: 16px; top: 70px; justify-content: center; }
 
-      /* ✅ ICI le fix principal: 1 colonne */
       .actions-compact{
-        grid-template-columns: 1fr;  /* Estimer puis SMS l’un sous l’autre */
+        grid-template-columns: 1fr;
         gap: .55rem;
       }
 
@@ -122,6 +116,47 @@
       }
 
       .map-wrapper-inner{ height: 280px; }
+    }
+
+    /* =========================================================
+       ✅ AJOUTS PC (COLLÉS ICI) : boutons mêmes tailles + form large
+       ========================================================= */
+    @media (min-width: 1024px){
+
+      /* Carte haute un peu plus grande (logo + boutons) */
+      .branding{
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 3.2rem 3.2rem;
+      }
+
+      /* Boutons hero tous identiques */
+      .hero-actions{
+        gap: 1rem;
+      }
+      .hero-actions a.btn-primary{
+        width: 190px !important;
+        justify-content: center !important;
+        text-align: center !important;
+        display: inline-flex !important;
+      }
+
+      /* Formulaire réservation plus large */
+      #reservation .container{
+        max-width: 1200px;
+      }
+      .form-compact{
+        max-width: 900px !important;
+        width: 100%;
+      }
+
+      /* (option confort) champs un peu plus grands sur PC */
+      .form-compact input,
+      .form-compact select,
+      .form-compact textarea{
+        padding: 1rem 1rem;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -192,7 +227,6 @@ Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un
           <input type="datetime-local" name="DateHeure" required>
         </label>
 
-        <!-- ✅ AJOUT: Nombre de passagers (max 4) -->
         <label>Nombre de passagers
           <select name="Passagers" required>
             <option value="" selected>Sélectionner</option>
@@ -203,7 +237,6 @@ Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un
           </select>
         </label>
 
-        <!-- ✅ AJOUT: Mode de paiement -->
         <label>Mode de paiement
           <select name="Paiement" required>
             <option value="" selected>Sélectionner</option>
@@ -225,8 +258,6 @@ Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un
           <button type="submit" class="btn-primary">📩 Envoyer par SMS</button>
         </div>
 
-        <!-- ✅ BOUTON EMAIL SUPPRIMÉ ICI -->
-        <!-- ✅ AJOUT BOUTON WHATSAPP (à la place de l'email) -->
         <button type="button" id="btn-whatsapp-form" class="btn-primary email-action">💬 Envoyer par WhatsApp</button>
 
         <div id="erreur-tarif" class="error-compact" style="display:none;"></div>
@@ -263,9 +294,9 @@ Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un
         </article>
 
         <article class="card">
-  <h3>Mise à disposition</h3>
-  <p>Événements, mariages, soirées & mise à disposition à la journée.</p>
-</article>
+          <h3>Mise à disposition</h3>
+          <p>Événements, mariages, soirées & mise à disposition à la journée.</p>
+        </article>
       </div>
     </div>
   </section>
@@ -299,7 +330,6 @@ Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un
   </footer>
 
   <a href="tel:+33663463716" class="fab fab-call" aria-label="Appeler DCVTC66">📞</a>
-  <!-- ✅ MODIF MINIMALE DU FAB WHATSAPP (id + href #) -->
   <a href="#" id="fab-whatsapp" target="_blank" class="fab fab-whatsapp" aria-label="WhatsApp DCVTC66">💬</a>
 
   <div id="tarif-flottant">
@@ -328,8 +358,8 @@ Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un
       const depart = form["Départ"].value;
       const arrivee = form["Arrivee"].value;
       const dateHeure = formatDateHeureFR(form["DateHeure"].value);
-      const passagers = form["Passagers"].value;   /* ✅ AJOUT */
-      const paiement = form["Paiement"].value;     /* ✅ AJOUT */
+      const passagers = form["Passagers"].value;
+      const paiement = form["Paiement"].value;
       const messageClient = form["Message"].value;
 
       let sms = "Nouvelle demande – DCVTC66 :\n\n";
@@ -338,8 +368,8 @@ Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un
       sms += "Départ : " + depart + "\n";
       sms += "Arrivée : " + arrivee + "\n";
       sms += "Date & heure : " + dateHeure + "\n";
-      sms += "Passagers : " + passagers + "\n";  /* ✅ AJOUT */
-      sms += "Paiement : " + paiement + "\n";    /* ✅ AJOUT */
+      sms += "Passagers : " + passagers + "\n";
+      sms += "Paiement : " + paiement + "\n";
       if (messageClient.trim() !== "") sms += "Infos : " + messageClient + "\n";
 
       if (derniereEstimation) {
@@ -354,7 +384,6 @@ Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un
     });
   </script>
 
-  <!-- ✅ AJOUT SCRIPT WHATSAPP (bouton formulaire + fab) -->
   <script>
     function buildWhatsAppMessage() {
       const nom = form.Nom.value;
@@ -362,8 +391,8 @@ Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un
       const depart = form["Départ"].value;
       const arrivee = form["Arrivee"].value;
       const dateHeure = formatDateHeureFR(form["DateHeure"].value);
-      const passagers = form["Passagers"].value;   /* ✅ AJOUT */
-      const paiement = form["Paiement"].value;     /* ✅ AJOUT */
+      const passagers = form["Passagers"].value;
+      const paiement = form["Paiement"].value;
       const messageClient = form["Message"].value;
 
       let msg = "Nouvelle demande – DCVTC66 :\n\n";
@@ -372,8 +401,8 @@ Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un
       msg += "Départ : " + depart + "\n";
       msg += "Arrivée : " + arrivee + "\n";
       msg += "Date & heure : " + dateHeure + "\n";
-      msg += "Passagers : " + passagers + "\n";  /* ✅ AJOUT */
-      msg += "Paiement : " + paiement + "\n";    /* ✅ AJOUT */
+      msg += "Passagers : " + passagers + "\n";
+      msg += "Paiement : " + paiement + "\n";
       if (messageClient.trim() !== "") msg += "Infos : " + messageClient + "\n";
 
       if (derniereEstimation) {
@@ -387,17 +416,13 @@ Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un
     }
 
     function openWhatsAppPrefilled() {
-      const numeroWA = "33663463716"; // sans +
+      const numeroWA = "33663463716";
       const url = "https://wa.me/" + numeroWA + "?text=" + encodeURIComponent(buildWhatsAppMessage());
       window.open(url, "_blank");
     }
 
     const btnWhatsAppForm = document.getElementById("btn-whatsapp-form");
-    if (btnWhatsAppForm) {
-      btnWhatsAppForm.addEventListener("click", function () {
-        openWhatsAppPrefilled();
-      });
-    }
+    if (btnWhatsAppForm) btnWhatsAppForm.addEventListener("click", openWhatsAppPrefilled);
 
     const fabWhatsApp = document.getElementById("fab-whatsapp");
     if (fabWhatsApp) {
@@ -412,7 +437,6 @@ Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un
     const BASE_KM = 7;
     const BASE_TARIF = 20;
     const SUPP_PAR_KM = 1.60;
-
 
     let map;
     let distanceService;
@@ -507,30 +531,26 @@ Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un
           let distanceKm = Math.round((distanceMetres / 1000) * 10) / 10;
           const dureeTexte = element.duration.text;
 
-         let tarif = BASE_TARIF;
+          let tarif = BASE_TARIF;
 
-if (distanceKm > BASE_KM) {
-  tarif += (distanceKm - BASE_KM) * SUPP_PAR_KM;
-}
+          if (distanceKm > BASE_KM) {
+            tarif += (distanceKm - BASE_KM) * SUPP_PAR_KM;
+          }
 
-// ✅ Détection tarif de nuit (21h → 7h)
-const dateInput = form["DateHeure"].value;
-let heure = 12;
+          // ✅ Détection tarif de nuit (21h → 7h)
+          const dateInput = form["DateHeure"].value;
+          let heure = 12;
 
-if (dateInput) {
-  const dateObj = new Date(dateInput);
-  heure = dateObj.getHours();
-}
+          if (dateInput) {
+            const dateObj = new Date(dateInput);
+            heure = dateObj.getHours();
+          }
 
-// Si entre 21h et 7h → +20%
-let tarifNuit = false;
+          if (heure >= 21 || heure < 7) {
+            tarif = tarif * 1.20;
+          }
 
-if (heure >= 21 || heure < 7) {
-  tarif = tarif * 1.20;
-  tarifNuit = true;
-}
-
-tarif = Math.round(tarif * 100) / 100;
+          tarif = Math.round(tarif * 100) / 100;
 
           derniereEstimation = { distanceKm, dureeTexte, tarif };
 
@@ -558,9 +578,7 @@ tarif = Math.round(tarif * 100) / 100;
     }
   </script>
 
- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA5J7_7fNdWgVsGRLWRfQZaO6qgCEqq_Y&callback=initMap&libraries=places" async defer></script>
-
-  <!-- ✅ SCRIPT EMAIL SUPPRIMÉ ICI -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA5J7_7fNdWgVsGRLWRfQZaO6qgCEqq_Y&callback=initMap&libraries=places" async defer></script>
 
   <script>
     if ("serviceWorker" in navigator) {
@@ -609,39 +627,31 @@ tarif = Math.round(tarif * 100) / 100;
     });
   </script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "TransportationService", "ProfessionalService"],
-  "@id": "https://www.dcvtc66.fr/#business",
-  "name": "DCVTC66 — Chauffeur VTC à Perpignan",
-  "url": "https://www.dcvtc66.fr/",
-  "image": "https://www.dcvtc66.fr/LOGO%20DCVTC66.png",
-  "logo": "https://www.dcvtc66.fr/LOGO%20DCVTC66.png",
-  "telephone": "+33663463716",
-  "priceRange": "€€",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Perpignan",
-    "postalCode": "66000",
-    "addressCountry": "FR"
-  },
-  "areaServed": [
-    {
-      "@type": "City",
-      "name": "Perpignan"
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "TransportationService", "ProfessionalService"],
+    "@id": "https://www.dcvtc66.fr/#business",
+    "name": "DCVTC66 — Chauffeur VTC à Perpignan",
+    "url": "https://www.dcvtc66.fr/",
+    "image": "https://www.dcvtc66.fr/LOGO%20DCVTC66.png",
+    "logo": "https://www.dcvtc66.fr/LOGO%20DCVTC66.png",
+    "telephone": "+33663463716",
+    "priceRange": "€€",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Perpignan",
+      "postalCode": "66000",
+      "addressCountry": "FR"
     },
-    {
-      "@type": "AdministrativeArea",
-      "name": "Pyrénées-Orientales"
-    }
-  ],
-  "openingHours": "Mo-Su 00:00-23:59",
-  "sameAs": [
-    "https://wa.me/33663463716"
-  ]
-}
-</script>
+    "areaServed": [
+      { "@type": "City", "name": "Perpignan" },
+      { "@type": "AdministrativeArea", "name": "Pyrénées-Orientales" }
+    ],
+    "openingHours": "Mo-Su 00:00-23:59",
+    "sameAs": [ "https://wa.me/33663463716" ]
+  }
+  </script>
 
 </body>
 </html>
