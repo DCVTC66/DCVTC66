@@ -413,6 +413,7 @@ Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un
     const BASE_TARIF = 20;
     const SUPP_PAR_KM = 1.60;
 
+
     let map;
     let distanceService;
     let directionsService;
@@ -522,8 +523,11 @@ if (dateInput) {
 }
 
 // Si entre 21h et 7h → +20%
+let tarifNuit = false;
+
 if (heure >= 21 || heure < 7) {
   tarif = tarif * 1.20;
+  tarifNuit = true;
 }
 
 tarif = Math.round(tarif * 100) / 100;
