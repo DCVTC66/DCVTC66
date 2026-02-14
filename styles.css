@@ -455,3 +455,74 @@ details.opt summary {
   background: #0b1733;
   color: var(--text-main);
 }
+/* =========================
+   💻 AGRANDISSEMENT PC UNIQUEMENT
+   Carte haute + Formulaire réservation
+   ========================= */
+@media (min-width: 1024px) {
+
+  /* Carte haute (logo + boutons) */
+  .header {
+    padding: 3.2rem 0 2.4rem;
+  }
+
+  .branding {
+    max-width: 900px;     /* avant 650px */
+    padding: 3.4rem 3.2rem; /* avant 2.5rem 2rem */
+    border-radius: 2.2rem;  /* plus “premium” */
+  }
+
+  .logo {
+    width: 150px;         /* avant 120px */
+    margin-bottom: 1.4rem;
+  }
+
+  .site-title {
+    font-size: 2.9rem;    /* avant 2.3rem */
+  }
+
+  .site-subtitle {
+    font-size: 1.05rem;   /* avant 0.9rem */
+    margin-bottom: 1.7rem;
+  }
+
+  .btn-primary {
+    padding: 0.85rem 1.5rem; /* avant 0.6rem 1.1rem */
+    font-size: 0.95rem;      /* avant 0.8rem */
+  }
+
+  .hero-badges span {
+    font-size: 0.9rem;
+    padding: 0.55rem 1.05rem;
+  }
+
+  /* Formulaire réservation */
+  .form {
+    max-width: 760px;    /* avant 560px */
+    padding: 2rem 2rem;  /* avant 1.3rem 1.2rem */
+    border-radius: 1.6rem;
+  }
+
+  .form label {
+    font-size: 0.95rem;  /* avant 0.85rem */
+    margin-bottom: 0.75rem;
+  }
+
+  .form input,
+  .form textarea,
+  .form select {
+    padding: 0.95rem 1rem;  /* avant 0.75rem 0.85rem */
+    font-size: 1rem;
+  }
+
+  .actions-compact {
+    margin-top: 0.9rem;
+    gap: 0.75rem;
+  }
+
+  .btn-estimate,
+  .actions-compact .btn-primary {
+    padding: 1.05rem 1.2rem;
+    font-size: 1rem;
+  }
+}
