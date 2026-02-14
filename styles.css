@@ -526,3 +526,20 @@ details.opt summary {
     font-size: 1rem;
   }
 }
+/* 💻 Agrandir VRAIMENT le formulaire sur PC */
+@media (min-width: 1024px) {
+
+  .section .container {
+    max-width: 1200px;   /* élargit la zone globale */
+  }
+
+  .form-compact {
+    max-width: 900px !important;   /* force largeur plus grande */
+    width: 100%;
+  }
+
+  .form-compact .row {
+    gap: 1rem;  /* espace plus confortable */
+  }
+
+}
