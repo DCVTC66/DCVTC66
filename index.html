@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- ✅ Cache-buster (incrémenté pour forcer la maj) -->
-  <link rel="stylesheet" href="styles.css?v=11" />
+  <!-- ✅ Cache-buster (FORCÉ pour éviter l’ancien cache) -->
+  <link rel="stylesheet" href="styles.css?v=99" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#2563eb">
@@ -116,10 +116,18 @@
       }
 
       .map-wrapper-inner{ height: 280px; }
+
+      /* ✅ (PROPRE) Installer même largeur que les boutons hero sur mobile */
+      #btn-install.btn-primary{
+        width: 100%;
+        max-width: 320px;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
     }
 
     /* =========================================================
-       ✅ AJOUTS PC (COLLÉS ICI) : boutons mêmes tailles + form large
+       ✅ AJOUTS PC : boutons mêmes tailles + form large
        ========================================================= */
     @media (min-width: 1024px){
 
@@ -130,15 +138,19 @@
         padding: 3.2rem 3.2rem;
       }
 
-      /* Boutons hero tous identiques */
+      /* ✅ 4 boutons identiques (Appeler/WhatsApp/Réserver/Installer) */
       .hero-actions{
         gap: 1rem;
       }
-      .hero-actions a.btn-primary{
+
+      .hero-actions a.btn-primary,
+      #btn-install.btn-primary{
         width: 190px !important;
+        height: 48px !important;
         justify-content: center !important;
         text-align: center !important;
         display: inline-flex !important;
+        align-items: center !important;
       }
 
       /* Formulaire réservation plus large */
