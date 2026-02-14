@@ -1,84 +1,420 @@
+:root {
+  --bg-main: #0b1733;
+  --bg-light: #102a5c;
+  --bg-alt: #1e4696;
+  --primary: #facc15;
+  --primary-soft: rgba(250, 204, 21, 0.22);
+  --text-main: #f8fafc;
+  --text-muted: #b6ccff;
+  --card-bg: rgba(16, 42, 92, 0.88);
+  --border-soft: rgba(186, 204, 255, 0.35);
+  --error: #f87171;
+  --shadow-soft: 0 20px 50px rgba(2, 6, 23, 0.6);
+}
+
+/* RESET */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* BODY */
+body {
+  margin: 0;
+  font-family: "Poppins", system-ui, sans-serif;
+  color: var(--text-main);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(250, 204, 21, 0.25), transparent 45%),
+    radial-gradient(circle at 85% 20%, rgba(56, 189, 248, 0.45), transparent 50%),
+    linear-gradient(to bottom, var(--bg-main), var(--bg-light) 45%, var(--bg-alt));
+}
+
+/* CONTAINER */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* NAV */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(12px);
+  background: rgba(11, 23, 51, 0.85);
+  border-bottom: 1px solid var(--border-soft);
+}
+.nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.6rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.nav a {
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.nav a:hover { color: var(--primary); }
+
+/* HEADER */
+.header { padding: 2.5rem 0 2rem; }
+.header-inner { display: flex; justify-content: center; }
+
+.branding {
+  text-align: center;
+  max-width: 650px;
+  background: rgba(16, 42, 92, 0.95);
+  border-radius: 1.6rem;
+  padding: 2.5rem 2rem;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-soft);
+}
+
+.logo {
+  width: 120px;
+  border-radius: 999px;
+  border: 2px solid var(--primary);
+  padding: 4px;
+  background: var(--bg-main);
+  margin-bottom: 1.2rem;
+}
+
+.site-title {
+  font-family: "Playfair Display", serif;
+  font-size: 2.3rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.site-subtitle {
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.4rem;
+}
+
+/* HERO ACTIONS */
+.hero-actions {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #fde047, #facc15);
+  color: #0b1733;
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 12px 28px rgba(250, 204, 21, 0.45);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.btn-primary:hover { transform: translateY(-1px); }
+
+/* BADGES */
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.2rem;
+}
+.hero-badges span {
+  font-size: 0.8rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  background: rgba(16, 42, 92, 0.85);
+}
+
+/* SECTIONS */
+.section { padding: 3rem 0; }
+.section-alt {
+  background: radial-gradient(circle at top, rgba(56,189,248,0.25), rgba(16,42,92,0.95));
+}
+.section-title {
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  font-size: 1.8rem;
+}
+.section-intro {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto 1.2rem;
+  color: var(--text-muted);
+}
+
+/* SERVICES */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.4rem;
+}
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-soft);
+  border-radius: 1.2rem;
+  padding: 1.2rem 1.1rem;
+  box-shadow: var(--shadow-soft);
+}
+.card h3 {
+  margin: 0 0 0.4rem;
+  color: var(--primary);
+  letter-spacing: 0.04em;
+}
+.card p { margin: 0; color: var(--text-muted); line-height: 1.45; }
+
+/* CONTACT */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-top: 1.2rem;
+}
+.contact-grid a { color: var(--primary); text-decoration: none; }
+.contact-grid a:hover { text-decoration: underline; }
+
+/* FORM */
+.form {
+  max-width: 560px;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.06);
+  padding: 1.3rem 1.2rem;
+  border-radius: 1.4rem;
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+}
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.85rem;
+}
+.form input, .form textarea, .form select {
+  padding: 0.75rem 0.85rem;
+  border-radius: 14px;
+  border: 1px solid var(--border-soft);
+  background: rgba(11,23,51,0.35);
+  color: var(--text-main);
+}
+.form input:focus, .form textarea:focus, .form select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+.form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+
+/* OPTIONS */
+details.opt summary { cursor: pointer; font-weight: 700; margin: 0.3rem 0; }
+
+/* ACTIONS */
+.actions-compact {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+}
+.btn-estimate {
+  background: linear-gradient(135deg, #ff6f00, #ff9100);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.9rem 1rem;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+}
+
+/* RESULTATS */
+.result-compact {
+  background: #f0f7ff;
+  color: #1b3b68;
+  padding: 0.65rem;
+  border-radius: 12px;
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+}
+.error-compact {
+  background: #ffecec;
+  color: #a40000;
+  padding: 0.65rem;
+  border-radius: 12px;
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+}
+
+/* FOOTER */
+.footer {
+  padding: 1.6rem 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background: rgba(11,23,51,0.65);
+  border-top: 1px solid var(--border-soft);
+}
+.footer-links a { color: var(--text-muted); text-decoration: none; }
+.footer-links a:hover { color: var(--primary); }
+
+/* FLOATING BUTTONS */
+.fab {
+  position: fixed;
+  right: 1.2rem;
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  z-index: 20;
+  text-decoration: none;
+}
+.fab-call {
+  bottom: 1.2rem;
+  background: linear-gradient(135deg, #fde047, #facc15);
+  color: #0b1733;
+}
+.fab-whatsapp {
+  bottom: 4.5rem;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #ecfdf5;
+}
+
+/* SPLASH SCREEN */
+#splash-screen {
+  position: fixed;
+  inset: 0;
+  background: #0b1224;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+#splash-screen img {
+  width: 96px;
+  border-radius: 18px;
+  animation: splash 1.6s ease-in-out infinite;
+}
+@keyframes splash {
+  0% { transform: scale(0.98); opacity: 0.85; }
+  50% { transform: scale(1.04); opacity: 1; }
+  100% { transform: scale(0.98); opacity: 0.85; }
+}
+#splash-screen p {
+  color: var(--primary);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 520px) {
+  .form .row { grid-template-columns: 1fr; }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+    width: 100%;
+    max-width: 320px;
+    margin: 1.05rem auto 0;
+  }
+
+  .hero-actions .btn-primary {
+    width: 100%;
+    padding: 0.65rem 0.9rem;
+    font-size: 0.82rem;
+  }
+
+  #btn-install.btn-primary {
+    width: 100%;
+    max-width: 320px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0.65rem 0.9rem;
+    font-size: 0.82rem;
+  }
+}
+
+/* boutons tarif (tu l’avais deux fois, je laisse 1 seule version propre) */
+#btn-tarif {
+  background: linear-gradient(135deg, #25D366, #1ebe5d);
+  color: #000;
+}
+
+/* SELECT style (ta version propre) */
+.form select {
+  background: rgba(11,23,51,0.35) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border-soft) !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.form select option {
+  background: #0b1733;
+  color: var(--text-main);
+}
+
+/* PLACEHOLDERS */
+.form input::placeholder { color: rgba(182, 204, 255, 0.75); }
+.form input[type="datetime-local"]::-webkit-datetime-edit { color: rgba(182, 204, 255, 0.75); }
+.form input[type="datetime-local"]:valid::-webkit-datetime-edit { color: var(--text-main); }
+
+/* SELECT placeholder/valid */
+.form select { color: rgba(182, 204, 255, 0.75); }
+.form select:valid { color: var(--text-main); }
+
 /* =========================
-   💻 PC UNIQUEMENT (propre)
-   Carte haute + Formulaire + Boutons mêmes tailles
+   💻 PC UNIQUEMENT (clean)
+   - Agrandir carte + formulaire
+   - Fixer 4 boutons hero même taille
    ========================= */
 @media (min-width: 1024px) {
+  .header { padding: 3.2rem 0 2.4rem; }
 
-  /* Container un peu plus large sur PC */
-  .container{
-    max-width: 1200px;
-  }
-
-  /* Carte haute (logo + boutons) */
-  .header{
-    padding: 3.2rem 0 2.4rem;
-  }
-  .branding{
+  .branding {
     max-width: 900px;
-    margin: 0 auto;
     padding: 3.4rem 3.2rem;
     border-radius: 2.2rem;
   }
-  .logo{
-    width: 150px;
-    margin-bottom: 1.4rem;
-  }
-  .site-title{
-    font-size: 2.9rem;
-  }
-  .site-subtitle{
-    font-size: 1.05rem;
-    margin-bottom: 1.7rem;
-  }
 
-  /* Boutons HERO : tous identiques */
-  .hero-actions{
-    gap: 1rem;
-  }
-  .hero-actions a.btn-primary{
+  .logo { width: 150px; margin-bottom: 1.4rem; }
+  .site-title { font-size: 2.9rem; }
+  .site-subtitle { font-size: 1.05rem; margin-bottom: 1.7rem; }
+
+  /* Formulaire */
+  .section .container { max-width: 1200px; }
+  .form { max-width: 760px; padding: 2rem 2rem; border-radius: 1.6rem; }
+  .form label { font-size: 0.95rem; margin-bottom: 0.75rem; }
+  .form input, .form textarea, .form select { padding: 0.95rem 1rem; font-size: 1rem; }
+  .actions-compact { margin-top: 0.9rem; gap: 0.75rem; }
+  .btn-estimate, .actions-compact .btn-primary { padding: 1.05rem 1.2rem; font-size: 1rem; }
+
+  /* ✅ LE FIX IMPORTANT : 4 boutons du haut même taille */
+  .hero-actions a.btn-primary,
+  #btn-install.btn-primary {
     width: 190px;
-    height: 52px;
-    padding: 0.85rem 1.2rem;
-    font-size: 0.95rem;
     justify-content: center;
     text-align: center;
-    white-space: nowrap;
-  }
-
-  /* Badges un peu plus gros */
-  .hero-badges span{
-    font-size: 0.9rem;
-    padding: 0.55rem 1.05rem;
-  }
-
-  /* Formulaire réservation */
-  .form{
-    max-width: 900px;
-    padding: 2rem 2rem;
-    border-radius: 1.6rem;
-  }
-
-  .form label{
-    font-size: 0.95rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .form input,
-  .form textarea,
-  .form select{
-    padding: 0.95rem 1rem;
-    font-size: 1rem;
-  }
-
-  .actions-compact{
-    margin-top: 0.9rem;
-    gap: 0.75rem;
-  }
-
-  .btn-estimate,
-  .actions-compact .btn-primary,
-  .email-action{
-    padding: 1.05rem 1.2rem;
-    font-size: 1rem;
   }
 }
