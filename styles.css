@@ -543,3 +543,19 @@ details.opt summary {
   }
 
 }
+/* 💻 Boutons identiques sur PC */
+@media (min-width: 1024px) {
+
+  .hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .hero-actions a.btn-primary {
+    width: 180px;        /* largeur fixe identique */
+    justify-content: center;
+    text-align: center;
+  }
+
+}
