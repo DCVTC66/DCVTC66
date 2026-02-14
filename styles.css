@@ -559,3 +559,12 @@ details.opt summary {
   }
 
 }
+/* ✅ FIX PC : 3 boutons hero = même largeur */
+@media (min-width: 1024px){
+  .hero-actions a.btn-primary{
+    width: 190px !important;
+    justify-content: center !important;
+    text-align: center !important;
+    display: inline-flex !important;
+  }
+}
