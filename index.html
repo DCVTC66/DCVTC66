@@ -169,18 +169,22 @@
         padding: 1rem 1rem;
         font-size: 1rem;
       }
-      .hero-actions{
-  justify-content: center;
+     /* ✅ PC : bouton Installer centré + largeur exacte des 3 boutons */
+@media (min-width: 1024px){
+  #btn-install{
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+
+    width: calc(190px * 3 + 2rem) !important; /* 3 boutons + espace */
+    height: 48px !important;
+
+    margin: 16px auto 0 auto !important;
+    white-space: nowrap !important;
+  }
 }
 
-#btn-install{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: calc(190px * 3 + 2rem); /* largeur exacte des 3 boutons + espaces */
-  height: 48px;
-  margin: 18px auto 0 auto;
-}
   </style>
 </head>
 
