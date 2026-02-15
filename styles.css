@@ -418,3 +418,11 @@ details.opt summary { cursor: pointer; font-weight: 700; margin: 0.3rem 0; }
     text-align: center;
   }
 }
+/* === FIX DEFINITIF BOUTON INSTALLER === */
+#btn-install{
+  width: 260px !important;
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 12px auto 0 auto !important;
+}
