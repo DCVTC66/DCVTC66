@@ -411,10 +411,22 @@ details.opt summary { cursor: pointer; font-weight: 700; margin: 0.3rem 0; }
   .btn-estimate, .actions-compact .btn-primary { padding: 1.05rem 1.2rem; font-size: 1rem; }
 
   /* ✅ LE FIX IMPORTANT : 4 boutons du haut même taille */
-  .hero-actions a.btn-primary,
-  #btn-install.btn-primary {
-    width: 190px;
-    justify-content: center;
-    text-align: center;
-  }
+  /* ✅ 3 boutons du haut = 190px */
+.hero-actions a.btn-primary {
+  width: 190px;
+  justify-content: center;
+  text-align: center;
+}
+
+/* ✅ Installer = largeur totale des 3 boutons */
+#btn-install {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: calc(190px * 3 + 2rem); /* 3 boutons + espace */
+  height: 48px;
+
+  margin: 18px auto 0 auto;
+  white-space: nowrap;
 }
