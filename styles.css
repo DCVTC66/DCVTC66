@@ -442,3 +442,18 @@ details.opt summary { cursor: pointer; font-weight: 700; margin: 0.3rem 0; }
   }
 
 }
+/* 💻 PC uniquement */
+@media (min-width: 1024px) {
+  #btn-install {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+
+    width: 420px !important;   /* ← largeur rallongée */
+    height: 48px !important;
+
+    margin: 18px auto 0 auto !important; /* centré */
+    white-space: nowrap !important;
+  }
+}
