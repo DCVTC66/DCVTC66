@@ -169,14 +169,17 @@
         padding: 1rem 1rem;
         font-size: 1rem;
       }
-       #btn-install{
-  width: 450px !important;          /* plus large que les 3 autres */
-  height: 48px !important;          /* même hauteur que les autres */
-  display: flex !important;
-  align-items: center !important;   /* centre vertical */
-  justify-content: center !important; /* centre horizontal */
-  white-space: nowrap !important;   /* empêche retour à la ligne */
-  margin: 18px auto 0 auto !important; /* centre le bouton */
+      .hero-actions{
+  justify-content: center;
+}
+
+#btn-install{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(190px * 3 + 2rem); /* largeur exacte des 3 boutons + espaces */
+  height: 48px;
+  margin: 18px auto 0 auto;
 }
   </style>
 </head>
