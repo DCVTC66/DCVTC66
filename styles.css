@@ -442,12 +442,3 @@ details.opt summary { cursor: pointer; font-weight: 700; margin: 0.3rem 0; }
   }
 
 }
-/* ===== FIX FINAL BOUTON INSTALLER ===== */
-
-#btn-install{
-  display: block;
-  width: 420px;
-  height: 48px;
-  margin: 20px auto 0 auto;
-  text-align: center;
-}
