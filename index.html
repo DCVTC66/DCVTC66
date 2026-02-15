@@ -169,15 +169,16 @@
         padding: 1rem 1rem;
         font-size: 1rem;
       }
-#btn-install{
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 260px !important;   /* plus large que les 3 autres */
-  margin: 14px auto 0 auto !important;
-  text-align: center !important;
-}
   </style>
+  #btn-install{
+  width: 260px !important;          /* plus large que les 3 autres */
+  height: 48px !important;          /* même hauteur que les autres */
+  display: flex !important;
+  align-items: center !important;   /* centre vertical */
+  justify-content: center !important; /* centre horizontal */
+  white-space: nowrap !important;   /* empêche retour à la ligne */
+  margin: 16px auto 0 auto !important; /* centre le bouton */
+}
 </head>
 
 <body>
