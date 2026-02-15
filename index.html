@@ -171,18 +171,16 @@
       }
      /* ✅ PC : bouton Installer centré + largeur exacte des 3 boutons */
 @media (min-width: 1024px){
+
   #btn-install{
+    width: 190px !important;   /* même largeur que les 3 autres */
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
     text-align: center !important;
-
-    width: calc(190px * 3 + 2rem) !important; /* 3 boutons + espace */
-    height: 48px !important;
-
-    margin: 16px auto 0 auto !important;
-    white-space: nowrap !important;
+    margin: 16px auto 0 auto !important; /* centré */
   }
+
 }
 
   </style>
