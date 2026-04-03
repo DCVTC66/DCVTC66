@@ -476,18 +476,18 @@ Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un
       const inputArrivee = document.querySelector('input[name="Arrivee"]');
 
       if (inputDepart) {
-        new google.maps.places.Autocomplete(inputDepart, {
-          types: ['geocode'],
-          componentRestrictions: { country: 'fr' }
-        });
-      }
+    new google.maps.places.Autocomplete(inputDepart, {
+        types: ['geocode', 'establishment'], // Ajout de establishment ici
+        componentRestrictions: { country: 'fr' }
+    });
+}
 
-      if (inputArrivee) {
-        new google.maps.places.Autocomplete(inputArrivee, {
-          types: ['geocode'],
-          componentRestrictions: { country: 'fr' }
-        });
-      }
+if (inputArrivee) {
+    new google.maps.places.Autocomplete(inputArrivee, {
+        types: ['geocode', 'establishment'], // Et ici aussi
+        componentRestrictions: { country: 'fr' }
+    });
+}
 
       const btnTarif = document.getElementById("btn-tarif");
       if (btnTarif) btnTarif.addEventListener("click", calculerTarif);
