@@ -11,14 +11,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- ✅ Cache-buster (FORCÉ pour éviter l’ancien cache) -->
   <link rel="stylesheet" href="styles.css?v=99" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#2563eb">
   <link rel="apple-touch-icon" href="/icon-192.png">
-  <link rel="canonical" href="https://dcvtc66.fr/" />
   
+  <!-- ✅ BALISE CANONIQUE CORRECTE POUR LA PAGE D'ACCUEIL -->
+  <link rel="canonical" href="https://dcvtc66.fr/" />
+
   <style>
     html, body { margin: 0; padding: 0; overflow-x: hidden; }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; box-sizing: border-box; }
@@ -118,7 +119,6 @@
 
       .map-wrapper-inner{ height: 280px; }
 
-      /* ✅ (PROPRE) Installer même largeur que les boutons hero sur mobile */
       #btn-install.btn-primary{
         width: 100%;
         max-width: 320px;
@@ -127,19 +127,13 @@
       }
     }
 
-    /* =========================================================
-       ✅ AJOUTS PC : boutons mêmes tailles + form large
-       ========================================================= */
     @media (min-width: 1024px){
-
-      /* Carte haute un peu plus grande (logo + boutons) */
       .branding{
         max-width: 860px;
         margin: 0 auto;
         padding: 3.2rem 3.2rem;
       }
 
-      /* ✅ 4 boutons identiques (Appeler/WhatsApp/Réserver/Installer) */
       .hero-actions{
         gap: 1rem;
       }
@@ -154,7 +148,6 @@
         align-items: center !important;
       }
 
-      /* Formulaire réservation plus large */
       #reservation .container{
         max-width: 1200px;
       }
@@ -163,7 +156,6 @@
         width: 100%;
       }
 
-      /* (option confort) champs un peu plus grands sur PC */
       .form-compact input,
       .form-compact select,
       .form-compact textarea{
@@ -199,7 +191,7 @@
         </div>
 
         <button id="btn-install" class="btn-primary" style="display:none; margin-top:10px;">
-          📲 Installer l’application
+          📲 Installer l'application
         </button>
 
         <div class="hero-badges">
@@ -214,8 +206,7 @@
   <section id="reservation" class="section section-alt">
     <div class="container">
       <h2 class="section-title">Réservation</h2>
-      <p style="text-align:center;">
-Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un clic.</p>
+      <p style="text-align:center;">Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un clic.</p>
 
       <form id="reservation-form" class="form form-compact">
         <div class="row">
@@ -477,18 +468,18 @@ Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un
       const inputArrivee = document.querySelector('input[name="Arrivee"]');
 
       if (inputDepart) {
-    new google.maps.places.Autocomplete(inputDepart, {
-        types: ['geocode', 'establishment'], // Ajout de establishment ici
-        componentRestrictions: { country: 'fr' }
-    });
-}
+        new google.maps.places.Autocomplete(inputDepart, {
+          types: ['geocode', 'establishment'],
+          componentRestrictions: { country: 'fr' }
+        });
+      }
 
-if (inputArrivee) {
-    new google.maps.places.Autocomplete(inputArrivee, {
-        types: ['geocode', 'establishment'], // Et ici aussi
-        componentRestrictions: { country: 'fr' }
-    });
-}
+      if (inputArrivee) {
+        new google.maps.places.Autocomplete(inputArrivee, {
+          types: ['geocode', 'establishment'],
+          componentRestrictions: { country: 'fr' }
+        });
+      }
 
       const btnTarif = document.getElementById("btn-tarif");
       if (btnTarif) btnTarif.addEventListener("click", calculerTarif);
@@ -508,7 +499,7 @@ if (inputArrivee) {
       if (flottant) flottant.style.display = "none";
 
       if (!depart || !arrivee) {
-        errDiv.textContent = "Veuillez renseigner le départ et l’arrivée.";
+        errDiv.textContent = "Veuillez renseigner le départ et l'arrivée.";
         errDiv.style.display = "block";
         form.scrollIntoView({ behavior: "smooth", block: "start" });
         return;
@@ -535,7 +526,7 @@ if (inputArrivee) {
           const element = response.rows[0].elements[0];
           if (element.status !== "OK") {
             resDiv.style.display = "none";
-            errDiv.textContent = "Adresse introuvable. Vérifiez l’orthographe.";
+            errDiv.textContent = "Adresse introuvable. Vérifiez l'orthographe.";
             errDiv.style.display = "block";
             return;
           }
@@ -550,7 +541,6 @@ if (inputArrivee) {
             tarif += (distanceKm - BASE_KM) * SUPP_PAR_KM;
           }
 
-          // ✅ Détection tarif de nuit (21h → 7h)
           const dateInput = form["DateHeure"].value;
           let heure = 12;
 
@@ -665,6 +655,5 @@ if (inputArrivee) {
     "sameAs": [ "https://wa.me/33663463716" ]
   }
   </script>
-
 </body>
 </html>
