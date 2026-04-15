@@ -52,6 +52,17 @@
     .form-compact select { padding: .75rem .85rem; border-radius: 14px; font-size: .92rem; line-height: 1.4; }
     .form-compact textarea { resize: vertical; min-height: 72px; }
 
+    /* Style pour le conteneur des dates aller-retour */
+    .dates-retour-container {
+      display: none;
+      margin-top: 0.5rem;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     details.opt { margin-top: .45rem; }
     details.opt summary { cursor: pointer; font-weight: 700; opacity: .9; margin: .35rem 0 .25rem; }
 
@@ -219,6 +230,14 @@
           </label>
         </div>
 
+        <!-- TYPE DE TRAJET -->
+        <label>Type de trajet
+          <select name="Trajet" id="trajet-type">
+            <option value="simple">Aller simple</option>
+            <option value="aller-retour">Aller-Retour (réduction 10% sur le retour)</option>
+          </select>
+        </label>
+
         <label>Départ
           <input type="text" name="Départ" placeholder="Adresse de prise en charge" required>
         </label>
@@ -227,9 +246,17 @@
           <input type="text" name="Arrivee" placeholder="Adresse de destination" required>
         </label>
 
-        <label>Date & heure
-          <input type="datetime-local" name="DateHeure" required>
+        <!-- Date aller (toujours visible) -->
+        <label>Date & heure aller
+          <input type="datetime-local" name="DateHeureAller" id="date-aller" required>
         </label>
+
+        <!-- Date retour (visible uniquement pour aller-retour) -->
+        <div id="dates-retour-container" class="dates-retour-container">
+          <label>Date & heure retour
+            <input type="datetime-local" name="DateHeureRetour" id="date-retour">
+          </label>
+        </div>
 
         <label>Nombre de passagers
           <select name="Passagers" required>
@@ -247,14 +274,6 @@
             <option value="Lien sécurisé (CB)">Lien sécurisé (CB)</option>
             <option value="CB à bord">CB à bord</option>
             <option value="Espèces à bord">Espèces à bord</option>
-          </select>
-        </label>
-
-        <!-- NOUVEAU : Type de trajet (Aller simple / Aller-Retour) -->
-        <label>Type de trajet
-          <select name="Trajet" id="trajet-type">
-            <option value="simple">Aller simple</option>
-            <option value="aller-retour">Aller-Retour (réduction 10% sur le retour)</option>
           </select>
         </label>
 
@@ -357,11 +376,33 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    function formatDateHeureFR(value) { if (!value) return ""; return value.replace("T", " à "); }
+    function formatDateHeureFR(value) { 
+      if (!value) return ""; 
+      return value.replace("T", " à "); 
+    }
 
     let derniereEstimation = null;
 
     const form = document.getElementById('reservation-form');
+    const trajetSelect = document.getElementById('trajet-type');
+    const datesRetourContainer = document.getElementById('dates-retour-container');
+    const dateRetourInput = document.getElementById('date-retour');
+
+    // Afficher/masquer la date retour selon le type de trajet
+    function toggleDateRetour() {
+      if (trajetSelect.value === 'aller-retour') {
+        datesRetourContainer.style.display = 'block';
+        dateRetourInput.required = true;
+      } else {
+        datesRetourContainer.style.display = 'none';
+        dateRetourInput.required = false;
+        dateRetourInput.value = '';
+      }
+    }
+
+    trajetSelect.addEventListener('change', toggleDateRetour);
+    toggleDateRetour(); // Initialisation
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -369,11 +410,12 @@
       const tel = form["Téléphone"].value;
       const depart = form["Départ"].value;
       const arrivee = form["Arrivee"].value;
-      const dateHeure = formatDateHeureFR(form["DateHeure"].value);
+      const dateAller = formatDateHeureFR(form["DateHeureAller"].value);
+      const dateRetour = trajetSelect.value === 'aller-retour' ? formatDateHeureFR(dateRetourInput.value) : '';
       const passagers = form["Passagers"].value;
       const paiement = form["Paiement"].value;
       const messageClient = form["Message"].value;
-      const trajetType = document.getElementById("trajet-type").value;
+      const trajetType = trajetSelect.value;
       const trajetTexte = trajetType === "aller-retour" ? "Aller-Retour" : "Aller simple";
 
       let sms = "Nouvelle demande – DCVTC66 :\n\n";
@@ -381,7 +423,10 @@
       sms += "Téléphone : " + tel + "\n";
       sms += "Départ : " + depart + "\n";
       sms += "Arrivée : " + arrivee + "\n";
-      sms += "Date & heure : " + dateHeure + "\n";
+      sms += "Date & heure aller : " + dateAller + "\n";
+      if (trajetType === "aller-retour" && dateRetour) {
+        sms += "Date & heure retour : " + dateRetour + "\n";
+      }
       sms += "Passagers : " + passagers + "\n";
       sms += "Paiement : " + paiement + "\n";
       sms += "Trajet : " + trajetTexte + "\n";
@@ -409,11 +454,12 @@
       const tel = form["Téléphone"].value;
       const depart = form["Départ"].value;
       const arrivee = form["Arrivee"].value;
-      const dateHeure = formatDateHeureFR(form["DateHeure"].value);
+      const dateAller = formatDateHeureFR(form["DateHeureAller"].value);
+      const dateRetour = trajetSelect.value === 'aller-retour' ? formatDateHeureFR(dateRetourInput.value) : '';
       const passagers = form["Passagers"].value;
       const paiement = form["Paiement"].value;
       const messageClient = form["Message"].value;
-      const trajetType = document.getElementById("trajet-type").value;
+      const trajetType = trajetSelect.value;
       const trajetTexte = trajetType === "aller-retour" ? "Aller-Retour" : "Aller simple";
 
       let msg = "Nouvelle demande – DCVTC66 :\n\n";
@@ -421,7 +467,10 @@
       msg += "Téléphone : " + tel + "\n";
       msg += "Départ : " + depart + "\n";
       msg += "Arrivée : " + arrivee + "\n";
-      msg += "Date & heure : " + dateHeure + "\n";
+      msg += "Date & heure aller : " + dateAller + "\n";
+      if (trajetType === "aller-retour" && dateRetour) {
+        msg += "Date & heure retour : " + dateRetour + "\n";
+      }
       msg += "Passagers : " + passagers + "\n";
       msg += "Paiement : " + paiement + "\n";
       msg += "Trajet : " + trajetTexte + "\n";
@@ -507,6 +556,12 @@
       if (btnTarif) btnTarif.addEventListener("click", calculerTarif);
     }
 
+    function getHeureFromDateTime(dateTimeValue) {
+      if (!dateTimeValue) return 12;
+      const dateObj = new Date(dateTimeValue);
+      return dateObj.getHours();
+    }
+
     function calculerTarif() {
       const resDiv = document.getElementById("resultat-tarif");
       const errDiv = document.getElementById("erreur-tarif");
@@ -515,7 +570,9 @@
 
       const depart = form["Départ"].value.trim();
       const arrivee = form["Arrivee"].value.trim();
-      const trajetType = document.getElementById("trajet-type").value;
+      const trajetType = trajetSelect.value;
+      const dateAllerValue = form["DateHeureAller"].value;
+      const dateRetourValue = dateRetourInput.value;
 
       errDiv.style.display = "none"; errDiv.textContent = "";
       resDiv.style.display = "none"; resDiv.textContent = "";
@@ -525,6 +582,18 @@
         errDiv.textContent = "Veuillez renseigner le départ et l'arrivée.";
         errDiv.style.display = "block";
         form.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+
+      if (!dateAllerValue) {
+        errDiv.textContent = "Veuillez renseigner la date et heure de départ.";
+        errDiv.style.display = "block";
+        return;
+      }
+
+      if (trajetType === "aller-retour" && !dateRetourValue) {
+        errDiv.textContent = "Veuillez renseigner la date et heure de retour.";
+        errDiv.style.display = "block";
         return;
       }
 
@@ -564,24 +633,27 @@
             tarif += (distanceKm - BASE_KM) * SUPP_PAR_KM;
           }
 
-          const dateInput = form["DateHeure"].value;
-          let heure = 12;
-
-          if (dateInput) {
-            const dateObj = new Date(dateInput);
-            heure = dateObj.getHours();
-          }
-
-          if (heure >= 21 || heure < 7) {
+          // Vérifier si tarif de nuit pour l'aller
+          let heureAller = getHeureFromDateTime(dateAllerValue);
+          if (heureAller >= 21 || heureAller < 7) {
             tarif = tarif * 1.20;
           }
 
-          // Application de la réduction pour aller-retour (10% de réduction sur le retour)
+          // Pour l'aller-retour, on applique la réduction de 10% sur le retour
           if (trajetType === "aller-retour") {
-            tarif = tarif * 1.8; // Prix aller x 1.8 au lieu de x2
+            // On recalcule un tarif pour le retour (sans majoration nuit pour l'exemple, ou avec)
+            let tarifRetour = BASE_TARIF;
+            if (distanceKm > BASE_KM) {
+              tarifRetour += (distanceKm - BASE_KM) * SUPP_PAR_KM;
+            }
+            let heureRetour = getHeureFromDateTime(dateRetourValue);
+            if (heureRetour >= 21 || heureRetour < 7) {
+              tarifRetour = tarifRetour * 1.20;
+            }
+            // Tarif total = aller + retour avec 10% de réduction sur le retour
+            tarif = tarif + (tarifRetour * 0.9);
+            tarif = Math.round(tarif * 100) / 100;
           }
-
-          tarif = Math.round(tarif * 100) / 100;
 
           derniereEstimation = { distanceKm, dureeTexte, tarif, trajetType };
 
@@ -590,7 +662,7 @@
 
           if (trajetType === "aller-retour") {
             affichage += "Estimation Aller-Retour : <strong>" + tarif.toFixed(2) + " €</strong><br>";
-            affichage += "<small>(réduction de 10% sur le retour)</small>";
+            affichage += "<small>(réduction de 10% sur le trajet retour)</small>";
           } else {
             affichage += "Estimation Aller simple : <strong>" + tarif.toFixed(2) + " €</strong>";
           }
@@ -600,7 +672,7 @@
 
           if (flottant && flottantTexte) {
             if (trajetType === "aller-retour") {
-              flottantTexte.textContent = "Aller-Retour : " + tarif.toFixed(2) + " € • " + distanceKm + " km";
+              flottantTexte.textContent = "Aller-Retour : " + tarif.toFixed(2) + " € • " + distanceKm + " km (A/R)";
             } else {
               flottantTexte.textContent = "Estimation : " + tarif.toFixed(2) + " € • " + distanceKm + " km";
             }
