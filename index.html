@@ -112,31 +112,34 @@
     }
 
     @media (max-width: 520px){
-      .form-compact .row{ grid-template-columns: 1fr; }
-      #tarif-flottant { left: 16px; right: 16px; top: 70px; justify-content: center; }
-
-      .actions-compact{
-        grid-template-columns: 1fr;
-        gap: .55rem;
-      }
-
-      .actions-compact .btn-primary,
-      .actions-compact .btn-estimate,
-      .email-action{
-        width: 100%;
-        padding: .7rem .85rem;
-        font-size: .85rem;
-      }
-
-      .map-wrapper-inner{ height: 280px; }
-
-      #btn-install.btn-primary{
-        width: 100%;
-        max-width: 320px;
-        margin-left: auto !important;
-        margin-right: auto !important;
-      }
-    }
+  .form-compact .row{ grid-template-columns: 1fr; }
+  #tarif-flottant { left: 16px; right: 16px; top: 70px; justify-content: center; }
+  .actions-compact{ grid-template-columns: 1fr; gap: .55rem; }
+  .actions-compact .btn-primary,
+  .actions-compact .btn-estimate,
+  .email-action{ 
+    width: 100%; 
+    padding: 0.9rem 1rem; 
+    font-size: 0.95rem; 
+  }
+  .map-wrapper-inner{ height: 280px; }
+  #btn-install.btn-primary{ width: 100%; max-width: 320px; margin-left: auto !important; margin-right: auto !important; }
+  
+  /* Agrandir les bords sur mobile */
+  .container {
+    padding: 0 1rem;
+  }
+  .form-compact {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .form-compact input,
+  .form-compact select,
+  .form-compact textarea {
+    padding: 0.9rem 1rem;
+    font-size: 1rem;
+  }
+}
 
     @media (min-width: 1024px){
       .branding{
