@@ -434,8 +434,8 @@
 
       if (derniereEstimation) {
         sms += "\n--- Estimation ---\n";
-        sms += "Distance : " + derniereEstimation.distanceKm + " km\n";
-        sms += "Durée : " + derniereEstimation.dureeTexte + "\n";
+        sms += "Distance : " + (derniereEstimation.distanceTotale || derniereEstimation.distanceKm) + " km\n";
+        sms += "Durée : " + (derniereEstimation.dureeTotale || derniereEstimation.dureeTexte) + "\n";
         if (derniereEstimation.trajetType === "aller-retour") {
           sms += "Tarif Aller-Retour : " + derniereEstimation.tarif.toFixed(2) + " €\n";
         } else {
@@ -478,8 +478,8 @@
 
       if (derniereEstimation) {
         msg += "\n--- Estimation ---\n";
-        msg += "Distance : " + derniereEstimation.distanceKm + " km\n";
-        msg += "Durée : " + derniereEstimation.dureeTexte + "\n";
+        msg += "Distance : " + (derniereEstimation.distanceTotale || derniereEstimation.distanceKm) + " km\n";
+        msg += "Durée : " + (derniereEstimation.dureeTotale || derniereEstimation.dureeTexte) + "\n";
         if (derniereEstimation.trajetType === "aller-retour") {
           msg += "Tarif Aller-Retour : " + derniereEstimation.tarif.toFixed(2) + " €\n";
         } else {
@@ -639,9 +639,12 @@
             tarif = tarif * 1.20;
           }
 
-          // Pour l'aller-retour, on applique la réduction de 10% sur le retour
+          let distanceTotale = distanceKm;
+          let dureeTotale = dureeTexte;
+          let tarifFinal = tarif;
+
+          // Pour l'aller-retour
           if (trajetType === "aller-retour") {
-            // On recalcule un tarif pour le retour (sans majoration nuit pour l'exemple, ou avec)
             let tarifRetour = BASE_TARIF;
             if (distanceKm > BASE_KM) {
               tarifRetour += (distanceKm - BASE_KM) * SUPP_PAR_KM;
@@ -650,21 +653,34 @@
             if (heureRetour >= 21 || heureRetour < 7) {
               tarifRetour = tarifRetour * 1.20;
             }
-            // Tarif total = aller + retour avec 10% de réduction sur le retour
-            tarif = tarif + (tarifRetour * 0.9);
-            tarif = Math.round(tarif * 100) / 100;
+            tarifFinal = tarif + (tarifRetour * 0.9);
+            tarifFinal = Math.round(tarifFinal * 100) / 100;
+            distanceTotale = Math.round((distanceKm * 2) * 10) / 10;
+            
+            // Calcul de la durée totale (double)
+            let minutes = parseInt(dureeTexte);
+            if (isNaN(minutes)) {
+              let match = dureeTexte.match(/\d+/);
+              minutes = match ? parseInt(match[0]) : 0;
+            }
+            dureeTotale = (minutes * 2) + " minutes";
+          } else {
+            tarifFinal = Math.round(tarif * 100) / 100;
           }
 
-          derniereEstimation = { distanceKm, dureeTexte, tarif, trajetType };
+          derniereEstimation = { distanceKm, distanceTotale, dureeTexte, dureeTotale, tarif: tarifFinal, trajetType };
 
-          let affichage = "Distance : <strong>" + distanceKm + " km</strong> • " +
-            "Durée : <strong>" + dureeTexte + "</strong><br>";
+          let affichage = "";
 
           if (trajetType === "aller-retour") {
-            affichage += "Estimation Aller-Retour : <strong>" + tarif.toFixed(2) + " €</strong><br>";
-            affichage += "<small>(réduction de 10% sur le trajet retour)</small>";
+            affichage = "Distance totale (A/R) : <strong>" + distanceTotale + " km</strong><br>" +
+                        "Durée totale (A/R) : <strong>" + dureeTotale + "</strong><br>" +
+                        "Estimation Aller-Retour : <strong>" + tarifFinal.toFixed(2) + " €</strong><br>" +
+                        "<small>(réduction de 10% sur le trajet retour)</small>";
           } else {
-            affichage += "Estimation Aller simple : <strong>" + tarif.toFixed(2) + " €</strong>";
+            affichage = "Distance : <strong>" + distanceKm + " km</strong><br>" +
+                        "Durée : <strong>" + dureeTexte + "</strong><br>" +
+                        "Estimation Aller simple : <strong>" + tarifFinal.toFixed(2) + " €</strong>";
           }
 
           resDiv.style.display = "block";
@@ -672,9 +688,9 @@
 
           if (flottant && flottantTexte) {
             if (trajetType === "aller-retour") {
-              flottantTexte.textContent = "Aller-Retour : " + tarif.toFixed(2) + " € • " + distanceKm + " km (A/R)";
+              flottantTexte.textContent = "Aller-Retour : " + tarifFinal.toFixed(2) + " € • " + distanceTotale + " km (" + dureeTotale + ")";
             } else {
-              flottantTexte.textContent = "Estimation : " + tarif.toFixed(2) + " € • " + distanceKm + " km";
+              flottantTexte.textContent = "Estimation : " + tarifFinal.toFixed(2) + " € • " + distanceKm + " km";
             }
             flottant.style.display = "flex";
           }
