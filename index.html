@@ -562,64 +562,136 @@
       return dateObj.getHours();
     }
 
-    function calculerTarif() {
-  // ... (début identique)
+  function calculerTarif() {
+  const resDiv = document.getElementById("resultat-tarif");
+  const errDiv = document.getElementById("erreur-tarif");
+  const flottant = document.getElementById("tarif-flottant");
+  const flottantTexte = document.getElementById("tarif-flottant-texte");
 
-  const distanceMetres = element.distance.value;
-  let distanceKm = Math.round((distanceMetres / 1000) * 10) / 10;
-  const dureeTexte = element.duration.text;
+  const depart = form["Départ"].value.trim();
+  const arrivee = form["Arrivee"].value.trim();
+  const trajetType = trajetSelect.value;
+  const dateAllerValue = form["DateHeureAller"].value;
+  const dateRetourValue = dateRetourInput.value;
 
-  // Calcul du tarif aller (inchangé)
-  let tarif = BASE_TARIF;
-  if (distanceKm > BASE_KM) {
-    tarif += (distanceKm - BASE_KM) * SUPP_PAR_KM;
+  errDiv.style.display = "none"; errDiv.textContent = "";
+  resDiv.style.display = "none"; resDiv.textContent = "";
+  if (flottant) flottant.style.display = "none";
+
+  if (!depart || !arrivee) {
+    errDiv.textContent = "Veuillez renseigner le départ et l'arrivée.";
+    errDiv.style.display = "block";
+    form.scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
   }
-  let heureAller = getHeureFromDateTime(dateAllerValue);
-  if (heureAller >= 21 || heureAller < 7) {
-    tarif = tarif * 1.20;
+
+  if (!dateAllerValue) {
+    errDiv.textContent = "Veuillez renseigner la date et heure de départ.";
+    errDiv.style.display = "block";
+    return;
   }
 
-  let distanceTotale = distanceKm;
-  if (trajetType === "aller-retour") {
-    // Calcul du tarif retour
-    let tarifRetour = BASE_TARIF;
-    if (distanceKm > BASE_KM) {
-      tarifRetour += (distanceKm - BASE_KM) * SUPP_PAR_KM;
+  if (trajetType === "aller-retour" && !dateRetourValue) {
+    errDiv.textContent = "Veuillez renseigner la date et heure de retour.";
+    errDiv.style.display = "block";
+    return;
+  }
+
+  resDiv.style.display = "block";
+  resDiv.innerHTML = "Calcul en cours…";
+
+  distanceService.getDistanceMatrix(
+    {
+      origins: [depart],
+      destinations: [arrivee],
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.METRIC,
+    },
+    (response, status) => {
+      if (status !== "OK") {
+        resDiv.style.display = "none";
+        errDiv.textContent = "Erreur Google Maps : " + status;
+        errDiv.style.display = "block";
+        return;
+      }
+
+      const element = response.rows[0].elements[0];
+      if (element.status !== "OK") {
+        resDiv.style.display = "none";
+        errDiv.textContent = "Adresse introuvable. Vérifiez l'orthographe.";
+        errDiv.style.display = "block";
+        return;
+      }
+
+      const distanceMetres = element.distance.value;
+      let distanceKm = Math.round((distanceMetres / 1000) * 10) / 10;
+      const dureeTexte = element.duration.text;
+
+      // Calcul du tarif aller
+      let tarif = BASE_TARIF;
+      if (distanceKm > BASE_KM) {
+        tarif += (distanceKm - BASE_KM) * SUPP_PAR_KM;
+      }
+      let heureAller = getHeureFromDateTime(dateAllerValue);
+      if (heureAller >= 21 || heureAller < 7) {
+        tarif = tarif * 1.20;
+      }
+
+      let distanceTotale = distanceKm;
+      let tarifFinal = tarif;
+
+      if (trajetType === "aller-retour") {
+        // Calcul du tarif retour
+        let tarifRetour = BASE_TARIF;
+        if (distanceKm > BASE_KM) {
+          tarifRetour += (distanceKm - BASE_KM) * SUPP_PAR_KM;
+        }
+        let heureRetour = getHeureFromDateTime(dateRetourValue);
+        if (heureRetour >= 21 || heureRetour < 7) {
+          tarifRetour = tarifRetour * 1.20;
+        }
+        tarifFinal = tarif + (tarifRetour * 0.9);
+        tarifFinal = Math.round(tarifFinal * 100) / 100;
+        distanceTotale = Math.round((distanceKm * 2) * 10) / 10;
+      } else {
+        tarifFinal = Math.round(tarif * 100) / 100;
+      }
+
+      derniereEstimation = { distanceKm, distanceTotale, dureeTexte, tarif: tarifFinal, trajetType };
+
+      let affichage = "";
+      if (trajetType === "aller-retour") {
+        affichage = "Distance totale (A/R) : <strong>" + distanceTotale + " km</strong> • " +
+                    "Durée aller : <strong>" + dureeTexte + "</strong><br>" +
+                    "Estimation Aller-Retour : <strong>" + tarifFinal.toFixed(2) + " €</strong><br>" +
+                    "<small>(réduction de 10% sur le trajet retour)</small>";
+      } else {
+        affichage = "Distance : <strong>" + distanceKm + " km</strong> • " +
+                    "Durée : <strong>" + dureeTexte + "</strong><br>" +
+                    "Estimation Aller simple : <strong>" + tarifFinal.toFixed(2) + " €</strong>";
+      }
+
+      resDiv.style.display = "block";
+      resDiv.innerHTML = affichage;
+
+      if (flottant && flottantTexte) {
+        if (trajetType === "aller-retour") {
+          flottantTexte.textContent = "Aller-Retour : " + tarifFinal.toFixed(2) + " € • " + distanceTotale + " km (A/R)";
+        } else {
+          flottantTexte.textContent = "Estimation : " + tarifFinal.toFixed(2) + " € • " + distanceKm + " km";
+        }
+        flottant.style.display = "flex";
+      }
+
+      // ✅ AFFICHAGE DE LA CARTE (préservé)
+      if (directionsService && directionsRenderer) {
+        directionsService.route(
+          { origin: depart, destination: arrivee, travelMode: google.maps.TravelMode.DRIVING },
+          (result, statusDir) => { if (statusDir === "OK") directionsRenderer.setDirections(result); }
+        );
+      }
     }
-    let heureRetour = getHeureFromDateTime(dateRetourValue);
-    if (heureRetour >= 21 || heureRetour < 7) {
-      tarifRetour = tarifRetour * 1.20;
-    }
-    tarif = tarif + (tarifRetour * 0.9);
-    tarif = Math.round(tarif * 100) / 100;
-    distanceTotale = Math.round((distanceKm * 2) * 10) / 10;
-  }
-
-  derniereEstimation = { distanceKm, distanceTotale, dureeTexte, tarif, trajetType };
-
-  let affichage = "";
-  if (trajetType === "aller-retour") {
-    affichage = "Distance totale (A/R) : <strong>" + distanceTotale + " km</strong> • " +
-                "Durée aller : <strong>" + dureeTexte + "</strong><br>" +
-                "Estimation Aller-Retour : <strong>" + tarif.toFixed(2) + " €</strong><br>" +
-                "<small>(réduction de 10% sur le trajet retour)</small>";
-  } else {
-    affichage = "Distance : <strong>" + distanceKm + " km</strong> • " +
-                "Durée : <strong>" + dureeTexte + "</strong><br>" +
-                "Estimation Aller simple : <strong>" + tarif.toFixed(2) + " €</strong>";
-  }
-
-  resDiv.innerHTML = affichage;
-
-  if (flottant && flottantTexte) {
-    if (trajetType === "aller-retour") {
-      flottantTexte.textContent = "Aller-Retour : " + tarif.toFixed(2) + " € • " + distanceTotale + " km (A/R)";
-    } else {
-      flottantTexte.textContent = "Estimation : " + tarif.toFixed(2) + " € • " + distanceKm + " km";
-    }
-    flottant.style.display = "flex";
-  }
-  // ... (suite identique)
+  );
 }
           if (directionsService && directionsRenderer) {
             directionsService.route(
