@@ -17,7 +17,7 @@
   <meta name="theme-color" content="#2563eb">
   <link rel="apple-touch-icon" href="/icon-192.png">
   
-  <!-- ✅ BALISE CANONIQUE CORRECTE POUR LA PAGE D'ACCUEIL -->
+  <!-- BALISE CANONIQUE CORRECTE POUR LA PAGE D'ACCUEIL -->
   <link rel="canonical" href="https://dcvtc66.fr/" />
 
   <style>
@@ -250,6 +250,14 @@
           </select>
         </label>
 
+        <!-- NOUVEAU : Type de trajet (Aller simple / Aller-Retour) -->
+        <label>Type de trajet
+          <select name="Trajet" id="trajet-type">
+            <option value="simple">Aller simple</option>
+            <option value="aller-retour">Aller-Retour (réduction 10% sur le retour)</option>
+          </select>
+        </label>
+
         <details class="opt">
           <summary>+ Options</summary>
           <label>Informations
@@ -365,6 +373,8 @@
       const passagers = form["Passagers"].value;
       const paiement = form["Paiement"].value;
       const messageClient = form["Message"].value;
+      const trajetType = document.getElementById("trajet-type").value;
+      const trajetTexte = trajetType === "aller-retour" ? "Aller-Retour" : "Aller simple";
 
       let sms = "Nouvelle demande – DCVTC66 :\n\n";
       sms += "Nom : " + nom + "\n";
@@ -374,13 +384,18 @@
       sms += "Date & heure : " + dateHeure + "\n";
       sms += "Passagers : " + passagers + "\n";
       sms += "Paiement : " + paiement + "\n";
+      sms += "Trajet : " + trajetTexte + "\n";
       if (messageClient.trim() !== "") sms += "Infos : " + messageClient + "\n";
 
       if (derniereEstimation) {
         sms += "\n--- Estimation ---\n";
         sms += "Distance : " + derniereEstimation.distanceKm + " km\n";
         sms += "Durée : " + derniereEstimation.dureeTexte + "\n";
-        sms += "Tarif : " + derniereEstimation.tarif.toFixed(2) + " €\n";
+        if (derniereEstimation.trajetType === "aller-retour") {
+          sms += "Tarif Aller-Retour : " + derniereEstimation.tarif.toFixed(2) + " €\n";
+        } else {
+          sms += "Tarif : " + derniereEstimation.tarif.toFixed(2) + " €\n";
+        }
       }
 
       const numero = "+33663463716";
@@ -398,6 +413,8 @@
       const passagers = form["Passagers"].value;
       const paiement = form["Paiement"].value;
       const messageClient = form["Message"].value;
+      const trajetType = document.getElementById("trajet-type").value;
+      const trajetTexte = trajetType === "aller-retour" ? "Aller-Retour" : "Aller simple";
 
       let msg = "Nouvelle demande – DCVTC66 :\n\n";
       msg += "Nom : " + nom + "\n";
@@ -407,13 +424,18 @@
       msg += "Date & heure : " + dateHeure + "\n";
       msg += "Passagers : " + passagers + "\n";
       msg += "Paiement : " + paiement + "\n";
+      msg += "Trajet : " + trajetTexte + "\n";
       if (messageClient.trim() !== "") msg += "Infos : " + messageClient + "\n";
 
       if (derniereEstimation) {
         msg += "\n--- Estimation ---\n";
         msg += "Distance : " + derniereEstimation.distanceKm + " km\n";
         msg += "Durée : " + derniereEstimation.dureeTexte + "\n";
-        msg += "Tarif : " + Number(derniereEstimation.tarif).toFixed(2) + " €\n";
+        if (derniereEstimation.trajetType === "aller-retour") {
+          msg += "Tarif Aller-Retour : " + derniereEstimation.tarif.toFixed(2) + " €\n";
+        } else {
+          msg += "Tarif : " + derniereEstimation.tarif.toFixed(2) + " €\n";
+        }
       }
 
       return msg;
@@ -493,6 +515,7 @@
 
       const depart = form["Départ"].value.trim();
       const arrivee = form["Arrivee"].value.trim();
+      const trajetType = document.getElementById("trajet-type").value;
 
       errDiv.style.display = "none"; errDiv.textContent = "";
       resDiv.style.display = "none"; resDiv.textContent = "";
@@ -553,20 +576,34 @@
             tarif = tarif * 1.20;
           }
 
+          // Application de la réduction pour aller-retour (10% de réduction sur le retour)
+          if (trajetType === "aller-retour") {
+            tarif = tarif * 1.8; // Prix aller x 1.8 au lieu de x2
+          }
+
           tarif = Math.round(tarif * 100) / 100;
 
-          derniereEstimation = { distanceKm, dureeTexte, tarif };
+          derniereEstimation = { distanceKm, dureeTexte, tarif, trajetType };
+
+          let affichage = "Distance : <strong>" + distanceKm + " km</strong> • " +
+            "Durée : <strong>" + dureeTexte + "</strong><br>";
+
+          if (trajetType === "aller-retour") {
+            affichage += "Estimation Aller-Retour : <strong>" + tarif.toFixed(2) + " €</strong><br>";
+            affichage += "<small>(réduction de 10% sur le retour)</small>";
+          } else {
+            affichage += "Estimation Aller simple : <strong>" + tarif.toFixed(2) + " €</strong>";
+          }
 
           resDiv.style.display = "block";
-          resDiv.innerHTML =
-            "Distance : <strong>" + distanceKm + " km</strong> • " +
-            "Durée : <strong>" + dureeTexte + "</strong><br>" +
-            "Estimation : <strong>" + tarif.toFixed(2) + " €</strong>";
+          resDiv.innerHTML = affichage;
 
           if (flottant && flottantTexte) {
-            flottantTexte.textContent =
-              "Estimation : " + tarif.toFixed(2) + " € • " +
-              distanceKm + " km • " + dureeTexte;
+            if (trajetType === "aller-retour") {
+              flottantTexte.textContent = "Aller-Retour : " + tarif.toFixed(2) + " € • " + distanceKm + " km";
+            } else {
+              flottantTexte.textContent = "Estimation : " + tarif.toFixed(2) + " € • " + distanceKm + " km";
+            }
             flottant.style.display = "flex";
           }
 
