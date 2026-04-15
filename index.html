@@ -402,8 +402,37 @@
 
     trajetSelect.addEventListener('change', toggleDateRetour);
     toggleDateRetour(); // Initialisation
-
-    form.addEventListener('submit', function (e) {
+    // Bouton Estimer dans le bandeau
+const btnEstimerHero = document.getElementById('btn-estimer-hero');
+if (btnEstimerHero) {
+  btnEstimerHero.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    // Scroll vers la section réservation
+    const reservationSection = document.getElementById('reservation');
+    if (reservationSection) {
+      reservationSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    
+    // Petit délai pour le scroll puis déclencher le calcul
+    setTimeout(() => {
+      const btnTarif = document.getElementById('btn-tarif');
+      const depart = document.querySelector('input[name="Départ"]').value.trim();
+      const arrivee = document.querySelector('input[name="Arrivee"]').value.trim();
+      
+      if (btnTarif && depart && arrivee) {
+        btnTarif.click();
+      } else if (btnTarif && (!depart || !arrivee)) {
+        const errDiv = document.getElementById('erreur-tarif');
+        if (errDiv) {
+          errDiv.textContent = "Veuillez renseigner le départ et l'arrivée avant d'estimer le tarif.";
+          errDiv.style.display = "block";
+        }
+      }
+    }, 500);
+  });
+}
+      form.addEventListener('submit', function (e) {
       e.preventDefault();
 
       const nom = form.Nom.value;
