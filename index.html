@@ -4,169 +4,171 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DCVTC66 — Chauffeur VTC à Perpignan</title>
-  <meta name="description" content="DCVTC66, votre chauffeur privé à Perpignan. Service premium, tarifs fixes et confort garanti." />
+  <meta name="description" content="DCVTC66, chauffeur VTC à Perpignan, propose des trajets fiables, confortables et ponctuels dans tout le département 66 et au-delà." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+  <link rel="stylesheet" href="styles.css?v=99" />
+  <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
+  
   <style>
+    /* STYLE PREMIUM INSPIRÉ DE L'EXEMPLE */
     :root {
       --dark-blue: #0a192f;
       --gold-gradient: linear-gradient(180deg, #ffd700 0%, #ffb800 100%);
       --text-white: #ffffff;
-      --card-bg: rgba(255, 255, 255, 0.05);
     }
 
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
+    html, body { margin: 0; padding: 0; overflow-x: hidden; font-family: 'Poppins', sans-serif; }
+    
+    /* HEADER PREMIUM */
+    .header-premium {
       background-color: var(--dark-blue);
       color: var(--text-white);
       text-align: center;
+      padding: 2rem 1rem;
     }
 
-    .container { padding: 1.5rem; max-width: 500px; margin: 0 auto; }
+    .logo-top { width: 100px; margin-bottom: 1rem; }
 
-    /* Header & Logo */
-    .header-logo { width: 120px; margin-top: 1rem; }
-    
-    /* Carte Image Principale */
-    .image-card {
-      border: 2px solid #ffd700;
+    /* CADRE IMAGE VOITURE */
+    .car-frame {
+      border: 3px solid #ffd700;
       border-radius: 25px;
       overflow: hidden;
-      margin: 1.5rem 0;
+      max-width: 450px;
+      margin: 1.5rem auto;
       background: #000;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
-    .image-card img { width: 100%; display: block; }
+    .car-frame img { width: 100%; display: block; }
 
-    /* Titres */
-    h1 { font-size: 1.4rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.5rem; }
-    .subtitle { font-size: 0.95rem; opacity: 0.9; margin-bottom: 2rem; }
+    .premium-title { font-size: 1.5rem; font-weight: 700; text-transform: uppercase; margin: 1rem 0 0.5rem; line-height: 1.2; }
+    .premium-subtitle { font-size: 0.95rem; opacity: 0.9; margin-bottom: 1.5rem; }
 
-    /* Pourquoi nous choisir */
-    .features { margin-bottom: 2rem; text-align: left; display: inline-block; }
-    .feature-item { margin: 0.5rem 0; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; }
-
-    /* Boutons Jaunes de l'exemple */
-    .btn-action {
-      display: block;
-      background: var(--gold-gradient);
-      color: #000;
-      text-decoration: none;
-      font-weight: 700;
-      padding: 1rem;
-      border-radius: 50px;
-      margin-bottom: 1rem;
-      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-      font-size: 1rem;
-    }
-    .btn-action span { display: block; font-size: 0.75rem; font-weight: 400; }
-
-    /* Section Estimation (Formulaire) */
-    .estimate-box {
-      background: var(--card-bg);
-      border-radius: 20px;
-      padding: 1.5rem;
-      border: 1px solid rgba(255, 215, 0, 0.2);
-    }
-    .estimate-box h2 { font-size: 1.1rem; margin-top: 0; margin-bottom: 1rem; color: #ffd700; }
+    /* BOUTONS JAUNES */
+    .hero-actions-premium { display: flex; flex-direction: column; gap: 0.8rem; max-width: 320px; margin: 0 auto; }
     
-    input {
-      width: 100%;
-      padding: 0.8rem;
-      margin-bottom: 0.8rem;
-      border-radius: 10px;
-      border: 1px solid #333;
-      background: rgba(0,0,0,0.3);
-      color: white;
-      box-sizing: border-box;
+    .btn-gold {
+      background: var(--gold-gradient);
+      color: #000 !important;
+      text-decoration: none;
+      font-weight: 800;
+      padding: 0.9rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .btn-gold span { font-size: 0.7rem; font-weight: 400; text-transform: none; }
+
+    /* RESTE DU SITE (CONSERVÉ) */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; box-sizing: border-box; }
+    .section { padding: 3rem 0; }
+    .section-alt { background: #f4f4f4; }
+    .form-compact { max-width: 560px; margin: 0 auto; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+    .form-compact label { display: block; margin-bottom: 10px; font-weight: 600; }
+    .form-compact input, .form-compact select { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #ccc; box-sizing: border-box; }
+    
+    #tarif-flottant {
+      position: fixed; top: 24px; right: 24px; z-index: 9999; display: none; padding: 0.9rem 1.3rem; 
+      border-radius: 999px; background: linear-gradient(135deg, #16a34a, #22c55e); color: white;
     }
 
-    /* Icônes Services */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin: 2rem 0;
-    }
-    .service-icon { font-size: 1.5rem; color: #ffd700; margin-bottom: 5px; }
-    .service-label { font-size: 0.7rem; text-transform: uppercase; font-weight: 600; }
-
-    /* Boutons Flottants (Appel & WhatsApp) */
-    .fab-container { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 100; }
-    .fab { width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-    .fab-wa { background: #25d366; color: white; }
-    .fab-phone { background: #ffd700; color: black; }
-
-    #map { height: 200px; border-radius: 15px; margin-top: 1rem; display: none; }
+    .fab { position: fixed; bottom: 20px; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; text-decoration: none; z-index: 1000; color: white; }
+    .fab-call { right: 20px; background: #ffd700; color: black; }
+    .fab-whatsapp { right: 90px; background: #25d366; }
   </style>
 </head>
+
 <body>
 
-  <div class="container">
-    <img src="LOGO DCVTC66.png" alt="DCVTC66 Logo" class="header-logo">
+  <header class="header-premium">
+    <div class="container">
+      <img src="LOGO DCVTC66.png" alt="Logo DCVTC66" class="logo-top">
+      
+      <div class="car-frame">
+        <img src="Toyota-Auris-Hybrid-Touring-Sports.0.jpg" alt="Toyota Auris Hybride DCVTC66">
+      </div>
 
-    <div class="image-card">
-      <img src="Toyota-Auris-Hybrid-Touring-Sports.0.jpg" alt="Toyota Auris Hybride DCVTC66">
+      <h1 class="premium-title">Chaque trajet, une expérience.<br>DCVTC66, votre chauffeur privé.</h1>
+      <p class="premium-subtitle">À Perpignan et dans toutes les Pyrénées-Orientales (66).</p>
+
+      <div class="hero-actions-premium">
+        <a href="tel:0663463716" class="btn-gold">
+          📞 APPELER MAINTENANT
+          <span>(Réponse Immédiate)</span>
+        </a>
+        <a href="#reservation" class="btn-gold">
+          📅 ESTIMER VOTRE TRAJET
+          <span>(Sans Engagement)</span>
+        </a>
+      </div>
     </div>
+  </header>
 
-    <h1>Chaque trajet, une expérience.<br>DCVTC66, votre chauffeur privé.</h1>
-    <p class="subtitle">À Perpignan et dans toutes les Pyrénées-Orientales (66). Laissez-nous vous conduire.</p>
+  <section id="reservation" class="section section-alt">
+    <div class="container">
+      <h2 style="text-align:center;">Réservation</h2>
+      <form id="reservation-form" class="form-compact">
+        <label>Nom <input type="text" name="Nom" placeholder="Nom & prénom" required></label>
+        <label>Téléphone <input type="tel" name="Téléphone" placeholder="06…" required></label>
+        <label>Type de trajet
+          <select name="Trajet" id="trajet-type">
+            <option value="simple">Aller simple</option>
+            <option value="aller-retour">Aller-Retour (-10% sur retour)</option>
+          </select>
+        </label>
+        <label>Départ <input type="text" name="Départ" placeholder="Adresse de départ" required></label>
+        <label>Arrivée <input type="text" name="Arrivee" placeholder="Adresse d'arrivée" required></label>
+        <label>Date & heure aller <input type="datetime-local" name="DateHeureAller" id="date-aller" required></label>
+        
+        <div id="dates-retour-container" style="display:none;">
+          <label>Date & heure retour <input type="datetime-local" name="DateHeureRetour" id="date-retour"></label>
+        </div>
 
-    <div class="features">
-      <div class="feature-item">📞 • Réponse Immédiate par Téléphone</div>
-      <div class="feature-item">💰 • Tarifs Fixes & Transparents</div>
-      <div class="feature-item">🛋️ • Confort & Service Premium</div>
+        <label>Passagers
+          <select name="Passagers" required>
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
+          </select>
+        </label>
+
+        <button type="button" id="btn-tarif" style="width:100%; padding:15px; background:#0a192f; color:white; border-radius:50px; font-weight:bold; cursor:pointer; margin-bottom:10px;">ESTIMER LE PRIX</button>
+        <button type="submit" style="width:100%; padding:15px; background:#ffd700; border:none; border-radius:50px; font-weight:bold; cursor:pointer;">📩 RÉSERVER PAR SMS</button>
+
+        <div id="resultat-tarif" style="margin-top:15px; padding:10px; background:#eef; border-radius:10px; display:none;"></div>
+        <div id="map" style="height:250px; margin-top:15px; border-radius:15px;"></div>
+      </form>
     </div>
+  </section>
 
-    <a href="tel:+33663463716" class="btn-action">
-      📞 APPELER MAINTENANT
-      <span>(Réponse Immédiate)</span>
-    </a>
+  <footer style="text-align:center; padding:2rem; background:#0a192f; color:white;">
+    <p>© 2026 DCVTC66 — Perpignan</p>
+  </footer>
 
-    <a href="#reservation" class="btn-action">
-      📅 ESTIMER VOTRE TRAJET
-      <span>(Sans Engagement)</span>
-    </a>
+  <a href="tel:+33663463716" class="fab fab-call">📞</a>
+  <a href="https://wa.me/33663463716" class="fab fab-whatsapp">💬</a>
 
-    <div class="services-grid">
-      <div><div class="service-icon">✈️</div><div class="service-label">Aéroport</div></div>
-      <div><div class="service-icon">🚉</div><div class="service-label">Gare</div></div>
-      <div><div class="service-icon">🎉</div><div class="service-label">Soirées</div></div>
-    </div>
-
-    <div id="reservation" class="estimate-box">
-      <h2>Estimez en 2 clics :</h2>
-      <input type="text" id="dep" placeholder="DÉPART (Aéroport, Gare, Adresse...)">
-      <input type="text" id="arr" placeholder="ARRIVÉE (Destination...)">
-      <button onclick="calculer()" class="btn-action" style="width:100%; border:none; cursor:pointer;">VOIR LE PRIX</button>
-      <div id="resultat" style="margin-top:1rem; font-weight:700; color:#ffd700;"></div>
-      <div id="map"></div>
-    </div>
-
-    <p style="font-size:0.8rem; margin-top:2rem; opacity:0.6;">© 2026 DCVTC66 - Perpignan</p>
-  </div>
-
-  <div class="fab-container">
-    <a href="https://wa.me/33663463716" class="fab fab-wa">💬</a>
-    <a href="tel:+33663463716" class="fab fab-phone">📞</a>
-  </div>
+  <div id="tarif-flottant"><span id="tarif-flottant-texte"></span></div>
 
   <script>
-    function calculer() {
-      const dep = document.getElementById('dep').value;
-      const arr = document.getElementById('arr').value;
-      if(!dep || !arr) return alert("Veuillez remplir le départ et l'arrivée");
-      
-      // Simulation de calcul (à lier avec votre script Google Maps existant)
-      document.getElementById('resultat').innerHTML = "Calcul en cours...";
-      document.getElementById('map').style.display = "block";
-      
-      // Ici vous pouvez intégrer votre fonction calculerTarif() habituelle
-    }
+    const form = document.getElementById('reservation-form');
+    const trajetSelect = document.getElementById('trajet-type');
+    const datesRetourContainer = document.getElementById('dates-retour-container');
+
+    trajetSelect.addEventListener('change', () => {
+      datesRetourContainer.style.display = (trajetSelect.value === 'aller-retour') ? 'block' : 'none';
+    });
+
+    // VOTRE LOGIQUE DE CALCUL (BASE_TARIF, etc.) ICI ...
+    // Note : Intégrez ici vos fonctions calculerTarif() et initMap() 
+    // qui utilisent votre clé API Google.
   </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA5J7_7fNdWgVsGRLWRfQZaO6qgCEqq_Y&callback=initMap&libraries=places" async defer></script>
 
 </body>
 </html>
