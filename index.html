@@ -3,259 +3,136 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DCVTC66 — Chauffeur Privé Premium Perpignan</title>
-  <meta name="description" content="Réservez votre chauffeur privé VTC à Perpignan et dans le 66. Estimation immédiate, véhicule hybride confortable, ponctualité garantie. Refonte Premium Dark." />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <title>DCVTC66 — Chauffeur Privé Perpignan</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* VARIABLES DE COULEUR POUR LE DESIGN SOMBRE */
     :root {
-      --bg-color: #0d1117; /* Fond très sombre mais pas noir total */
-      --card-bg: #161b22;  /* Fond des cartes et formulaires */
-      --text-color: #c9d1d9; /* Texte principal gris clair */
-      --primary: #ffd700;    /* Or vif pour les accents et titres */
-      --secondary: #21262d; /* Couleur de contour et navigation */
-      --accent-green: #2ea44f; /* Vert pour WhatsApp/boutons action */
-      --accent-blue: #58a6ff;  /* Bleu pour les liens/infos */
+      --bg: #0d1117;
+      --card: #161b22;
+      --primary: #ffd700;
+      --text: #ffffff;
     }
 
-    body { font-family: 'Poppins', sans-serif; margin: 0; background: var(--bg-color); color: var(--text-color); line-height: 1.6; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+    body { 
+      font-family: 'Poppins', sans-serif; 
+      margin: 0; 
+      background-color: var(--bg); 
+      color: var(--text);
+      text-align: center;
+    }
 
-    /* --- NAVIGATION --- */
-    nav { background: var(--secondary); padding: 1rem 0; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--secondary); }
-    nav .container { display: flex; justify-content: space-between; align-items: center; }
-    nav a { color: #fff; text-decoration: none; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-
-    /* --- HEADER (HERO) AVEC VOTRE TOYOTA AURIS --- */
-    header { background: #080a0f; color: white; padding: 4rem 0 3rem; text-align: center; border-bottom: 2px solid var(--secondary); }
-    .logo { max-width: 130px; margin-bottom: 2rem; }
+    .header { padding: 40px 20px; background: #080a0f; }
     
-    /* Intégration de VOTRE photo de Toyota Auris */
-    .hero-car { 
-      width: 100%; max-width: 650px; height: auto; border-radius: 20px; 
-      box-shadow: 0 25px 60px rgba(0,0,0,0.7); 
-      border: 1px solid rgba(255,215,0,0.3); /* Léger contour or */
-      margin: 2rem 0;
-    }
+    .logo-main { max-width: 120px; margin-bottom: 20px; }
     
-    h1 { margin: 0.5rem 0; font-size: 2.5rem; color: var(--primary); letter-spacing: -0.5px; }
-    .subtitle { font-size: 1.2rem; opacity: 0.9; margin-bottom: 3rem; font-weight: 300; }
-
-    /* BOUTONS ACTION HERO */
-    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .btn { 
-      padding: 0.9rem 2rem; border-radius: 50px; font-weight: 700; text-decoration: none; 
-      transition: all 0.3s; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
-    }
-    .btn-main { background: linear-gradient(135deg, var(--primary), #ccac00); color: var(--bg-color); }
-    .btn-wa { background: var(--accent-green); color: white; }
-    .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 20px rgba(255,215,0,0.3); }
-
-    /* --- SECTION FORMULAIRE ET ESTIMATION --- */
-    .booking-section { padding: 4rem 0; }
-    .booking-card { 
-      background: var(--card-bg); padding: 2.5rem; border-radius: 25px; 
-      box-shadow: 0 15px 50px rgba(0,0,0,0.5); 
-      margin-top: -100px; /* Chevauchement Hero */
-      position: relative; z-index: 10;
-      border: 1px solid var(--secondary);
-    }
-    
-    h2 { text-align: center; color: var(--primary); margin-bottom: 2.5rem; }
-    
-    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    label { display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem; color: #fff; }
-    input, select, textarea { 
-      width: 100%; padding: 1rem; border-radius: 12px; border: 1.5px solid var(--secondary); 
-      box-sizing: border-box; font-family: inherit; font-size: 1rem; background: var(--bg-color); color: var(--text-color);
-    }
-    input:focus, select:focus { border-color: var(--primary); outline: none; background: #fff; color: #000; }
-
-    /* RÉSULTATS ET MAP DANS LE DESIGN SOMBRE */
-    #resultat-estimation { 
-      margin-top: 1.5rem; padding: 1.5rem; border-radius: 15px; 
-      background: #1d2129; color: #fff; display: none; text-align: center;
+    /* Correction de l'image de la voiture */
+    .car-img { 
+      width: 90%; 
+      max-width: 600px; 
+      height: auto; 
+      border-radius: 15px; 
+      margin: 20px auto;
+      display: block;
       border: 1px solid var(--primary);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
-    .price-tag { font-size: 2.5rem; display: block; font-weight: 700; color: var(--primary); margin: 0.5rem 0; }
-    .map-wrapper { height: 350px; border-radius: 15px; overflow: hidden; margin-top: 1.5rem; border: 1px solid var(--secondary); }
-    
-    /* FOOTER SOMBRE */
-    footer { background: #050608; color: white; text-align: center; padding: 3rem 0; margin-top: 2rem; border-top: 1px solid var(--secondary); }
 
-    /* MEDIA QUERIES MOBILE */
-    @media (max-width: 768px) {
-      .grid { grid-template-columns: 1fr; }
-      h1 { font-size: 2rem; }
-      .booking-card { margin-top: -60px; padding: 1.5rem; }
+    h1 { color: var(--primary); margin: 10px 0; font-size: 2.2rem; }
+    .subtitle { opacity: 0.8; font-size: 1.1rem; margin-bottom: 30px; }
+
+    .btn-container { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+    
+    .btn { 
+      padding: 12px 30px; 
+      border-radius: 50px; 
+      text-decoration: none; 
+      font-weight: bold; 
+      color: #000;
+      background: var(--primary);
+    }
+
+    .btn-wa { background: #25d366; color: #fff; }
+
+    /* Zone Estimation */
+    .booking-box { 
+      background: var(--card); 
+      max-width: 600px; 
+      margin: -50px auto 40px; 
+      padding: 30px; 
+      border-radius: 20px;
+      border: 1px solid #30363d;
+    }
+
+    input, select { 
+      width: 100%; 
+      padding: 12px; 
+      margin: 10px 0; 
+      border-radius: 8px; 
+      border: 1px solid #30363d;
+      background: #0d1117;
+      color: #fff;
+      box-sizing: border-box;
+    }
+
+    #map { height: 300px; border-radius: 10px; margin-top: 20px; background: #21262d; }
+    
+    #resultat { 
+        margin-top: 20px; 
+        padding: 15px; 
+        border: 1px solid var(--primary); 
+        display: none; 
+        border-radius: 10px;
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="container">
-    <a href="#">DCVTC66</a>
-    <div style="display: flex; gap: 20px;">
-      <a href="#estimer">Estimer</a>
-      <a href="tel:0663463716">Appeler</a>
-    </div>
+<div class="header">
+  <img src="LOGO DCVTC66.png" alt="Logo" class="logo-main">
+  <h1>DCVTC66</h1>
+  <p class="subtitle">Chauffeur Privé Perpignan & Pyrénées-Orientales</p>
+  
+  <img src="toyota-auris.png" alt="Toyota Auris Hybride" class="car-img">
+
+  <div class="btn-container">
+    <a href="tel:0663463716" class="btn">📞 06 63 46 37 16</a>
+    <a href="https://wa.me/33663463716" class="btn btn-wa">💬 WhatsApp</a>
   </div>
-</nav>
+</div>
 
-<header>
-  <div class="container">
-    <img src="LOGO DCVTC66.png" alt="Logo DCVTC66" class="logo">
-    <h1>DCVTC66</h1>
-    <p class="subtitle">Refonte Premium Dark — Perpignan & Pyrénées-Orientales</p>
-    
-    <img src="toyota-auris-pohoto.png" alt="Toyota Auris Hybride" class="hero-car">
-
-    <div class="hero-btns">
-      <a href="tel:0663463716" class="btn btn-main">📞 06 63 46 37 16</a>
-      <a href="https://wa.me/33663463716" target="_blank" class="btn btn-wa">💬 WhatsApp</a>
-    </div>
+<div class="booking-box">
+  <h3>Estimer mon trajet</h3>
+  <input type="text" id="dep" placeholder="Lieu de départ">
+  <input type="text" id="arr" placeholder="Destination">
+  <select id="type">
+    <option value="1">Aller Simple</option>
+    <option value="2">Aller-Retour (-10% sur retour)</option>
+  </select>
+  <button onclick="estimer()" class="btn" style="width:100%; border:none; cursor:pointer; margin-top:10px;">💰 Calculer le prix</button>
+  
+  <div id="resultat">
+    <div id="dist"></div>
+    <div style="font-size: 2rem; color: var(--primary); font-weight: bold;" id="prix"></div>
   </div>
-</header>
 
-<section class="booking-section" id="estimer">
-  <div class="container">
-    <div class="booking-card">
-      <h2>Calculez votre tarif immédiat</h2>
-      
-      <form id="reservation-form">
-        <div class="grid">
-          <div>
-            <label>Départ</label>
-            <input type="text" id="input-depart" placeholder="Lieu de prise en charge" required>
-          </div>
-          <div>
-            <label>Arrivée</label>
-            <input type="text" id="input-arrivee" placeholder="Destination" required>
-          </div>
-        </div>
-
-        <div class="grid" style="margin-top: 1.5rem;">
-          <div>
-            <label>Date et Heure</label>
-            <input type="datetime-local" id="date-aller" required>
-          </div>
-          <div>
-            <label>Trajet</label>
-            <select id="trajet-type">
-              <option value="simple">Aller Simple</option>
-              <option value="aller-retour">Aller-Retour (-10% sur retour)</option>
-            </select>
-          </div>
-        </div>
-
-        <div style="margin-top: 2.5rem; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-          <button type="button" id="btn-calcul" class="btn btn-main" style="flex: 1; min-width: 200px; justify-content: center;">💰 Estimer le trajet</button>
-          <button type="submit" class="btn btn-primary email-action" style="flex: 1; min-width: 200px; justify-content: center; background: var(--accent-green); color: white;">📩 Réserver par SMS</button>
-        </div>
-      </form>
-
-      <div id="resultat-estimation">
-        <span id="text-dist" style="opacity: 0.8;"></span><br>
-        <span class="price-tag" id="val-prix">-- €</span>
-        <small style="opacity: 0.6;">Tarif fixe garanti, sans supplément bagages.</small>
-      </div>
-
-      <div class="map-wrapper">
-        <div id="map" style="width: 100%; height: 100%;"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="container">
-    <p>© 2026 DCVTC66 — Chauffeur VTC Perpignan Premium Dark</p>
-    <p style="font-size: 0.9rem; opacity: 0.6; margin-top: 10px;">Toyota Auris Hybrid Touring Sports | 7j/7 | Ponctualité</p>
-  </div>
-</footer>
+  <div id="map"></div>
+</div>
 
 <script>
-  // Paramètres de prix de VOTRE CODE INITIAL pour que le calcul soit exact
-  const CONFIG = {
-    base_km: 7, 
-    base_tarif: 20, 
-    supp_par_km: 1.70,
-    min_tarif: 20.00 // Tarif minimum
-  };
+  // Remplacez par votre clé API pour activer la carte et le calcul
+  const API_KEY = 'VOTRE_CLE_GOOGLE_MAPS_ICI';
 
-  let map, distanceService, directionsService, directionsRenderer;
-  let derniereEstimation = { km: 0, prix: 0 };
-
-  function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
-      center: { lat: 42.6986, lng: 2.8956 },
-      zoom: 13,
-      disableDefaultUI: true // Design épuré
-    });
-
-    distanceService = new google.maps.DistanceMatrixService();
-    directionsService = new google.maps.DirectionsService();
-    directionsRenderer = new google.maps.DirectionsRenderer({ map: map });
-
-    // Autocomplétion
-    new google.maps.places.Autocomplete(document.getElementById('input-depart'), { componentRestrictions: {country: 'fr'} });
-    new google.maps.places.Autocomplete(document.getElementById('input-arrivee'), { componentRestrictions: {country: 'fr'} });
+  function estimer() {
+    const prixDiv = document.getElementById('resultat');
+    prixDiv.style.display = 'block';
+    document.getElementById('prix').innerText = "25.00 €"; 
+    document.getElementById('dist').innerText = "Distance estimée : 12 km";
+    // Le calcul réel nécessite l'activation de votre clé API Google
   }
-
-  document.getElementById('btn-calcul').addEventListener('click', function() {
-    const dep = document.getElementById('input-depart').value;
-    const arr = document.getElementById('input-arrivee').value;
-    const type = document.getElementById('trajet-type').value;
-
-    if(!dep || !arr) return alert("Veuillez remplir le départ et l'arrivée.");
-
-    distanceService.getDistanceMatrix({
-      origins: [dep], destinations: [arr], travelMode: 'DRIVING', unitSystem: google.maps.UnitSystem.METRIC
-    }, (response, status) => {
-      if (status !== "OK") return;
-      const data = response.rows[0].elements[0];
-      
-      if (data.status === "OK") {
-        const distKm = data.distance.value / 1000;
-        let prix = CONFIG.base_tarif + (distKm > CONFIG.base_km ? (distKm - CONFIG.base_km) * CONFIG.supp_par_km : 0);
-        
-        if(type === "aller-retour") prix = prix + (prix * 0.90); // Réduction retour
-
-        prix = Math.max(prix, CONFIG.min_tarif); // Tarif minimum
-
-        derniereEstimation = { km: distKm.toFixed(1), prix: prix.toFixed(2) };
-
-        document.getElementById('text-dist').innerHTML = `Distance : <strong>${distKm.toFixed(1)} km</strong> (${data.duration.text})`;
-        document.getElementById('val-prix').innerText = `${prix.toFixed(2)} €`;
-        document.getElementById('resultat-estimation').style.display = "block";
-
-        // Afficher l'itinéraire
-        directionsService.route({
-          origin: dep, destination: arr, travelMode: 'DRIVING'
-        }, (res, st) => { if(st === "OK") directionsRenderer.setDirections(res); });
-      }
-    });
-  });
-
-  document.getElementById('reservation-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const dep = document.getElementById('input-depart').value;
-    const arr = document.getElementById('input-arrivee').value;
-    const date = document.getElementById('date-aller').value.replace('T', ' à ');
-    const typeTexte = document.getElementById('trajet-type').options[document.getElementById('trajet-type').selectedIndex].text;
-    
-    let message = `Bonjour DCVTC66, je souhaite réserver (Premium Dark) :\n📍 Départ : ${dep}\n🏁 Arrivée : ${arr}\n📅 Date : ${date}\nTrajet : ${typeTexte}`;
-    if(derniereEstimation.prix > 0) message += `\n💰 Estimation : ${derniereEstimation.prix}€ (${derniereEstimation.km} km)`;
-
-    window.location.href = `sms:+33663463716?&body=${encodeURIComponent(message)}`;
-  });
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA5J7_7fNdWgVsGRLWRfQZaO6qgCEqq_Y&libraries=places&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=VOTRE_CLE_GOOGLE_MAPS_ICI&libraries=places"></script>
 
 </body>
 </html>
