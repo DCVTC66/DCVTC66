@@ -128,58 +128,59 @@
         <p class="site-subtitle">Chauffeur VTC privé à Perpignan et dans toutes les Pyrénées-Orientales (66)</p>
 
         <style>
-  /* Alignement des 4 boutons sur une seule ligne */
-  .hero-actions { 
-    display: flex; 
-    gap: 10px; 
-    margin-top: 1.5rem; 
-    justify-content: center; 
-    flex-wrap: nowrap; /* Force l'alignement sur une ligne */
-    width: 100%;
+ <style>
+  /* Alignement sur une seule ligne pour les écrans larges (Ordinateurs) */
+  @media (min-width: 769px) {
+    .hero-actions { 
+      display: flex; 
+      gap: 15px; 
+      margin-top: 1.5rem; 
+      justify-content: center; 
+      flex-wrap: nowrap; /* Force la ligne unique sur PC */
+    }
+    .hero-actions a.btn-primary { 
+      padding: 12px 25px; 
+      font-size: 0.9rem; 
+      min-width: 150px; /* Donne une largeur uniforme et élégante sur PC */
+    }
   }
 
-  .hero-actions a.btn-primary { 
-    flex: 1; /* Donne la même largeur à chaque bouton */
-    display: inline-flex; 
-    align-items: center; 
-    justify-content: center; 
-    padding: 12px 5px; 
-    font-size: 0.85rem; 
-    font-weight: 600;
-    border-radius: 12px; 
-    text-align: center; 
-    white-space: nowrap;
-    min-width: 0; /* Évite que les boutons ne débordent */
-  }
-
-  /* Optimisation pour les petits écrans mobiles */
-  @media (max-width: 480px) {
+  /* Style par défaut (Mobile) - On ne change rien à votre comportement existant */
+  @media (max-width: 768px) {
     .hero-actions {
-      gap: 5px;
+      display: flex;
+      gap: 0.55rem;
+      margin-top: 1.05rem;
+      justify-content: center;
+      flex-wrap: wrap; /* Garde le retour à la ligne automatique sur mobile */
     }
     .hero-actions a.btn-primary {
-      font-size: 0.7rem; /* Réduit un peu la police sur très petit écran */
-      padding: 10px 2px;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.8rem;
     }
   }
 
-  /* Rappel de ton style Jaune DCVTC66 */
+  /* Couleur Jaune DCVTC66 */
   .btn-primary {
     background: #ffcc00 !important;
     color: #000 !important;
     border: 1px solid #e6b800 !important;
     text-decoration: none;
+    border-radius: 999px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>
 
-<!-- Remplace ton bloc hero-actions actuel par celui-ci -->
+<!-- Structure HTML -->
 <div class="hero-actions">
   <a href="tel:0663463716" class="btn-primary">📞 Appeler</a>
   <a href="https://wa.me/33663463716" target="_blank" class="btn-primary">💬 WhatsApp</a>
   <a href="#reservation" class="btn-primary">📝 Réserver</a>
   <a href="#" id="btn-estimer-hero" class="btn-primary">💰 Estimer</a>
 </div>
-
         <button id="btn-install" class="btn-primary" style="display:none; margin-top:10px;">
           📲 Installer l'application
         </button>
