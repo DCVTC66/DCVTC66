@@ -177,6 +177,58 @@
         font-size: 1rem;
       }
     }
+    /* --- HARMONISATION DES BOUTONS EN JAUNE (DCVTC66) --- */
+
+/* Boutons principaux, Estimation et Envoi */
+.btn-primary, 
+.btn-estimate, 
+.email-action,
+#btn-install.btn-primary {
+    background: #ffcc00 !important; /* Jaune vif */
+    color: #000000 !important;      /* Texte noir pour contraste maximum */
+    border: 1px solid #e6b800 !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 204, 0, 0.2);
+}
+
+/* Boutons au survol */
+.btn-primary:hover, 
+.btn-estimate:hover, 
+.email-action:hover,
+#btn-install.btn-primary:hover {
+    background: #f5c200 !important; /* Jaune légèrement plus sombre */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 204, 0, 0.4);
+}
+
+/* Boutons Flottants (Appel et WhatsApp) */
+.fab {
+    background: #ffcc00 !important;
+    color: #000000 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+    border: 2px solid #ffffff;
+}
+
+.fab:hover {
+    background: #f5c200 !important;
+    transform: scale(1.1);
+}
+
+/* Cas particulier : Bouton WhatsApp dans le formulaire */
+#btn-whatsapp-form {
+    background: #ffcc00 !important;
+    border: none !important;
+}
+
+/* Ajustement du bandeau d'estimation flottant pour rester cohérent */
+#tarif-flottant {
+    background: linear-gradient(135deg, #ffcc00, #f5c200) !important;
+    color: #000000 !important;
+    border: 1px solid #d4a700 !important;
+    box-shadow: 0 10px 30px rgba(255, 204, 0, 0.5) !important;
+}
+
+/* --- FIN DU BLOC JAUNE --- */
   </style>
 </head>
 
