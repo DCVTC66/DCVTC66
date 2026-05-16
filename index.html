@@ -143,18 +143,35 @@
       font-size: 0.85rem;
     }
 
-    /* Flotteur d'estimation tarifaire */
+    /* --- TARIF FLOTTANT AGRANDI ET CENTRÉ --- */
     #tarif-flottant {
-      position: fixed; top: 24px; right: 24px; z-index: 9999; display: none; align-items: center; gap: 0.75rem;
-      padding: 0.9rem 1.3rem; border-radius: 999px; background: linear-gradient(135deg, #16a34a, #22c55e);
-      color: #022c22; box-shadow: 0 16px 40px rgba(22, 163, 74, 0.7); font-size: 0.95rem; font-weight: 600; max-width: 90vw;
-      border: 1px solid rgba(6, 95, 70, 0.75); animation: pulseTarif 1.6s ease-in-out infinite;
+      position: fixed; 
+      top: 24px; 
+      left: 50%; /* Centrage horizontal */
+      transform: translateX(-50%); /* Ajustement centrage */
+      z-index: 9999; 
+      display: none; 
+      align-items: center; 
+      gap: 1rem;
+      padding: 1.2rem 2rem; /* Plus grand */
+      border-radius: 999px; 
+      background: linear-gradient(135deg, #16a34a, #22c55e);
+      color: #022c22; 
+      box-shadow: 0 20px 50px rgba(22, 163, 74, 0.8); 
+      font-size: 1.1rem; /* Texte plus grand */
+      font-weight: 700; 
+      width: fit-content;
+      max-width: 95vw;
+      border: 1px solid rgba(6, 95, 70, 0.75); 
+      animation: pulseTarif 1.6s ease-in-out infinite;
+      white-space: nowrap;
     }
-    #tarif-flottant .icon { font-size: 1.3rem; }
+    #tarif-flottant .icon { font-size: 1.6rem; }
+    
     @keyframes pulseTarif {
-      0% { transform: scale(1); box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55); }
-      50% { transform: scale(1.06); box-shadow: 0 18px 45px rgba(22, 163, 74, 0.85); }
-      100% { transform: scale(1); box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55); }
+      0% { transform: translateX(-50%) scale(1); box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55); }
+      50% { transform: translateX(-50%) scale(1.06); box-shadow: 0 18px 45px rgba(22, 163, 74, 0.85); }
+      100% { transform: translateX(-50%) scale(1); box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55); }
     }
 
     .section-intro { margin-bottom: 0.75rem; }
@@ -227,16 +244,21 @@
       .hero-actions { gap: 0.6rem; max-width: 100%; }
       .hero-actions a.btn-primary { font-size: 0.75rem; padding: 0.75rem 0.3rem; }
       
-      /* Optimisations des carrés d'estimation sur Mobile */
       .hero-fast-estimate { padding: 1.25rem; margin-top: 1.5rem; }
       .hero-fast-fields { grid-template-columns: 1fr; gap: 0.8rem; }
-      .hero-fast-fields input { padding: 1.1rem; font-size: 1.1rem; } /* Reste grand et confortable au toucher */
+      .hero-fast-fields input { padding: 1.1rem; font-size: 1.1rem; } 
       .btn-fast-calc { padding: 1.1rem; font-size: 1.1rem; }
+      
+      #tarif-flottant { 
+        padding: 1rem 1.2rem; 
+        font-size: 0.95rem; 
+        top: 15px; 
+        gap: 0.5rem;
+      }
     }
 
     @media (max-width: 520px){
       .form-compact .row{ grid-template-columns: 1fr; }
-      #tarif-flottant { left: 16px; right: 16px; top: 70px; justify-content: center; }
       .actions-compact{ grid-template-columns: 1fr; gap: .55rem; }
       .actions-compact .btn-primary,
       .actions-compact .btn-estimate,
@@ -529,9 +551,7 @@
       const numero = "+33663463716";
       window.location.href = "sms:" + numero + "?&body=" + encodeURIComponent(sms);
     });
-  </script>
 
-  <script>
     function buildWhatsAppMessage() {
       const nom = form.Nom.value;
       const tel = form["Téléphone"].value;
@@ -589,9 +609,7 @@
         openWhatsAppPrefilled();
       });
     }
-  </script>
 
-  <script>
     const BASE_KM = 7;
     const BASE_TARIF = 20;
     const SUPP_PAR_KM = 1.70;
@@ -790,7 +808,7 @@
 
           if (flottant && flottantTexte) {
             if (trajetType === "aller-retour") {
-              flottantTexte.textContent = "Aller-Retour : " + tarifFinal.toFixed(2) + " € • " + distanceTotale + " km (" + dureeTotale + ")";
+              flottantTexte.textContent = "Aller-Retour : " + tarifFinal.toFixed(2) + " € • " + distanceTotale + " km";
             } else {
               flottantTexte.textContent = "Estimation : " + tarifFinal.toFixed(2) + " € • " + distanceKm + " km";
             }
@@ -844,43 +862,7 @@
         btnInstall.style.display = "none";
       });
     }
-
-    window.addEventListener("appinstalled", () => {
-      if (btnInstall) btnInstall.style.display = "none";
-    });
-
-    window.addEventListener("load", () => {
-      const splash = document.getElementById("splash-screen");
-      if (!splash) return;
-      splash.style.opacity = "0";
-      setTimeout(() => splash.remove(), 600);
-    });
   </script>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "TransportationService", "ProfessionalService"],
-    "@id": "https://www.dcvtc66.fr/#business",
-    "name": "DCVTC66 — Chauffeur VTC à Perpignan",
-    "url": "https://www.dcvtc66.fr/",
-    "image": "https://www.dcvtc66.fr/LOGO%20DCVTC66.png",
-    "logo": "https://www.dcvtc66.fr/LOGO%20DCVTC66.png",
-    "telephone": "+33663463716",
-    "priceRange": "€€",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Perpignan",
-      "postalCode": "66000",
-      "addressCountry": "FR"
-    },
-    "areaServed": [
-      { "@type": "City", "name": "Perpignan" },
-      { "@type": "AdministrativeArea", "name": "Pyrénées-Orientales" }
-    ],
-    "openingHours": "Mo-Su 00:00-23:59",
-    "sameAs": [ "https://wa.me/33663463716" ]
-  }
-  </script>
 </body>
 </html>
