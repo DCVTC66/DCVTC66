@@ -25,17 +25,34 @@
     .nav-inner ul { display: flex; gap: 1rem; list-style: none; padding-left: 0; margin: 0; }
     .nav-inner ul li a { text-decoration: none; }
 
-    /* Carré Bleu Central : Même taille stricte sur ordi (900px) et même comportement sur mobile */
+    /* --- REMONTÉE GÉNÉRALE DES SECTIONS --- */
+    .header {
+      padding-top: 1rem !important; /* Réduit l'espace sous la barre de navigation */
+    }
+    
+    /* Réduction du padding global des sections pour tout remonter */
+    .section, .section-alt {
+      padding-top: 2rem !important; 
+      padding-bottom: 2rem !important;
+    }
+
+    /* Rapprochement des titres de section */
+    .section-title {
+      margin-top: 0 !important;
+      margin-bottom: 1rem !important;
+    }
+
+    /* Carré Bleu Central : Largeur identique au formulaire et remonté vers le haut */
     .branding {
       padding: 2.5rem 2.5rem !important;
-      max-width: 900px !important; /* Calé pile sur la largeur du formulaire du bas */
+      max-width: 900px !important;
       width: 100%;
-      margin: 0 auto;
+      margin: 0.5rem auto 0 auto !important; /* margin-top réduit au minimum pour remonter le bloc */
       border-radius: 24px;
       box-sizing: border-box;
     }
 
-    /* Formulaire du bas : Identique en taille au carré du haut */
+    /* Formulaire du bas */
     .form-compact { 
       max-width: 900px !important; 
       width: 100%; 
@@ -54,7 +71,7 @@
     .site-title { margin-bottom: 0.2rem; font-size: 2.4rem; }
     .site-subtitle { margin-top: 0; font-size: 1.05rem; max-width: 85%; margin-left: auto; margin-right: auto; opacity: 0.9; }
 
-    /* Boutons jaunes harmonisés et espacés sur ordi et mobile */
+    /* Boutons jaunes */
     .hero-actions { 
       display: grid; 
       grid-template-columns: repeat(3, 1fr); 
@@ -200,14 +217,15 @@
     }
 
     @media (max-width: 768px) {
+      .header { padding-top: 0.5rem !important; } /* Encore plus haut sur mobile */
+      .section, .section-alt { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; padding-left: 1.1rem; padding-right: 1.1rem; box-sizing: border-box; }
       .nav-inner ul { justify-content: center; flex-wrap: wrap; text-align: center; }
       .header-inner, .branding { text-align: center; }
-      .branding { padding: 2rem 1rem !important; }
+      .branding { padding: 2rem 1rem !important; margin-top: 0.2rem auto 0 auto !important; }
       .site-title { font-size: 1.9rem; }
       .hero-actions { gap: 0.6rem; max-width: 100%; }
       .hero-actions a.btn-primary { font-size: 0.75rem; padding: 0.75rem 0.3rem; }
       .hero-fast-fields { grid-template-columns: 1fr; gap: 0.6rem; }
-      .section, .section-alt { padding-left: 1.1rem; padding-right: 1.1rem; box-sizing: border-box; }
     }
 
     @media (max-width: 520px){
@@ -289,7 +307,7 @@
   <section id="reservation" class="section section-alt">
     <div class="container">
       <h2 class="section-title">Réservation</h2>
-      <p style="text-align:center;">Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un clic.</p>
+      <p style="text-align:center; margin-top:0; margin-bottom:1.5rem;">Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un clic.</p>
 
       <form id="reservation-form" class="form form-compact">
         <div class="row">
@@ -375,7 +393,7 @@
   <section id="services" class="section">
     <div class="container">
       <h2 class="section-title">Nos services</h2>
-      <p class="section-intro">Transferts, gares, aéroports, déplacements pro et mise à disposition.</p>
+      <p class="section-intro" style="margin-bottom:1.5rem;">Transferts, gares, aéroports, déplacements pro et mise à disposition.</p>
       <div class="grid">
         <article class="card">
           <h3>✈️ Aéroports</h3>
@@ -401,7 +419,7 @@
     <div class="container">
       <h2 class="section-title">Contact</h2>
 
-      <div class="contact-grid">
+      <div class="contact-grid" style="margin-top:1rem;">
         <div>
           <p>📞 <a href="tel:+33663463716"><strong>+33 6 63 46 37 16</strong></a></p>
           <p>💬 <a href="https://wa.me/33663463716" target="_blank"><strong>WhatsApp</strong></a></p>
