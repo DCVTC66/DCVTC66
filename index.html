@@ -150,35 +150,35 @@
     }
 
     @media (max-width: 520px){
-  .form-compact .row{ grid-template-columns: 1fr; }
-  .hero-fast-fields { grid-template-columns: 1fr; }
-  #tarif-flottant { left: 16px; right: 16px; top: 70px; justify-content: center; }
-  .actions-compact{ grid-template-columns: 1fr; gap: .55rem; }
-  .actions-compact .btn-primary,
-  .actions-compact .btn-estimate,
-  .email-action{ 
-    width: 100%; 
-    padding: 0.9rem 1rem; 
-    font-size: 0.95rem; 
-  }
-  .map-wrapper-inner{ height: 280px; }
-  #btn-install.btn-primary{ width: 100%; max-width: 320px; margin-left: auto !important; margin-right: auto !important; }
-  
-  /* Agrandir les bords sur mobile */
-  .container {
-    padding: 0 1rem;
-  }
-  .form-compact {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-  .form-compact input,
-  .form-compact select,
-  .form-compact textarea {
-    padding: 0.9rem 1rem;
-    font-size: 1rem;
-  }
-}
+      .form-compact .row{ grid-template-columns: 1fr; }
+      .hero-fast-fields { grid-template-columns: 1fr; }
+      #tarif-flottant { left: 16px; right: 16px; top: 70px; justify-content: center; }
+      .actions-compact{ grid-template-columns: 1fr; gap: .55rem; }
+      .actions-compact .btn-primary,
+      .actions-compact .btn-estimate,
+      .email-action{ 
+        width: 100%; 
+        padding: 0.9rem 1rem; 
+        font-size: 0.95rem; 
+      }
+      .map-wrapper-inner{ height: 280px; }
+      #btn-install.btn-primary{ width: 100%; max-width: 320px; margin-left: auto !important; margin-right: auto !important; }
+      
+      /* Agrandir les bords sur mobile */
+      .container {
+        padding: 0 1rem;
+      }
+      .form-compact {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+      .form-compact input,
+      .form-compact select,
+      .form-compact textarea {
+        padding: 0.9rem 1rem;
+        font-size: 1rem;
+      }
+    }
 
     @media (min-width: 1024px){
       .branding{
@@ -358,29 +358,29 @@
   </section>
 
   <section id="services" class="section">
-  <div class="container">
-    <h2 class="section-title">Nos services</h2>
-    <p class="section-intro">Transferts, gares, aéroports, déplacements pro et mise à disposition.</p>
-    <div class="grid">
-      <article class="card">
-        <h3>✈️ Aéroports</h3>
-        <p>Perpignan, Toulouse, Montpellier, Barcelone…</p>
-      </article>
-      <article class="card">
-        <h3>🚉 Gares</h3>
-        <p>Perpignan, Narbonne et alentours.</p>
-      </article>
-      <article class="card">
-        <h3>💼 Professionnel</h3>
-        <p>RDV, séminaires, déplacements business.</p>
-      </article>
-      <article class="card">
-        <h3>🎉 Mise à disposition</h3>
-        <p>Événements, mariages, soirées & mise à disposition à la journée.</p>
-      </article>
+    <div class="container">
+      <h2 class="section-title">Nos services</h2>
+      <p class="section-intro">Transferts, gares, aéroports, déplacements pro et mise à disposition.</p>
+      <div class="grid">
+        <article class="card">
+          <h3>✈️ Aéroports</h3>
+          <p>Perpignan, Toulouse, Montpellier, Barcelone…</p>
+        </article>
+        <article class="card">
+          <h3>🚉 Gares</h3>
+          <p>Perpignan, Narbonne et alentours.</p>
+        </article>
+        <article class="card">
+          <h3>💼 Professionnel</h3>
+          <p>RDV, séminaires, déplacements business.</p>
+        </article>
+        <article class="card">
+          <h3>🎉 Mise à disposition</h3>
+          <p>Événements, mariages, soirées & mise à disposition à la journée.</p>
+        </article>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <section id="contact" class="section">
     <div class="container">
@@ -433,7 +433,6 @@
     const datesRetourContainer = document.getElementById('dates-retour-container');
     const dateRetourInput = document.getElementById('date-retour');
 
-    // Afficher/masquer la date retour selon le type de trajet
     function toggleDateRetour() {
       if (trajetSelect.value === 'aller-retour') {
         datesRetourContainer.style.display = 'block';
@@ -446,39 +445,35 @@
     }
 
     trajetSelect.addEventListener('change', toggleDateRetour);
-    toggleDateRetour(); // Initialisation
+    toggleDateRetour();
 
-    // Bouton Estimer dans le bandeau
-const btnEstimerHero = document.getElementById('btn-estimer-hero');
-if (btnEstimerHero) {
-  btnEstimerHero.addEventListener('click', function(e) {
-    e.preventDefault();
-    
-    // Scroll vers la section réservation
-    const reservationSection = document.getElementById('reservation');
-    if (reservationSection) {
-      reservationSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    
-    // Petit délai pour le scroll puis déclencher le calcul
-    setTimeout(() => {
-      const btnTarif = document.getElementById('btn-tarif');
-      const depart = document.querySelector('input[name="Départ"]').value.trim();
-      const arrivee = document.querySelector('input[name="Arrivee"]').value.trim();
-      
-      if (btnTarif && depart && arrivee) {
-        btnTarif.click();
-      } else if (btnTarif && (!depart || !arrivee)) {
-        const errDiv = document.getElementById('erreur-tarif');
-        if (errDiv) {
-          errDiv.textContent = "Veuillez renseigner le départ et l'arrivée avant d'estimer le tarif.";
-          errDiv.style.display = "block";
+    const btnEstimerHero = document.getElementById('btn-estimer-hero');
+    if (btnEstimerHero) {
+      btnEstimerHero.addEventListener('click', function(e) {
+        e.preventDefault();
+        const reservationSection = document.getElementById('reservation');
+        if (reservationSection) {
+          reservationSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-      }
-    }, 500);
-  });
-}
-      form.addEventListener('submit', function (e) {
+        setTimeout(() => {
+          const btnTarif = document.getElementById('btn-tarif');
+          const depart = document.querySelector('input[name="Départ"]').value.trim();
+          const arrivee = document.querySelector('input[name="Arrivee"]').value.trim();
+          
+          if (btnTarif && depart && arrivee) {
+            btnTarif.click();
+          } else if (btnTarif && (!depart || !arrivee)) {
+            const errDiv = document.getElementById('erreur-tarif');
+            if (errDiv) {
+              errDiv.textContent = "Veuillez renseigner le départ et l'arrivée avant d'estimer le tarif.";
+              errDiv.style.display = "block";
+            }
+          }
+        }, 500);
+      });
+    }
+
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
 
       const nom = form.Nom.value;
@@ -553,7 +548,7 @@ if (btnEstimerHero) {
 
       if (derniereEstimation) {
         msg += "\n--- Estimation ---\n";
-        sms += "Distance : " + (derniereEstimation.distanceTotale || derniereEstimation.distanceKm) + " km\n";
+        msg += "Distance : " + (derniereEstimation.distanceTotale || derniereEstimation.distanceKm) + " km\n";
         msg += "Durée : " + (derniereEstimation.dureeTotale || derniereEstimation.dureeTexte) + "\n";
         if (derniereEstimation.trajetType === "aller-retour") {
           msg += "Tarif Aller-Retour : " + derniereEstimation.tarif.toFixed(2) + " €\n";
@@ -597,8 +592,11 @@ if (btnEstimerHero) {
       const mapElement = document.getElementById("map");
       if (!mapElement) return;
 
+      // Centre sur Perpignan
+      const centrePerpignan = { lat: 42.6986, lng: 2.8956 };
+
       map = new google.maps.Map(mapElement, {
-        center: { lat: 42.6986, lng: 2.8956 },
+        center: centrePerpignan,
         zoom: 11,
       });
 
@@ -615,54 +613,44 @@ if (btnEstimerHero) {
       const fastDepart = document.getElementById('fast-depart');
       const fastArrivee = document.getElementById('fast-arrivee');
 
+      // Configuration du ciblage géographique (Rayon de ~180km autour de Perpignan incluant Barcelone et Gérone)
+      const optionsAutocomplete = {
+        fields: ["address_components", "geometry", "name"],
+        locationBias: { center: centrePerpignan, radius: 180000 }
+      };
+
       if (inputDepart) {
-        new google.maps.places.Autocomplete(inputDepart, {
-          types: ['geocode', 'establishment'],
-          componentRestrictions: { country: 'fr' }
-        });
+        new google.maps.places.Autocomplete(inputDepart, optionsAutocomplete);
       }
 
       if (inputArrivee) {
-        new google.maps.places.Autocomplete(inputArrivee, {
-          types: ['geocode', 'establishment'],
-          componentRestrictions: { country: 'fr' }
-        });
+        new google.maps.places.Autocomplete(inputArrivee, optionsAutocomplete);
       }
 
-      // Autocomplete sur le mini-formulaire du haut
       if (fastDepart) {
-        new google.maps.places.Autocomplete(fastDepart, {
-          types: ['geocode', 'establishment'],
-          componentRestrictions: { country: 'fr' }
-        });
+        new google.maps.places.Autocomplete(fastDepart, optionsAutocomplete);
       }
+      
       if (fastArrivee) {
-        new google.maps.places.Autocomplete(fastArrivee, {
-          types: ['geocode', 'establishment'],
-          componentRestrictions: { country: 'fr' }
-        });
+        new google.maps.places.Autocomplete(fastArrivee, optionsAutocomplete);
       }
 
       const btnTarif = document.getElementById("btn-tarif");
       if (btnTarif) btnTarif.addEventListener("click", calculerTarif);
 
-      // Liaison du mini-formulaire au calcul principal
       const btnFastCalc = document.getElementById("btn-fast-calc");
       if (btnFastCalc) {
         btnFastCalc.addEventListener("click", () => {
           if (fastDepart && fastArrivee) {
-            // Copie les valeurs dans le grand formulaire pour utiliser tes fonctions existantes
             form["Départ"].value = fastDepart.value;
             form["Arrivee"].value = fastArrivee.value;
             
-            // Assigne automatiquement la date actuelle si elle est vide pour éviter le blocage
             if (!form["DateHeureAller"].value) {
               const maintenant = new Date();
               maintenant.setMinutes(maintenant.getMinutes() - maintenant.getTimezoneOffset());
               form["DateHeureAller"].value = maintenant.toISOString().slice(0, 16);
             }
             
-            // Lance le calcul
             calculerTarif();
           }
         });
@@ -746,7 +734,6 @@ if (btnEstimerHero) {
             tarif += (distanceKm - BASE_KM) * SUPP_PAR_KM;
           }
 
-          // Vérifier si tarif de nuit pour l'aller
           let heureAller = getHeureFromDateTime(dateAllerValue);
           if (heureAller >= 21 || heureAller < 7) {
             tarif = tarif * 1.20;
@@ -756,7 +743,6 @@ if (btnEstimerHero) {
           let dureeTotale = dureeTexte;
           let tarifFinal = tarif;
 
-          // Pour l'aller-retour
           if (trajetType === "aller-retour") {
             let tarifRetour = BASE_TARIF;
             if (distanceKm > BASE_KM) {
@@ -770,7 +756,6 @@ if (btnEstimerHero) {
             tarifFinal = Math.round(tarifFinal * 100) / 100;
             distanceTotale = Math.round((distanceKm * 2) * 10) / 10;
             
-            // ✅ Gérer les durées en heures ET en minutes
             let totalMinutes = 0;
             if (dureeTexte.includes('heure')) {
               let heures = parseInt(dureeTexte);
