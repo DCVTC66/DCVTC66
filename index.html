@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=500;700&family=Poppins:wght=300;400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css?v=99" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
@@ -27,34 +27,31 @@
 
     /* --- REMONTÉE GÉNÉRALE DES SECTIONS --- */
     .header {
-      padding-top: 1rem !important; /* Réduit l'espace sous la barre de navigation */
+      padding-top: 1rem !important;
     }
     
-    /* Réduction du padding global des sections pour tout remonter */
     .section, .section-alt {
       padding-top: 2rem !important; 
       padding-bottom: 2rem !important;
     }
 
-    /* Rapprochement des titres de section */
     .section-title {
       margin-top: 0 !important;
       margin-bottom: 1rem !important;
     }
 
-    /* Carré Bleu Central : Largeur identique au formulaire et remonté vers le haut */
+    /* --- CARRÉ BLEU CENTRAL ET FORMULAIRE AGRANDIS (PC) --- */
     .branding {
-      padding: 2.5rem 2.5rem !important;
-      max-width: 900px !important;
+      padding: 3rem 2.5rem !important; /* Plus d'espace interne */
+      max-width: 960px !important; /* Plus large sur PC */
       width: 100%;
-      margin: 0.5rem auto 0 auto !important; /* margin-top réduit au minimum pour remonter le bloc */
+      margin: 0.5rem auto 0 auto !important;
       border-radius: 24px;
       box-sizing: border-box;
     }
 
-    /* Formulaire du bas */
     .form-compact { 
-      max-width: 900px !important; 
+      max-width: 960px !important; /* Aligné sur la largeur du carré bleu */
       width: 100%; 
       margin: 0 auto; 
       box-sizing: border-box;
@@ -95,41 +92,44 @@
       letter-spacing: 0.03em;
     }
 
-    /* Bloc d'estimation rapide */
+    /* Zone d'estimation rapide */
     .hero-fast-estimate {
       background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 1.5rem;
-      border-radius: 18px;
+      padding: 2rem; 
+      border-radius: 20px;
       margin: 2rem auto 0 auto;
-      max-width: 100%;
+      max-width: 750px; 
+      width: 100%;
+      box-sizing: border-box;
     }
     .hero-fast-fields {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-bottom: 1rem;
+      gap: 1.2rem; 
+      margin-bottom: 1.2rem;
     }
     .hero-fast-fields input {
-      padding: 0.9rem 1.1rem;
+      padding: 1.1rem 1.3rem; 
       border-radius: 14px;
       border: 1px solid rgba(255, 255, 255, 0.3);
       background: rgba(255, 255, 255, 0.9);
-      font-size: 0.95rem;
+      font-size: 1.05rem; 
       color: #333;
       width: 100%;
       box-sizing: border-box;
+      font-weight: 500;
     }
     .btn-fast-calc {
       width: 100%;
-      padding: 0.95rem;
+      padding: 1.1rem; 
       border-radius: 14px;
       border: none;
       background: #16a34a;
       color: white;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 1.1rem; 
       cursor: pointer;
       transition: background 0.2s;
     }
@@ -212,20 +212,34 @@
 
     /* Responsive Mobile & Tablette */
     @media (max-width: 930px) {
-      .branding, .form-compact { max-width: 95% !important; }
-      .branding { padding: 2rem 1.5rem !important; }
+      /* Largeur élargie sur tablette */
+      .branding, .form-compact { max-width: 96% !important; } 
     }
 
     @media (max-width: 768px) {
-      .header { padding-top: 0.5rem !important; } /* Encore plus haut sur mobile */
-      .section, .section-alt { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; padding-left: 1.1rem; padding-right: 1.1rem; box-sizing: border-box; }
+      .header { padding-top: 0.5rem !important; }
+      .section, .section-alt { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; padding-left: 0.8rem; padding-right: 0.8rem; box-sizing: border-box; }
       .nav-inner ul { justify-content: center; flex-wrap: wrap; text-align: center; }
       .header-inner, .branding { text-align: center; }
-      .branding { padding: 2rem 1rem !important; margin-top: 0.2rem auto 0 auto !important; }
+      
+      /* --- CARRÉ BLEU ET FORMULAIRE AGRANDIS SUR MOBILE --- */
+      .branding { 
+        padding: 2.2rem 1.2rem !important; /* Plus d'air interne */
+        max-width: 96% !important; /* Utilise tout l'espace de l'écran */
+        margin: 0.2rem auto 0 auto !important; 
+      }
+      .form-compact { 
+        max-width: 96% !important; /* Formulaire élargi pour correspondre au haut */
+      }
+      
       .site-title { font-size: 1.9rem; }
       .hero-actions { gap: 0.6rem; max-width: 100%; }
       .hero-actions a.btn-primary { font-size: 0.75rem; padding: 0.75rem 0.3rem; }
-      .hero-fast-fields { grid-template-columns: 1fr; gap: 0.6rem; }
+      
+      .hero-fast-estimate { padding: 1.25rem; margin-top: 1.5rem; }
+      .hero-fast-fields { grid-template-columns: 1fr; gap: 0.8rem; }
+      .hero-fast-fields input { padding: 1.1rem; font-size: 1.1rem; } 
+      .btn-fast-calc { padding: 1.1rem; font-size: 1.1rem; }
     }
 
     @media (max-width: 520px){
@@ -242,8 +256,8 @@
       .map-wrapper-inner{ height: 280px; }
       #btn-install.btn-primary{ width: 100%; max-width: 320px; margin-left: auto !important; margin-right: auto !important; }
       
-      .container { padding: 0 1rem; }
-      .form-compact { padding-left: 0.5rem; padding-right: 0.5rem; }
+      .container { padding: 0 0.5rem; }
+      .form-compact { padding-left: 0.8rem; padding-right: 0.8rem; }
       .form-compact input, .form-compact select, .form-compact textarea { padding: 0.9rem 1rem; font-size: 1rem; }
     }
 
