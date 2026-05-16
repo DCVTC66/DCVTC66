@@ -98,25 +98,25 @@
       background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 2rem; /* Augmenté pour donner de l'air */
+      padding: 2rem; 
       border-radius: 20px;
       margin: 2rem auto 0 auto;
-      max-width: 750px; /* Élargi sur PC */
+      max-width: 750px; 
       width: 100%;
       box-sizing: border-box;
     }
     .hero-fast-fields {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.2rem; /* Plus d'espace entre les champs */
+      gap: 1.2rem; 
       margin-bottom: 1.2rem;
     }
     .hero-fast-fields input {
-      padding: 1.1rem 1.3rem; /* Carrés de saisie plus grands */
+      padding: 1.1rem 1.3rem; 
       border-radius: 14px;
       border: 1px solid rgba(255, 255, 255, 0.3);
       background: rgba(255, 255, 255, 0.9);
-      font-size: 1.05rem; /* Texte plus grand pour meilleure lisibilité */
+      font-size: 1.05rem; 
       color: #333;
       width: 100%;
       box-sizing: border-box;
@@ -124,37 +124,43 @@
     }
     .btn-fast-calc {
       width: 100%;
-      padding: 1.1rem; /* Bouton vert plus épais */
+      padding: 1.1rem; 
       border-radius: 14px;
       border: none;
       background: #16a34a;
       color: white;
       font-weight: 700;
-      font-size: 1.1rem; /* Texte du bouton agrandi */
+      font-size: 1.1rem; 
       cursor: pointer;
       transition: background 0.2s;
     }
     .btn-fast-calc:hover { background: #15803d; }
+
+    /* Nouveau bloc d'affichage sous le bouton vert */
+    .fast-calc-result {
+      display: none;
+      margin-top: 1.2rem;
+      padding: 1rem;
+      border-radius: 12px;
+      background: rgba(22, 163, 74, 0.2);
+      border: 1px solid rgba(22, 163, 74, 0.4);
+      color: #ffffff;
+      font-size: 1.05rem;
+      font-weight: 500;
+      line-height: 1.4;
+      text-align: center;
+      animation: fadeInFast 0.3s ease;
+    }
+    @keyframes fadeInFast {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     #btn-install.btn-primary {
       margin-top: 1.2rem;
       padding: 0.75rem 1.5rem;
       border-radius: 999px;
       font-size: 0.85rem;
-    }
-
-    /* Flotteur d'estimation tarifaire */
-    #tarif-flottant {
-      position: fixed; top: 24px; right: 24px; z-index: 9999; display: none; align-items: center; gap: 0.75rem;
-      padding: 0.9rem 1.3rem; border-radius: 999px; background: linear-gradient(135deg, #16a34a, #22c55e);
-      color: #022c22; box-shadow: 0 16px 40px rgba(22, 163, 74, 0.7); font-size: 0.95rem; font-weight: 600; max-width: 90vw;
-      border: 1px solid rgba(6, 95, 70, 0.75); animation: pulseTarif 1.6s ease-in-out infinite;
-    }
-    #tarif-flottant .icon { font-size: 1.3rem; }
-    @keyframes pulseTarif {
-      0% { transform: scale(1); box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55); }
-      50% { transform: scale(1.06); box-shadow: 0 18px 45px rgba(22, 163, 74, 0.85); }
-      100% { transform: scale(1); box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55); }
     }
 
     .section-intro { margin-bottom: 0.75rem; }
@@ -230,13 +236,12 @@
       /* Optimisations des carrés d'estimation sur Mobile */
       .hero-fast-estimate { padding: 1.25rem; margin-top: 1.5rem; }
       .hero-fast-fields { grid-template-columns: 1fr; gap: 0.8rem; }
-      .hero-fast-fields input { padding: 1.1rem; font-size: 1.1rem; } /* Reste grand et confortable au toucher */
+      .hero-fast-fields input { padding: 1.1rem; font-size: 1.1rem; } 
       .btn-fast-calc { padding: 1.1rem; font-size: 1.1rem; }
     }
 
     @media (max-width: 520px){
       .form-compact .row{ grid-template-columns: 1fr; }
-      #tarif-flottant { left: 16px; right: 16px; top: 70px; justify-content: center; }
       .actions-compact{ grid-template-columns: 1fr; gap: .55rem; }
       .actions-compact .btn-primary,
       .actions-compact .btn-estimate,
@@ -295,6 +300,8 @@
             <input type="text" id="fast-arrivee" placeholder="🏁 Adresse d'arrivée" autocomplete="off">
           </div>
           <button type="button" id="btn-fast-calc" class="btn-fast-calc">💰 Estimer mon trajet en 1 clic</button>
+          
+          <div id="fast-calc-result" class="fast-calc-result"></div>
         </div>
 
         <button id="btn-install" class="btn-primary" style="display:none;">
@@ -451,11 +458,6 @@
 
   <a href="tel:+33663463716" class="fab fab-call" aria-label="Appeler DCVTC66">📞</a>
   <a href="#" id="fab-whatsapp" target="_blank" class="fab fab-whatsapp" aria-label="WhatsApp DCVTC66">💬</a>
-
-  <div id="tarif-flottant">
-    <span class="icon">💰</span>
-    <span id="tarif-flottant-texte">Estimation en cours…</span>
-  </div>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
@@ -666,8 +668,9 @@
     function calculerTarif() {
       const resDiv = document.getElementById("resultat-tarif");
       const errDiv = document.getElementById("erreur-tarif");
-      const flottant = document.getElementById("tarif-flottant");
-      const flottantTexte = document.getElementById("tarif-flottant-texte");
+      
+      // Sélections pour la nouvelle zone d'affichage du haut
+      const fastResultDiv = document.getElementById("fast-calc-result");
 
       const depart = form["Départ"].value.trim();
       const arrivee = form["Arrivee"].value.trim();
@@ -677,16 +680,29 @@
 
       errDiv.style.display = "none"; errDiv.textContent = "";
       resDiv.style.display = "none"; resDiv.textContent = "";
-      if (flottant) flottant.style.display = "none";
+      
+      // On cache et réinitialise le bloc du haut au début du calcul
+      if (fastResultDiv) {
+        fastResultDiv.style.display = "none";
+        fastResultDiv.innerHTML = "";
+      }
 
       if (!depart || !arrivee) {
         errDiv.textContent = "Veuillez renseigner le départ et l'arrivée.";
         errDiv.style.display = "block";
+        if (fastResultDiv) {
+          fastResultDiv.textContent = "Veuillez renseigner le départ et l'arrivée.";
+          fastResultDiv.style.display = "block";
+        }
         return;
       }
 
       resDiv.style.display = "block";
       resDiv.innerHTML = "Calcul en cours…";
+      if (fastResultDiv) {
+        fastResultDiv.style.display = "block";
+        fastResultDiv.innerHTML = "⌛ Calcul en cours…";
+      }
 
       document.getElementById('reservation').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
@@ -702,6 +718,7 @@
             resDiv.style.display = "none";
             errDiv.textContent = "Erreur Google Maps : " + status;
             errDiv.style.display = "block";
+            if (fastResultDiv) fastResultDiv.textContent = "Erreur de calcul.";
             return;
           }
 
@@ -710,6 +727,7 @@
             resDiv.style.display = "none";
             errDiv.textContent = "Adresse introuvable. Vérifiez l'orthographe.";
             errDiv.style.display = "block";
+            if (fastResultDiv) fastResultDiv.textContent = "Adresse introuvable.";
             return;
           }
 
@@ -773,28 +791,33 @@
           derniereEstimation = { distanceKm, distanceTotale, dureeTexte, dureeTotale, tarif: tarifFinal, trajetType };
 
           let affichage = "";
+          let affichageHaut = "";
 
           if (trajetType === "aller-retour") {
             affichage = "Distance totale (A/R) : <strong>" + distanceTotale + " km</strong><br>" +
                         "Durée totale (A/R) : <strong>" + dureeTotale + "</strong><br>" +
                         "Estimation Aller-Retour : <strong>" + tarifFinal.toFixed(2) + " €</strong><br>" +
                         "<small>(réduction de 10% sur le trajet retour)</small>";
+
+            affichageHaut = "💰 <strong>Aller-Retour : " + tarifFinal.toFixed(2) + " €</strong><br>" +
+                             "📍 " + distanceTotale + " km (" + dureeTotale + ")";
           } else {
             affichage = "Distance : <strong>" + distanceKm + " km</strong><br>" +
                         "Durée : <strong>" + dureeTexte + "</strong><br>" +
                         "Estimation Aller simple : <strong>" + tarifFinal.toFixed(2) + " €</strong>";
+
+            affichageHaut = "💰 <strong>Estimation : " + tarifFinal.toFixed(2) + " €</strong><br>" +
+                             "📍 " + distanceKm + " km (" + dureeTexte + ")";
           }
 
+          // Remplissage du formulaire classique (bas de page)
           resDiv.style.display = "block";
           resDiv.innerHTML = affichage;
 
-          if (flottant && flottantTexte) {
-            if (trajetType === "aller-retour") {
-              flottantTexte.textContent = "Aller-Retour : " + tarifFinal.toFixed(2) + " € • " + distanceTotale + " km (" + dureeTotale + ")";
-            } else {
-              flottantTexte.textContent = "Estimation : " + tarifFinal.toFixed(2) + " € • " + distanceKm + " km";
-            }
-            flottant.style.display = "flex";
+          // Remplissage du nouveau bloc juste sous le bouton vert (haut de page)
+          if (fastResultDiv) {
+            fastResultDiv.style.display = "block";
+            fastResultDiv.innerHTML = affichageHaut;
           }
 
           if (directionsService && directionsRenderer) {
@@ -848,39 +871,6 @@
     window.addEventListener("appinstalled", () => {
       if (btnInstall) btnInstall.style.display = "none";
     });
-
-    window.addEventListener("load", () => {
-      const splash = document.getElementById("splash-screen");
-      if (!splash) return;
-      splash.style.opacity = "0";
-      setTimeout(() => splash.remove(), 600);
-    });
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "TransportationService", "ProfessionalService"],
-    "@id": "https://www.dcvtc66.fr/#business",
-    "name": "DCVTC66 — Chauffeur VTC à Perpignan",
-    "url": "https://www.dcvtc66.fr/",
-    "image": "https://www.dcvtc66.fr/LOGO%20DCVTC66.png",
-    "logo": "https://www.dcvtc66.fr/LOGO%20DCVTC66.png",
-    "telephone": "+33663463716",
-    "priceRange": "€€",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Perpignan",
-      "postalCode": "66000",
-      "addressCountry": "FR"
-    },
-    "areaServed": [
-      { "@type": "City", "name": "Perpignan" },
-      { "@type": "AdministrativeArea", "name": "Pyrénées-Orientales" }
-    ],
-    "openingHours": "Mo-Su 00:00-23:59",
-    "sameAs": [ "https://wa.me/33663463716" ]
-  }
   </script>
 </body>
 </html>
