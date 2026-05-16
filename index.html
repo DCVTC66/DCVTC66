@@ -19,247 +19,100 @@
   <link rel="canonical" href="https://dcvtc66.fr/" />
 
   <style>
-    html, body { margin: 0; padding: 0; overflow-x: hidden; }
+    html, body { margin: 0; padding: 0; overflow-x: hidden; background-color: #0b1528; color: #ffffff; }
+    body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%); background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+
+    #splash-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 99999; transition: opacity 0.5s ease; color: #fff; font-family: 'Poppins', sans-serif; }
+    #splash-screen img { max-width: 140px; height: auto; margin-bottom: 1.5rem; animation: pulse 2s infinite ease-in-out; }
+    #splash-screen p { font-size: 1.1rem; font-weight: 500; letter-spacing: 0.05em; opacity: 0.8; }
+    @keyframes pulse { 0% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.05); opacity: 1; } 100% { transform: scale(1); opacity: 0.9; } }
+
     .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; box-sizing: border-box; }
 
-    .nav-inner ul { display: flex; gap: 1rem; list-style: none; padding-left: 0; margin: 0; }
-    .nav-inner ul li a { text-decoration: none; }
+    .nav { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); position: sticky; top: 0; z-index: 1000; padding: 0.8rem 0; }
+    .nav-inner { display: flex; justify-content: center; align-items: center; }
+    .nav-inner ul { display: flex; gap: 2.5rem; list-style: none; margin: 0; padding: 0; }
+    .nav-inner ul li a { color: rgba(255, 255, 255, 0.75); text-decoration: none; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-inner ul li a:hover { color: #facc15; }
 
-    /* --- REMONTÉE GÉNÉRALE DES SECTIONS --- */
-    .header {
-      padding-top: 1rem !important;
-    }
+    .header { padding-top: 3.5rem; padding-bottom: 2rem; text-align: center; }
+    .branding { background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 3.5rem 2rem; border-radius: 32px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); max-width: 750px; margin: 0 auto; }
+    .logo { max-width: 150px; height: auto; margin-bottom: 1.5rem; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3)); }
+    .site-title { font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 700; color: #ffffff; margin: 0 0 0.5rem 0; letter-spacing: -0.02em; }
+    .site-subtitle { font-size: 1.15rem; color: rgba(255, 255, 255, 0.8); max-width: 540px; margin: 0 auto 2.5rem auto; line-height: 1.6; font-weight: 300; }
+
+    .hero-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; max-width: 550px; margin: 0 auto 2.5rem auto; }
+    .btn-primary { display: inline-flex; align-items: center; justify-content: center; background: #facc15; color: #0f172a; font-weight: 700; text-decoration: none; padding: 1rem 1.5rem; border-radius: 16px; font-size: 0.95rem; letter-spacing: 0.02em; transition: all 0.2s ease; box-shadow: 0 10px 25px -5px rgba(250, 204, 21, 0.3); border: none; cursor: pointer; font-family: 'Poppins', sans-serif; }
+    .btn-primary:hover { background: #fde047; transform: translateY(-2px); box-shadow: 0 15px 30px -5px rgba(250, 204, 21, 0.4); }
+
+    .hero-fast-estimate { background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.15); padding: 1.75rem; border-radius: 24px; margin-top: 2rem; }
+    .hero-fast-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .hero-fast-fields input { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.15); padding: 1rem 1.25rem; border-radius: 14px; font-size: 0.95rem; color: #fff; width: 100%; box-sizing: border-box; font-family: 'Poppins', sans-serif; transition: all 0.2s; }
+    .hero-fast-fields input:focus { outline: none; border-color: #facc15; background: rgba(15, 23, 42, 0.8); }
+    .hero-fast-fields input::placeholder { color: rgba(255,255,255,0.4); }
+    .btn-fast-calc { width: 100%; padding: 1rem; border-radius: 14px; border: none; background: #16a34a; color: white; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background 0.2s, transform 0.2s; font-family: 'Poppins', sans-serif; box-shadow: 0 10px 20px -5px rgba(22, 163, 74, 0.3); }
+    .btn-fast-calc:hover { background: #15803d; transform: translateY(-1px); }
+
+    /* --- NOUVEAU BLOC DE TARIF SOUS LE BOUTON VERT --- */
+    .hero-fast-result { display: none; margin-top: 1.25rem; padding: 1.25rem; border-radius: 14px; background: linear-gradient(135deg, #16a34a, #22c55e); color: white; font-weight: 600; text-align: center; font-size: 1.1rem; box-shadow: 0 15px 30px rgba(22, 163, 74, 0.25); animation: fadeInFastResult 0.3s ease; }
+    .hero-fast-result strong { font-size: 1.4rem; font-weight: 800; color: #fff; }
+    @keyframes fadeInFastResult { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+    .hero-badges { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; }
+    .hero-badges span { font-size: 0.85rem; font-weight: 600; color: rgba(255, 255, 255, 0.6); letter-spacing: 0.05em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 0.5rem; }
+    .hero-badges span::before { content: ''; display: inline-block; width: 6px; height: 6px; background: #facc15; border-radius: 50%; }
+
+    .section { padding: 5rem 0; }
+    .section-alt { background: rgba(15, 23, 42, 0.4); border-top: 1px solid rgba(255, 255, 255, 0.04); border-bottom: 1px solid rgba(255, 255, 255, 0.04); }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; text-align: center; margin: 0 0 3rem 0; color: #ffffff; }
+
+    .form-compact { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); padding: 3rem; border-radius: 32px; box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6); max-width: 700px; margin: 0 auto; }
+    .form-compact label { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem; font-size: 0.9rem; font-weight: 500; color: rgba(255, 255, 255, 0.9); letter-spacing: 0.02em; }
     
-    .section, .section-alt {
-      padding-top: 2rem !important; 
-      padding-bottom: 2rem !important;
-    }
+    .form-compact input, .form-compact select, .form-compact textarea { background: rgba(255, 255, 255, 0.95) !important; color: #0f172a !important; border: 1px solid rgba(255, 255, 255, 0.1); padding: 1rem 1.25rem; border-radius: 14px; font-size: 0.95rem; font-family: 'Poppins', sans-serif; box-sizing: border-box; width: 100%; transition: all 0.2s; font-weight: 500; }
+    .form-compact input::placeholder, .form-compact textarea::placeholder { color: #57534e !important; opacity: 0.9 !important; }
+    .form-compact input:focus, .form-compact select:focus, .form-compact textarea:focus { outline: none; border-color: #facc15; background: #ffffff !important; box-shadow: 0 0 0 4px rgba(250, 204, 21, 0.15); }
 
-    .section-title {
-      margin-top: 0 !important;
-      margin-bottom: 1rem !important;
-    }
+    .form-compact .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .form-compact textarea { resize: vertical; min-height: 100px; }
 
-    /* Carré Bleu Central */
-    .branding {
-      padding: 2.5rem 2.5rem !important;
-      max-width: 900px !important;
-      width: 100%;
-      margin: 0.5rem auto 0 auto !important;
-      border-radius: 24px;
-      box-sizing: border-box;
-    }
+    .dates-retour-container { display: none; margin-top: -0.5rem; margin-bottom: 1.5rem; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* Formulaire du bas */
-    .form-compact { 
-      max-width: 900px !important; 
-      width: 100%; 
-      margin: 0 auto; 
-      box-sizing: border-box;
-    }
+    details.opt { margin-bottom: 2rem; background: rgba(255,255,255,0.02); padding: 0.5rem 1.25rem; border-radius: 14px; border: 1px solid rgba(255,255,255,0.05); }
+    details.opt summary { cursor: pointer; font-weight: 600; font-size: 0.9rem; color: #facc15; padding: 0.5rem 0; user-select: none; }
+    details.opt label { margin-top: 1rem; margin-bottom: 0.5rem; }
 
-    /* Logo calé en haut */
-    .logo {
-      max-width: 120px !important;
-      height: auto;
-      margin: 0 auto 1rem auto !important;
-      display: block;
-    }
+    .actions-compact { display: grid; grid-template-columns: 1fr 1.25fr; gap: 1rem; margin-top: 1rem; }
+    .actions-compact .btn-estimate { background: rgba(255, 255, 255, 0.08); color: #fff; border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 0.95rem; transition: all 0.2s; }
+    .actions-compact .btn-estimate:hover { background: rgba(255, 255, 255, 0.15); }
+    .actions-compact .btn-primary { border-radius: 16px; }
 
-    .site-title { margin-bottom: 0.2rem; font-size: 2.4rem; }
-    .site-subtitle { margin-top: 0; font-size: 1.05rem; max-width: 85%; margin-left: auto; margin-right: auto; opacity: 0.9; }
+    .email-action { margin-top: 1rem; width: 100%; display: inline-flex; justify-content: center; align-items: center; background: #2563eb; color: white; box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.3); }
+    .email-action:hover { background: #3b82f6; box-shadow: 0 15px 30px -5px rgba(37, 99, 235, 0.4); }
 
-    /* Boutons jaunes */
-    .hero-actions { 
-      display: grid; 
-      grid-template-columns: repeat(3, 1fr); 
-      gap: 1.5rem; 
-      margin-top: 1.8rem; 
-      justify-content: center; 
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .hero-actions a.btn-primary { 
-      display: inline-flex; 
-      align-items: center; 
-      justify-content: center; 
-      padding: 0.85rem 0.5rem; 
-      font-size: 0.85rem; 
-      border-radius: 999px; 
-      text-align: center; 
-      white-space: nowrap; 
-      font-weight: 600;
-      letter-spacing: 0.03em;
-    }
+    .result-compact, .error-compact { margin-top: 1.5rem; padding: 1.25rem; border-radius: 16px; font-size: 0.95rem; line-height: 1.5; border: 1px solid transparent; }
+    .result-compact { background: rgba(22, 163, 74, 0.1); border-color: rgba(22, 163, 74, 0.2); color: #4ade80; }
+    .result-compact strong { color: #fff; font-size: 1.1rem; }
+    .error-compact { background: rgba(220, 38, 38, 0.1); border-color: rgba(220, 38, 38, 0.2); color: #f87171; }
 
-    /* --- ZONE D'ESTIMATION RAPIDE AGRANDIE (PC & MOBILE) --- */
-    .hero-fast-estimate {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 2rem; 
-      border-radius: 20px;
-      margin: 2rem auto 0 auto;
-      max-width: 750px; 
-      width: 100%;
-      box-sizing: border-box;
-    }
-    .hero-fast-fields {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem; 
-      margin-bottom: 1.2rem;
-    }
-    .hero-fast-fields input {
-      padding: 1.1rem 1.3rem; 
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      background: rgba(255, 255, 255, 0.9);
-      font-size: 1.05rem; 
-      color: #333;
-      width: 100%;
-      box-sizing: border-box;
-      font-weight: 500;
-    }
-    .btn-fast-calc {
-      width: 100%;
-      padding: 1.1rem; 
-      border-radius: 14px;
-      border: none;
-      background: #16a34a;
-      color: white;
-      font-weight: 700;
-      font-size: 1.1rem; 
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .btn-fast-calc:hover { background: #15803d; }
+    .map-wrapper { margin-top: 1.5rem; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    .map-wrapper-inner { position: relative; width: 100%; height: 350px; }
+    #map { width: 100%; height: 100%; }
 
-    /* Nouveau bloc d'affichage sous le bouton vert */
-    .fast-calc-result {
-      display: none;
-      margin-top: 1.2rem;
-      padding: 1rem;
-      border-radius: 12px;
-      background: rgba(22, 163, 74, 0.2);
-      border: 1px solid rgba(22, 163, 74, 0.4);
-      color: #ffffff;
-      font-size: 1.05rem;
-      font-weight: 500;
-      line-height: 1.4;
-      text-align: center;
-      animation: fadeInFast 0.3s ease;
-    }
-    @keyframes fadeInFast {
-      from { opacity: 0; transform: translateY(-5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    #btn-install.btn-primary {
-      margin-top: 1.2rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-    }
-
-    .section-intro { margin-bottom: 0.75rem; }
-    .form-compact .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-compact label { display: flex; flex-direction: column; gap: .25rem; font-size: .85rem; font-weight: 500; letter-spacing: .02em; }
-    .form-compact input, .form-compact textarea { padding: 1rem 1rem; border-radius: 14px; font-size: .95rem; line-height: 1.4; }
-    .form-compact select { padding: 1rem 1rem; border-radius: 14px; font-size: .95rem; line-height: 1.4; }
-    .form-compact textarea { resize: vertical; min-height: 72px; }
-
-    .dates-retour-container {
-      display: none;
-      margin-top: 0.5rem;
-      animation: fadeIn 0.3s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    details.opt { margin-top: .45rem; }
-    details.opt summary { cursor: pointer; font-weight: 700; opacity: .9; margin: .35rem 0 .25rem; }
-
-    .actions-compact{
-      display:grid;
-      grid-template-columns: 1fr 1.15fr;
-      gap:1rem;
-      margin-top:1rem;
-    }
-    .actions-compact .btn-primary,
-    .actions-compact .btn-estimate{
-      border-radius:999px;
-      padding:1rem;
-      font-weight:800;
-      letter-spacing:.02em;
-    }
-
-    .email-action{
-      margin-top: .8rem;
-      width: 100%;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 999px;
-      padding: 1rem;
-      font-weight: 800;
-      letter-spacing: .02em;
-    }
-
-    .result-compact, .error-compact{ margin-top:.6rem; padding:.65rem .75rem; border-radius:12px; font-size:.85rem; line-height:1.35; }
-    .result-compact{ background:#f0f7ff; color:#1b3b68; }
-    .error-compact{ background:#ffecec; color:#a40000; }
-
-    .map-wrapper { margin-top: .7rem; border-radius: 16px; overflow: hidden; }
-    .map-wrapper-inner { position:relative; width:100%; height:320px; }
-    #map { width:100%; height:100%; }
-
-    /* Responsive Mobile & Tablette */
-    @media (max-width: 930px) {
-      .branding, .form-compact { max-width: 95% !important; }
-      .branding { padding: 2rem 1.5rem !important; }
-    }
+    .footer { text-align: center; padding: 3rem 0; color: rgba(255,255,255,0.4); font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 5rem; }
+    .footer p { margin: 0.5rem 0; }
 
     @media (max-width: 768px) {
-      .header { padding-top: 0.5rem !important; }
-      .section, .section-alt { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; padding-left: 1.1rem; padding-right: 1.1rem; box-sizing: border-box; }
-      .nav-inner ul { justify-content: center; flex-wrap: wrap; text-align: center; }
-      .header-inner, .branding { text-align: center; }
-      .branding { padding: 2rem 1rem !important; margin-top: 0.2rem auto 0 auto !important; }
-      .site-title { font-size: 1.9rem; }
-      .hero-actions { gap: 0.6rem; max-width: 100%; }
-      .hero-actions a.btn-primary { font-size: 0.75rem; padding: 0.75rem 0.3rem; }
-      
-      /* Optimisations des carrés d'estimation sur Mobile */
-      .hero-fast-estimate { padding: 1.25rem; margin-top: 1.5rem; }
-      .hero-fast-fields { grid-template-columns: 1fr; gap: 0.8rem; }
-      .hero-fast-fields input { padding: 1.1rem; font-size: 1.1rem; } 
-      .btn-fast-calc { padding: 1.1rem; font-size: 1.1rem; }
-    }
-
-    @media (max-width: 520px){
-      .form-compact .row{ grid-template-columns: 1fr; }
-      .actions-compact{ grid-template-columns: 1fr; gap: .55rem; }
-      .actions-compact .btn-primary,
-      .actions-compact .btn-estimate,
-      .email-action{ 
-        width: 100%; 
-        padding: 0.9rem 1rem; 
-        font-size: 0.95rem; 
-      }
-      .map-wrapper-inner{ height: 280px; }
-      #btn-install.btn-primary{ width: 100%; max-width: 320px; margin-left: auto !important; margin-right: auto !important; }
-      
-      .container { padding: 0 1rem; }
-      .form-compact { padding-left: 0.5rem; padding-right: 0.5rem; }
-      .form-compact input, .form-compact select, .form-compact textarea { padding: 0.9rem 1rem; font-size: 1rem; }
-    }
-
-    @media (min-width: 1024px){
-      #reservation .container{ max-width: 1200px; }
+      .site-title { font-size: 2.5rem; }
+      .site-subtitle { font-size: 1rem; margin-bottom: 2rem; }
+      .branding { padding: 2.5rem 1.5rem; border-radius: 24px; }
+      .form-compact { padding: 2rem 1.5rem; border-radius: 24px; }
+      .hero-actions { grid-template-columns: 1fr; gap: 0.75rem; max-width: 100%; }
+      .hero-fast-fields { grid-template-columns: 1fr; gap: 0.75rem; }
+      .form-compact .row { grid-template-columns: 1fr; gap: 0; }
+      .actions-compact { grid-template-columns: 1fr; }
+      .section { padding: 3.5rem 0; }
     }
   </style>
 </head>
@@ -290,8 +143,8 @@
 
         <div class="hero-actions">
           <a href="tel:0663463716" class="btn-primary">📞 APPELER</a>
-          <a href="https://wa.me/33663463716" target="_blank" class="btn-primary">💬 WHATSAPP</a>
-          <a href="#reservation" class="btn-primary">📝 RÉSERVER</a>
+          <a href="https://wa.me/33663463716" target="_blank" class="btn-primary" style="background:#22c55e; color:white; box-shadow:0 10px 25px -5px rgba(34,197,94,0.3)">💬 WHATSAPP</a>
+          <a href="#reservation" class="btn-primary" style="background:#2563eb; color:white; box-shadow:0 10px 25px -5px rgba(37,99,235,0.3)">📝 RÉSERVER</a>
         </div>
 
         <div class="hero-fast-estimate">
@@ -301,17 +154,17 @@
           </div>
           <button type="button" id="btn-fast-calc" class="btn-fast-calc">💰 Estimer mon trajet en 1 clic</button>
           
-          <div id="fast-calc-result" class="fast-calc-result"></div>
+          <div id="hero-fast-result" class="hero-fast-result"></div>
         </div>
 
-        <button id="btn-install" class="btn-primary" style="display:none;">
+        <button id="btn-install" class="btn-primary" style="display:none; margin-top:1.5rem; background:rgba(255,255,255,0.08); color:white; border:1px solid rgba(255,255,255,0.15); box-shadow:none;">
           📲 Installer l'application
         </button>
 
         <div class="hero-badges">
-          <span>✔ 7j/7</span>
-          <span>✔ Ponctuel</span>
-          <span>✔ Confort</span>
+          <span>7j/7</span>
+          <span>Ponctuel</span>
+          <span>Confort</span>
         </div>
       </div>
     </div>
@@ -320,7 +173,7 @@
   <section id="reservation" class="section section-alt">
     <div class="container">
       <h2 class="section-title">Réservation</h2>
-      <p style="text-align:center; margin-top:0; margin-bottom:1.5rem;">Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un clic.</p>
+      <p style="text-align:center; margin-top:-2rem; margin-bottom:3rem; color: rgba(255,255,255,0.7); font-size:1.05rem;">Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un clic.</p>
 
       <form id="reservation-form" class="form form-compact">
         <div class="row">
@@ -360,7 +213,7 @@
 
         <label>Nombre de passagers
           <select name="Passagers" required>
-            <option value="" selected>Sélectionner</option>
+            <option value="" disabled selected>Sélectionner</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -370,7 +223,7 @@
 
         <label>Mode de paiement
           <select name="Paiement" required>
-            <option value="" selected>Sélectionner</option>
+            <option value="" disabled selected>Sélectionner</option>
             <option value="Lien sécurisé (CB)">Lien sécurisé (CB)</option>
             <option value="CB à bord">CB à bord</option>
             <option value="Espèces à bord">Espèces à bord</option>
@@ -378,15 +231,15 @@
         </label>
 
         <details class="opt">
-          <summary>+ Options</summary>
-          <label>Informations
-            <textarea name="Message" rows="2" placeholder="Bagages, siège enfant, n° de vol…"></textarea>
+          <summary>+ Options (Bagages, siège enfant...)</summary>
+          <label>Informations complémentaires
+            <textarea name="Message" rows="3" placeholder="Ex: 2 valises cabine, besoin d'un siège bébé, numéro de vol..."></textarea>
           </label>
         </details>
 
         <div class="actions-compact">
-          <button type="button" id="btn-tarif" class="btn-estimate">Estimer</button>
-          <button type="submit" class="btn-primary">📩 Envoyer par SMS</button>
+          <button type="button" id="btn-tarif" class="btn-estimate">📈 Estimer le prix</button>
+          <button type="submit" class="btn-primary">💬 Envoyer par SMS</button>
         </div>
 
         <button type="button" id="btn-whatsapp-form" class="btn-primary email-action">💬 Envoyer par WhatsApp</button>
@@ -394,7 +247,7 @@
         <div id="erreur-tarif" class="error-compact" style="display:none;"></div>
         <div id="resultat-tarif" class="result-compact" style="display:none;"></div>
 
-        <div class="map-wrapper" id="map-wrapper">
+        <div class="map-wrapper" id="map-wrapper" style="display:none;">
           <div class="map-wrapper-inner">
             <div id="map"></div>
           </div>
@@ -403,61 +256,12 @@
     </div>
   </section>
 
-  <section id="services" class="section">
-    <div class="container">
-      <h2 class="section-title">Nos services</h2>
-      <p class="section-intro" style="margin-bottom:1.5rem;">Transferts, gares, aéroports, déplacements pro et mise à disposition.</p>
-      <div class="grid">
-        <article class="card">
-          <h3>✈️ Aéroports</h3>
-          <p>Perpignan, Toulouse, Montpellier, Barcelone…</p>
-        </article>
-        <article class="card">
-          <h3>🚉 Gares</h3>
-          <p>Perpignan, Narbonne et alentours.</p>
-        </article>
-        <article class="card">
-          <h3>💼 Professionnel</h3>
-          <p>RDV, séminaires, déplacements business.</p>
-        </article>
-        <article class="card">
-          <h3>🎉 Mise à disposition</h3>
-          <p>Événements, mariages, soirées & mise à disposition à la journée.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="section">
-    <div class="container">
-      <h2 class="section-title">Contact</h2>
-
-      <div class="contact-grid" style="margin-top:1rem;">
-        <div>
-          <p>📞 <a href="tel:+33663463716"><strong>+33 6 63 46 37 16</strong></a></p>
-          <p>💬 <a href="https://wa.me/33663463716" target="_blank"><strong>WhatsApp</strong></a></p>
-        </div>
-        <div>
-          <p>📧 <strong>driveconfort66@gmail.com</strong></p>
-          <p>📍 Perpignan — Déplacements dans les Pyrénées-Orientales et longue distance</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <footer class="footer">
-    <div class="container footer-legal">
-      <p>© <span id="year"></span> DCVTC66 — Tous droits réservés</p>
-      <p class="footer-links">
-        <a href="mentions-legales.html">Mentions légales</a> ·
-        <a href="politique-confidentialite.html">Politique de confidentialité</a> ·
-        <a href="plan-du-site.html">Plan du site</a>
-      </p>
+    <div class="container">
+      <p>&copy; <span id="year"></span> DCVTC66. Tous droits réservés.</p>
+      <p style="font-size: 0.75rem; opacity: 0.5; margin-top: 1rem;">Chauffeur privé VTC à Perpignan (66) — Transport toutes distances.</p>
     </div>
   </footer>
-
-  <a href="tel:+33663463716" class="fab fab-call" aria-label="Appeler DCVTC66">📞</a>
-  <a href="#" id="fab-whatsapp" target="_blank" class="fab fab-whatsapp" aria-label="WhatsApp DCVTC66">💬</a>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
@@ -583,14 +387,6 @@
 
     const btnWhatsAppForm = document.getElementById("btn-whatsapp-form");
     if (btnWhatsAppForm) btnWhatsAppForm.addEventListener("click", openWhatsAppPrefilled);
-
-    const fabWhatsApp = document.getElementById("fab-whatsapp");
-    if (fabWhatsApp) {
-      fabWhatsApp.addEventListener("click", function (e) {
-        e.preventDefault();
-        openWhatsAppPrefilled();
-      });
-    }
   </script>
 
   <script>
@@ -638,7 +434,7 @@
       if (fastArrivee) new google.maps.places.Autocomplete(fastArrivee, optionsAutocomplete);
 
       const btnTarif = document.getElementById("btn-tarif");
-      if (btnTarif) btnTarif.addEventListener("click", calculerTarif);
+      if (btnTarif) btnTarif.addEventListener("click", () => calculerTarif(false));
 
       const btnFastCalc = document.getElementById("btn-fast-calc");
       if (btnFastCalc) {
@@ -653,7 +449,7 @@
               form["DateHeureAller"].value = maintenant.toISOString().slice(0, 16);
             }
             
-            calculerTarif();
+            calculerTarif(true);
           }
         });
       }
@@ -665,12 +461,11 @@
       return dateObj.getHours();
     }
 
-    function calculerTarif() {
+    function calculerTarif(isFastCalc) {
       const resDiv = document.getElementById("resultat-tarif");
       const errDiv = document.getElementById("erreur-tarif");
-      
-      // Sélections pour la nouvelle zone d'affichage du haut
-      const fastResultDiv = document.getElementById("fast-calc-result");
+      const mapWrapper = document.getElementById("map-wrapper");
+      const fastResultDiv = document.getElementById("hero-fast-result");
 
       const depart = form["Départ"].value.trim();
       const arrivee = form["Arrivee"].value.trim();
@@ -680,31 +475,29 @@
 
       errDiv.style.display = "none"; errDiv.textContent = "";
       resDiv.style.display = "none"; resDiv.textContent = "";
-      
-      // On cache et réinitialise le bloc du haut au début du calcul
-      if (fastResultDiv) {
-        fastResultDiv.style.display = "none";
-        fastResultDiv.innerHTML = "";
-      }
+      if (fastResultDiv) { fastResultDiv.style.display = "none"; fastResultDiv.innerHTML = ""; }
 
       if (!depart || !arrivee) {
-        errDiv.textContent = "Veuillez renseigner le départ et l'arrivée.";
-        errDiv.style.display = "block";
-        if (fastResultDiv) {
-          fastResultDiv.textContent = "Veuillez renseigner le départ et l'arrivée.";
+        if (isFastCalc && fastResultDiv) {
           fastResultDiv.style.display = "block";
+          fastResultDiv.style.background = "#dc2626";
+          fastResultDiv.innerHTML = "⚠️ Renseignez un départ et une arrivée.";
+        } else {
+          errDiv.textContent = "Veuillez renseigner le départ et l'arrivée.";
+          errDiv.style.display = "block";
         }
         return;
       }
 
-      resDiv.style.display = "block";
-      resDiv.innerHTML = "Calcul en cours…";
-      if (fastResultDiv) {
+      if (isFastCalc && fastResultDiv) {
         fastResultDiv.style.display = "block";
-        fastResultDiv.innerHTML = "⌛ Calcul en cours…";
+        fastResultDiv.style.background = "rgba(255,255,255,0.1)";
+        fastResultDiv.innerHTML = "Calcul de l'estimation en cours…";
+      } else {
+        resDiv.style.display = "block";
+        resDiv.innerHTML = "Calcul en cours…";
+        document.getElementById('reservation').scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-
-      document.getElementById('reservation').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
       distanceService.getDistanceMatrix(
         {
@@ -715,19 +508,27 @@
         },
         (response, status) => {
           if (status !== "OK") {
-            resDiv.style.display = "none";
-            errDiv.textContent = "Erreur Google Maps : " + status;
-            errDiv.style.display = "block";
-            if (fastResultDiv) fastResultDiv.textContent = "Erreur de calcul.";
+            if (isFastCalc && fastResultDiv) {
+              fastResultDiv.style.background = "#dc2626";
+              fastResultDiv.innerHTML = "Erreur Maps : " + status;
+            } else {
+              resDiv.style.display = "none";
+              errDiv.textContent = "Erreur Google Maps : " + status;
+              errDiv.style.display = "block";
+            }
             return;
           }
 
           const element = response.rows[0].elements[0];
           if (element.status !== "OK") {
-            resDiv.style.display = "none";
-            errDiv.textContent = "Adresse introuvable. Vérifiez l'orthographe.";
-            errDiv.style.display = "block";
-            if (fastResultDiv) fastResultDiv.textContent = "Adresse introuvable.";
+            if (isFastCalc && fastResultDiv) {
+              fastResultDiv.style.background = "#dc2626";
+              fastResultDiv.innerHTML = "📍 Adresse introuvable.";
+            } else {
+              resDiv.style.display = "none";
+              errDiv.textContent = "Adresse introuvable. Vérifiez l'orthographe.";
+              errDiv.style.display = "block";
+            }
             return;
           }
 
@@ -788,42 +589,42 @@
             tarifFinal = Math.round(tarif * 100) / 100;
           }
 
-          derniereEstimation = { distanceKm, distanceTotale, dureeTexte, dureeTotale, tarif: tarifFinal, trajetType };
+          derniereEstimation = { distanceKm, distanceTotale, dureeTexte, dureeTotale, tarif: tarifFinal, advertiser_markup: 0, trajetType };
 
+          // AFFICHAGE DU PRIX DANS LA ZONE SOUS LE BOUTON VERT
+          if (fastResultDiv) {
+            fastResultDiv.style.display = "block";
+            fastResultDiv.style.background = "linear-gradient(135deg, #16a34a, #22c55e)";
+            fastResultDiv.innerHTML = "💰 Estimation de votre trajet : <strong>" + tarifFinal.toFixed(2) + " €</strong> (" + distanceKm + " km — " + dureeTexte + ")";
+          }
+
+          // Remplissage classique du bas de formulaire par sécurité
           let affichage = "";
-          let affichageHaut = "";
-
           if (trajetType === "aller-retour") {
             affichage = "Distance totale (A/R) : <strong>" + distanceTotale + " km</strong><br>" +
                         "Durée totale (A/R) : <strong>" + dureeTotale + "</strong><br>" +
                         "Estimation Aller-Retour : <strong>" + tarifFinal.toFixed(2) + " €</strong><br>" +
-                        "<small>(réduction de 10% sur le trajet retour)</small>";
-
-            affichageHaut = "💰 <strong>Aller-Retour : " + tarifFinal.toFixed(2) + " €</strong><br>" +
-                             "📍 " + distanceTotale + " km (" + dureeTotale + ")";
+                        "<small style='opacity:0.8;'>(réduction de 10% sur le trajet retour intégrée)</small>";
           } else {
             affichage = "Distance : <strong>" + distanceKm + " km</strong><br>" +
                         "Durée : <strong>" + dureeTexte + "</strong><br>" +
                         "Estimation Aller simple : <strong>" + tarifFinal.toFixed(2) + " €</strong>";
-
-            affichageHaut = "💰 <strong>Estimation : " + tarifFinal.toFixed(2) + " €</strong><br>" +
-                             "📍 " + distanceKm + " km (" + dureeTexte + ")";
           }
 
-          // Remplissage du formulaire classique (bas de page)
           resDiv.style.display = "block";
           resDiv.innerHTML = affichage;
 
-          // Remplissage du nouveau bloc juste sous le bouton vert (haut de page)
-          if (fastResultDiv) {
-            fastResultDiv.style.display = "block";
-            fastResultDiv.innerHTML = affichageHaut;
-          }
+          if (mapWrapper) mapWrapper.style.display = "block";
 
           if (directionsService && directionsRenderer) {
+            google.maps.event.trigger(map, 'resize');
             directionsService.route(
               { origin: depart, destination: arrivee, travelMode: google.maps.TravelMode.DRIVING },
-              (result, statusDir) => { if (statusDir === "OK") directionsRenderer.setDirections(result); }
+              (result, statusDir) => { 
+                if (statusDir === "OK") {
+                  directionsRenderer.setDirections(result); 
+                } 
+              }
             );
           }
         }
@@ -834,42 +635,11 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA5J7_7fNdWgVsGRLWRfQZaO6qgCEqq_Y&callback=initMap&libraries=places" async defer></script>
 
   <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js");
-    }
-
-    let deferredPrompt = null;
-    const btnInstall = document.getElementById("btn-install");
-
-    const isStandalone =
-      window.matchMedia("(display-mode: standalone)").matches ||
-      window.navigator.standalone === true;
-
-    if (isStandalone && btnInstall) btnInstall.style.display = "none";
-
-    window.addEventListener("beforeinstallprompt", (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      if (btnInstall) btnInstall.style.display = "inline-flex";
-    });
-
-    if (btnInstall) {
-      btnInstall.addEventListener("click", async () => {
-        const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-        if (isIOS) {
-          alert('Sur iPhone : Safari → Partager (⬆️) → "Sur l’écran d’accueil".');
-          return;
-        }
-        if (!deferredPrompt) return;
-        deferredPrompt.prompt();
-        await deferredPrompt.userChoice;
-        deferredPrompt = null;
-        btnInstall.style.display = "none";
-      });
-    }
-
-    window.addEventListener("appinstalled", () => {
-      if (btnInstall) btnInstall.style.display = "none";
+    window.addEventListener("load", () => {
+      const splash = document.getElementById("splash-screen");
+      if (!splash) return;
+      splash.style.opacity = "0";
+      setTimeout(() => splash.remove(), 500);
     });
   </script>
 </body>
