@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=500;700&family=Poppins:wght=300;400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=100" />
+  <link rel="stylesheet" href="styles.css?v=99" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#2563eb">
@@ -19,38 +19,82 @@
   <link rel="canonical" href="https://dcvtc66.fr/" />
 
   <style>
-    html, body { margin: 0; padding: 0; overflow-x: hidden; }
+    html, body { margin: 0; padding: 0; overflow-x: hidden; background-color: #0b1528; color: #ffffff; }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; box-sizing: border-box; }
 
     .nav-inner ul { display: flex; gap: 1rem; list-style: none; padding-left: 0; margin: 0; }
-    .nav-inner ul li a { text-decoration: none; }
+    .nav-inner ul li a { text-decoration: none; color: #fff; }
 
-    /* --- GESTION DES ESPACES ET SECTIONS --- */
-    .header { padding-top: 1rem !important; }
-    .section, .section-alt { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
-    .section-title { margin-top: 0 !important; margin-bottom: 1rem !important; text-align: center; }
-
-    /* --- LE CARRÉ BLEU CENTRAL --- */
-    .branding {
-      padding: 3rem 2.5rem !important;
-      max-width: 960px !important;
-      width: 100%;
-      margin: 0.5rem auto 0 auto !important;
-      border-radius: 24px;
-      box-sizing: border-box;
+    /* --- REMONTÉE GÉNÉRALE DES SECTIONS --- */
+    .header {
+      padding-top: 1rem !important;
+    }
+    
+    .section, .section-alt {
+      padding-top: 2rem !important; 
+      padding-bottom: 2rem !important;
     }
 
-    /* --- LE CARRÉ FORMULAIRE EN BAS SUBLIMÉ --- */
-    .form-compact { 
+    .section-title {
+      margin-top: 0 !important;
+      margin-bottom: 1rem !important;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    /* --- ZONE COMMUNE (CARRÉ BLEU HAUT ET FORMULAIRE BAS) --- */
+    .branding, .form-compact {
+      background: rgba(255, 255, 255, 0.06) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      padding: 3rem 2.5rem !important; 
       max-width: 960px !important; 
-      width: 100%; 
-      margin: 0 auto; 
-      box-sizing: border-box;
-      background: #ffffff !important; /* Fond blanc pur pour le détacher */
-      padding: 2.5rem !important;
+      width: 100%;
+      margin: 0.5rem auto 0 auto !important;
       border-radius: 24px !important;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important; /* Ombrage discret premium */
-      border: 1px solid rgba(0, 0, 0, 0.05);
+      box-sizing: border-box;
+      color: #ffffff !important;
+    }
+
+    /* --- STYLE DES INPUTS ET TEXTES DU FORMULAIRE (POUR ENFIN TOUT VOIR) --- */
+    .form-compact label { 
+      display: flex; 
+      flex-direction: column; 
+      gap: .4rem; 
+      font-size: .9rem; 
+      font-weight: 500; 
+      letter-spacing: .02em; 
+      color: #ffffff !important;
+    }
+    
+    .form-compact input, 
+    .form-compact select, 
+    .form-compact textarea { 
+      background: rgba(255, 255, 255, 0.95) !important; /* Fond très clair pour les champs de saisie */
+      color: #111827 !important; /* Texte de saisie écrit en noir très foncé */
+      border: 2px solid rgba(255, 255, 255, 0.2) !important;
+      padding: 1rem 1rem; 
+      border-radius: 14px; 
+      font-size: .95rem; 
+      line-height: 1.4;
+      font-weight: 500;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    /* Rendre les textes indicatifs (placeholders) parfaitement visibles en gris foncé */
+    .form-compact input::placeholder,
+    .form-compact textarea::placeholder {
+      color: #4b5563 !important;
+      opacity: 0.85;
+    }
+
+    /* Focus sur les champs */
+    .form-compact input:focus, .form-compact select:focus, .form-compact textarea:focus {
+      outline: none;
+      border-color: #facc15 !important; /* Bordure jaune au clic */
+      background: #ffffff !important;
     }
 
     /* Logo calé en haut */
@@ -61,17 +105,17 @@
       display: block;
     }
 
-    .site-title { margin-bottom: 0.2rem; font-size: 2.4rem; }
-    .site-subtitle { margin-top: 0; font-size: 1.05rem; max-width: 85%; margin-left: auto; margin-right: auto; opacity: 0.9; }
+    .site-title { margin-bottom: 0.2rem; font-size: 2.4rem; text-align: center; }
+    .site-subtitle { margin-top: 0; font-size: 1.05rem; max-width: 85%; margin-left: auto; margin-right: auto; opacity: 0.9; text-align: center; }
 
-    /* Boutons actions du haut */
+    /* Boutons jaunes */
     .hero-actions { 
       display: grid; 
       grid-template-columns: repeat(3, 1fr); 
       gap: 1.5rem; 
       margin-top: 1.8rem; 
       justify-content: center; 
-      max-width: 650px;
+      max-width: 600px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -79,18 +123,21 @@
       display: inline-flex; 
       align-items: center; 
       justify-content: center; 
-      padding: 0.9rem 0.5rem; 
-      font-size: 0.9rem; 
+      padding: 0.85rem 0.5rem; 
+      font-size: 0.85rem; 
       border-radius: 999px; 
       text-align: center; 
       white-space: nowrap; 
       font-weight: 600;
       letter-spacing: 0.03em;
+      background-color: #facc15;
+      color: #000;
+      text-decoration: none;
     }
 
-    /* Zone d'estimation rapide */
+    /* Zone d'estimation rapide du haut */
     .hero-fast-estimate {
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.2);
       padding: 2rem; 
@@ -110,12 +157,15 @@
       padding: 1.1rem 1.3rem; 
       border-radius: 14px;
       border: 1px solid rgba(255, 255, 255, 0.3);
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       font-size: 1.05rem; 
-      color: #333;
+      color: #111827;
       width: 100%;
       box-sizing: border-box;
       font-weight: 500;
+    }
+    .hero-fast-fields input::placeholder {
+      color: #4b5563;
     }
     .btn-fast-calc {
       width: 100%;
@@ -138,6 +188,9 @@
       font-size: 0.85rem;
     }
 
+    /* Badges */
+    .hero-badges { display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; }
+
     /* Flotteur d'estimation tarifaire */
     #tarif-flottant {
       position: fixed; top: 24px; right: 24px; z-index: 9999; display: none; align-items: center; gap: 0.75rem;
@@ -152,25 +205,7 @@
       100% { transform: scale(1); box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55); }
     }
 
-    .section-intro { margin-bottom: 1.5rem; text-align: center; }
-    .form-compact .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-    .form-compact label { display: flex; flex-direction: column; gap: .35rem; font-size: .9rem; font-weight: 500; color: #374151; }
-    .form-compact input, .form-compact textarea, .form-compact select { 
-      padding: 1rem; 
-      border-radius: 12px; 
-      font-size: .95rem; 
-      line-height: 1.4; 
-      border: 1px solid #d1d5db; 
-      background-color: #f9fafb;
-      box-sizing: border-box;
-      width: 100%;
-    }
-    .form-compact input:focus, .form-compact select:focus, .form-compact textarea:focus {
-      outline: none;
-      border-color: #2563eb;
-      background-color: #fff;
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-    }
+    .form-compact .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .form-compact textarea { resize: vertical; min-height: 72px; }
 
     .dates-retour-container {
@@ -183,22 +218,27 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    details.opt { margin: 1rem 0; }
-    details.opt summary { cursor: pointer; font-weight: 700; opacity: .9; margin-bottom: .5rem; color: #1f2937; }
+    details.opt { margin-top: .45rem; color: #fff; }
+    details.opt summary { cursor: pointer; font-weight: 700; opacity: .9; margin: .35rem 0 .25rem; }
 
     .actions-compact{
       display:grid;
       grid-template-columns: 1fr 1.15fr;
       gap:1rem;
-      margin-top:1.5rem;
+      margin-top:1rem;
     }
     .actions-compact .btn-primary,
-    .actions-compact .btn-estimate{
+    .actions-compact .btn-estimate,
+    .email-action {
       border-radius:999px;
       padding:1rem;
       font-weight:800;
       letter-spacing:.02em;
+      border: none;
+      cursor: pointer;
     }
+    .actions-compact .btn-estimate { background-color: #1e3a8a; color: #fff; }
+    .actions-compact .btn-primary, .email-action { background-color: #facc15; color: #000; }
 
     .email-action{
       margin-top: .8rem;
@@ -206,30 +246,15 @@
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      border-radius: 999px;
-      padding: 1rem;
-      font-weight: 800;
-      letter-spacing: .02em;
     }
 
-    .result-compact, .error-compact{ margin-top:1rem; padding:1rem; border-radius:14px; font-size:.95rem; line-height:1.4; }
-    .result-compact{ background:#f0f7ff; color:#1b3b68; border: 1px solid #dbeafe; }
-    .error-compact{ background:#ffecec; color:#a40000; border: 1px solid #fee2e2; }
+    .result-compact, .error-compact{ margin-top:.6rem; padding:.65rem .75rem; border-radius:12px; font-size:.85rem; line-height:1.35; }
+    .result-compact{ background:#f0f7ff; color:#1b3b68; }
+    .error-compact{ background:#ffecec; color:#a40000; }
 
-    .map-wrapper { margin-top: 1.5rem; border-radius: 16px; overflow: hidden; border: 1px solid #e5e7eb; }
+    .map-wrapper { margin-top: .7rem; border-radius: 16px; overflow: hidden; }
     .map-wrapper-inner { position:relative; width:100%; height:320px; }
     #map { width:100%; height:100%; }
-
-    /* --- STYLE MODERNE POUR LA SECTION SERVICES --- */
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-    .card { background: #fff; padding: 2rem 1.5rem; border-radius: 18px; border: 1px solid #e5e7eb; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-    .card h3 { margin-top: 1rem; margin-bottom: 0.5rem; font-size: 1.2rem; color: #1f2937; }
-    .card p { font-size: 0.9rem; color: #4b5563; margin: 0; line-height: 1.4; }
-    .service-icon { 
-      width: 50px; height: 50px; background: #eff6ff; color: #2563eb; 
-      border-radius: 50%; display: inline-flex; align-items: center; 
-      justify-content: center; font-size: 1.4rem; font-weight: bold; 
-    }
 
     /* Responsive Mobile & Tablette */
     @media (max-width: 930px) {
@@ -238,33 +263,21 @@
 
     @media (max-width: 768px) {
       .header { padding-top: 0.5rem !important; }
-      .section, .section-alt { padding-top: 2rem !important; padding-bottom: 2rem !important; padding-left: 0.8rem; padding-right: 0.8rem; box-sizing: border-box; }
-      .nav-inner ul { justify-content: center; flex-wrap: wrap; text-align: center; }
-      .header-inner, .branding { text-align: center; }
+      .section, .section-alt { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; padding-left: 0.8rem; padding-right: 0.8rem; box-sizing: border-box; }
       
-      /* Carrés élargis au maximum sur mobile */
       .branding { 
         padding: 2.2rem 1.2rem !important; 
         max-width: 96% !important; 
         margin: 0.2rem auto 0 auto !important; 
       }
       .form-compact { 
+        padding: 2rem 1.2rem !important; /* Ajustement de l'air interne sur mobile */
         max-width: 96% !important; 
-        padding: 1.5rem 1rem !important; /* Ajustement du padding interne sur mobile */
       }
       
       .site-title { font-size: 1.9rem; }
-      
-      /* --- OPTIMISATION BOUTONS HERO SUR MOBILE --- */
-      .hero-actions { 
-        grid-template-columns: 1fr 1fr; /* 2 colonnes pour éviter l'effet écrasé */
-        gap: 0.8rem; 
-        max-width: 100%; 
-      }
-      .hero-actions a.btn-primary:nth-child(3) {
-        grid-column: span 2; /* Le bouton réserver prend toute la largeur en dessous */
-      }
-      .hero-actions a.btn-primary { font-size: 0.85rem; padding: 0.85rem 0.5rem; }
+      .hero-actions { gap: 0.6rem; max-width: 100%; }
+      .hero-actions a.btn-primary { font-size: 0.75rem; padding: 0.75rem 0.3rem; }
       
       .hero-fast-estimate { padding: 1.25rem; margin-top: 1.5rem; }
       .hero-fast-fields { grid-template-columns: 1fr; gap: 0.8rem; }
@@ -273,7 +286,7 @@
     }
 
     @media (max-width: 520px){
-      .form-compact .row{ grid-template-columns: 1fr; gap: 0; }
+      .form-compact .row{ grid-template-columns: 1fr; }
       #tarif-flottant { left: 16px; right: 16px; top: 70px; justify-content: center; }
       .actions-compact{ grid-template-columns: 1fr; gap: .55rem; }
       .actions-compact .btn-primary,
@@ -288,10 +301,6 @@
       
       .container { padding: 0 0.5rem; }
       .form-compact input, .form-compact select, .form-compact textarea { padding: 0.9rem 1rem; font-size: 1rem; }
-    }
-
-    @media (min-width: 1024px){
-      #reservation .container{ max-width: 1200px; }
     }
   </style>
 </head>
@@ -323,7 +332,7 @@
         <div class="hero-actions">
           <a href="tel:0663463716" class="btn-primary">📞 APPELER</a>
           <a href="https://wa.me/33663463716" target="_blank" class="btn-primary">💬 WHATSAPP</a>
-          <a href="#reservation" class="btn-primary">📝 RÉSERVER UN TRAJET</a>
+          <a href="#reservation" class="btn-primary">📝 RÉSERVER</a>
         </div>
 
         <div class="hero-fast-estimate">
@@ -350,7 +359,7 @@
   <section id="reservation" class="section section-alt">
     <div class="container">
       <h2 class="section-title">Réservation</h2>
-      <p class="section-intro">Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un clic.</p>
+      <p style="text-align:center; margin-top:0; margin-bottom:1.5rem; color: #fff;">Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un clic.</p>
 
       <form id="reservation-form" class="form form-compact">
         <div class="row">
@@ -363,64 +372,54 @@
           </label>
         </div>
 
-        <div class="row" style="grid-template-columns: 1fr; margin-bottom: 1rem;">
-          <label>Type de trajet
-            <select name="Trajet" id="trajet-type">
-              <option value="simple">Aller simple</option>
-              <option value="aller-retour">Aller-Retour (réduction 10% sur le retour)</option>
-            </select>
-          </label>
-        </div>
+        <label>Type de trajet
+          <select name="Trajet" id="trajet-type">
+            <option value="simple">Aller simple</option>
+            <option value="aller-retour">Aller-Retour (réduction 10% sur le retour)</option>
+          </select>
+        </label>
 
-        <div class="row" style="grid-template-columns: 1fr; margin-bottom: 1rem;">
-          <label>Départ
-            <input type="text" name="Départ" placeholder="Adresse de prise en charge" required>
-          </label>
-        </div>
+        <label>Départ
+          <input type="text" name="Départ" placeholder="Adresse de prise en charge" required>
+        </label>
 
-        <div class="row" style="grid-template-columns: 1fr; margin-bottom: 1rem;">
-          <label>Arrivée
-            <input type="text" name="Arrivee" placeholder="Adresse de destination" required>
-          </label>
-        </div>
+        <label>Arrivée
+          <input type="text" name="Arrivee" placeholder="Adresse de destination" required>
+        </label>
 
-        <div class="row" style="grid-template-columns: 1fr; margin-bottom: 0;">
-          <label>Date & heure aller
-            <input type="datetime-local" name="DateHeureAller" id="date-aller" required>
-          </label>
-        </div>
+        <label>Date & heure aller
+          <input type="datetime-local" name="DateHeureAller" id="date-aller" required>
+        </label>
 
         <div id="dates-retour-container" class="dates-retour-container">
-          <label style="margin-top: 1rem;">Date & heure retour
+          <label>Date & heure retour
             <input type="datetime-local" name="DateHeureRetour" id="date-retour">
           </label>
         </div>
 
-        <div class="row" style="margin-top: 1rem;">
-          <label>Nombre de passagers
-            <select name="Passagers" required>
-              <option value="" selected>Sélectionner</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-          </label>
+        <label>Nombre de passagers
+          <select name="Passagers" required>
+            <option value="" selected>Sélectionner</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </label>
 
-          <label>Mode de paiement
-            <select name="Paiement" required>
-              <option value="" selected>Sélectionner</option>
-              <option value="Lien sécurisé (CB)">Lien sécurisé (CB)</option>
-              <option value="CB à bord">CB à bord</option>
-              <option value="Espèces à bord">Espèces à bord</option>
-            </select>
-          </label>
-        </div>
+        <label>Mode de paiement
+          <select name="Paiement" required>
+            <option value="" selected>Sélectionner</option>
+            <option value="Lien sécurisé (CB)">Lien sécurisé (CB)</option>
+            <option value="CB à bord">CB à bord</option>
+            <option value="Espèces à bord">Espèces à bord</option>
+          </select>
+        </label>
 
         <details class="opt">
-          <summary>+ Options (Bagages, Siège enfant...)</summary>
-          <label>Informations complémentaires
-            <textarea name="Message" rows="2" placeholder="Bagages volumineux, besoin d'un siège enfant, numéro de vol/train…"></textarea>
+          <summary>+ Options</summary>
+          <label>Informations
+            <textarea name="Message" rows="2" placeholder="Bagages, siège enfant, n° de vol…"></textarea>
           </label>
         </details>
 
@@ -442,71 +441,6 @@
       </form>
     </div>
   </section>
-
-  <section id="services" class="section">
-    <div class="container">
-      <h2 class="section-title">Nos services</h2>
-      <p class="section-intro">Transferts gares & aéroports, déplacements professionnels et mise à disposition sur mesure.</p>
-      <div class="grid">
-        <article class="card">
-          <div class="service-icon">✈</div>
-          <h3>Aéroports</h3>
-          <p>Liaisons directes vers Perpignan, Toulouse, Montpellier, Barcelone…</p>
-        </article>
-        <article class="card">
-          <div class="service-icon">🚊</div>
-          <h3>Gares</h3>
-          <p>Prise en charge rapide à la gare de Perpignan, Narbonne et alentours.</p>
-        </article>
-        <article class="card">
-          <div class="service-icon">💼</div>
-          <h3>Professionnel</h3>
-          <p>Trajets d'affaires, séminaires et transport de vos collaborateurs.</p>
-        </article>
-        <article class="card">
-          <div class="service-icon">⭐</div>
-          <h3>Mise à disposition</h3>
-          <p>Événements, mariages, soirées privées ou circuits touristiques.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="section">
-    <div class="container">
-      <h2 class="section-title">Contact</h2>
-
-      <div class="contact-grid" style="margin-top:1rem;">
-        <div>
-          <p>📞 <a href="tel:+33663463716"><strong>+33 6 63 46 37 16</strong></a></p>
-          <p>💬 <a href="https://wa.me/33663463716" target="_blank"><strong>WhatsApp</strong></a></p>
-        </div>
-        <div>
-          <p>📧 <strong>driveconfort66@gmail.com</strong></p>
-          <p>📍 Perpignan — Déplacements dans les Pyrénées-Orientales et longue distance</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container footer-legal">
-      <p>© <span id="year"></span> DCVTC66 — Tous droits réservés</p>
-      <p class="footer-links">
-        <a href="mentions-legales.html">Mentions légales</a> ·
-        <a href="politique-confidentialite.html">Politique de confidentialité</a> ·
-        <a href="plan-du-site.html">Plan du site</a>
-      </p>
-    </div>
-  </footer>
-
-  <a href="tel:+33663463716" class="fab fab-call" aria-label="Appeler DCVTC66">📞</a>
-  <a href="#" id="fab-whatsapp" target="_blank" class="fab fab-whatsapp" aria-label="WhatsApp DCVTC66">💬</a>
-
-  <div id="tarif-flottant">
-    <span class="icon">💰</span>
-    <span id="tarif-flottant-texte">Estimation en cours…</span>
-  </div>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
@@ -632,14 +566,6 @@
 
     const btnWhatsAppForm = document.getElementById("btn-whatsapp-form");
     if (btnWhatsAppForm) btnWhatsAppForm.addEventListener("click", openWhatsAppPrefilled);
-
-    const fabWhatsApp = document.getElementById("fab-whatsapp");
-    if (fabWhatsApp) {
-      fabWhatsApp.addEventListener("click", function (e) {
-        e.preventDefault();
-        openWhatsAppPrefilled();
-      });
-    }
   </script>
 
   <script>
@@ -717,8 +643,6 @@
     function calculerTarif() {
       const resDiv = document.getElementById("resultat-tarif");
       const errDiv = document.getElementById("erreur-tarif");
-      const flottant = document.getElementById("tarif-flottant");
-      const flottantTexte = document.getElementById("tarif-flottant-texte");
 
       const depart = form["Départ"].value.trim();
       const arrivee = form["Arrivee"].value.trim();
@@ -728,7 +652,6 @@
 
       errDiv.style.display = "none"; errDiv.textContent = "";
       resDiv.style.display = "none"; resDiv.textContent = "";
-      if (flottant) flottant.style.display = "none";
 
       if (!depart || !arrivee) {
         errDiv.textContent = "Veuillez renseigner le départ et l'arrivée.";
@@ -839,15 +762,6 @@
           resDiv.style.display = "block";
           resDiv.innerHTML = affichage;
 
-          if (flottant && flottantTexte) {
-            if (trajetType === "aller-retour") {
-              flottantTexte.textContent = "Aller-Retour : " + tarifFinal.toFixed(2) + " € • " + distanceTotale + " km (" + dureeTotale + ")";
-            } else {
-              flottantTexte.textContent = "Estimation : " + tarifFinal.toFixed(2) + " € • " + distanceKm + " km";
-            }
-            flottant.style.display = "flex";
-          }
-
           if (directionsService && directionsRenderer) {
             directionsService.route(
               { origin: depart, destination: arrivee, travelMode: google.maps.TravelMode.DRIVING },
@@ -862,76 +776,12 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA5J7_7fNdWgVsGRLWRfQZaO6qgCEqq_Y&callback=initMap&libraries=places" async defer></script>
 
   <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js");
-    }
-
-    let deferredPrompt = null;
-    const btnInstall = document.getElementById("btn-install");
-
-    const isStandalone =
-      window.matchMedia("(display-mode: standalone)").matches ||
-      window.navigator.standalone === true;
-
-    if (isStandalone && btnInstall) btnInstall.style.display = "none";
-
-    window.addEventListener("beforeinstallprompt", (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      if (btnInstall) btnInstall.style.display = "inline-flex";
-    });
-
-    if (btnInstall) {
-      btnInstall.addEventListener("click", async () => {
-        const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-        if (isIOS) {
-          alert('Sur iPhone : Safari → Partager (⬆️) → "Sur l’écran d’accueil".');
-          return;
-        }
-        if (!deferredPrompt) return;
-        deferredPrompt.prompt();
-        await deferredPrompt.userChoice;
-        deferredPrompt = null;
-        btnInstall.style.display = "none";
-      });
-    }
-
-    window.addEventListener("appinstalled", () => {
-      if (btnInstall) btnInstall.style.display = "none";
-    });
-
     window.addEventListener("load", () => {
       const splash = document.getElementById("splash-screen");
       if (!splash) return;
       splash.style.opacity = "0";
       setTimeout(() => splash.remove(), 600);
     });
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "TransportationService", "ProfessionalService"],
-    "@id": "https://www.dcvtc66.fr/#business",
-    "name": "DCVTC66 — Chauffeur VTC à Perpignan",
-    "url": "https://www.dcvtc66.fr/",
-    "image": "https://www.dcvtc66.fr/LOGO%20DCVTC66.png",
-    "logo": "https://www.dcvtc66.fr/LOGO%20DCVTC66.png",
-    "telephone": "+33663463716",
-    "priceRange": "€€",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Perpignan",
-      "postalCode": "66000",
-      "addressCountry": "FR"
-    },
-    "areaServed": [
-      { "@type": "City", "name": "Perpignan" },
-      { "@type": "AdministrativeArea", "name": "Pyrénées-Orientales" }
-    ],
-    "openingHours": "Mo-Su 00:00-23:59",
-    "sameAs": [ "https://wa.me/33663463716" ]
-  }
   </script>
 </body>
 </html>
