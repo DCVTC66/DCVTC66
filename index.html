@@ -20,287 +20,147 @@
 
   <style>
     html, body { margin: 0; padding: 0; overflow-x: hidden; background-color: #0b1528; color: #ffffff; }
+    body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%); background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+
+    #splash-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 99999; transition: opacity 0.5s ease; color: #fff; font-family: 'Poppins', sans-serif; }
+    #splash-screen img { max-width: 140px; height: auto; margin-bottom: 1.5rem; animation: pulse 2s infinite ease-in-out; }
+    #splash-screen p { font-size: 1.1rem; font-weight: 500; letter-spacing: 0.05em; opacity: 0.8; }
+    @keyframes pulse { 0% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.05); opacity: 1; } 100% { transform: scale(1); opacity: 0.9; } }
+
     .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; box-sizing: border-box; }
 
-    .nav-inner ul { display: flex; gap: 1rem; list-style: none; padding-left: 0; margin: 0; }
-    .nav-inner ul li a { text-decoration: none; color: #fff; }
+    .nav { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); position: sticky; top: 0; z-index: 1000; padding: 0.8rem 0; }
+    .nav-inner { display: flex; justify-content: center; align-items: center; }
+    .nav-inner ul { display: flex; gap: 2.5rem; list-style: none; margin: 0; padding: 0; }
+    .nav-inner ul li a { color: rgba(255, 255, 255, 0.75); text-decoration: none; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-inner ul li a:hover { color: #facc15; }
 
-    /* --- REMONTÉE GÉNÉRALE DES SECTIONS --- */
-    .header {
-      padding-top: 1rem !important;
+    .header { padding-top: 3.5rem; padding-bottom: 2rem; text-align: center; }
+    .branding { background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 3.5rem 2rem; border-radius: 32px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); max-width: 750px; margin: 0 auto; }
+    .logo { max-width: 150px; height: auto; margin-bottom: 1.5rem; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3)); }
+    .site-title { font-family: 'Playfair Display', serif; font-size: 3.2rem; font-weight: 700; color: #ffffff; margin: 0 0 0.5rem 0; letter-spacing: -0.02em; }
+    .site-subtitle { font-size: 1.15rem; color: rgba(255, 255, 255, 0.8); max-width: 540px; margin: 0 auto 2.5rem auto; line-height: 1.6; font-weight: 300; }
+
+    .hero-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; max-width: 550px; margin: 0 auto 2.5rem auto; }
+    .btn-primary { display: inline-flex; align-items: center; justify-content: center; background: #facc15; color: #0f172a; font-weight: 700; text-decoration: none; padding: 1rem 1.5rem; border-radius: 16px; font-size: 0.95rem; letter-spacing: 0.02em; transition: all 0.2s ease; box-shadow: 0 10px 25px -5px rgba(250, 204, 21, 0.3); border: none; cursor: pointer; font-family: 'Poppins', sans-serif; }
+    .btn-primary:hover { background: #fde047; transform: translateY(-2px); box-shadow: 0 15px 30px -5px rgba(250, 204, 21, 0.4); }
+
+    .hero-fast-estimate { background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.15); padding: 1.75rem; border-radius: 24px; margin-top: 2rem; }
+    .hero-fast-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .hero-fast-fields input { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.15); padding: 1rem 1.25rem; border-radius: 14px; font-size: 0.95rem; color: #fff; width: 100%; box-sizing: border-box; font-family: 'Poppins', sans-serif; transition: all 0.2s; }
+    .hero-fast-fields input:focus { outline: none; border-color: #facc15; background: rgba(15, 23, 42, 0.8); }
+    .hero-fast-fields input::placeholder { color: rgba(255,255,255,0.4); }
+    .btn-fast-calc { width: 100%; padding: 1rem; border-radius: 14px; border: none; background: #16a34a; color: white; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background 0.2s, transform 0.2s; font-family: 'Poppins', sans-serif; box-shadow: 0 10px 20px -5px rgba(22, 163, 74, 0.3); }
+    .btn-fast-calc:hover { background: #15803d; transform: translateY(-1px); }
+
+    .hero-badges { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; }
+    .hero-badges span { font-size: 0.85rem; font-weight: 600; color: rgba(255, 255, 255, 0.6); letter-spacing: 0.05em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 0.5rem; }
+    .hero-badges span::before { content: ''; display: inline-block; width: 6px; height: 6px; background: #facc15; border-radius: 50%; }
+
+    .section { padding: 5rem 0; }
+    .section-alt { background: rgba(15, 23, 42, 0.4); border-top: 1px solid rgba(255, 255, 255, 0.04); border-bottom: 1px solid rgba(255, 255, 255, 0.04); }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; text-align: center; margin: 0 0 3rem 0; color: #ffffff; }
+
+    /* --- FORMULAIRE DE RÉSERVATION STYLE D'ORIGINE --- */
+    .form-compact { 
+      background: rgba(255, 255, 255, 0.03); 
+      backdrop-filter: blur(16px); 
+      -webkit-backdrop-filter: blur(16px); 
+      border: 1px solid rgba(255, 255, 255, 0.08); 
+      padding: 3rem; 
+      border-radius: 32px; 
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6); 
+      max-width: 700px; 
+      margin: 0 auto; 
     }
     
-    .section, .section-alt {
-      padding-top: 2rem !important; 
-      padding-bottom: 2rem !important;
-    }
-
-    .section-title {
-      margin-top: 0 !important;
-      margin-bottom: 1rem !important;
-      text-align: center;
-      color: #ffffff;
-    }
-
-    /* --- ZONE COMMUNE (CARRÉ BLEU HAUT ET FORMULAIRE BAS) --- */
-    .branding, .form-compact {
-      background: rgba(255, 255, 255, 0.06) !important;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.15) !important;
-      padding: 3rem 2.5rem !important; 
-      max-width: 960px !important; 
-      width: 100%;
-      margin: 0.5rem auto 0 auto !important;
-      border-radius: 24px !important;
-      box-sizing: border-box;
-      color: #ffffff !important;
-    }
-
-    /* --- STYLE DES INPUTS ET TEXTES DU FORMULAIRE (POUR ENFIN TOUT VOIR) --- */
     .form-compact label { 
       display: flex; 
       flex-direction: column; 
-      gap: .4rem; 
-      font-size: .9rem; 
+      gap: 0.5rem; 
+      margin-bottom: 1.5rem; 
+      font-size: 0.9rem; 
       font-weight: 500; 
-      letter-spacing: .02em; 
-      color: #ffffff !important;
+      color: rgba(255, 255, 255, 0.9); 
+      letter-spacing: 0.02em; 
     }
-    
+
+    /* --- CORRECTION ESSENTIELLE DU TEXTE DANS LES INPUTS --- */
     .form-compact input, 
     .form-compact select, 
     .form-compact textarea { 
-      background: rgba(255, 255, 255, 0.95) !important; /* Fond très clair pour les champs de saisie */
-      color: #111827 !important; /* Texte de saisie écrit en noir très foncé */
-      border: 2px solid rgba(255, 255, 255, 0.2) !important;
-      padding: 1rem 1rem; 
+      background: rgba(255, 255, 255, 0.95) !important; /* Maintient un fond propre et très clair */
+      color: #0f172a !important; /* Force l'écriture en NOIR TRÈS FONCÉ pour être parfaitement lisible */
+      border: 1px solid rgba(255, 255, 255, 0.1); 
+      padding: 1rem 1.25rem; 
       border-radius: 14px; 
-      font-size: .95rem; 
-      line-height: 1.4;
-      font-weight: 500;
-      box-sizing: border-box;
-      width: 100%;
-    }
-
-    /* Rendre les textes indicatifs (placeholders) parfaitement visibles en gris foncé */
-    .form-compact input::placeholder,
-    .form-compact textarea::placeholder {
-      color: #4b5563 !important;
-      opacity: 0.85;
-    }
-
-    /* Focus sur les champs */
-    .form-compact input:focus, .form-compact select:focus, .form-compact textarea:focus {
-      outline: none;
-      border-color: #facc15 !important; /* Bordure jaune au clic */
-      background: #ffffff !important;
-    }
-
-    /* Logo calé en haut */
-    .logo {
-      max-width: 120px !important;
-      height: auto;
-      margin: 0 auto 1rem auto !important;
-      display: block;
-    }
-
-    .site-title { margin-bottom: 0.2rem; font-size: 2.4rem; text-align: center; }
-    .site-subtitle { margin-top: 0; font-size: 1.05rem; max-width: 85%; margin-left: auto; margin-right: auto; opacity: 0.9; text-align: center; }
-
-    /* Boutons jaunes */
-    .hero-actions { 
-      display: grid; 
-      grid-template-columns: repeat(3, 1fr); 
-      gap: 1.5rem; 
-      margin-top: 1.8rem; 
-      justify-content: center; 
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .hero-actions a.btn-primary { 
-      display: inline-flex; 
-      align-items: center; 
-      justify-content: center; 
-      padding: 0.85rem 0.5rem; 
-      font-size: 0.85rem; 
-      border-radius: 999px; 
-      text-align: center; 
-      white-space: nowrap; 
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      background-color: #facc15;
-      color: #000;
-      text-decoration: none;
-    }
-
-    /* Zone d'estimation rapide du haut */
-    .hero-fast-estimate {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 2rem; 
-      border-radius: 20px;
-      margin: 2rem auto 0 auto;
-      max-width: 750px; 
-      width: 100%;
-      box-sizing: border-box;
-    }
-    .hero-fast-fields {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem; 
-      margin-bottom: 1.2rem;
-    }
-    .hero-fast-fields input {
-      padding: 1.1rem 1.3rem; 
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      background: rgba(255, 255, 255, 0.95);
-      font-size: 1.05rem; 
-      color: #111827;
-      width: 100%;
-      box-sizing: border-box;
+      font-size: 0.95rem; 
+      font-family: 'Poppins', sans-serif; 
+      box-sizing: border-box; 
+      width: 100%; 
+      transition: all 0.2s; 
       font-weight: 500;
     }
-    .hero-fast-fields input::placeholder {
-      color: #4b5563;
-    }
-    .btn-fast-calc {
-      width: 100%;
-      padding: 1.1rem; 
-      border-radius: 14px;
-      border: none;
-      background: #16a34a;
-      color: white;
-      font-weight: 700;
-      font-size: 1.1rem; 
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .btn-fast-calc:hover { background: #15803d; }
 
-    #btn-install.btn-primary {
-      margin-top: 1.2rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
+    /* Rend les petits textes d'exemples (placeholders) parfaitement visibles en gris foncé */
+    .form-compact input::placeholder, 
+    .form-compact textarea::placeholder { 
+      color: #57534e !important; 
+      opacity: 0.9 !important; 
     }
 
-    /* Badges */
-    .hero-badges { display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; }
-
-    /* Flotteur d'estimation tarifaire */
-    #tarif-flottant {
-      position: fixed; top: 24px; right: 24px; z-index: 9999; display: none; align-items: center; gap: 0.75rem;
-      padding: 0.9rem 1.3rem; border-radius: 999px; background: linear-gradient(135deg, #16a34a, #22c55e);
-      color: #022c22; box-shadow: 0 16px 40px rgba(22, 163, 74, 0.7); font-size: 0.95rem; font-weight: 600; max-width: 90vw;
-      border: 1px solid rgba(6, 95, 70, 0.75); animation: pulseTarif 1.6s ease-in-out infinite;
-    }
-    #tarif-flottant .icon { font-size: 1.3rem; }
-    @keyframes pulseTarif {
-      0% { transform: scale(1); box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55); }
-      50% { transform: scale(1.06); box-shadow: 0 18px 45px rgba(22, 163, 74, 0.85); }
-      100% { transform: scale(1); box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55); }
+    .form-compact input:focus, 
+    .form-compact select:focus, 
+    .form-compact textarea:focus { 
+      outline: none; 
+      border-color: #facc15; 
+      background: #ffffff !important; 
+      box-shadow: 0 0 0 4px rgba(250, 204, 21, 0.15); 
     }
 
-    .form-compact .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-compact textarea { resize: vertical; min-height: 72px; }
+    .form-compact .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .form-compact textarea { resize: vertical; min-height: 100px; }
 
-    .dates-retour-container {
-      display: none;
-      margin-top: 0.5rem;
-      animation: fadeIn 0.3s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .dates-retour-container { display: none; margin-top: -0.5rem; margin-bottom: 1.5rem; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
-    details.opt { margin-top: .45rem; color: #fff; }
-    details.opt summary { cursor: pointer; font-weight: 700; opacity: .9; margin: .35rem 0 .25rem; }
+    details.opt { margin-bottom: 2rem; background: rgba(255,255,255,0.02); padding: 0.5rem 1.25rem; border-radius: 14px; border: 1px solid rgba(255,255,255,0.05); }
+    details.opt summary { cursor: pointer; font-weight: 600; font-size: 0.9rem; color: #facc15; padding: 0.5rem 0; user-select: none; }
+    details.opt label { margin-top: 1rem; margin-bottom: 0.5rem; }
 
-    .actions-compact{
-      display:grid;
-      grid-template-columns: 1fr 1.15fr;
-      gap:1rem;
-      margin-top:1rem;
-    }
-    .actions-compact .btn-primary,
-    .actions-compact .btn-estimate,
-    .email-action {
-      border-radius:999px;
-      padding:1rem;
-      font-weight:800;
-      letter-spacing:.02em;
-      border: none;
-      cursor: pointer;
-    }
-    .actions-compact .btn-estimate { background-color: #1e3a8a; color: #fff; }
-    .actions-compact .btn-primary, .email-action { background-color: #facc15; color: #000; }
+    .actions-compact { display: grid; grid-template-columns: 1fr 1.25fr; gap: 1rem; margin-top: 1rem; }
+    .actions-compact .btn-estimate { background: rgba(255, 255, 255, 0.08); color: #fff; border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 0.95rem; transition: all 0.2s; }
+    .actions-compact .btn-estimate:hover { background: rgba(255, 255, 255, 0.15); }
+    .actions-compact .btn-primary { border-radius: 16px; }
 
-    .email-action{
-      margin-top: .8rem;
-      width: 100%;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-    }
+    .email-action { margin-top: 1rem; width: 100%; display: inline-flex; justify-content: center; align-items: center; background: #2563eb; color: white; box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.3); }
+    .email-action:hover { background: #3b82f6; box-shadow: 0 15px 30px -5px rgba(37, 99, 235, 0.4); }
 
-    .result-compact, .error-compact{ margin-top:.6rem; padding:.65rem .75rem; border-radius:12px; font-size:.85rem; line-height:1.35; }
-    .result-compact{ background:#f0f7ff; color:#1b3b68; }
-    .error-compact{ background:#ffecec; color:#a40000; }
+    .result-compact, .error-compact { margin-top: 1.5rem; padding: 1.25rem; border-radius: 16px; font-size: 0.95rem; line-height: 1.5; border: 1px solid transparent; }
+    .result-compact { background: rgba(22, 163, 74, 0.1); border-color: rgba(22, 163, 74, 0.2); color: #4ade80; }
+    .result-compact strong { color: #fff; font-size: 1.1rem; }
+    .error-compact { background: rgba(220, 38, 38, 0.1); border-color: rgba(220, 38, 38, 0.2); color: #f87171; }
 
-    .map-wrapper { margin-top: .7rem; border-radius: 16px; overflow: hidden; }
-    .map-wrapper-inner { position:relative; width:100%; height:320px; }
-    #map { width:100%; height:100%; }
+    .map-wrapper { margin-top: 1.5rem; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    .map-wrapper-inner { position: relative; width: 100%; height: 350px; }
+    #map { width: 100%; height: 100%; }
 
-    /* Responsive Mobile & Tablette */
-    @media (max-width: 930px) {
-      .branding, .form-compact { max-width: 96% !important; } 
-    }
+    #tarif-flottant { position: fixed; top: 24px; right: 24px; z-index: 9999; display: none; align-items: center; gap: 0.75rem; padding: 0.9rem 1.5rem; border-radius: 999px; background: linear-gradient(135deg, #16a34a, #22c55e); color: white; box-shadow: 0 20px 40px rgba(22, 163, 74, 0.4); font-size: 0.95rem; font-weight: 700; border: 1px solid rgba(255,255,255,0.2); animation: pulseTarif 2s ease-in-out infinite; }
+    @keyframes pulseTarif { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+    .footer { text-align: center; padding: 3rem 0; color: rgba(255,255,255,0.4); font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 5rem; }
+    .footer p { margin: 0.5rem 0; }
 
     @media (max-width: 768px) {
-      .header { padding-top: 0.5rem !important; }
-      .section, .section-alt { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; padding-left: 0.8rem; padding-right: 0.8rem; box-sizing: border-box; }
-      
-      .branding { 
-        padding: 2.2rem 1.2rem !important; 
-        max-width: 96% !important; 
-        margin: 0.2rem auto 0 auto !important; 
-      }
-      .form-compact { 
-        padding: 2rem 1.2rem !important; /* Ajustement de l'air interne sur mobile */
-        max-width: 96% !important; 
-      }
-      
-      .site-title { font-size: 1.9rem; }
-      .hero-actions { gap: 0.6rem; max-width: 100%; }
-      .hero-actions a.btn-primary { font-size: 0.75rem; padding: 0.75rem 0.3rem; }
-      
-      .hero-fast-estimate { padding: 1.25rem; margin-top: 1.5rem; }
-      .hero-fast-fields { grid-template-columns: 1fr; gap: 0.8rem; }
-      .hero-fast-fields input { padding: 1.1rem; font-size: 1.1rem; } 
-      .btn-fast-calc { padding: 1.1rem; font-size: 1.1rem; }
-    }
-
-    @media (max-width: 520px){
-      .form-compact .row{ grid-template-columns: 1fr; }
-      #tarif-flottant { left: 16px; right: 16px; top: 70px; justify-content: center; }
-      .actions-compact{ grid-template-columns: 1fr; gap: .55rem; }
-      .actions-compact .btn-primary,
-      .actions-compact .btn-estimate,
-      .email-action{ 
-        width: 100%; 
-        padding: 0.9rem 1rem; 
-        font-size: 0.95rem; 
-      }
-      .map-wrapper-inner{ height: 280px; }
-      #btn-install.btn-primary{ width: 100%; max-width: 320px; margin-left: auto !important; margin-right: auto !important; }
-      
-      .container { padding: 0 0.5rem; }
-      .form-compact input, .form-compact select, .form-compact textarea { padding: 0.9rem 1rem; font-size: 1rem; }
+      .site-title { font-size: 2.5rem; }
+      .site-subtitle { font-size: 1rem; margin-bottom: 2rem; }
+      .branding { padding: 2.5rem 1.5rem; border-radius: 24px; }
+      .form-compact { padding: 2rem 1.5rem; border-radius: 24px; }
+      .hero-actions { grid-template-columns: 1fr; gap: 0.75rem; max-width: 100%; }
+      .hero-fast-fields { grid-template-columns: 1fr; gap: 0.75rem; }
+      .form-compact .row { grid-template-columns: 1fr; gap: 0; }
+      .actions-compact { grid-template-columns: 1fr; }
+      .section { padding: 3.5rem 0; }
     }
   </style>
 </head>
@@ -331,8 +191,8 @@
 
         <div class="hero-actions">
           <a href="tel:0663463716" class="btn-primary">📞 APPELER</a>
-          <a href="https://wa.me/33663463716" target="_blank" class="btn-primary">💬 WHATSAPP</a>
-          <a href="#reservation" class="btn-primary">📝 RÉSERVER</a>
+          <a href="https://wa.me/33663463716" target="_blank" class="btn-primary" style="background:#22c55e; color:white; box-shadow:0 10px 25px -5px rgba(34,197,94,0.3)">💬 WHATSAPP</a>
+          <a href="#reservation" class="btn-primary" style="background:#2563eb; color:white; box-shadow:0 10px 25px -5px rgba(37,99,235,0.3)">📝 RÉSERVER</a>
         </div>
 
         <div class="hero-fast-estimate">
@@ -343,14 +203,14 @@
           <button type="button" id="btn-fast-calc" class="btn-fast-calc">💰 Estimer mon trajet en 1 clic</button>
         </div>
 
-        <button id="btn-install" class="btn-primary" style="display:none;">
+        <button id="btn-install" class="btn-primary" style="display:none; margin-top:1.5rem; background:rgba(255,255,255,0.08); color:white; border:1px solid rgba(255,255,255,0.15); box-shadow:none;">
           📲 Installer l'application
         </button>
 
         <div class="hero-badges">
-          <span>✔ 7j/7</span>
-          <span>✔ Ponctuel</span>
-          <span>✔ Confort</span>
+          <span>7j/7</span>
+          <span>Ponctuel</span>
+          <span>Confort</span>
         </div>
       </div>
     </div>
@@ -359,7 +219,7 @@
   <section id="reservation" class="section section-alt">
     <div class="container">
       <h2 class="section-title">Réservation</h2>
-      <p style="text-align:center; margin-top:0; margin-bottom:1.5rem; color: #fff;">Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un clic.</p>
+      <p style="text-align:center; margin-top:-2rem; margin-bottom:3rem; color: rgba(255,255,255,0.7); font-size:1.05rem;">Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un clic.</p>
 
       <form id="reservation-form" class="form form-compact">
         <div class="row">
@@ -399,7 +259,7 @@
 
         <label>Nombre de passagers
           <select name="Passagers" required>
-            <option value="" selected>Sélectionner</option>
+            <option value="" disabled selected>Sélectionner</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -409,7 +269,7 @@
 
         <label>Mode de paiement
           <select name="Paiement" required>
-            <option value="" selected>Sélectionner</option>
+            <option value="" disabled selected>Sélectionner</option>
             <option value="Lien sécurisé (CB)">Lien sécurisé (CB)</option>
             <option value="CB à bord">CB à bord</option>
             <option value="Espèces à bord">Espèces à bord</option>
@@ -417,15 +277,15 @@
         </label>
 
         <details class="opt">
-          <summary>+ Options</summary>
-          <label>Informations
-            <textarea name="Message" rows="2" placeholder="Bagages, siège enfant, n° de vol…"></textarea>
+          <summary>+ Options (Bagages, siège enfant...)</summary>
+          <label>Informations complémentaires
+            <textarea name="Message" rows="3" placeholder="Ex: 2 valises cabine, besoin d'un siège bébé, numéro de vol..."></textarea>
           </label>
         </details>
 
         <div class="actions-compact">
-          <button type="button" id="btn-tarif" class="btn-estimate">Estimer</button>
-          <button type="submit" class="btn-primary">📩 Envoyer par SMS</button>
+          <button type="button" id="btn-tarif" class="btn-estimate">📈 Estimer le prix</button>
+          <button type="submit" class="btn-primary">💬 Envoyer par SMS</button>
         </div>
 
         <button type="button" id="btn-whatsapp-form" class="btn-primary email-action">💬 Envoyer par WhatsApp</button>
@@ -433,7 +293,7 @@
         <div id="erreur-tarif" class="error-compact" style="display:none;"></div>
         <div id="resultat-tarif" class="result-compact" style="display:none;"></div>
 
-        <div class="map-wrapper" id="map-wrapper">
+        <div class="map-wrapper" id="map-wrapper" style="display:none;">
           <div class="map-wrapper-inner">
             <div id="map"></div>
           </div>
@@ -441,6 +301,17 @@
       </form>
     </div>
   </section>
+
+  <div id="tarif-flottant">
+    <span class="icon">💰</span> <span id="tarif-flottant-texte">0.00 €</span>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> DCVTC66. Tous droits réservés.</p>
+      <p style="font-size: 0.75rem; opacity: 0.5; margin-top: 1rem;">Chauffeur privé VTC à Perpignan (66) — Transport toutes distances.</p>
+    </div>
+  </footer>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
@@ -643,6 +514,7 @@
     function calculerTarif() {
       const resDiv = document.getElementById("resultat-tarif");
       const errDiv = document.getElementById("erreur-tarif");
+      const mapWrapper = document.getElementById("map-wrapper");
 
       const depart = form["Départ"].value.trim();
       const arrivee = form["Arrivee"].value.trim();
@@ -744,7 +616,7 @@
             tarifFinal = Math.round(tarif * 100) / 100;
           }
 
-          derniereEstimation = { distanceKm, distanceTotale, dureeTexte, dureeTotale, tarif: tarifFinal, trajetType };
+          derniereEstimation = { distanceKm, distanceTotale, dureeTexte, dureeTotale, tarif: tarifFinal, advertiser_markup: 0, trajetType };
 
           let affichage = "";
 
@@ -752,7 +624,7 @@
             affichage = "Distance totale (A/R) : <strong>" + distanceTotale + " km</strong><br>" +
                         "Durée totale (A/R) : <strong>" + dureeTotale + "</strong><br>" +
                         "Estimation Aller-Retour : <strong>" + tarifFinal.toFixed(2) + " €</strong><br>" +
-                        "<small>(réduction de 10% sur le trajet retour)</small>";
+                        "<small style='opacity:0.8;'>(réduction de 10% sur le trajet retour intégrée)</small>";
           } else {
             affichage = "Distance : <strong>" + distanceKm + " km</strong><br>" +
                         "Durée : <strong>" + dureeTexte + "</strong><br>" +
@@ -762,10 +634,24 @@
           resDiv.style.display = "block";
           resDiv.innerHTML = affichage;
 
+          const flottant = document.getElementById("tarif-flottant");
+          const flottantTexte = document.getElementById("tarif-flottant-texte");
+          if (flottant && flottantTexte) {
+            flottantTexte.textContent = tarifFinal.toFixed(2) + " €";
+            flottant.style.display = "flex";
+          }
+
+          if (mapWrapper) mapWrapper.style.display = "block";
+
           if (directionsService && directionsRenderer) {
+            google.maps.event.trigger(map, 'resize');
             directionsService.route(
               { origin: depart, destination: arrivee, travelMode: google.maps.TravelMode.DRIVING },
-              (result, statusDir) => { if (statusDir === "OK") directionsRenderer.setDirections(result); }
+              (result, statusDir) => { 
+                if (statusDir === "OK") {
+                  directionsRenderer.setDirections(result); 
+                } 
+              }
             );
           }
         }
@@ -780,7 +666,7 @@
       const splash = document.getElementById("splash-screen");
       if (!splash) return;
       splash.style.opacity = "0";
-      setTimeout(() => splash.remove(), 600);
+      setTimeout(() => splash.remove(), 500);
     });
   </script>
 </body>
