@@ -6,7 +6,6 @@
   <title>DCVTC66 — Chauffeur VTC à Perpignan</title>
   <meta name="description" content="DCVTC66, chauffeur VTC à Perpignan, propose des trajets fiables, confortables et ponctuels dans tout le département 66 et au-delà. Réservation simple et rapide." />
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -17,7 +16,6 @@
   <meta name="theme-color" content="#2563eb">
   <link rel="apple-touch-icon" href="/icon-192.png">
   
-  <!-- BALISE CANONIQUE CORRECTE POUR LA PAGE D'ACCUEIL -->
   <link rel="canonical" href="https://dcvtc66.fr/" />
 
   <style>
@@ -29,6 +27,46 @@
 
     .hero-actions { display: flex; gap: 0.55rem; margin-top: 1.05rem; justify-content: center; flex-wrap: wrap; }
     .hero-actions a.btn-primary { display: inline-flex; align-items: center; justify-content: center; padding: 0.45rem 0.9rem; font-size: 0.8rem; border-radius: 999px; text-align: center; white-space: nowrap; }
+
+    /* Nouveau style pour l'estimation ultra rapide dans le Hero */
+    .hero-fast-estimate {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 1rem;
+      border-radius: 16px;
+      max-width: 500px;
+      margin: 1.5rem auto 0 auto;
+    }
+    .hero-fast-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .hero-fast-fields input {
+      padding: 0.7rem 0.9rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 0.9rem;
+      color: #333;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .btn-fast-calc {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 12px;
+      border: none;
+      background: #16a34a;
+      color: white;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-fast-calc:hover { background: #15803d; }
 
     /* Carte flottante d'estimation */
     #tarif-flottant {
@@ -113,6 +151,7 @@
 
     @media (max-width: 520px){
   .form-compact .row{ grid-template-columns: 1fr; }
+  .hero-fast-fields { grid-template-columns: 1fr; }
   #tarif-flottant { left: 16px; right: 16px; top: 70px; justify-content: center; }
   .actions-compact{ grid-template-columns: 1fr; gap: .55rem; }
   .actions-compact .btn-primary,
@@ -197,6 +236,41 @@
     </div>
   </nav>
 
+  <header class="header">
+    <div class="container header-inner">
+      <div class="branding">
+        <img src="LOGO DCVTC66.png" alt="Logo DCVTC66" class="logo">
+        <h1 class="site-title">DCVTC66</h1>
+        <p class="site-subtitle">Chauffeur VTC privé à Perpignan et dans toutes les Pyrénées-Orientales (66)</p>
+
+        <div class="hero-actions">
+          <a href="tel:0663463716" class="btn-primary">📞 Appeler</a>
+          <a href="https://wa.me/33663463716" target="_blank" class="btn-primary">💬 WhatsApp</a>
+          <a href="#reservation" class="btn-primary">📝 Réserver</a>
+          <a href="#" id="btn-estimer-hero" class="btn-primary">💰 Estimer</a>
+        </div>
+
+        <div class="hero-fast-estimate">
+          <div class="hero-fast-fields">
+            <input type="text" id="fast-depart" placeholder="📍 Adresse de départ" autocomplete="off">
+            <input type="text" id="fast-arrivee" placeholder="🏁 Adresse d'arrivée" autocomplete="off">
+          </div>
+          <button type="button" id="btn-fast-calc" class="btn-fast-calc">💰 Estimer mon trajet en 1 clic</button>
+        </div>
+
+        <button id="btn-install" class="btn-primary" style="display:none; margin-top:10px;">
+          📲 Installer l'application
+        </button>
+
+        <div class="hero-badges">
+          <span>✔ 7j/7</span>
+          <span>✔ Ponctuel</span>
+          <span>✔ Confort</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
   <section id="reservation" class="section section-alt">
     <div class="container">
       <h2 class="section-title">Réservation</h2>
@@ -213,7 +287,6 @@
           </label>
         </div>
 
-        <!-- TYPE DE TRAJET -->
         <label>Type de trajet
           <select name="Trajet" id="trajet-type">
             <option value="simple">Aller simple</option>
@@ -229,12 +302,10 @@
           <input type="text" name="Arrivee" placeholder="Adresse de destination" required>
         </label>
 
-        <!-- Date aller (toujours visible) -->
         <label>Date & heure aller
           <input type="datetime-local" name="DateHeureAller" id="date-aller" required>
         </label>
 
-        <!-- Date retour (visible uniquement pour aller-retour) -->
         <div id="dates-retour-container" class="dates-retour-container">
           <label>Date & heure retour
             <input type="datetime-local" name="DateHeureRetour" id="date-retour">
@@ -285,33 +356,6 @@
       </form>
     </div>
   </section>
-
-  <header class="header">
-    <div class="container header-inner">
-      <div class="branding">
-        <img src="LOGO DCVTC66.png" alt="Logo DCVTC66" class="logo">
-        <h1 class="site-title">DCVTC66</h1>
-        <p class="site-subtitle">Chauffeur VTC privé à Perpignan et dans toutes les Pyrénées-Orientales (66)</p>
-
-       <div class="hero-actions">
-  <a href="tel:0663463716" class="btn-primary">📞 Appeler</a>
-  <a href="https://wa.me/33663463716" target="_blank" class="btn-primary">💬 WhatsApp</a>
-  <a href="#reservation" class="btn-primary">📝 Réserver</a>
-  <a href="#" id="btn-estimer-hero" class="btn-primary">💰 Estimer</a>
-</div>
-
-        <button id="btn-install" class="btn-primary" style="display:none; margin-top:10px;">
-          📲 Installer l'application
-        </button>
-
-        <div class="hero-badges">
-          <span>✔ 7j/7</span>
-          <span>✔ Ponctuel</span>
-          <span>✔ Confort</span>
-        </div>
-      </div>
-    </div>
-  </header>
 
   <section id="services" class="section">
   <div class="container">
@@ -509,7 +553,7 @@ if (btnEstimerHero) {
 
       if (derniereEstimation) {
         msg += "\n--- Estimation ---\n";
-        msg += "Distance : " + (derniereEstimation.distanceTotale || derniereEstimation.distanceKm) + " km\n";
+        sms += "Distance : " + (derniereEstimation.distanceTotale || derniereEstimation.distanceKm) + " km\n";
         msg += "Durée : " + (derniereEstimation.dureeTotale || derniereEstimation.dureeTexte) + "\n";
         if (derniereEstimation.trajetType === "aller-retour") {
           msg += "Tarif Aller-Retour : " + derniereEstimation.tarif.toFixed(2) + " €\n";
@@ -568,6 +612,8 @@ if (btnEstimerHero) {
 
       const inputDepart = document.querySelector('input[name="Départ"]');
       const inputArrivee = document.querySelector('input[name="Arrivee"]');
+      const fastDepart = document.getElementById('fast-depart');
+      const fastArrivee = document.getElementById('fast-arrivee');
 
       if (inputDepart) {
         new google.maps.places.Autocomplete(inputDepart, {
@@ -583,8 +629,44 @@ if (btnEstimerHero) {
         });
       }
 
+      // Autocomplete sur le mini-formulaire du haut
+      if (fastDepart) {
+        new google.maps.places.Autocomplete(fastDepart, {
+          types: ['geocode', 'establishment'],
+          componentRestrictions: { country: 'fr' }
+        });
+      }
+      if (fastArrivee) {
+        new google.maps.places.Autocomplete(fastArrivee, {
+          types: ['geocode', 'establishment'],
+          componentRestrictions: { country: 'fr' }
+        });
+      }
+
       const btnTarif = document.getElementById("btn-tarif");
       if (btnTarif) btnTarif.addEventListener("click", calculerTarif);
+
+      // Liaison du mini-formulaire au calcul principal
+      const btnFastCalc = document.getElementById("btn-fast-calc");
+      if (btnFastCalc) {
+        btnFastCalc.addEventListener("click", () => {
+          if (fastDepart && fastArrivee) {
+            // Copie les valeurs dans le grand formulaire pour utiliser tes fonctions existantes
+            form["Départ"].value = fastDepart.value;
+            form["Arrivee"].value = fastArrivee.value;
+            
+            // Assigne automatiquement la date actuelle si elle est vide pour éviter le blocage
+            if (!form["DateHeureAller"].value) {
+              const maintenant = new Date();
+              maintenant.setMinutes(maintenant.getMinutes() - maintenant.getTimezoneOffset());
+              form["DateHeureAller"].value = maintenant.toISOString().slice(0, 16);
+            }
+            
+            // Lance le calcul
+            calculerTarif();
+          }
+        });
+      }
     }
 
     function getHeureFromDateTime(dateTimeValue) {
@@ -688,7 +770,7 @@ if (btnEstimerHero) {
             tarifFinal = Math.round(tarifFinal * 100) / 100;
             distanceTotale = Math.round((distanceKm * 2) * 10) / 10;
             
-            // ✅ CORRECTION : Gérer les durées en heures ET en minutes
+            // ✅ Gérer les durées en heures ET en minutes
             let totalMinutes = 0;
             if (dureeTexte.includes('heure')) {
               let heures = parseInt(dureeTexte);
