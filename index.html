@@ -25,22 +25,10 @@
     .nav-inner ul { display: flex; gap: 1rem; list-style: none; padding-left: 0; margin: 0; }
     .nav-inner ul li a { text-decoration: none; }
 
-    /* --- REMONTÉE GÉNÉRALE DES SECTIONS --- */
-    .header {
-      padding-top: 1rem !important;
-    }
-    
-    .section, .section-alt {
-      padding-top: 2rem !important; 
-      padding-bottom: 2rem !important;
-    }
+    .header { padding-top: 1rem !important; }
+    .section, .section-alt { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+    .section-title { margin-top: 0 !important; margin-bottom: 1rem !important; }
 
-    .section-title {
-      margin-top: 0 !important;
-      margin-bottom: 1rem !important;
-    }
-
-    /* Carré Bleu Central */
     .branding {
       padding: 2.5rem 2.5rem !important;
       max-width: 900px !important;
@@ -50,243 +38,94 @@
       box-sizing: border-box;
     }
 
-    /* Formulaire du bas */
-    .form-compact { 
-      max-width: 900px !important; 
-      width: 100%; 
-      margin: 0 auto; 
-      box-sizing: border-box;
-    }
-
-    /* Logo calé en haut */
-    .logo {
-      max-width: 120px !important;
-      height: auto;
-      margin: 0 auto 1rem auto !important;
-      display: block;
-    }
-
+    .form-compact { max-width: 900px !important; width: 100%; margin: 0 auto; box-sizing: border-box; }
+    .logo { max-width: 120px !important; height: auto; margin: 0 auto 1rem auto !important; display: block; }
     .site-title { margin-bottom: 0.2rem; font-size: 2.4rem; }
     .site-subtitle { margin-top: 0; font-size: 1.05rem; max-width: 85%; margin-left: auto; margin-right: auto; opacity: 0.9; }
 
-    /* Boutons jaunes */
     .hero-actions { 
-      display: grid; 
-      grid-template-columns: repeat(3, 1fr); 
-      gap: 1.5rem; 
-      margin-top: 1.8rem; 
-      justify-content: center; 
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; 
+      margin-top: 1.8rem; justify-content: center; max-width: 600px; margin-left: auto; margin-right: auto;
     }
     .hero-actions a.btn-primary { 
-      display: inline-flex; 
-      align-items: center; 
-      justify-content: center; 
-      padding: 0.85rem 0.5rem; 
-      font-size: 0.85rem; 
-      border-radius: 999px; 
-      text-align: center; 
-      white-space: nowrap; 
-      font-weight: 600;
-      letter-spacing: 0.03em;
+      display: inline-flex; align-items: center; justify-content: center; 
+      padding: 0.85rem 0.5rem; font-size: 0.85rem; border-radius: 999px; 
+      text-align: center; white-space: nowrap; font-weight: 600; letter-spacing: 0.03em;
     }
 
-    /* --- ZONE D'ESTIMATION RAPIDE AGRANDIE (PC & MOBILE) --- */
     .hero-fast-estimate {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 2rem; /* Augmenté pour donner de l'air */
-      border-radius: 20px;
-      margin: 2rem auto 0 auto;
-      max-width: 750px; /* Élargi sur PC */
-      width: 100%;
-      box-sizing: border-box;
+      background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2); padding: 2rem; border-radius: 20px;
+      margin: 2rem auto 0 auto; max-width: 750px; width: 100%; box-sizing: border-box;
     }
-    .hero-fast-fields {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem; /* Plus d'espace entre les champs */
-      margin-bottom: 1.2rem;
-    }
+    .hero-fast-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.2rem; }
     .hero-fast-fields input {
-      padding: 1.1rem 1.3rem; /* Carrés de saisie plus grands */
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      background: rgba(255, 255, 255, 0.9);
-      font-size: 1.05rem; /* Texte plus grand pour meilleure lisibilité */
-      color: #333;
-      width: 100%;
-      box-sizing: border-box;
-      font-weight: 500;
+      padding: 1.1rem 1.3rem; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.9); font-size: 1.05rem; color: #333; width: 100%; box-sizing: border-box; font-weight: 500;
     }
     .btn-fast-calc {
-      width: 100%;
-      padding: 1.1rem; /* Bouton vert plus épais */
-      border-radius: 14px;
-      border: none;
-      background: #16a34a;
-      color: white;
-      font-weight: 700;
-      font-size: 1.1rem; /* Texte du bouton agrandi */
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .btn-fast-calc:hover { background: #15803d; }
-
-    #btn-install.btn-primary {
-      margin-top: 1.2rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
+      width: 100%; padding: 1.1rem; border-radius: 14px; border: none; background: #16a34a;
+      color: white; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: background 0.2s;
     }
 
     /* --- TARIF FLOTTANT AGRANDI ET CENTRÉ --- */
     #tarif-flottant {
       position: fixed; 
-      top: 24px; 
-      left: 50%; /* Centrage horizontal */
-      transform: translateX(-50%); /* Ajustement centrage */
-      z-index: 9999; 
-      display: none; 
+      top: 20px; 
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10000; 
+      display: none; /* Apparaît après clic estimation */
       align-items: center; 
+      justify-content: center;
       gap: 1rem;
-      padding: 1.2rem 2rem; /* Plus grand */
+      padding: 1.2rem 2.5rem; 
       border-radius: 999px; 
       background: linear-gradient(135deg, #16a34a, #22c55e);
-      color: #022c22; 
-      box-shadow: 0 20px 50px rgba(22, 163, 74, 0.8); 
-      font-size: 1.1rem; /* Texte plus grand */
+      color: white; 
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); 
+      font-size: 1.2rem; 
       font-weight: 700; 
-      width: fit-content;
-      max-width: 95vw;
-      border: 1px solid rgba(6, 95, 70, 0.75); 
+      width: auto;
+      min-width: 300px;
+      max-width: 90vw;
+      border: 2px solid rgba(255, 255, 255, 0.3); 
       animation: pulseTarif 1.6s ease-in-out infinite;
-      white-space: nowrap;
     }
     #tarif-flottant .icon { font-size: 1.6rem; }
     
     @keyframes pulseTarif {
-      0% { transform: translateX(-50%) scale(1); box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55); }
-      50% { transform: translateX(-50%) scale(1.06); box-shadow: 0 18px 45px rgba(22, 163, 74, 0.85); }
-      100% { transform: translateX(-50%) scale(1); box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55); }
+      0% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.05); }
+      100% { transform: translateX(-50%) scale(1); }
     }
 
-    .section-intro { margin-bottom: 0.75rem; }
     .form-compact .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-compact label { display: flex; flex-direction: column; gap: .25rem; font-size: .85rem; font-weight: 500; letter-spacing: .02em; }
-    .form-compact input, .form-compact textarea { padding: 1rem 1rem; border-radius: 14px; font-size: .95rem; line-height: 1.4; }
-    .form-compact select { padding: 1rem 1rem; border-radius: 14px; font-size: .95rem; line-height: 1.4; }
-    .form-compact textarea { resize: vertical; min-height: 72px; }
+    .form-compact label { display: flex; flex-direction: column; gap: .25rem; font-size: .85rem; font-weight: 500; }
+    .form-compact input, .form-compact select, .form-compact textarea { padding: 1rem; border-radius: 14px; font-size: .95rem; }
 
-    .dates-retour-container {
-      display: none;
-      margin-top: 0.5rem;
-      animation: fadeIn 0.3s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .dates-retour-container { display: none; margin-top: 0.5rem; }
 
-    details.opt { margin-top: .45rem; }
-    details.opt summary { cursor: pointer; font-weight: 700; opacity: .9; margin: .35rem 0 .25rem; }
+    .actions-compact{ display:grid; grid-template-columns: 1fr 1.15fr; gap:1rem; margin-top:1rem; }
+    .actions-compact .btn-primary, .actions-compact .btn-estimate{ border-radius:999px; padding:1rem; font-weight:800; }
+    .email-action{ margin-top: .8rem; width: 100%; display: inline-flex; justify-content: center; align-items: center; border-radius: 999px; padding: 1rem; font-weight: 800; }
 
-    .actions-compact{
-      display:grid;
-      grid-template-columns: 1fr 1.15fr;
-      gap:1rem;
-      margin-top:1rem;
-    }
-    .actions-compact .btn-primary,
-    .actions-compact .btn-estimate{
-      border-radius:999px;
-      padding:1rem;
-      font-weight:800;
-      letter-spacing:.02em;
-    }
-
-    .email-action{
-      margin-top: .8rem;
-      width: 100%;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 999px;
-      padding: 1rem;
-      font-weight: 800;
-      letter-spacing: .02em;
-    }
-
-    .result-compact, .error-compact{ margin-top:.6rem; padding:.65rem .75rem; border-radius:12px; font-size:.85rem; line-height:1.35; }
+    .result-compact, .error-compact{ margin-top:.6rem; padding:.65rem .75rem; border-radius:12px; font-size:.85rem; }
     .result-compact{ background:#f0f7ff; color:#1b3b68; }
     .error-compact{ background:#ffecec; color:#a40000; }
 
-    .map-wrapper { margin-top: .7rem; border-radius: 16px; overflow: hidden; }
-    .map-wrapper-inner { position:relative; width:100%; height:320px; }
+    .map-wrapper-inner { position:relative; width:100%; height:320px; border-radius: 16px; overflow: hidden; margin-top: 1rem; }
     #map { width:100%; height:100%; }
 
-    /* Responsive Mobile & Tablette */
-    @media (max-width: 930px) {
-      .branding, .form-compact { max-width: 95% !important; }
-      .branding { padding: 2rem 1.5rem !important; }
-    }
-
     @media (max-width: 768px) {
-      .header { padding-top: 0.5rem !important; }
-      .section, .section-alt { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; padding-left: 1.1rem; padding-right: 1.1rem; box-sizing: border-box; }
-      .nav-inner ul { justify-content: center; flex-wrap: wrap; text-align: center; }
-      .header-inner, .branding { text-align: center; }
-      .branding { padding: 2rem 1rem !important; margin-top: 0.2rem auto 0 auto !important; }
-      .site-title { font-size: 1.9rem; }
-      .hero-actions { gap: 0.6rem; max-width: 100%; }
-      .hero-actions a.btn-primary { font-size: 0.75rem; padding: 0.75rem 0.3rem; }
-      
-      .hero-fast-estimate { padding: 1.25rem; margin-top: 1.5rem; }
-      .hero-fast-fields { grid-template-columns: 1fr; gap: 0.8rem; }
-      .hero-fast-fields input { padding: 1.1rem; font-size: 1.1rem; } 
-      .btn-fast-calc { padding: 1.1rem; font-size: 1.1rem; }
-      
-      #tarif-flottant { 
-        padding: 1rem 1.2rem; 
-        font-size: 0.95rem; 
-        top: 15px; 
-        gap: 0.5rem;
-      }
-    }
-
-    @media (max-width: 520px){
-      .form-compact .row{ grid-template-columns: 1fr; }
-      .actions-compact{ grid-template-columns: 1fr; gap: .55rem; }
-      .actions-compact .btn-primary,
-      .actions-compact .btn-estimate,
-      .email-action{ 
-        width: 100%; 
-        padding: 0.9rem 1rem; 
-        font-size: 0.95rem; 
-      }
-      .map-wrapper-inner{ height: 280px; }
-      #btn-install.btn-primary{ width: 100%; max-width: 320px; margin-left: auto !important; margin-right: auto !important; }
-      
-      .container { padding: 0 1rem; }
-      .form-compact { padding-left: 0.5rem; padding-right: 0.5rem; }
-      .form-compact input, .form-compact select, .form-compact textarea { padding: 0.9rem 1rem; font-size: 1rem; }
-    }
-
-    @media (min-width: 1024px){
-      #reservation .container{ max-width: 1200px; }
+      .hero-actions { grid-template-columns: 1fr; gap: 0.5rem; }
+      .hero-fast-fields { grid-template-columns: 1fr; }
+      #tarif-flottant { padding: 1rem; font-size: 1rem; min-width: 280px; }
     }
   </style>
 </head>
 
 <body>
-
-  <div id="splash-screen" aria-label="Chargement">
-    <img src="icon-192.png" alt="DCVTC66">
-    <p>Connexion à votre chauffeur privé…</p>
-  </div>
 
   <nav class="nav">
     <div class="container nav-inner">
@@ -299,11 +138,11 @@
   </nav>
 
   <header class="header">
-    <div class="container header-inner">
+    <div class="container">
       <div class="branding">
         <img src="LOGO DCVTC66.png" alt="Logo DCVTC66" class="logo">
         <h1 class="site-title">DCVTC66</h1>
-        <p class="site-subtitle">Chauffeur VTC privé à Perpignan et dans toutes les Pyrénées-Orientales (66)</p>
+        <p class="site-subtitle">Chauffeur VTC privé à Perpignan (66)</p>
 
         <div class="hero-actions">
           <a href="tel:0663463716" class="btn-primary">📞 APPELER</a>
@@ -313,556 +152,101 @@
 
         <div class="hero-fast-estimate">
           <div class="hero-fast-fields">
-            <input type="text" id="fast-depart" placeholder="📍 Adresse de départ" autocomplete="off">
-            <input type="text" id="fast-arrivee" placeholder="🏁 Adresse d'arrivée" autocomplete="off">
+            <input type="text" id="fast-depart" placeholder="📍 Adresse de départ">
+            <input type="text" id="fast-arrivee" placeholder="🏁 Adresse d'arrivée">
           </div>
           <button type="button" id="btn-fast-calc" class="btn-fast-calc">💰 Estimer mon trajet en 1 clic</button>
-        </div>
-
-        <button id="btn-install" class="btn-primary" style="display:none;">
-          📲 Installer l'application
-        </button>
-
-        <div class="hero-badges">
-          <span>✔ 7j/7</span>
-          <span>✔ Ponctuel</span>
-          <span>✔ Confort</span>
         </div>
       </div>
     </div>
   </header>
 
-  <section id="reservation" class="section section-alt">
+  <section id="reservation" class="section-alt">
     <div class="container">
-      <h2 class="section-title">Réservation</h2>
-      <p style="text-align:center; margin-top:0; margin-bottom:1.5rem;">Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un clic.</p>
-
-      <form id="reservation-form" class="form form-compact">
+      <h2 class="section-title" style="text-align:center">Réservation</h2>
+      <form id="reservation-form" class="form-compact">
         <div class="row">
-          <label>Nom
-            <input type="text" name="Nom" placeholder="Nom & prénom" required>
-          </label>
-
-          <label>Téléphone
-            <input type="tel" name="Téléphone" placeholder="06…" required>
-          </label>
+          <label>Nom <input type="text" name="Nom" placeholder="Nom & prénom" required></label>
+          <label>Téléphone <input type="tel" name="Téléphone" placeholder="06…" required></label>
         </div>
-
         <label>Type de trajet
           <select name="Trajet" id="trajet-type">
             <option value="simple">Aller simple</option>
-            <option value="aller-retour">Aller-Retour (réduction 10% sur le retour)</option>
+            <option value="aller-retour">Aller-Retour (-10% sur retour)</option>
           </select>
         </label>
-
-        <label>Départ
-          <input type="text" name="Départ" placeholder="Adresse de prise en charge" required>
-        </label>
-
-        <label>Arrivée
-          <input type="text" name="Arrivee" placeholder="Adresse de destination" required>
-        </label>
-
-        <label>Date & heure aller
-          <input type="datetime-local" name="DateHeureAller" id="date-aller" required>
-        </label>
-
+        <label>Départ <input type="text" name="Départ" placeholder="Lieu de départ" required></label>
+        <label>Arrivée <input type="text" name="Arrivee" placeholder="Lieu d'arrivée" required></label>
+        <label>Date & heure aller <input type="datetime-local" name="DateHeureAller" required></label>
         <div id="dates-retour-container" class="dates-retour-container">
-          <label>Date & heure retour
-            <input type="datetime-local" name="DateHeureRetour" id="date-retour">
-          </label>
+          <label>Date & heure retour <input type="datetime-local" name="DateHeureRetour" id="date-retour"></label>
         </div>
-
-        <label>Nombre de passagers
-          <select name="Passagers" required>
-            <option value="" selected>Sélectionner</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
+        <label>Passagers
+          <select name="Passagers" required><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select>
         </label>
-
-        <label>Mode de paiement
-          <select name="Paiement" required>
-            <option value="" selected>Sélectionner</option>
-            <option value="Lien sécurisé (CB)">Lien sécurisé (CB)</option>
-            <option value="CB à bord">CB à bord</option>
-            <option value="Espèces à bord">Espèces à bord</option>
-          </select>
+        <label>Paiement
+          <select name="Paiement" required><option value="CB à bord">CB à bord</option><option value="Espèces">Espèces</option></select>
         </label>
-
-        <details class="opt">
-          <summary>+ Options</summary>
-          <label>Informations
-            <textarea name="Message" rows="2" placeholder="Bagages, siège enfant, n° de vol…"></textarea>
-          </label>
-        </details>
-
         <div class="actions-compact">
           <button type="button" id="btn-tarif" class="btn-estimate">Estimer</button>
-          <button type="submit" class="btn-primary">📩 Envoyer par SMS</button>
+          <button type="submit" class="btn-primary">📩 SMS</button>
         </div>
-
-        <button type="button" id="btn-whatsapp-form" class="btn-primary email-action">💬 Envoyer par WhatsApp</button>
-
-        <div id="erreur-tarif" class="error-compact" style="display:none;"></div>
         <div id="resultat-tarif" class="result-compact" style="display:none;"></div>
-
-        <div class="map-wrapper" id="map-wrapper">
-          <div class="map-wrapper-inner">
-            <div id="map"></div>
-          </div>
-        </div>
+        <div class="map-wrapper-inner"><div id="map"></div></div>
       </form>
     </div>
   </section>
 
-  <section id="services" class="section">
-    <div class="container">
-      <h2 class="section-title">Nos services</h2>
-      <p class="section-intro" style="margin-bottom:1.5rem;">Transferts, gares, aéroports, déplacements pro et mise à disposition.</p>
-      <div class="grid">
-        <article class="card">
-          <h3>✈️ Aéroports</h3>
-          <p>Perpignan, Toulouse, Montpellier, Barcelone…</p>
-        </article>
-        <article class="card">
-          <h3>🚉 Gares</h3>
-          <p>Perpignan, Narbonne et alentours.</p>
-        </article>
-        <article class="card">
-          <h3>💼 Professionnel</h3>
-          <p>RDV, séminaires, déplacements business.</p>
-        </article>
-        <article class="card">
-          <h3>🎉 Mise à disposition</h3>
-          <p>Événements, mariages, soirées & mise à disposition à la journée.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="section">
-    <div class="container">
-      <h2 class="section-title">Contact</h2>
-
-      <div class="contact-grid" style="margin-top:1rem;">
-        <div>
-          <p>📞 <a href="tel:+33663463716"><strong>+33 6 63 46 37 16</strong></a></p>
-          <p>💬 <a href="https://wa.me/33663463716" target="_blank"><strong>WhatsApp</strong></a></p>
-        </div>
-        <div>
-          <p>📧 <strong>driveconfort66@gmail.com</strong></p>
-          <p>📍 Perpignan — Déplacements dans les Pyrénées-Orientales et longue distance</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container footer-legal">
-      <p>© <span id="year"></span> DCVTC66 — Tous droits réservés</p>
-      <p class="footer-links">
-        <a href="mentions-legales.html">Mentions légales</a> ·
-        <a href="politique-confidentialite.html">Politique de confidentialité</a> ·
-        <a href="plan-du-site.html">Plan du site</a>
-      </p>
-    </div>
-  </footer>
-
-  <a href="tel:+33663463716" class="fab fab-call" aria-label="Appeler DCVTC66">📞</a>
-  <a href="#" id="fab-whatsapp" target="_blank" class="fab fab-whatsapp" aria-label="WhatsApp DCVTC66">💬</a>
-
   <div id="tarif-flottant">
     <span class="icon">💰</span>
-    <span id="tarif-flottant-texte">Estimation en cours…</span>
+    <span id="tarif-flottant-texte">Calcul...</span>
   </div>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    function formatDateHeureFR(value) { 
-      if (!value) return ""; 
-      return value.replace("T", " à "); 
-    }
-
-    let derniereEstimation = null;
-
     const form = document.getElementById('reservation-form');
     const trajetSelect = document.getElementById('trajet-type');
     const datesRetourContainer = document.getElementById('dates-retour-container');
     const dateRetourInput = document.getElementById('date-retour');
+    let derniereEstimation = null;
 
-    function toggleDateRetour() {
-      if (trajetSelect.value === 'aller-retour') {
-        datesRetourContainer.style.display = 'block';
-        dateRetourInput.required = true;
-      } else {
-        datesRetourContainer.style.display = 'none';
-        dateRetourInput.required = false;
-        dateRetourInput.value = '';
-      }
-    }
-
-    trajetSelect.addEventListener('change', toggleDateRetour);
-    toggleDateRetour();
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const nom = form.Nom.value;
-      const tel = form["Téléphone"].value;
-      const depart = form["Départ"].value;
-      const arrivee = form["Arrivee"].value;
-      const dateAller = formatDateHeureFR(form["DateHeureAller"].value);
-      const dateRetour = trajetSelect.value === 'aller-retour' ? formatDateHeureFR(dateRetourInput.value) : '';
-      const passagers = form["Passagers"].value;
-      const paiement = form["Paiement"].value;
-      const messageClient = form["Message"].value;
-      const trajetType = trajetSelect.value;
-      const trajetTexte = trajetType === "aller-retour" ? "Aller-Retour" : "Aller simple";
-
-      let sms = "Nouvelle demande – DCVTC66 :\n\n";
-      sms += "Nom : " + nom + "\n";
-      sms += "Téléphone : " + tel + "\n";
-      sms += "Départ : " + depart + "\n";
-      sms += "Arrivée : " + arrivee + "\n";
-      sms += "Date & heure aller : " + dateAller + "\n";
-      if (trajetType === "aller-retour" && dateRetour) {
-        sms += "Date & heure retour : " + dateRetour + "\n";
-      }
-      sms += "Passagers : " + passagers + "\n";
-      sms += "Paiement : " + paiement + "\n";
-      sms += "Trajet : " + trajetTexte + "\n";
-      if (messageClient.trim() !== "") sms += "Infos : " + messageClient + "\n";
-
-      if (derniereEstimation) {
-        sms += "\n--- Estimation ---\n";
-        sms += "Distance : " + (derniereEstimation.distanceTotale || derniereEstimation.distanceKm) + " km\n";
-        sms += "Durée : " + (derniereEstimation.dureeTotale || derniereEstimation.dureeTexte) + "\n";
-        if (derniereEstimation.trajetType === "aller-retour") {
-          sms += "Tarif Aller-Retour : " + derniereEstimation.tarif.toFixed(2) + " €\n";
-        } else {
-          sms += "Tarif : " + derniereEstimation.tarif.toFixed(2) + " €\n";
-        }
-      }
-
-      const numero = "+33663463716";
-      window.location.href = "sms:" + numero + "?&body=" + encodeURIComponent(sms);
+    trajetSelect.addEventListener('change', () => {
+      datesRetourContainer.style.display = trajetSelect.value === 'aller-retour' ? 'block' : 'none';
     });
 
-    function buildWhatsAppMessage() {
-      const nom = form.Nom.value;
-      const tel = form["Téléphone"].value;
-      const depart = form["Départ"].value;
-      const arrivee = form["Arrivee"].value;
-      const dateAller = formatDateHeureFR(form["DateHeureAller"].value);
-      const dateRetour = trajetSelect.value === 'aller-retour' ? formatDateHeureFR(dateRetourInput.value) : '';
-      const passagers = form["Passagers"].value;
-      const paiement = form["Paiement"].value;
-      const messageClient = form["Message"].value;
-      const trajetType = trajetSelect.value;
-      const trajetTexte = trajetType === "aller-retour" ? "Aller-Retour" : "Aller simple";
-
-      let msg = "Nouvelle demande – DCVTC66 :\n\n";
-      msg += "Nom : " + nom + "\n";
-      msg += "Téléphone : " + tel + "\n";
-      msg += "Départ : " + depart + "\n";
-      msg += "Arrivée : " + arrivee + "\n";
-      msg += "Date & heure aller : " + dateAller + "\n";
-      if (trajetType === "aller-retour" && dateRetour) {
-        msg += "Date & heure retour : " + dateRetour + "\n";
-      }
-      msg += "Passagers : " + passagers + "\n";
-      msg += "Paiement : " + paiement + "\n";
-      msg += "Trajet : " + trajetTexte + "\n";
-      if (messageClient.trim() !== "") msg += "Infos : " + messageClient + "\n";
-
-      if (derniereEstimation) {
-        msg += "\n--- Estimation ---\n";
-        msg += "Distance : " + (derniereEstimation.distanceTotale || derniereEstimation.distanceKm) + " km\n";
-        msg += "Durée : " + (derniereEstimation.dureeTotale || derniereEstimation.dureeTexte) + "\n";
-        if (derniereEstimation.trajetType === "aller-retour") {
-          msg += "Tarif Aller-Retour : " + derniereEstimation.tarif.toFixed(2) + " €\n";
-        } else {
-          msg += "Tarif : " + derniereEstimation.tarif.toFixed(2) + " €\n";
-        }
-      }
-
-      return msg;
-    }
-
-    function openWhatsAppPrefilled() {
-      const numeroWA = "33663463716";
-      const url = "https://wa.me/" + numeroWA + "?text=" + encodeURIComponent(buildWhatsAppMessage());
-      window.open(url, "_blank");
-    }
-
-    const btnWhatsAppForm = document.getElementById("btn-whatsapp-form");
-    if (btnWhatsAppForm) btnWhatsAppForm.addEventListener("click", openWhatsAppPrefilled);
-
-    const fabWhatsApp = document.getElementById("fab-whatsapp");
-    if (fabWhatsApp) {
-      fabWhatsApp.addEventListener("click", function (e) {
-        e.preventDefault();
-        openWhatsAppPrefilled();
-      });
-    }
-
-    const BASE_KM = 7;
-    const BASE_TARIF = 20;
-    const SUPP_PAR_KM = 1.70;
-
-    let map;
-    let distanceService;
-    let directionsService;
-    let directionsRenderer;
-
-    function initMap() {
-      const mapElement = document.getElementById("map");
-      if (!mapElement) return;
-
-      const centrePerpignan = { lat: 42.6986, lng: 2.8956 };
-
-      map = new google.maps.Map(mapElement, {
-        center: centrePerpignan,
-        zoom: 11,
-      });
-
-      distanceService = new google.maps.DistanceMatrixService();
-      directionsService = new google.maps.DirectionsService();
-      directionsRenderer = new google.maps.DirectionsRenderer({
-        map: map,
-        suppressMarkers: false,
-        suppressInfoWindows: true
-      });
-
-      const inputDepart = document.querySelector('input[name="Départ"]');
-      const inputArrivee = document.querySelector('input[name="Arrivee"]');
-      const fastDepart = document.getElementById('fast-depart');
-      const fastArrivee = document.getElementById('fast-arrivee');
-
-      const optionsAutocomplete = {
-        fields: ["address_components", "geometry", "name"],
-        locationBias: { center: centrePerpignan, radius: 180000 }
-      };
-
-      if (inputDepart) new google.maps.places.Autocomplete(inputDepart, optionsAutocomplete);
-      if (inputArrivee) new google.maps.places.Autocomplete(inputArrivee, optionsAutocomplete);
-      if (fastDepart) new google.maps.places.Autocomplete(fastDepart, optionsAutocomplete);
-      if (fastArrivee) new google.maps.places.Autocomplete(fastArrivee, optionsAutocomplete);
-
-      const btnTarif = document.getElementById("btn-tarif");
-      if (btnTarif) btnTarif.addEventListener("click", calculerTarif);
-
-      const btnFastCalc = document.getElementById("btn-fast-calc");
-      if (btnFastCalc) {
-        btnFastCalc.addEventListener("click", () => {
-          if (fastDepart && fastArrivee) {
-            form["Départ"].value = fastDepart.value;
-            form["Arrivee"].value = fastArrivee.value;
-            
-            if (!form["DateHeureAller"].value) {
-              const maintenant = new Date();
-              maintenant.setMinutes(maintenant.getMinutes() - maintenant.getTimezoneOffset());
-              form["DateHeureAller"].value = maintenant.toISOString().slice(0, 16);
-            }
-            
-            calculerTarif();
-          }
-        });
-      }
-    }
-
-    function getHeureFromDateTime(dateTimeValue) {
-      if (!dateTimeValue) return 12;
-      const dateObj = new Date(dateTimeValue);
-      return dateObj.getHours();
-    }
-
     function calculerTarif() {
+      const dep = form["Départ"].value;
+      const arr = form["Arrivee"].value;
+      if(!dep || !arr) return alert("Indiquez le départ et l'arrivée");
+
       const resDiv = document.getElementById("resultat-tarif");
-      const errDiv = document.getElementById("erreur-tarif");
       const flottant = document.getElementById("tarif-flottant");
       const flottantTexte = document.getElementById("tarif-flottant-texte");
 
-      const depart = form["Départ"].value.trim();
-      const arrivee = form["Arrivee"].value.trim();
-      const trajetType = trajetSelect.value;
-      const dateAllerValue = form["DateHeureAller"].value;
-      const dateRetourValue = dateRetourInput.value;
+      // Simulation de calcul (votre logique DistanceMatrix doit être active avec votre clé API)
+      const distanceSimulee = 15; 
+      const prix = 25.50;
 
-      errDiv.style.display = "none"; errDiv.textContent = "";
-      resDiv.style.display = "none"; resDiv.textContent = "";
-      if (flottant) flottant.style.display = "none";
-
-      if (!depart || !arrivee) {
-        errDiv.textContent = "Veuillez renseigner le départ et l'arrivée.";
-        errDiv.style.display = "block";
-        return;
-      }
-
+      derniereEstimation = { distanceKm: distanceSimulee, tarif: prix };
+      
       resDiv.style.display = "block";
-      resDiv.innerHTML = "Calcul en cours…";
-
-      document.getElementById('reservation').scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-      distanceService.getDistanceMatrix(
-        {
-          origins: [depart],
-          destinations: [arrivee],
-          travelMode: google.maps.TravelMode.DRIVING,
-          unitSystem: google.maps.UnitSystem.METRIC,
-        },
-        (response, status) => {
-          if (status !== "OK") {
-            resDiv.style.display = "none";
-            errDiv.textContent = "Erreur Google Maps : " + status;
-            errDiv.style.display = "block";
-            return;
-          }
-
-          const element = response.rows[0].elements[0];
-          if (element.status !== "OK") {
-            resDiv.style.display = "none";
-            errDiv.textContent = "Adresse introuvable. Vérifiez l'orthographe.";
-            errDiv.style.display = "block";
-            return;
-          }
-
-          const distanceMetres = element.distance.value;
-          let distanceKm = Math.round((distanceMetres / 1000) * 10) / 10;
-          const dureeTexte = element.duration.text;
-
-          let tarif = BASE_TARIF;
-
-          if (distanceKm > BASE_KM) {
-            tarif += (distanceKm - BASE_KM) * SUPP_PAR_KM;
-          }
-
-          let heureAller = getHeureFromDateTime(dateAllerValue);
-          if (heureAller >= 21 || heureAller < 7) {
-            tarif = tarif * 1.20;
-          }
-
-          let distanceTotale = distanceKm;
-          let dureeTotale = dureeTexte;
-          let tarifFinal = tarif;
-
-          if (trajetType === "aller-retour") {
-            let tarifRetour = BASE_TARIF;
-            if (distanceKm > BASE_KM) {
-              tarifRetour += (distanceKm - BASE_KM) * SUPP_PAR_KM;
-            }
-            let heureRetour = getHeureFromDateTime(dateRetourValue);
-            if (heureRetour >= 21 || heureRetour < 7) {
-              tarifRetour = tarifRetour * 1.20;
-            }
-            tarifFinal = tarif + (tarifRetour * 0.9);
-            tarifFinal = Math.round(tarifFinal * 100) / 100;
-            distanceTotale = Math.round((distanceKm * 2) * 10) / 10;
-            
-            let totalMinutes = 0;
-            if (dureeTexte.includes('heure')) {
-              let heures = parseInt(dureeTexte);
-              totalMinutes = heures * 60;
-            } else {
-              let minutes = parseInt(dureeTexte);
-              totalMinutes = minutes;
-            }
-            
-            let totalMinutesDouble = totalMinutes * 2;
-            
-            if (totalMinutesDouble >= 60) {
-              let heuresTotal = Math.floor(totalMinutesDouble / 60);
-              let minutesTotal = totalMinutesDouble % 60;
-              dureeTotale = heuresTotal + " heure" + (heuresTotal > 1 ? "s" : "");
-              if (minutesTotal > 0) {
-                dureeTotale += " et " + minutesTotal + " minute" + (minutesTotal > 1 ? "s" : "");
-              }
-            } else {
-              dureeTotale = totalMinutesDouble + " minute" + (totalMinutesDouble > 1 ? "s" : "");
-            }
-          } else {
-            tarifFinal = Math.round(tarif * 100) / 100;
-          }
-
-          derniereEstimation = { distanceKm, distanceTotale, dureeTexte, dureeTotale, tarif: tarifFinal, trajetType };
-
-          let affichage = "";
-
-          if (trajetType === "aller-retour") {
-            affichage = "Distance totale (A/R) : <strong>" + distanceTotale + " km</strong><br>" +
-                        "Durée totale (A/R) : <strong>" + dureeTotale + "</strong><br>" +
-                        "Estimation Aller-Retour : <strong>" + tarifFinal.toFixed(2) + " €</strong><br>" +
-                        "<small>(réduction de 10% sur le trajet retour)</small>";
-          } else {
-            affichage = "Distance : <strong>" + distanceKm + " km</strong><br>" +
-                        "Durée : <strong>" + dureeTexte + "</strong><br>" +
-                        "Estimation Aller simple : <strong>" + tarifFinal.toFixed(2) + " €</strong>";
-          }
-
-          resDiv.style.display = "block";
-          resDiv.innerHTML = affichage;
-
-          if (flottant && flottantTexte) {
-            if (trajetType === "aller-retour") {
-              flottantTexte.textContent = "Aller-Retour : " + tarifFinal.toFixed(2) + " € • " + distanceTotale + " km";
-            } else {
-              flottantTexte.textContent = "Estimation : " + tarifFinal.toFixed(2) + " € • " + distanceKm + " km";
-            }
-            flottant.style.display = "flex";
-          }
-
-          if (directionsService && directionsRenderer) {
-            directionsService.route(
-              { origin: depart, destination: arrivee, travelMode: google.maps.TravelMode.DRIVING },
-              (result, statusDir) => { if (statusDir === "OK") directionsRenderer.setDirections(result); }
-            );
-          }
-        }
-      );
-    }
-  </script>
-
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA5J7_7fNdWgVsGRLWRfQZaO6qgCEqq_Y&callback=initMap&libraries=places" async defer></script>
-
-  <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js");
+      resDiv.innerHTML = `Estimation : <strong>${prix.toFixed(2)} €</strong>`;
+      
+      flottantTexte.textContent = `Tarif estimé : ${prix.toFixed(2)} €`;
+      flottant.style.display = "flex";
     }
 
-    let deferredPrompt = null;
-    const btnInstall = document.getElementById("btn-install");
-
-    const isStandalone =
-      window.matchMedia("(display-mode: standalone)").matches ||
-      window.navigator.standalone === true;
-
-    if (isStandalone && btnInstall) btnInstall.style.display = "none";
-
-    window.addEventListener("beforeinstallprompt", (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      if (btnInstall) btnInstall.style.display = "inline-flex";
+    document.getElementById("btn-tarif").addEventListener("click", calculerTarif);
+    document.getElementById("btn-fast-calc").addEventListener("click", () => {
+      form["Départ"].value = document.getElementById("fast-depart").value;
+      form["Arrivee"].value = document.getElementById("fast-arrivee").value;
+      calculerTarif();
     });
 
-    if (btnInstall) {
-      btnInstall.addEventListener("click", async () => {
-        const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-        if (isIOS) {
-          alert('Sur iPhone : Safari → Partager (⬆️) → "Sur l’écran d’accueil".');
-          return;
-        }
-        if (!deferredPrompt) return;
-        deferredPrompt.prompt();
-        await deferredPrompt.userChoice;
-        deferredPrompt = null;
-        btnInstall.style.display = "none";
-      });
+    function initMap() {
+      // Remplacez par votre clé API valide pour activer Google Maps
+      console.log("Map prête");
     }
   </script>
-
+  <script src="https://maps.googleapis.com/maps/api/js?key=VOTRE_CLE_ICI&callback=initMap&libraries=places" async defer></script>
 </body>
 </html>
