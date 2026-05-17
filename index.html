@@ -142,34 +142,18 @@
       font-size: 0.85rem;
     }
 
-    /* --- MODIFICATION DU TARIF FLOTTANT (AGRANDI ET CENTRÉ) --- */
+    /* Flotteur d'estimation tarifaire */
     #tarif-flottant {
-      position: fixed; 
-      top: 24px; 
-      left: 50%; 
-      transform: translate(-50%, 0); 
-      z-index: 9999; 
-      display: none; 
-      align-items: center; 
-      gap: 0.9rem;
-      padding: 1.1rem 1.8rem; 
-      border-radius: 999px; 
-      background: linear-gradient(135deg, #16a34a, #22c55e);
-      color: #022c22; 
-      box-shadow: 0 16px 40px rgba(22, 163, 74, 0.7); 
-      font-size: 1.1rem; 
-      font-weight: 700; 
-      max-width: 92vw;
-      width: max-content;
-      border: 1px solid rgba(6, 95, 70, 0.75); 
-      animation: pulseTarif 1.6s ease-in-out infinite;
+      position: fixed; top: 24px; right: 24px; z-index: 9999; display: none; align-items: center; gap: 0.75rem;
+      padding: 0.9rem 1.3rem; border-radius: 999px; background: linear-gradient(135deg, #16a34a, #22c55e);
+      color: #022c22; box-shadow: 0 16px 40px rgba(22, 163, 74, 0.7); font-size: 0.95rem; font-weight: 600; max-width: 90vw;
+      border: 1px solid rgba(6, 95, 70, 0.75); animation: pulseTarif 1.6s ease-in-out infinite;
     }
-    #tarif-flottant .icon { font-size: 1.5rem; }
-    
+    #tarif-flottant .icon { font-size: 1.3rem; }
     @keyframes pulseTarif {
-      0% { transform: translate(-50%, 0) scale(1); box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55); }
-      50% { transform: translate(-50%, 0) scale(1.04); box-shadow: 0 18px 45px rgba(22, 163, 74, 0.85); }
-      100% { transform: translate(-50%, 0) scale(1); box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55); }
+      0% { transform: scale(1); box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55); }
+      50% { transform: scale(1.06); box-shadow: 0 18px 45px rgba(22, 163, 74, 0.85); }
+      100% { transform: scale(1); box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55); }
     }
 
     .section-intro { margin-bottom: 0.75rem; }
@@ -258,8 +242,7 @@
 
     @media (max-width: 520px){
       .form-compact .row{ grid-template-columns: 1fr; }
-      /* Ajustement du tarif flottant sur petit mobile */
-      #tarif-flottant { top: 70px; justify-content: center; }
+      #tarif-flottant { left: 16px; right: 16px; top: 70px; justify-content: center; }
       .actions-compact{ grid-template-columns: 1fr; gap: .55rem; }
       .actions-compact .btn-primary,
       .actions-compact .btn-estimate,
@@ -332,7 +315,6 @@
       </div>
     </div>
   </header>
-
   <section id="reservation" class="section section-alt">
     <div class="container">
       <h2 class="section-title">Réservation</h2>
@@ -743,8 +725,8 @@
           let tarif = BASE_TARIF;
 
           if (distanceKm > BASE_KM) {
-            getTarifParKm = (distanceKm - BASE_KM) * SUPP_PAR_KM;
-            tarif += getTarifParKm;
+            let miles = distanceKm - BASE_KM;
+            tarif += miles * SUPP_PAR_KM;
           }
 
           let heureAller = getHeureFromDateTime(dateAllerValue);
@@ -759,7 +741,8 @@
           if (trajetType === "aller-retour") {
             let tarifRetour = BASE_TARIF;
             if (distanceKm > BASE_KM) {
-              tarifRetour += (distanceKm - BASE_KM) * SUPP_PAR_KM;
+              let miles = distanceKm - BASE_KM;
+              tarifRetour += miles * SUPP_PAR_KM;
             }
             let heureRetour = getHeureFromDateTime(dateRetourValue);
             if (heureRetour >= 21 || heureRetour < 7) {
@@ -835,6 +818,14 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA5J7_7fNdWgVsGRLWRfQZaO6qgCEqq_Y&callback=initMap&libraries=places" async defer></script>
 
   <script>
+    /* --- CORRECTIF : Masque l'écran de chargement dès que la page HTML est lue --- */
+    window.addEventListener("DOMContentLoaded", () => {
+      const splash = document.getElementById("splash-screen");
+      if (splash) {
+        splash.style.display = "none";
+      }
+    });
+
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("/sw.js");
     }
