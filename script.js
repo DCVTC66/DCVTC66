@@ -1,21 +1,20 @@
-// script.js - petits scripts utiles
-document.getElementById('year').textContent = new Date().getFullYear();// script.js - Gestion des feedbacks et interactions DCVTC66
+// script.js - Gestion des feedbacks et interactions DCVTC66
 
-// Sécurité : on s'assure que le formulaire de réservation existe sur la page
+// On s'assure que le formulaire de réservation existe sur la page
 const reservationForm = document.getElementById('reservation-form');
 
 if (reservationForm) {
-  // Cibler les boutons d'envoi du formulaire
   const btnSms = reservationForm.querySelector('button[type="submit"]');
   const btnWhatsapp = document.getElementById('btn-whatsapp-form');
 
-  // Exemple de feedback visuel temporaire pour le bouton SMS
+  // Feedback visuel lors du clic sur "Envoyer par SMS"
   reservationForm.addEventListener('submit', function() {
     if (btnSms) {
       const texteOriginal = btnSms.textContent;
       btnSms.disabled = true;
       btnSms.textContent = '📱 Ouverture SMS...';
       
+      // On redonne le contrôle au bouton après 3 secondes
       setTimeout(() => {
         btnSms.disabled = false;
         btnSms.textContent = texteOriginal;
@@ -23,35 +22,22 @@ if (reservationForm) {
     }
   });
 
-  // Exemple de feedback visuel temporaire pour le bouton WhatsApp
+  // Feedback visuel lors du clic sur "Envoyer par WhatsApp"
   if (btnWhatsapp) {
     btnWhatsapp.addEventListener('click', function() {
       const texteOriginal = btnWhatsapp.textContent;
-      // On attend une fraction de seconde pour laisser le script d'index.html s'exécuter
+      
+      // Petit délai de 50ms pour laisser le traitement de l'HTML se faire
       setTimeout(() => {
         btnWhatsapp.disabled = true;
         btnWhatsapp.textContent = '💬 Ouverture WhatsApp...';
       }, 50);
 
+      // On redonne le contrôle au bouton après 3 secondes
       setTimeout(() => {
         btnWhatsapp.disabled = false;
         btnWhatsapp.textContent = texteOriginal;
       }, 3000);
     });
   }
-}
-
-const form = document.getElementById('contact-form');
-if(form){
-  form.addEventListener('submit', function(e){
-    // petit feedback utilisateur
-    const btn = form.querySelector('button[type="submit"]');
-    btn.disabled = true;
-    btn.textContent = 'Envoi...';
-    // laisser l'envoi se faire (Formspree/Netlify...)
-    setTimeout(() => {
-      btn.disabled = false;
-      btn.textContent = 'Envoyer la demande';
-    }, 3000);
-  });
 }
