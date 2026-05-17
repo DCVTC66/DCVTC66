@@ -26,9 +26,7 @@
     .nav-inner ul li a { text-decoration: none; }
 
     /* --- REMONTÉE GÉNÉRALE DES SECTIONS --- */
-    .header {
-      padding-top: 1rem !important;
-    }
+    .header { padding-top: 1rem !important; }
     
     .section, .section-alt {
       padding-top: 2rem !important; 
@@ -68,7 +66,7 @@
     .site-title { margin-bottom: 0.2rem; font-size: 2.4rem; }
     .site-subtitle { margin-top: 0; font-size: 1.05rem; max-width: 85%; margin-left: auto; margin-right: auto; opacity: 0.9; }
 
-    /* Boutons jaunes */
+    /* Boutons */
     .hero-actions { 
       display: grid; 
       grid-template-columns: repeat(3, 1fr); 
@@ -142,7 +140,7 @@
       font-size: 0.85rem;
     }
 
-    /* --- TARIF FLOTTANT AGRANDI ET CENTRÉ (STYLE UNIQUEMENT) --- */
+    /* --- TARIF FLOTTANT AGRANDI ET CENTRÉ --- */
     #tarif-flottant {
       position: fixed; 
       top: 24px; 
@@ -243,9 +241,7 @@
         max-width: 96% !important; 
         margin: 0.2rem auto 0 auto !important; 
       }
-      .form-compact { 
-        max-width: 96% !important; 
-      }
+      .form-compact { max-width: 96% !important; }
       
       .site-title { font-size: 1.9rem; }
       .hero-actions { gap: 0.6rem; max-width: 100%; }
@@ -332,6 +328,7 @@
       </div>
     </div>
   </header>
+
   <section id="reservation" class="section section-alt">
     <div class="container">
       <h2 class="section-title">Réservation</h2>
@@ -446,7 +443,6 @@
   <section id="contact" class="section">
     <div class="container">
       <h2 class="section-title">Contact</h2>
-
       <div class="contact-grid" style="margin-top:1rem;">
         <div>
           <p>📞 <a href="tel:+33663463716"><strong>+33 6 63 46 37 16</strong></a></p>
@@ -737,72 +733,61 @@
 
           const distanceMetres = element.distance.value;
           let distanceKm = Math.round((distanceMetres / 1000) * 10) / 10;
+          const durationValueMinutes = Math.round(element.duration.value / 60);
           const dureeTexte = element.duration.text;
 
-          let tarif = BASE_TARIF;
-
+          // Calcul Aller
+          let tarifAller = BASE_TARIF;
           if (distanceKm > BASE_KM) {
-            let miles = distanceKm - BASE_KM;
-            tarif += miles * SUPP_PAR_KM;
+            tarifAller += (distanceKm - BASE_KM) * SUPP_PAR_KM;
           }
-
           let heureAller = getHeureFromDateTime(dateAllerValue);
           if (heureAller >= 21 || heureAller < 7) {
-            tarif = tarif * 1.20;
+            tarifAller = tarifAller * 1.20;
           }
 
           let distanceTotale = distanceKm;
           let dureeTotale = dureeTexte;
-          let tarifFinal = tarif;
+          let tarifFinal = tarifAller;
 
           if (trajetType === "aller-retour") {
+            // Calcul Retour
             let tarifRetour = BASE_TARIF;
             if (distanceKm > BASE_KM) {
-              let miles = distanceKm - BASE_KM;
-              tarifRetour += miles * SUPP_PAR_KM;
+              tarifRetour += (distanceKm - BASE_KM) * SUPP_PAR_KM;
             }
             let heureRetour = getHeureFromDateTime(dateRetourValue);
             if (heureRetour >= 21 || heureRetour < 7) {
               tarifRetour = tarifRetour * 1.20;
             }
-            tarifFinal = tarif + (tarifRetour * 0.9);
-            tarifFinal = Math.round(tarifFinal * 100) / 100;
+
+            // Application de la réduction de 10% sur le retour
+            tarifFinal = tarifAller + (tarifRetour * 0.90);
             distanceTotale = Math.round((distanceKm * 2) * 10) / 10;
             
-            let totalMinutes = 0;
-            if (dureeTexte.includes('heure')) {
-              let heures = parseInt(dureeTexte);
-              totalMinutes = heures * 60;
-            } else {
-              let minutes = parseInt(dureeTexte);
-              totalMinutes = minutes;
-            }
-            
-            let totalMinutesDouble = totalMinutes * 2;
-            
+            // Calcul propre de la durée cumulée (minutes x 2)
+            let totalMinutesDouble = durationValueMinutes * 2;
             if (totalMinutesDouble >= 60) {
               let heuresTotal = Math.floor(totalMinutesDouble / 60);
               let minutesTotal = totalMinutesDouble % 60;
               dureeTotale = heuresTotal + " heure" + (heuresTotal > 1 ? "s" : "");
               if (minutesTotal > 0) {
-                dureeTotale += " et " + minutesTotal + " minute" + (minutesTotal > 1 ? "s" : "");
+                dureeTotale += " " + minutesTotal + " min";
               }
             } else {
-              dureeTotale = totalMinutesDouble + " minute" + (totalMinutesDouble > 1 ? "s" : "");
+              dureeTotale = totalMinutesDouble + " min";
             }
-          } else {
-            tarifFinal = Math.round(tarif * 100) / 100;
           }
 
+          tarifFinal = Math.round(tarifFinal * 100) / 100;
           derniereEstimation = { distanceKm, distanceTotale, dureeTexte, dureeTotale, tarif: tarifFinal, trajetType };
 
           let affichage = "";
-
           if (trajetType === "aller-retour") {
             affichage = "Distance totale (A/R) : <strong>" + distanceTotale + " km</strong><br>" +
-                        "Durée totale (A/R) : <strong>" + dureeTotale + "</strong><br>" +
+                        "Durée totale de conduite : <strong>" + dureeTotale + "</strong><br>" +
                         "Estimation Aller-Retour : <strong>" + tarifFinal.toFixed(2) + " €</strong><br>" +
-                        "<small>(réduction de 10% sur le trajet retour)</small>";
+                        "<small style='color:green;'>(réduction de 10% sur le trajet retour appliquée)</small>";
           } else {
             affichage = "Distance : <strong>" + distanceKm + " km</strong><br>" +
                         "Durée : <strong>" + dureeTexte + "</strong><br>" +
@@ -812,10 +797,9 @@
           resDiv.style.display = "block";
           resDiv.innerHTML = affichage;
 
-          /* --- AFFICHAGE DU FLOTTEUR AGRANDI ET CENTRÉ --- */
           if (flottant && flottantTexte) {
             if (trajetType === "aller-retour") {
-              flottantTexte.textContent = "Aller-Retour : " + tarifFinal.toFixed(2) + " € • " + distanceTotale + " km (" + dureeTotale + ")";
+              flottantTexte.textContent = "Aller-Retour : " + tarifFinal.toFixed(2) + " € • " + distanceTotale + " km";
             } else {
               flottantTexte.textContent = "Estimation : " + tarifFinal.toFixed(2) + " € • " + distanceKm + " km";
             }
@@ -838,9 +822,7 @@
   <script>
     window.addEventListener("DOMContentLoaded", () => {
       const splash = document.getElementById("splash-screen");
-      if (splash) {
-        splash.style.display = "none";
-      }
+      if (splash) { splash.style.display = "none"; }
     });
 
     if ("serviceWorker" in navigator) {
@@ -850,10 +832,7 @@
     let deferredPrompt = null;
     const btnInstall = document.getElementById("btn-install");
 
-    const isStandalone =
-      window.matchMedia("(display-mode: standalone)").matches ||
-      window.navigator.standalone === true;
-
+    const isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
     if (isStandalone && btnInstall) btnInstall.style.display = "none";
 
     window.addEventListener("beforeinstallprompt", (e) => {
@@ -866,7 +845,7 @@
       btnInstall.addEventListener("click", async () => {
         const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
         if (isIOS) {
-          alert('Sur iPhone : Safari → Partager (⬆️) → "Sur l’écran d’accueil".');
+          alert('Sur iPhone : Safari → Partager ( canevas avec la flèche ⬆️ ) → "Sur l’écran d’accueil".');
           return;
         }
         if (!deferredPrompt) return;
