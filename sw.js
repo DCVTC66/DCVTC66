@@ -1,47 +1,56 @@
-const CACHE_NAME = "dcvtc66-v12"; // ✅ augmente le numéro à chaque changement
+const CACHE_NAME = "dcvtc66-v12"; // 🚀 Augmente ce numéro à chaque modification de ton CSS ou HTML
 
 const FILES_TO_CACHE = [
   "/",
   "/index.html",
-  "/styles.css?v=11",   // ✅ doit matcher ton index (v=10)
+  "/styles.css",     // 🔄 Nettoyé : plus besoin de gérer le ?v= ici, le numéro de version du cache au-dessus suffit !
   "/manifest.json",
   "/icon-192.png",
   "/icon-512.png",
   "/offline.html"
 ];
 
-// Installation
+// 1. Installation du Service Worker et mise en cache initiale
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(async (cache) => {
       try {
-        await cache.addAll(FILES_TO_CACHE);
+        return await cache.addAll(FILES_TO_CACHE);
       } catch (e) {
-        await cache.addAll(FILES_TO_CACHE.filter((f) => f !== "/offline.html"));
+        console.warn("Échec de la mise en cache complète, tentative de secours sans offline.html...", e);
+        return await cache.addAll(FILES_TO_CACHE.filter((f) => f !== "/offline.html"));
       }
     })
   );
   self.skipWaiting();
 });
 
-// Activation
+// 2. Activation et nettoyage des anciens caches (très important pour v11 -> v12)
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(keys.map((key) => (key !== CACHE_NAME ? caches.delete(key) : null)))
+      Promise.all(
+        keys.map((key) => {
+          if (key !== CACHE_NAME) {
+            console.log("Nettoyage de l'ancien cache :", key);
+            return caches.delete(key);
+          }
+        })
+      )
     )
   );
   self.clients.claim();
 });
 
-// Fetch
+// 3. Interception des requêtes (Fetch)
 self.addEventListener("fetch", (event) => {
   const req = event.request;
   const url = new URL(req.url);
 
+  // On ignore tout ce qui n'est pas une requête GET (ex: les requêtes POST du formulaire)
   if (req.method !== "GET") return;
 
-  // Pages
+  // STRATÉGIE 1 : Pages principales (Navigation HTML) -> Réseau en premier
   if (req.mode === "navigate") {
     event.respondWith(
       fetch(req)
@@ -51,6 +60,7 @@ self.addEventListener("fetch", (event) => {
           return res;
         })
         .catch(async () => {
+          // Si pas de réseau, on cherche l'index en cache, sinon la page hors-ligne dédiée
           const cached = await caches.match("/index.html");
           return cached || caches.match("/offline.html") || Response.error();
         })
@@ -58,18 +68,25 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Assets même origine
+  // STRATÉGIE 2 : Ressources statiques (CSS, Images, Manifest) -> Cache en premier
   if (url.origin === self.location.origin) {
     event.respondWith(
       caches.match(req).then((cached) => {
-        if (cached) return cached;
+        if (cached) return cached; // Si le fichier est déjà dans le cache, on le sert directement
+
         return fetch(req)
           .then((res) => {
-            const copy = res.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
+            // Si le fichier est récupéré sur le réseau, on le stocke pour la prochaine fois
+            if (res.status === 200) {
+              const copy = res.clone();
+              caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
+            }
             return res;
           })
-          .catch(() => caches.match("/offline.html"));
+          .catch(() => {
+            // Si une image ou un asset est manquant hors-ligne, on renvoie une erreur vide propre
+            return new Response("Ressource indisponible hors-ligne", { status: 503, statusText: "Service Unavailable" });
+          });
       })
     );
   }
