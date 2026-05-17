@@ -1,633 +1,747 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DCVTC66 — Chauffeur VTC à Perpignan</title>
-  <meta name="description" content="DCVTC66, chauffeur VTC à Perpignan, propose des trajets fiables, confortables et ponctuels dans tout le département 66 et au-delà. Réservation simple et rapide." />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DCVTC66 - Chauffeur Privé VTC Perpignan</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=500;700&family=Poppins:wght=300;400;500;600&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="styles.css?v=99" />
-  <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
-  <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#2563eb">
-  <link rel="apple-touch-icon" href="/icon-192.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
   
-  <link rel="canonical" href="https://dcvtc66.fr/" />
-
   <style>
-    html, body { margin: 0; padding: 0; overflow-x: hidden; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; box-sizing: border-box; }
+    /* VARIABLES DE COULEURS PREMIUM */
+    :root {
+      --gold-primary: #D4AF37;
+      --gold-dark: #AA7C11;
+      --gold-light: #F3E5AB;
+      --dark-bg: #0F1219;
+      --dark-card: #171C26;
+      --dark-input: #1F2633;
+      --text-light: #F4F5F7;
+      --text-muted: #A0AEC0;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-    .nav-inner ul { display: flex; gap: 1rem; list-style: none; padding-left: 0; margin: 0; }
-    .nav-inner ul li a { text-decoration: none; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    /* --- REMONTÉE GÉNÉRALE DES SECTIONS --- */
-    .header { padding-top: 1rem !important; }
-    
-    .section, .section-alt {
-      padding-top: 2rem !important; 
-      padding-bottom: 2rem !important;
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    /* BARRE DE NAVIGATION */
+    header {
+      background-color: rgba(23, 28, 38, 0.95);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold-primary);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--text-light);
+    }
+
+    .nav-phone {
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold-primary));
+      color: var(--dark-bg);
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+    }
+
+    .nav-phone:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    /* ACCUEIL / HERO SECTION */
+    .hero {
+      position: relative;
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+      background: radial-gradient(circle at top, #1a2233 0%, var(--dark-bg) 70%);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      opacity: 0.15;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--text-light);
+    }
+
+    .hero h1 span {
+      color: var(--gold-primary);
+      display: block;
+      font-size: 1.5rem;
+      font-family: 'Montserrat', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      margin-top: 0.5rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+    }
+
+    /* CALCULATEUR RAPIDE HERO */
+    .fast-calc-box {
+      background-color: var(--dark-card);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      max-width: 700px;
+      margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .fast-input-group {
+      flex: 1;
+      min-width: 200px;
+      position: relative;
+    }
+
+    .fast-input-group input {
+      width: 100%;
+      background-color: var(--dark-input);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius-sm);
+      color: var(--text-light);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+    }
+
+    .fast-input-group input:focus {
+      border-color: var(--gold-primary);
+      outline: none;
+    }
+
+    .btn-fast {
+      background-color: var(--gold-primary);
+      color: var(--dark-bg);
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 100%;
+    }
+
+    @media (min-width: 600px) {
+      .btn-fast { width: auto; }
+    }
+
+    .btn-fast:hover {
+      background-color: var(--gold-light);
+    }
+
+    /* SECTION RESERVATION PRINCIPALE */
+    .booking-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
     }
 
     .section-title {
-      margin-top: 0 !important;
-      margin-bottom: 1rem !important;
+      text-align: center;
+      margin-bottom: 3rem;
+      font-size: 2.2rem;
     }
 
-    /* --- CARRÉ BLEU CENTRAL ET FORMULAIRE AGRANDIS (PC) --- */
-    .branding {
-      padding: 3rem 2.5rem !important;
-      max-width: 960px !important;
-      width: 100%;
-      margin: 0.5rem auto 0 auto !important;
-      border-radius: 24px;
-      box-sizing: border-box;
-    }
-
-    .form-compact { 
-      max-width: 960px !important;
-      width: 100%; 
-      margin: 0 auto; 
-      box-sizing: border-box;
-    }
-
-    /* Logo calé en haut */
-    .logo {
-      max-width: 120px !important;
-      height: auto;
-      margin: 0 auto 1rem auto !important;
+    .section-title::after {
+      content: '';
       display: block;
+      width: 60px;
+      height: 3px;
+      background-color: var(--gold-primary);
+      margin: 0.8rem auto 0;
     }
 
-    .site-title { margin-bottom: 0.2rem; font-size: 2.4rem; }
-    .site-subtitle { margin-top: 0; font-size: 1.05rem; max-width: 85%; margin-left: auto; margin-right: auto; opacity: 0.9; }
-
-    /* Boutons */
-    .hero-actions { 
-      display: grid; 
-      grid-template-columns: repeat(3, 1fr); 
-      gap: 1.5rem; 
-      margin-top: 1.8rem; 
-      justify-content: center; 
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
     }
-    .hero-actions a.btn-primary { 
-      display: inline-flex; 
-      align-items: center; 
-      justify-content: center; 
-      padding: 0.85rem 0.5rem; 
-      font-size: 0.85rem; 
-      border-radius: 999px; 
-      text-align: center; 
-      white-space: nowrap; 
+
+    @media (min-width: 992px) {
+      .grid-container {
+        grid-template-columns: 1.1fr 0.9fr;
+      }
+    }
+
+    /* FORMULAIRE */
+    .form-card {
+      background-color: var(--dark-card);
+      border-radius: var(--radius-md);
+      padding: 2.5rem;
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    }
+
+    .form-step-title {
+      font-size: 1.2rem;
+      color: var(--gold-primary);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 576px) {
+      .form-row { grid-template-columns: 1fr 1fr; }
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
       font-weight: 600;
-      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
     }
 
-    /* Zone d'estimation rapide */
-    .hero-fast-estimate {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 2rem; 
-      border-radius: 20px;
-      margin: 2rem auto 0 auto;
-      max-width: 750px; 
+    input, select, textarea {
       width: 100%;
-      box-sizing: border-box;
+      background-color: var(--dark-input);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 0.9rem 1rem;
+      border-radius: var(--radius-sm);
+      color: var(--text-light);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      transition: var(--transition);
     }
-    .hero-fast-fields {
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+    }
+
+    /* Options de type de trajet */
+    .trajet-options {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.2rem; 
-      margin-bottom: 1.2rem;
-    }
-    .hero-fast-fields input {
-      padding: 1.1rem 1.3rem; 
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      background: rgba(255, 255, 255, 0.9);
-      font-size: 1.05rem; 
-      color: #333;
-      width: 100%;
-      box-sizing: border-box;
-      font-weight: 500;
-    }
-    .btn-fast-calc {
-      width: 100%;
-      padding: 1.1rem; 
-      border-radius: 14px;
-      border: none;
-      background: #16a34a;
-      color: white;
-      font-weight: 700;
-      font-size: 1.1rem; 
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .btn-fast-calc:hover { background: #15803d; }
-
-    #btn-install.btn-primary {
-      margin-top: 1.2rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-    }
-
-    /* --- TARIF FLOTTANT AGRANDI ET CENTRÉ --- */
-    #tarif-flottant {
-      position: fixed; 
-      top: 24px; 
-      left: 50%; 
-      transform: translateX(-50%) scale(1);
-      z-index: 9999; 
-      display: none !important; 
-      align-items: center; 
-      justify-content: center;
       gap: 1rem;
-      padding: 1.2rem 2.5rem; 
-      border-radius: 999px; 
-      background: linear-gradient(135deg, #16a34a, #22c55e);
-      color: #022c22; 
-      box-shadow: 0 20px 50px rgba(22, 163, 74, 0.8); 
-      font-size: 1.3rem; 
-      font-weight: 700; 
-      width: max-content;
-      max-width: 90vw;
-      border: 2px solid rgba(255, 255, 255, 0.4);
-      animation: pulseTarifCentrer 1.8s ease-in-out infinite;
-    }
-    #tarif-flottant .icon { font-size: 1.7rem; }
-    
-    @keyframes pulseTarifCentrer {
-      0% { transform: translateX(-50%) scale(1); box-shadow: 0 15px 35px rgba(22, 163, 74, 0.6); }
-      50% { transform: translateX(-50%) scale(1.04); box-shadow: 0 25px 55px rgba(22, 163, 74, 0.9); }
-      100% { transform: translateX(-50%) scale(1); box-shadow: 0 15px 35px rgba(22, 163, 74, 0.6); }
+      margin-bottom: 1.5rem;
     }
 
-    .section-intro { margin-bottom: 0.75rem; }
-    .form-compact .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-compact label { display: flex; flex-direction: column; gap: .25rem; font-size: .85rem; font-weight: 500; letter-spacing: .02em; }
-    .form-compact input, .form-compact textarea { padding: 1rem 1rem; border-radius: 14px; font-size: .95rem; line-height: 1.4; }
-    .form-compact select { padding: 1rem 1rem; border-radius: 14px; font-size: .95rem; line-height: 1.4; }
-    .form-compact textarea { resize: vertical; min-height: 72px; }
+    .radio-box {
+      border: 1px solid rgba(255,255,255,0.08);
+      background-color: var(--dark-input);
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 600;
+    }
 
-    .dates-retour-container {
+    .radio-box.active {
+      border-color: var(--gold-primary);
+      background-color: rgba(212, 175, 55, 0.05);
+      color: var(--gold-primary);
+    }
+
+    /* BLOC RETOUR CACHÉ PAR DÉFAUT */
+    #bloc-retour {
       display: none;
-      margin-top: 0.5rem;
-      animation: fadeIn 0.3s ease;
+      border-left: 2px solid var(--gold-primary);
+      padding-left: 1rem;
+      margin-top: 1rem;
     }
+
+    /* BOUTONS ET ESTIMATIONS */
+    .actions-container {
+      margin-top: 2rem;
+    }
+
+    .btn-calc {
+      width: 100%;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold-primary));
+      color: var(--dark-bg);
+      border: none;
+      padding: 1.1rem;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+    }
+
+    .btn-calc:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    .btn-submit {
+      width: 100%;
+      background-color: transparent;
+      border: 2px solid var(--gold-primary);
+      color: var(--gold-primary);
+      padding: 1.1rem;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 1rem;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--gold-primary);
+      color: var(--dark-bg);
+    }
+
+    /* RÉSULTATS DES TARIFS */
+    .result-box {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      border-radius: var(--radius-sm);
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    #resultat-tarif {
+      background-color: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      color: var(--text-light);
+    }
+
+    #resultat-tarif strong {
+      color: var(--gold-light);
+      font-size: 1.2rem;
+    }
+
+    #erreur-tarif {
+      background-color: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #FCA5A5;
+    }
+
+    /* CARTE & MAPS RIGHT SIDE */
+    .map-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    #map {
+      width: 100%;
+      height: 400px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    @media (min-width: 992px) {
+      #map { height: 100%; min-height: 500px; }
+    }
+
+    /* BANDEAU TARIF FLOTTANT MOBILE/DESKTOP */
+    #tarif-flottant {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #171C26, #242C3B);
+      border: 2px solid var(--gold-primary);
+      padding: 0.9rem 1.8rem;
+      border-radius: 50px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+      z-index: 9999;
+      display: none !important; /* Contrôlé dynamiquement par JS en flex */
+      align-items: center;
+      gap: 1.2rem;
+      width: calc(100% - 40px);
+      max-width: 480px;
+      animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    #tarif-flottant-texte {
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      flex-grow: 1;
+    }
+
+    .btn-flottant-reserve {
+      background-color: var(--gold-primary);
+      color: var(--dark-bg);
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-flottant-reserve:hover {
+      background-color: var(--gold-light);
+    }
+
+    /* INFOS VEHICULE & SERVICES */
+    .services-section {
+      background-color: var(--dark-card);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 4rem 2rem;
+    }
+
+    .services-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-box {
+      background-color: var(--dark-bg);
+      border: 1px solid rgba(255,255,255,0.03);
+      padding: 2rem;
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+    }
+
+    .service-box:hover {
+      border-color: rgba(212, 175, 55, 0.3);
+      transform: translateY(-5px);
+    }
+
+    .service-icon {
+      font-size: 2rem;
+      color: var(--gold-primary);
+      margin-bottom: 1rem;
+    }
+
+    .service-box h3 {
+      margin-bottom: 0.8rem;
+      font-size: 1.3rem;
+    }
+
+    .service-box p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #0A0D12;
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* ANIMATIONS */
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
+      from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    details.opt { margin-top: .45rem; }
-    details.opt summary { cursor: pointer; font-weight: 700; opacity: .9; margin: .35rem 0 .25rem; }
-
-    .actions-compact{
-      display:grid;
-      grid-template-columns: 1fr 1.15fr;
-      gap:1rem;
-      margin-top:1rem;
-    }
-    .actions-compact .btn-primary,
-    .actions-compact .btn-estimate{
-      border-radius:999px;
-      padding:1rem;
-      font-weight:800;
-      letter-spacing:.02em;
-    }
-
-    .email-action{
-      margin-top: .8rem;
-      width: 100%;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 999px;
-      padding: 1rem;
-      font-weight: 800;
-      letter-spacing: .02em;
-    }
-
-    .result-compact, .error-compact{ margin-top:.6rem; padding:.65rem .75rem; border-radius:12px; font-size:.85rem; line-height:1.35; }
-    .result-compact{ background:#f0f7ff; color:#1b3b68; }
-    .error-compact{ background:#ffecec; color:#a40000; }
-
-    .map-wrapper { margin-top: .7rem; border-radius: 16px; overflow: hidden; }
-    .map-wrapper-inner { position:relative; width:100%; height:320px; }
-    #map { width:100%; height:100%; }
-
-    /* Responsive Mobile & Tablette */
-    @media (max-width: 930px) {
-      .branding, .form-compact { max-width: 96% !important; } 
-    }
-
-    @media (max-width: 768px) {
-      .header { padding-top: 0.5rem !important; }
-      .section, .section-alt { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; padding-left: 0.8rem; padding-right: 0.8rem; box-sizing: border-box; }
-      .nav-inner ul { justify-content: center; flex-wrap: wrap; text-align: center; }
-      .header-inner, .branding { text-align: center; }
-      
-      .branding { 
-        padding: 2.2rem 1.2rem !important; 
-        max-width: 96% !important; 
-        margin: 0.2rem auto 0 auto !important; 
-      }
-      .form-compact { max-width: 96% !important; }
-      
-      .site-title { font-size: 1.9rem; }
-      .hero-actions { gap: 0.6rem; max-width: 100%; }
-      .hero-actions a.btn-primary { font-size: 0.75rem; padding: 0.75rem 0.3rem; }
-      
-      .hero-fast-estimate { padding: 1.25rem; margin-top: 1.5rem; }
-      .hero-fast-fields { grid-template-columns: 1fr; gap: 0.8rem; }
-      .hero-fast-fields input { padding: 1.1rem; font-size: 1.1rem; } 
-      .btn-fast-calc { padding: 1.1rem; font-size: 1.1rem; }
-    }
-
-    @media (max-width: 520px){
-      .form-compact .row{ grid-template-columns: 1fr; }
-      #tarif-flottant { left: 50%; top: 20px; width: 92vw; padding: 1rem 1rem; font-size: 1.05rem; }
-      .actions-compact{ grid-template-columns: 1fr; gap: .55rem; }
-      .actions-compact .btn-primary,
-      .actions-compact .btn-estimate,
-      .email-action{ 
-        width: 100%; 
-        padding: 0.9rem 1rem; 
-        font-size: 0.95rem; 
-      }
-      .map-wrapper-inner{ height: 280px; }
-      #btn-install.btn-primary{ width: 100%; max-width: 320px; margin-left: auto !important; margin-right: auto !important; }
-      
-      .container { padding: 0 0.5rem; }
-      .form-compact { padding-left: 0.8rem; padding-right: 0.8rem; }
-      .form-compact input, .form-compact select, .form-compact textarea { padding: 0.9rem 1rem; font-size: 1rem; }
-    }
-
-    @media (min-width: 1024px){
-      #reservation .container{ max-width: 1200px; }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translate(-50%, 40px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
     }
   </style>
 </head>
-
 <body>
 
-  <div id="splash-screen" aria-label="Chargement">
-    <img src="icon-192.png" alt="DCVTC66">
-    <p>Connexion à votre chauffeur privé…</p>
-  </div>
-
-  <nav class="nav">
-    <div class="container nav-inner">
-      <ul>
-        <li><a href="#reservation">Réservation</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <header class="header">
-    <div class="container header-inner">
-      <div class="branding">
-        <img src="LOGO DCVTC66.png" alt="Logo DCVTC66" class="logo">
-        <h1 class="site-title">DCVTC66</h1>
-        <p class="site-subtitle">Chauffeur VTC privé à Perpignan et dans toutes les Pyrénées-Orientales (66)</p>
-
-        <div class="hero-actions">
-          <a href="tel:0663463716" class="btn-primary">📞 APPELER</a>
-          <a href="https://wa.me/33663463716" target="_blank" class="btn-primary">💬 WHATSAPP</a>
-          <a href="#reservation" class="btn-primary">📝 RÉSERVER</a>
-        </div>
-
-        <div class="hero-fast-estimate">
-          <div class="hero-fast-fields">
-            <input type="text" id="fast-depart" placeholder="📍 Adresse de départ" autocomplete="off">
-            <input type="text" id="fast-arrivee" placeholder="🏁 Adresse d'arrivée" autocomplete="off">
-          </div>
-          <button type="button" id="btn-fast-calc" class="btn-fast-calc">💰 Estimer mon trajet en 1 clic</button>
-        </div>
-
-        <button id="btn-install" class="btn-primary" style="display:none;">
-          📲 Installer l'application
-        </button>
-
-        <div class="hero-badges">
-          <span>✔ 7j/7</span>
-          <span>✔ Ponctuel</span>
-          <span>✔ Confort</span>
-        </div>
-      </div>
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">DC<span>VTC66</span></a>
+      <a href="tel:+33663463716" class="nav-phone">📱 06 63 46 37 16</a>
     </div>
   </header>
 
-  <section id="reservation" class="section section-alt">
-    <div class="container">
-      <h2 class="section-title">Réservation</h2>
-      <p style="text-align:center; margin-top:0; margin-bottom:1.5rem;">Obtenez une estimation immédiate de votre trajet et envoyez votre demande en un clic.</p>
-
-      <form id="reservation-form" class="form form-compact">
-        <div class="row">
-          <label>Nom
-            <input type="text" name="Nom" placeholder="Nom & prénom" required>
-          </label>
-
-          <label>Téléphone
-            <input type="tel" name="Téléphone" placeholder="06…" required>
-          </label>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>DCVTC66<span>Votre Chauffeur Privé à Perpignan</span></h1>
+      <p>Alternative premium au taxi. Confort, ponctualité et transparence tarifaire dans les Pyrénées-Orientales et toute la France.</p>
+      
+      <div class="fast-calc-box">
+        <div class="fast-input-group">
+          <input type="text" id="fast-depart" placeholder="Lieu de départ (ex: Gare de Perpignan)">
         </div>
-
-        <label>Type de trajet
-          <select name="Trajet" id="trajet-type">
-            <option value="simple">Aller simple</option>
-            <option value="aller-retour">Aller-Retour (réduction 10% sur le retour)</option>
-          </select>
-        </label>
-
-        <label>Départ
-          <input type="text" name="Départ" placeholder="Adresse de prise en charge" required>
-        </label>
-
-        <label>Arrivée
-          <input type="text" name="Arrivee" placeholder="Adresse de destination" required>
-        </label>
-
-        <label>Date & heure aller
-          <input type="datetime-local" name="DateHeureAller" id="date-aller" required>
-        </label>
-
-        <div id="dates-retour-container" class="dates-retour-container">
-          <label>Date & heure retour
-            <input type="datetime-local" name="DateHeureRetour" id="date-retour">
-          </label>
+        <div class="fast-input-group">
+          <input type="text" id="fast-arrivee" placeholder="Lieu d'arrivée (ex: Aéroport)">
         </div>
+        <button type="button" id="btn-fast-calc" class="btn-fast">Estimer le prix</button>
+      </div>
+    </div>
+  </section>
 
-        <label>Nombre de passagers
-          <select name="Passagers" required>
-            <option value="" selected>Sélectionner</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </label>
-
-        <label>Mode de paiement
-          <select name="Paiement" required>
-            <option value="" selected>Sélectionner</option>
-            <option value="Lien sécurisé (CB)">Lien sécurisé (CB)</option>
-            <option value="CB à bord">CB à bord</option>
-            <option value="Espèces à bord">Espèces à bord</option>
-          </select>
-        </label>
-
-        <details class="opt">
-          <summary>+ Options</summary>
-          <label>Informations
-            <textarea name="Message" rows="2" placeholder="Bagages, siège enfant, n° de vol…"></textarea>
-          </label>
-        </details>
-
-        <div class="actions-compact">
-          <button type="button" id="btn-tarif" class="btn-estimate">Estimer</button>
-          <button type="submit" class="btn-primary">📩 Envoyer par SMS</button>
-        </div>
-
-        <button type="button" id="btn-whatsapp-form" class="btn-primary email-action">💬 Envoyer par WhatsApp</button>
-
-        <div id="erreur-tarif" class="error-compact" style="display:none;"></div>
-        <div id="resultat-tarif" class="result-compact" style="display:none;"></div>
-
-        <div class="map-wrapper" id="map-wrapper">
-          <div class="map-wrapper-inner">
-            <div id="map"></div>
+  <section class="booking-section" id="reservation">
+    <h2 class="section-title">Estimation & Réservation en ligne</h2>
+    
+    <div class="grid-container">
+      <div class="form-container">
+        <form name="VTC_Reservation" method="POST" data-netlify="true" action="/success.html" class="form-card">
+          
+          <div class="form-group">
+            <label>Type de déplacement</label>
+            <div class="trajet-options">
+              <div class="radio-box active" id="opt-aller">Aller Simple</div>
+              <div class="radio-box" id="opt-retour">Aller-Retour</div>
+            </div>
+            <select name="TypeTrajet" id="trajet-select" style="display:none;">
+              <option value="aller-simple" selected>Aller Simple</option>
+              <option value="aller-retour">Aller-Retour</option>
+            </select>
           </div>
-        </div>
-      </form>
-    </div>
-  </section>
 
-  <section id="services" class="section">
-    <div class="container">
-      <h2 class="section-title">Nos services</h2>
-      <p class="section-intro" style="margin-bottom:1.5rem;">Transferts, gares, aéroports, déplacements pro et mise à disposition.</p>
-      <div class="grid">
-        <article class="card">
-          <h3>✈️ Aéroports</h3>
-          <p>Perpignan, Toulouse, Montpellier, Barcelone…</p>
-        </article>
-        <article class="card">
-          <h3>🚉 Gares</h3>
-          <p>Perpignan, Narbonne et alentours.</p>
-        </article>
-        <article class="card">
-          <h3>💼 Professionnel</h3>
-          <p>RDV, séminaires, déplacements business.</p>
-        </article>
-        <article class="card">
-          <h3>🎉 Mise à disposition</h3>
-          <p>Événements, mariages, soirées & mise à disposition à la journée.</p>
-        </article>
+          <div class="form-step-title">📍 Itinéraire</div>
+          <div class="form-group">
+            <label for="depart">Adresse de départ</label>
+            <input type="text" name="Départ" required placeholder="N°, rue, ville ou lieu public">
+          </div>
+          <div class="form-group">
+            <label for="arrivee">Adresse d'arrivée</label>
+            <input type="text" name="Arrivee" required placeholder="N°, rue, ville ou lieu public">
+          </div>
+
+          <div class="form-step-title">📅 Date & Horaires</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="date-aller">Date et Heure Aller</label>
+              <input type="datetime-local" name="DateHeureAller" id="date-aller" required>
+            </div>
+            
+            <div class="form-group" id="bloc-retour">
+              <label for="date-retour">Date et Heure Retour</label>
+              <input type="datetime-local" name="DateHeureRetour" id="date-retour">
+            </div>
+          </div>
+
+          <div class="form-step-title">👤 Voyageur & Options</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Passagers</label>
+              <select name="Passagers">
+                <option value="1">1 Passager</option>
+                <option value="2">2 Passagers</option>
+                <option value="3">3 Passagers</option>
+                <option value="4">4 Passagers</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Bagages</label>
+              <select name="Bagages">
+                <option value="1">1 Bagage cabine / valise</option>
+                <option value="2">2 Bagages</option>
+                <option value="3">3 Bagages</option>
+                <option value="4">4 Bagages ou plus</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nom">Votre Nom complet</label>
+              <input type="text" name="Nom" required placeholder="Ex: Jean Dupont">
+            </div>
+            <div class="form-group">
+              <label for="tel">N° de Téléphone</label>
+              <input type="tel" name="Telephone" required placeholder="Ex: 06 12 34 56 78">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Notes complémentaires (Optionnel)</label>
+            <textarea name="Message" rows="3" placeholder="Besoin d'un siège bébé ? Numéro de vol / train ? Précisez-le ici..."></textarea>
+          </div>
+
+          <div class="actions-container">
+            <button type="button" id="btn-tarif" class="btn-calc">📊 Calculer l'estimation du prix</button>
+            
+            <div id="resultat-tarif" class="result-box"></div>
+            <div id="erreur-tarif" class="result-box"></div>
+
+            <button type="submit" class="btn-submit">🔒 Envoyer ma demande de réservation</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="map-card">
+        <div id="map"></div>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="section">
-    <div class="container">
-      <h2 class="section-title">Contact</h2>
-      <div class="contact-grid" style="margin-top:1rem;">
-        <div>
-          <p>📞 <a href="tel:+33663463716"><strong>+33 6 63 46 37 16</strong></a></p>
-          <p>💬 <a href="https://wa.me/33663463716" target="_blank"><strong>WhatsApp</strong></a></p>
-        </div>
-        <div>
-          <p>📧 <strong>driveconfort66@gmail.com</strong></p>
-          <p>📍 Perpignan — Déplacements dans les Pyrénées-Orientales et longue distance</p>
-        </div>
+  <section class="services-section">
+    <div class="services-grid">
+      <div class="service-box">
+        <div class="service-icon">✨</div>
+        <h3>Service Premium</h3>
+        <p>Véhicule moderne, parfaitement entretenu. Profitez d'une conduite souple, d'une connexion Wi-Fi et de rafraîchissements à bord.</p>
+      </div>
+      <div class="service-box">
+        <div class="service-icon">🎯</div>
+        <h3>Prix Fixe Fixé</h3>
+        <p>L'estimation validée lors de la commande reste fixe. Aucun surcoût lié aux embouteillages ou retards de train.</p>
+      </div>
+      <div class="service-box">
+        <div class="service-icon">🛫</div>
+        <h3>Gares & Aéroports</h3>
+        <p>Navettes dédiées vers l'aéroport de Perpignan-Rivesaltes, la gare Centre, ainsi que vers Gérone, Barcelone ou Toulouse.</p>
       </div>
     </div>
   </section>
-
-  <footer class="footer">
-    <div class="container footer-legal">
-      <p>© <span id="year"></span> DCVTC66 — Tous droits réservés</p>
-      <p class="footer-links">
-        <a href="mentions-legales.html">Mentions légales</a> ·
-        <a href="politique-confidentialite.html">Politique de confidentialité</a> ·
-        <a href="plan-du-site.html">Plan du site</a>
-      </p>
-    </div>
-  </footer>
-
-  <a href="tel:+33663463716" class="fab fab-call" aria-label="Appeler DCVTC66">📞</a>
-  <a href="#" id="fab-whatsapp" target="_blank" class="fab fab-whatsapp" aria-label="WhatsApp DCVTC66">💬</a>
 
   <div id="tarif-flottant">
-    <span class="icon">💰</span>
-    <span id="tarif-flottant-texte">Estimation en cours…</span>
+    <div id="tarif-flottant-texte">Estimation : -- €</div>
+    <button type="button" class="btn-flottant-reserve" onclick="document.getElementById('reservation').scrollIntoView({behavior: 'smooth'});">Réserver</button>
   </div>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+  <footer>
+    <p>&copy; 2026 DCVTC66. Tous droits réservés. Transport de personnes (VTC) à Perpignan.</p>
+  </footer>
 
-    function formatDateHeureFR(value) { 
-      if (!value) return ""; 
-      return value.replace("T", " à "); 
-    }
-
-    let derniereEstimation = null;
-
-    const form = document.getElementById('reservation-form');
-    const trajetSelect = document.getElementById('trajet-type');
-    const datesRetourContainer = document.getElementById('dates-retour-container');
-    const dateRetourInput = document.getElementById('date-retour');
-
-    function toggleDateRetour() {
-      if (trajetSelect.value === 'aller-retour') {
-        datesRetourContainer.style.display = 'block';
-        dateRetourInput.required = true;
-      } else {
-        datesRetourContainer.style.display = 'none';
-        dateRetourInput.required = false;
-        dateRetourInput.value = '';
-      }
-    }
-
-    trajetSelect.addEventListener('change', toggleDateRetour);
-    toggleDateRetour();
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const nom = form.Nom.value;
-      const tel = form["Téléphone"].value;
-      const depart = form["Départ"].value;
-      const arrivee = form["Arrivee"].value;
-      const dateAller = formatDateHeureFR(form["DateHeureAller"].value);
-      const dateRetour = trajetSelect.value === 'aller-retour' ? formatDateHeureFR(dateRetourInput.value) : '';
-      const passagers = form["Passagers"].value;
-      const paiement = form["Paiement"].value;
-      const messageClient = form["Message"].value;
-      const trajetType = trajetSelect.value;
-      const trajetTexte = trajetType === "aller-retour" ? "Aller-Retour" : "Aller simple";
-
-      let sms = "Nouvelle demande – DCVTC66 :\n\n";
-      sms += "Nom : " + nom + "\n";
-      sms += "Téléphone : " + tel + "\n";
-      sms += "Départ : " + depart + "\n";
-      sms += "Arrivée : " + arrivee + "\n";
-      sms += "Date & heure aller : " + dateAller + "\n";
-      if (trajetType === "aller-retour" && dateRetour) {
-        sms += "Date & heure retour : " + dateRetour + "\n";
-      }
-      sms += "Passagers : " + passagers + "\n";
-      sms += "Paiement : " + paiement + "\n";
-      sms += "Trajet : " + trajetTexte + "\n";
-      if (messageClient.trim() !== "") sms += "Infos : " + messageClient + "\n";
-
-      if (derniereEstimation) {
-        sms += "\n--- Estimation ---\n";
-        sms += "Distance : " + (derniereEstimation.distanceTotale || derniereEstimation.distanceKm) + " km\n";
-        sms += "Durée : " + (derniereEstimation.dureeTotale || derniereEstimation.dureeTexte) + "\n";
-        if (derniereEstimation.trajetType === "aller-retour") {
-          sms += "Tarif Aller-Retour : " + derniereEstimation.tarif.toFixed(2) + " €\n";
-        } else {
-          sms += "Tarif : " + derniereEstimation.tarif.toFixed(2) + " €\n";
-        }
-      }
-
-      const numero = "+33663463716";
-      window.location.href = "sms:" + numero + "?&body=" + encodeURIComponent(sms);
-    });
-  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=VOTRE_CLE_API_GOOGLE&libraries=places&callback=initMap" async defer></script>
 
   <script>
-    function buildWhatsAppMessage() {
-      const nom = form.Nom.value;
-      const tel = form["Téléphone"].value;
-      const depart = form["Départ"].value;
-      const arrivee = form["Arrivee"].value;
-      const dateAller = formatDateHeureFR(form["DateHeureAller"].value);
-      const dateRetour = trajetSelect.value === 'aller-retour' ? formatDateHeureFR(dateRetourInput.value) : '';
-      const passagers = form["Passagers"].value;
-      const paiement = form["Paiement"].value;
-      const messageClient = form["Message"].value;
-      const trajetType = trajetSelect.value;
-      const trajetTexte = trajetType === "aller-retour" ? "Aller-Retour" : "Aller simple";
-
-      let msg = "Nouvelle demande – DCVTC66 :\n\n";
-      msg += "Nom : " + nom + "\n";
-      msg += "Téléphone : " + tel + "\n";
-      msg += "Départ : " + depart + "\n";
-      msg += "Arrivée : " + arrivee + "\n";
-      msg += "Date & heure aller : " + dateAller + "\n";
-      if (trajetType === "aller-retour" && dateRetour) {
-        msg += "Date & heure retour : " + dateRetour + "\n";
-      }
-      msg += "Passagers : " + passagers + "\n";
-      msg += "Paiement : " + paiement + "\n";
-      msg += "Trajet : " + trajetTexte + "\n";
-      if (messageClient.trim() !== "") msg += "Infos : " + messageClient + "\n";
-
-      if (derniereEstimation) {
-        msg += "\n--- Estimation ---\n";
-        msg += "Distance : " + (derniereEstimation.distanceTotale || derniereEstimation.distanceKm) + " km\n";
-        msg += "Durée : " + (derniereEstimation.dureeTotale || derniereEstimation.dureeTexte) + "\n";
-        if (derniereEstimation.trajetType === "aller-retour") {
-          msg += "Tarif Aller-Retour : " + derniereEstimation.tarif.toFixed(2) + " €\n";
-        } else {
-          msg += "Tarif : " + derniereEstimation.tarif.toFixed(2) + " €\n";
-        }
-      }
-
-      return msg;
-    }
-
-    function openWhatsAppPrefilled() {
-      const numeroWA = "33663463716";
-      const url = "https://wa.me/" + numeroWA + "?text=" + encodeURIComponent(buildWhatsAppMessage());
-      window.open(url, "_blank");
-    }
-
-    const btnWhatsAppForm = document.getElementById("btn-whatsapp-form");
-    if (btnWhatsAppForm) btnWhatsAppForm.addEventListener("click", openWhatsAppPrefilled);
-
-    const fabWhatsApp = document.getElementById("fab-whatsapp");
-    if (fabWhatsApp) {
-      fabWhatsApp.addEventListener("click", function (e) {
-        e.preventDefault();
-        openWhatsAppPrefilled();
-      });
-    }
-  </script>
-
-  <script>
+    // Configuration tarifaire de base
     const BASE_KM = 7;
     const BASE_TARIF = 20;
     const SUPP_PAR_KM = 1.70;
 
+    // Références vers les éléments du DOM
+    const form = document.forms["VTC_Reservation"];
+    const trajetSelect = document.getElementById("trajet-select");
+    const optAller = document.getElementById("opt-aller");
+    const optRetour = document.getElementById("opt-retour");
+    const blocRetour = document.getElementById("bloc-retour");
+    const inputDateRetour = document.getElementById("date-retour");
+
+    // Gestion du sélecteur graphique Aller / Aller-Retour
+    if (optAller && optRetour && trajetSelect && blocRetour) {
+      optAller.addEventListener("click", () => {
+        optAller.classList.add("active");
+        optRetour.classList.remove("active");
+        trajetSelect.value = "aller-simple";
+        blocRetour.style.display = "none";
+        if (inputDateRetour) inputDateRetour.removeAttribute("required");
+        
+        // Si un calcul est déjà effectué, on recalcule immédiatement la version Aller simple
+        if (form["Départ"].value && form["Arrivee"].value) calculerTarif();
+      });
+
+      optRetour.addEventListener("click", () => {
+        optRetour.classList.add("active");
+        optAller.classList.remove("active");
+        trajetSelect.value = "aller-retour";
+        blocRetour.style.display = "block";
+        if (inputDateRetour) inputDateRetour.setAttribute("required", "required");
+        
+        // Si un calcul est déjà effectué, on recalcule immédiatement la version Aller-Retour
+        if (form["Départ"].value && form["Arrivee"].value) calculerTarif();
+      });
+    }
+
+    // Déclaration des variables de la carte Google Maps
     let map;
     let distanceService;
     let directionsService;
     let directionsRenderer;
+    let derniereEstimation = null;
 
     function initMap() {
       const mapElement = document.getElementById("map");
       if (!mapElement) return;
 
+      // Centrage initial de la carte sur Perpignan
       const centrePerpignan = { lat: 42.6986, lng: 2.8956 };
 
       map = new google.maps.Map(mapElement, {
         center: centrePerpignan,
         zoom: 11,
+        styles: [
+          { "elementType": "geometry", "stylers": [{ "color": "#1f2633" }] },
+          { "elementType": "labels.text.fill", "stylers": [{ "color": "#8ec3b9" }] },
+          { "elementType": "labels.text.stroke", "stylers": [{ "color": "#1f2633" }] },
+          { "featureType": "administrative", "elementType": "geometry", "stylers": [{ "color": "#757575" }] },
+          { "featureType": "road", "elementType": "geometry", "stylers": [{ "color": "#2e3748" }] },
+          { "featureType": "road.highway", "elementType": "geometry", "stylers": [{ "color": "#38445a" }] },
+          { "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#0f1219" }] }
+        ]
       });
 
       distanceService = new google.maps.DistanceMatrixService();
@@ -638,6 +752,7 @@
         suppressInfoWindows: true
       });
 
+      // Configuration de l'autocomplétion des adresses
       const inputDepart = document.querySelector('input[name="Départ"]');
       const inputArrivee = document.querySelector('input[name="Arrivee"]');
       const fastDepart = document.getElementById('fast-depart');
@@ -645,7 +760,7 @@
 
       const optionsAutocomplete = {
         fields: ["address_components", "geometry", "name"],
-        locationBias: { center: centrePerpignan, radius: 180000 }
+        locationBias: { center: centrePerpignan, radius: 180000 } // Priorité à la région Occitanie
       };
 
       if (inputDepart) new google.maps.places.Autocomplete(inputDepart, optionsAutocomplete);
@@ -653,6 +768,7 @@
       if (fastDepart) new google.maps.places.Autocomplete(fastDepart, optionsAutocomplete);
       if (fastArrivee) new google.maps.places.Autocomplete(fastArrivee, optionsAutocomplete);
 
+      // Branchement des écouteurs de clics pour le calcul
       const btnTarif = document.getElementById("btn-tarif");
       if (btnTarif) btnTarif.addEventListener("click", calculerTarif);
 
@@ -663,6 +779,7 @@
             form["Départ"].value = fastDepart.value;
             form["Arrivee"].value = fastArrivee.value;
             
+            // Si la date n'est pas remplie, on insère la date actuelle par défaut
             if (!form["DateHeureAller"].value) {
               const maintenant = new Date();
               maintenant.setMinutes(maintenant.getMinutes() - maintenant.getTimezoneOffset());
@@ -675,12 +792,6 @@
       }
     }
 
-    function getHeureFromDateTime(dateTimeValue) {
-      if (!dateTimeValue) return 12;
-      const dateObj = new Date(dateTimeValue);
-      return dateObj.getHours();
-    }
-
     function calculerTarif() {
       const resDiv = document.getElementById("resultat-tarif");
       const errDiv = document.getElementById("erreur-tarif");
@@ -690,9 +801,8 @@
       const depart = form["Départ"].value.trim();
       const arrivee = form["Arrivee"].value.trim();
       const trajetType = trajetSelect.value;
-      const dateAllerValue = form["DateHeureAller"].value;
-      const dateRetourValue = dateRetourInput.value;
 
+      // Nettoyage et initialisation des affichages
       errDiv.style.display = "none"; errDiv.textContent = "";
       resDiv.style.display = "none"; resDiv.textContent = "";
       if (flottant) flottant.style.setProperty('display', 'none', 'important');
@@ -706,8 +816,10 @@
       resDiv.style.display = "block";
       resDiv.innerHTML = "Calcul en cours…";
 
+      // Scroll fluide jusqu'au conteneur pour voir l'évolution
       document.getElementById('reservation').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
+      // Appel de l'API Google Distance Matrix
       distanceService.getDistanceMatrix(
         {
           origins: [depart],
@@ -718,7 +830,7 @@
         (response, status) => {
           if (status !== "OK") {
             resDiv.style.display = "none";
-            errDiv.textContent = "Erreur Google Maps : " + status;
+            errDiv.textContent = "Erreur de connexion au service de carte : " + status;
             errDiv.style.display = "block";
             return;
           }
@@ -726,46 +838,39 @@
           const element = response.rows[0].elements[0];
           if (element.status !== "OK") {
             resDiv.style.display = "none";
-            errDiv.textContent = "Adresse introuvable. Vérifiez l'orthographe.";
+            errDiv.textContent = "Adresse introuvable ou itinéraire impossible par la route. Veuillez vérifier la saisie.";
             errDiv.style.display = "block";
             return;
           }
 
+          // Extraction de la distance et de la durée brute
           const distanceMetres = element.distance.value;
           let distanceKm = Math.round((distanceMetres / 1000) * 10) / 10;
           const durationValueMinutes = Math.round(element.duration.value / 60);
           const dureeTexte = element.duration.text;
 
-          // Calcul Aller
+          // CALCUL ALLER (Tarif unique, pas de majorations horaires)
           let tarifAller = BASE_TARIF;
           if (distanceKm > BASE_KM) {
             tarifAller += (distanceKm - BASE_KM) * SUPP_PAR_KM;
-          }
-          let heureAller = getHeureFromDateTime(dateAllerValue);
-          if (heureAller >= 21 || heureAller < 7) {
-            tarifAller = tarifAller * 1.20;
           }
 
           let distanceTotale = distanceKm;
           let dureeTotale = dureeTexte;
           let tarifFinal = tarifAller;
 
+          // CALCUL RETOUR ET REMISE SI SÉLECTIONNÉ
           if (trajetType === "aller-retour") {
-            // Calcul Retour
             let tarifRetour = BASE_TARIF;
             if (distanceKm > BASE_KM) {
               tarifRetour += (distanceKm - BASE_KM) * SUPP_PAR_KM;
-            }
-            let heureRetour = getHeureFromDateTime(dateRetourValue);
-            if (heureRetour >= 21 || heureRetour < 7) {
-              tarifRetour = tarifRetour * 1.20;
             }
 
             // Application de la réduction de 10% sur le retour
             tarifFinal = tarifAller + (tarifRetour * 0.90);
             distanceTotale = Math.round((distanceKm * 2) * 10) / 10;
             
-            // Calcul propre de la durée cumulée (minutes x 2)
+            // Cumul de la durée totale estimée de conduite
             let totalMinutesDouble = durationValueMinutes * 2;
             if (totalMinutesDouble >= 60) {
               let heuresTotal = Math.floor(totalMinutesDouble / 60);
@@ -779,9 +884,11 @@
             }
           }
 
+          // Arrondi propre à 2 décimales pour les centimes
           tarifFinal = Math.round(tarifFinal * 100) / 100;
           derniereEstimation = { distanceKm, distanceTotale, dureeTexte, dureeTotale, tarif: tarifFinal, trajetType };
 
+          // Génération du contenu HTML des blocs de résultats
           let affichage = "";
           if (trajetType === "aller-retour") {
             affichage = "Distance totale (A/R) : <strong>" + distanceTotale + " km</strong><br>" +
@@ -797,6 +904,7 @@
           resDiv.style.display = "block";
           resDiv.innerHTML = affichage;
 
+          // Mise à jour de l'affichage du bandeau flottant d'appel à l'action
           if (flottant && flottantTexte) {
             if (trajetType === "aller-retour") {
               flottantTexte.textContent = "Aller-Retour : " + tarifFinal.toFixed(2) + " € • " + distanceTotale + " km";
@@ -806,6 +914,7 @@
             flottant.style.setProperty('display', 'flex', 'important');
           }
 
+          // Affichage visuel du tracé routier sur la carte
           if (directionsService && directionsRenderer) {
             directionsService.route(
               { origin: depart, destination: arrivee, travelMode: google.maps.TravelMode.DRIVING },
@@ -814,46 +923,6 @@
           }
         }
       );
-    }
-  </script>
-
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA5J7_7fNdWgVsGRLWRfQZaO6qgCEqq_Y&callback=initMap&libraries=places" async defer></script>
-
-  <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      const splash = document.getElementById("splash-screen");
-      if (splash) { splash.style.display = "none"; }
-    });
-
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js");
-    }
-
-    let deferredPrompt = null;
-    const btnInstall = document.getElementById("btn-install");
-
-    const isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
-    if (isStandalone && btnInstall) btnInstall.style.display = "none";
-
-    window.addEventListener("beforeinstallprompt", (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      if (btnInstall) btnInstall.style.display = "inline-flex";
-    });
-
-    if (btnInstall) {
-      btnInstall.addEventListener("click", async () => {
-        const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-        if (isIOS) {
-          alert('Sur iPhone : Safari → Partager ( canevas avec la flèche ⬆️ ) → "Sur l’écran d’accueil".');
-          return;
-        }
-        if (!deferredPrompt) return;
-        deferredPrompt.prompt();
-        await deferredPrompt.userChoice;
-        deferredPrompt = null;
-        btnInstall.style.display = "none";
-      });
     }
   </script>
 </body>
