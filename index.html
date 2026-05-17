@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DCVTC66 | VTC Perpignan - Alternative au Taxi 66</title>
+  <title>DCVTC66 | VTC Perpignan - Tarifs Transparents - Alternative au Taxi</title>
   <meta name="description" content="DCVTC66, votre chauffeur privé VTC et alternative idéale au taxi à Perpignan et dans toutes les Pyrénées-Orientales (66). Tarifs fixes et transparents." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -487,7 +487,6 @@
       return value.replace("T", " à "); 
     }
 
-    // Analyse fine des chaînes de durée Google Maps (ex: "2 h 15 min" ou "45 minutes")
     function parseGoogleDuration(text) {
       let totalMinutes = 0;
       const hourMatch = text.match(/(\d+)\s*(h|heure)/i);
@@ -503,7 +502,6 @@
       return totalMinutes;
     }
 
-    // Reformatage propre d'un nombre total de minutes en texte lisible
     function formatMinutesToText(totalMinutes) {
       if (totalMinutes >= 60) {
         const h = Math.floor(totalMinutes / 60);
@@ -534,7 +532,6 @@
     trajetSelect.addEventListener('change', toggleDateRetour);
     toggleDateRetour();
 
-    // Centralisation complète du format des messages (SMS / WhatsApp)
     function construireTexteMessage() {
       const nom = form.Nom.value;
       const tel = form["Téléphone"].value;
@@ -571,7 +568,6 @@
       return texte;
     }
 
-    // Soumission du formulaire par SMS
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       const smsBody = construireTexteMessage();
@@ -579,7 +575,6 @@
       window.location.href = "sms:" + numero + "?&body=" + encodeURIComponent(smsBody);
     });
 
-    // Envoi par WhatsApp
     function openWhatsAppPrefilled() {
       const numeroWA = "33663463716";
       const url = "https://wa.me/" + numeroWA + "?text=" + encodeURIComponent(construireTexteMessage());
@@ -742,7 +737,6 @@
             tarifFinal = Math.round(tarifFinal * 100) / 100;
             distanceTotale = Math.round((distanceKm * 2) * 10) / 10;
             
-            // Calcul précis de la durée multipliée par 2
             let minutesUnitaire = parseGoogleDuration(dureeTexte);
             dureeTotale = formatMinutesToText(minutesUnitaire * 2);
           } else {
