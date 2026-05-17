@@ -1,3 +1,6 @@
+/* ==========================================================================
+   1. VARIABLES & CONFIGURATION GLOBALE (:root & Reset)
+   ========================================================================== */
 :root {
   --bg-main: #0b1733;
   --bg-light: #102a5c;
@@ -12,10 +15,10 @@
   --shadow-soft: 0 20px 50px rgba(2, 6, 23, 0.6);
 }
 
-/* RESET */
-*, *::before, *::after { box-sizing: border-box; }
+*, *::before, *::after { 
+  box-sizing: border-box; 
+}
 
-/* BODY */
 body {
   margin: 0;
   font-family: "Poppins", system-ui, sans-serif;
@@ -26,23 +29,25 @@ body {
     linear-gradient(to bottom, var(--bg-main), var(--bg-light) 45%, var(--bg-alt));
 }
 
-/* CONTAINER */
 .container {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-/* NAV */
+/* ==========================================================================
+   2. NAVIGATION (Header et Navbar)
+   ========================================================================== */
 .nav {
   position: sticky;
   top: 0;
   z-index: 10;
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px); /* Sécurité pour Safari iOS */
+  -webkit-backdrop-filter: blur(12px);
   background: rgba(11, 23, 51, 0.85);
   border-bottom: 1px solid var(--border-soft);
 }
+
 .nav ul {
   list-style: none;
   margin: 0;
@@ -51,6 +56,7 @@ body {
   justify-content: center;
   gap: 1.5rem;
 }
+
 .nav a {
   text-decoration: none;
   font-size: 0.85rem;
@@ -59,11 +65,22 @@ body {
   color: var(--text-muted);
   transition: color 0.2s ease;
 }
-.nav a:hover { color: var(--primary); }
 
-/* HEADER */
-.header { padding: 2.5rem 0 2rem; }
-.header-inner { display: flex; justify-content: center; }
+.nav a:hover { 
+  color: var(--primary); 
+}
+
+/* ==========================================================================
+   3. BLOC DE MARQUE (Branding & Logo)
+   ========================================================================== */
+.header { 
+  padding: 2.5rem 0 2rem; 
+}
+
+.header-inner { 
+  display: flex; 
+  justify-content: center; 
+}
 
 .branding {
   text-align: center;
@@ -99,7 +116,9 @@ body {
   margin-bottom: 1.4rem;
 }
 
-/* HERO ACTIONS */
+/* ==========================================================================
+   4. BOUTONS ACTION & BADGES (Hero section)
+   ========================================================================== */
 .hero-actions {
   display: flex;
   gap: 0.6rem;
@@ -126,9 +145,16 @@ body {
   gap: 0.5rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.btn-primary:hover { transform: translateY(-2px); }
 
-/* BADGES */
+.btn-primary:hover { 
+  transform: translateY(-2px); 
+}
+
+#btn-tarif {
+  background: linear-gradient(135deg, #25D366, #1ebe5d);
+  color: #0b1733;
+}
+
 .hero-badges {
   display: flex;
   flex-wrap: wrap;
@@ -136,6 +162,7 @@ body {
   gap: 0.5rem;
   margin-top: 1.2rem;
 }
+
 .hero-badges span {
   font-size: 0.8rem;
   padding: 0.45rem 0.9rem;
@@ -144,16 +171,23 @@ body {
   background: rgba(16, 42, 92, 0.85);
 }
 
-/* SECTIONS */
-.section { padding: 3rem 0; }
+/* ==========================================================================
+   5. SECTIONS & GRILLES DE CONTENU (Services & Contact)
+   ========================================================================== */
+.section { 
+  padding: 3rem 0; 
+}
+
 .section-alt {
   background: radial-gradient(circle at top, rgba(56,189,248,0.25), rgba(16,42,92,0.95));
 }
+
 .section-title {
   text-align: center;
   font-family: "Playfair Display", serif;
   font-size: 1.8rem;
 }
+
 .section-intro {
   text-align: center;
   max-width: 620px;
@@ -161,13 +195,13 @@ body {
   color: var(--text-muted);
 }
 
-/* SERVICES */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
   margin-top: 1.4rem;
 }
+
 .card {
   background: var(--card-bg);
   border: 1px solid var(--border-soft);
@@ -175,24 +209,38 @@ body {
   padding: 1.2rem 1.1rem;
   box-shadow: var(--shadow-soft);
 }
+
 .card h3 {
   margin: 0 0 0.4rem;
   color: var(--primary);
   letter-spacing: 0.04em;
 }
-.card p { margin: 0; color: var(--text-muted); line-height: 1.45; }
 
-/* CONTACT */
+.card p { 
+  margin: 0; 
+  color: var(--text-muted); 
+  line-height: 1.45; 
+}
+
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.2rem;
   margin-top: 1.2rem;
 }
-.contact-grid a { color: var(--primary); text-decoration: none; }
-.contact-grid a:hover { text-decoration: underline; }
 
-/* FORM */
+.contact-grid a { 
+  color: var(--primary); 
+  text-decoration: none; 
+}
+
+.contact-grid a:hover { 
+  text-decoration: underline; 
+}
+
+/* ==========================================================================
+   6. FORMULAIRE & ESTIMATEUR DE TARIF
+   ========================================================================== */
 .form {
   max-width: 560px;
   margin: 0 auto;
@@ -202,6 +250,7 @@ body {
   border: 1px solid var(--border-soft);
   box-shadow: var(--shadow-soft);
 }
+
 .form label {
   display: flex;
   flex-direction: column;
@@ -209,30 +258,40 @@ body {
   margin-bottom: 0.6rem;
   font-size: 0.85rem;
 }
+
 .form input, .form textarea, .form select {
   padding: 0.75rem 0.85rem;
   border-radius: 14px;
   border: 1px solid var(--border-soft);
-  background: rgba(11,23,51,0.35);
-  color: var(--text-main);
+  background: rgba(11,23,51,0.35) !important;
+  color: var(--text-main) !important;
   font-family: inherit;
 }
+
 .form input:focus, .form textarea:focus, .form select:focus {
   outline: none;
   border-color: var(--primary);
 }
-.form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
 
-/* OPTIONS */
-details.opt summary { cursor: pointer; font-weight: 700; margin: 0.3rem 0; }
+.form .row { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 0.6rem; 
+}
 
-/* ACTIONS FORMULAIRE */
+details.opt summary { 
+  cursor: pointer; 
+  font-weight: 700; 
+  margin: 0.3rem 0; 
+}
+
 .actions-compact {
   display: grid;
   grid-template-columns: 1fr 1.15fr;
   gap: 0.6rem;
   margin-top: 0.6rem;
 }
+
 .btn-estimate {
   background: linear-gradient(135deg, #ff6f00, #ff9100);
   color: #fff;
@@ -246,43 +305,52 @@ details.opt summary { cursor: pointer; font-weight: 700; margin: 0.3rem 0; }
   letter-spacing: 0.05em;
   transition: transform 0.2s ease;
 }
-.btn-estimate:hover { transform: translateY(-1px); }
 
-/* RESULTATS (Adaptés au mode sombre pour une transition douce) */
+.btn-estimate:hover { 
+  transform: translateY(-1px); 
+}
+
+/* Placeholders et validation du formulaire */
+.form input::placeholder,
+.form select,
+.form input[type="datetime-local"]::-webkit-datetime-edit { 
+  color: rgba(182, 204, 255, 0.75); 
+}
+
+.form select option {
+  background: #0b1733;
+  color: var(--text-main);
+}
+
+.form select:valid,
+.form input[type="datetime-local"]:valid::-webkit-datetime-edit { 
+  color: var(--text-main) !important; 
+}
+
+/* Messages de résultats de calcul */
+.result-compact, .error-compact {
+  padding: 0.8rem;
+  border-radius: 12px;
+  margin-top: 0.8rem;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
 .result-compact {
   background: rgba(40, 167, 69, 0.15);
   border: 1px solid #28a745;
   color: #85e89d;
-  padding: 0.8rem;
-  border-radius: 12px;
-  margin-top: 0.8rem;
-  font-size: 0.85rem;
-  text-align: center;
 }
+
 .error-compact {
   background: rgba(248, 113, 113, 0.15);
   border: 1px solid var(--error);
   color: #fca5a5;
-  padding: 0.8rem;
-  border-radius: 12px;
-  margin-top: 0.8rem;
-  font-size: 0.85rem;
-  text-align: center;
 }
 
-/* FOOTER */
-.footer {
-  padding: 1.6rem 0;
-  text-align: center;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  background: rgba(11, 23, 51, 0.65);
-  border-top: 1px solid var(--border-soft);
-}
-.footer-links a { color: var(--text-muted); text-decoration: none; margin: 0 0.5rem; }
-.footer-links a:hover { color: var(--primary); }
-
-/* FLOATING BUTTONS */
+/* ==========================================================================
+   7. ÉLÉMENTS FIXES (FABs, Splash Screen & Footer)
+   ========================================================================== */
 .fab {
   position: fixed;
   right: 1.2rem;
@@ -297,18 +365,19 @@ details.opt summary { cursor: pointer; font-weight: 700; margin: 0.3rem 0; }
   text-decoration: none;
   box-shadow: 0 8px 24px rgba(0,0,0,0.3);
 }
+
 .fab-call {
   bottom: 1.2rem;
   background: linear-gradient(135deg, #fde047, #facc15);
   color: #0b1733;
 }
+
 .fab-whatsapp {
   bottom: 4.5rem;
   background: linear-gradient(135deg, #22c55e, #16a34a);
   color: #ecfdf5;
 }
 
-/* SPLASH SCREEN */
 #splash-screen {
   position: fixed;
   inset: 0;
@@ -319,30 +388,56 @@ details.opt summary { cursor: pointer; font-weight: 700; margin: 0.3rem 0; }
   justify-content: center;
   z-index: 99999;
 }
+
 #splash-screen img {
   width: 96px;
   border-radius: 18px;
   animation: splash 1.6s ease-in-out infinite;
 }
-@keyframes splash {
-  0% { transform: scale(0.98); opacity: 0.85; }
-  50% { transform: scale(1.04); opacity: 1; }
-  100% { transform: scale(0.98); opacity: 0.85; }
-}
+
 #splash-screen p {
   color: var(--primary);
   font-weight: 600;
   letter-spacing: 0.1em;
 }
 
-/* RESPONSIVE TABLETTE / MOBILE */
+@keyframes splash {
+  0%, 100% { transform: scale(0.98); opacity: 0.85; }
+  50% { transform: scale(1.04); opacity: 1; }
+}
+
+.footer {
+  padding: 1.6rem 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background: rgba(11, 23, 51, 0.65);
+  border-top: 1px solid var(--border-soft);
+}
+
+.footer-links a { 
+  color: var(--text-muted); 
+  text-decoration: none; 
+  margin: 0 0.5rem; 
+}
+
+.footer-links a:hover { 
+  color: var(--primary); 
+}
+
+/* ==========================================================================
+   8. RESPONSIVE (Tablettes et Mobiles)
+   ========================================================================== */
 @media (max-width: 900px) {
-  .grid { grid-template-columns: 1fr; }
-  .contact-grid { grid-template-columns: 1fr; }
+  .grid, .contact-grid { 
+    grid-template-columns: 1fr; 
+  }
 }
 
 @media (max-width: 520px) {
-  .form .row { grid-template-columns: 1fr; }
+  .form .row { 
+    grid-template-columns: 1fr; 
+  }
 
   .hero-actions {
     display: grid;
@@ -364,38 +459,13 @@ details.opt summary { cursor: pointer; font-weight: 700; margin: 0.3rem 0; }
   }
 }
 
-/* Style spécifique bouton WhatsApp tarif du Hero */
-#btn-tarif {
-  background: linear-gradient(135deg, #25D366, #1ebe5d);
-  color: #0b1733; /* Changé en bleu foncé pour une harmonie parfaite et une excellente lisibilité */
-}
-
-/* SELECT STYLE OPTIMISÉ */
-.form select {
-  background: rgba(11,23,51,0.35) !important;
-  color: var(--text-main) !important;
-  border: 1px solid var(--border-soft) !important;
-  /* Flèche native conservée sur mobile pour assurer l'ergonomie si pas d'icône personnalisée */
-}
-.form select option {
-  background: #0b1733;
-  color: var(--text-main);
-}
-
-/* PLACEHOLDERS */
-.form input::placeholder { color: rgba(182, 204, 255, 0.75); }
-.form input[type="datetime-local"]::-webkit-datetime-edit { color: rgba(182, 204, 255, 0.75); }
-.form input[type="datetime-local"]:valid::-webkit-datetime-edit { color: var(--text-main); }
-
-/* SELECT placeholder/valid */
-.form select { color: rgba(182, 204, 255, 0.75); }
-.form select:valid { color: var(--text-main); }
-
-/* =========================
-    💻 PC UNIQUEMENT (Grande largeur)
-   ========================= */
+/* ==========================================================================
+   9. OPTIMISATIONS POUR ÉCRANS PC (Min-width: 1024px)
+   ========================================================================== */
 @media (min-width: 1024px) {
-  .header { padding: 3.2rem 0 2.4rem; }
+  .header { 
+    padding: 3.2rem 0 2.4rem; 
+  }
 
   .branding {
     max-width: 900px;
@@ -403,19 +473,52 @@ details.opt summary { cursor: pointer; font-weight: 700; margin: 0.3rem 0; }
     border-radius: 2.2rem;
   }
 
-  .logo { width: 150px; margin-bottom: 1.4rem; }
-  .site-title { font-size: 2.9rem; }
-  .site-subtitle { font-size: 1.05rem; margin-bottom: 1.7rem; }
+  .logo { 
+    width: 150px; 
+    margin-bottom: 1.4rem; 
+  }
+  
+  .site-title { 
+    font-size: 2.9rem; 
+  }
+  
+  .site-subtitle { 
+    font-size: 1.05rem; 
+    margin-bottom: 1.7rem; 
+  }
 
-  /* Formulaire agrandi */
-  .section .container { max-width: 1200px; }
-  .form { max-width: 760px; padding: 2rem 2rem; border-radius: 1.6rem; }
-  .form label { font-size: 0.95rem; margin-bottom: 0.75rem; }
-  .form input, .form textarea, .form select { padding: 0.95rem 1rem; font-size: 1rem; }
-  .actions-compact { margin-top: 0.9rem; gap: 0.75rem; }
-  .btn-estimate, .actions-compact .btn-primary { padding: 1.05rem 1.2rem; font-size: 1rem; }
+  /* Formulaire élargi pour le confort sur PC */
+  .section .container { 
+    max-width: 1200px; 
+  }
+  
+  .form { 
+    max-width: 760px; 
+    padding: 2rem 2rem; 
+    border-radius: 1.6rem; 
+  }
+  
+  .form label { 
+    font-size: 0.95rem; 
+    margin-bottom: 0.75rem; 
+  }
+  
+  .form input, .form textarea, .form select { 
+    padding: 0.95rem 1rem; 
+    font-size: 1rem; 
+  }
+  
+  .actions-compact { 
+    margin-top: 0.9rem; 
+    gap: 0.75rem; 
+  }
+  
+  .btn-estimate, .actions-compact .btn-primary { 
+    padding: 1.05rem 1.2rem; 
+    font-size: 1rem; 
+  }
 
-  /* Fix 4 boutons du haut alignés à la même taille fixe */
+  /* Alignement fixe à la même taille pour les 4 boutons principaux */
   .hero-actions a.btn-primary,
   #btn-install.btn-primary {
     width: 190px;
