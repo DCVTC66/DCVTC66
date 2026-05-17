@@ -332,6 +332,7 @@
       </div>
     </div>
   </header>
+  
   <section id="reservation" class="section section-alt">
     <div class="container">
       <h2 class="section-title">Réservation</h2>
@@ -693,9 +694,7 @@
 
       const depart = form["Départ"].value.trim();
       const arrivee = form["Arrivee"].value.trim();
-      const trajetType = trajetSelect.value;
-      const dateAllerValue = form["DateHeureAller"].value;
-      const dateRetourValue = dateRetourInput.value;
+      const trajectoryType = trajetSelect.value;
 
       errDiv.style.display = "none"; errDiv.textContent = "";
       resDiv.style.display = "none"; resDiv.textContent = "";
@@ -750,7 +749,7 @@
           let dureeTotale = dureeTexte;
           let tarifFinal = tarif;
 
-          if (trajetType === "aller-retour") {
+          if (trajectoryType === "aller-retour") {
             let tarifRetour = BASE_TARIF;
             if (distanceKm > BASE_KM) {
               let miles = distanceKm - BASE_KM;
@@ -786,11 +785,11 @@
             tarifFinal = Math.round(tarif * 100) / 100;
           }
 
-          derniereEstimation = { distanceKm, distanceTotale, dureeTexte, dureeTotale, tarif: tarifFinal, trajetType };
+          derniereEstimation = { distanceKm, distanceTotale, dureeTexte, dureeTotale, tarif: tarifFinal, trajetType: trajectoryType };
 
           let affichage = "";
 
-          if (trajetType === "aller-retour") {
+          if (trajectoryType === "aller-retour") {
             affichage = "Distance totale (A/R) : <strong>" + distanceTotale + " km</strong><br>" +
                         "Durée totale (A/R) : <strong>" + dureeTotale + "</strong><br>" +
                         "Estimation Aller-Retour : <strong>" + tarifFinal.toFixed(2) + " €</strong><br>" +
@@ -804,9 +803,9 @@
           resDiv.style.display = "block";
           resDiv.innerHTML = affichage;
 
-          /* --- AFFICHAGE DU FLOTTEUR AGRANDI ET CENTRÉ --- */
+          /* --- AFFICHAGE DU FLOTTEUR --- */
           if (flottant && flottantTexte) {
-            if (trajetType === "aller-retour") {
+            if (trajectoryType === "aller-retour") {
               flottantTexte.textContent = "Aller-Retour : " + tarifFinal.toFixed(2) + " € • " + distanceTotale + " km (" + dureeTotale + ")";
             } else {
               flottantTexte.textContent = "Estimation : " + tarifFinal.toFixed(2) + " € • " + distanceKm + " km";
@@ -865,9 +864,10 @@
         deferredPrompt.prompt();
         await deferredPrompt.userChoice;
         deferredPrompt = null;
-        btnInstall.style.display = "none";
       });
     }
   </script>
+
+  <script src="script.js"></script>
 </body>
 </html>
