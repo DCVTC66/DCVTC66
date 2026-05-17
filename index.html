@@ -42,8 +42,8 @@
 
     /* --- CARRÉ BLEU CENTRAL ET FORMULAIRE AGRANDIS (PC) --- */
     .branding {
-      padding: 3rem 2.5rem !important; /* Plus d'espace interne */
-      max-width: 960px !important; /* Plus large sur PC */
+      padding: 3rem 2.5rem !important;
+      max-width: 960px !important;
       width: 100%;
       margin: 0.5rem auto 0 auto !important;
       border-radius: 24px;
@@ -51,7 +51,7 @@
     }
 
     .form-compact { 
-      max-width: 960px !important; /* Aligné sur la largeur du carré bleu */
+      max-width: 960px !important;
       width: 100%; 
       margin: 0 auto; 
       box-sizing: border-box;
@@ -142,18 +142,35 @@
       font-size: 0.85rem;
     }
 
-    /* Flotteur d'estimation tarifaire */
+    /* --- TARIF FLOTTANT AGRANDI ET CENTRÉ (STYLE UNIQUEMENT) --- */
     #tarif-flottant {
-      position: fixed; top: 24px; right: 24px; z-index: 9999; display: none; align-items: center; gap: 0.75rem;
-      padding: 0.9rem 1.3rem; border-radius: 999px; background: linear-gradient(135deg, #16a34a, #22c55e);
-      color: #022c22; box-shadow: 0 16px 40px rgba(22, 163, 74, 0.7); font-size: 0.95rem; font-weight: 600; max-width: 90vw;
-      border: 1px solid rgba(6, 95, 70, 0.75); animation: pulseTarif 1.6s ease-in-out infinite;
+      position: fixed; 
+      top: 24px; 
+      left: 50%; 
+      transform: translateX(-50%) scale(1);
+      z-index: 9999; 
+      display: none !important; 
+      align-items: center; 
+      justify-content: center;
+      gap: 1rem;
+      padding: 1.2rem 2.5rem; 
+      border-radius: 999px; 
+      background: linear-gradient(135deg, #16a34a, #22c55e);
+      color: #022c22; 
+      box-shadow: 0 20px 50px rgba(22, 163, 74, 0.8); 
+      font-size: 1.3rem; 
+      font-weight: 700; 
+      width: max-content;
+      max-width: 90vw;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      animation: pulseTarifCentrer 1.8s ease-in-out infinite;
     }
-    #tarif-flottant .icon { font-size: 1.3rem; }
-    @keyframes pulseTarif {
-      0% { transform: scale(1); box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55); }
-      50% { transform: scale(1.06); box-shadow: 0 18px 45px rgba(22, 163, 74, 0.85); }
-      100% { transform: scale(1); box-shadow: 0 12px 30px rgba(22, 163, 74, 0.55); }
+    #tarif-flottant .icon { font-size: 1.7rem; }
+    
+    @keyframes pulseTarifCentrer {
+      0% { transform: translateX(-50%) scale(1); box-shadow: 0 15px 35px rgba(22, 163, 74, 0.6); }
+      50% { transform: translateX(-50%) scale(1.04); box-shadow: 0 25px 55px rgba(22, 163, 74, 0.9); }
+      100% { transform: translateX(-50%) scale(1); box-shadow: 0 15px 35px rgba(22, 163, 74, 0.6); }
     }
 
     .section-intro { margin-bottom: 0.75rem; }
@@ -242,7 +259,7 @@
 
     @media (max-width: 520px){
       .form-compact .row{ grid-template-columns: 1fr; }
-      #tarif-flottant { left: 16px; right: 16px; top: 70px; justify-content: center; }
+      #tarif-flottant { left: 50%; top: 20px; width: 92vw; padding: 1rem 1rem; font-size: 1.05rem; }
       .actions-compact{ grid-template-columns: 1fr; gap: .55rem; }
       .actions-compact .btn-primary,
       .actions-compact .btn-estimate,
@@ -682,7 +699,7 @@
 
       errDiv.style.display = "none"; errDiv.textContent = "";
       resDiv.style.display = "none"; resDiv.textContent = "";
-      if (flottant) flottant.style.display = "none";
+      if (flottant) flottant.style.setProperty('display', 'none', 'important');
 
       if (!depart || !arrivee) {
         errDiv.textContent = "Veuillez renseigner le départ et l'arrivée.";
@@ -795,13 +812,14 @@
           resDiv.style.display = "block";
           resDiv.innerHTML = affichage;
 
+          /* --- AFFICHAGE DU FLOTTEUR AGRANDI ET CENTRÉ --- */
           if (flottant && flottantTexte) {
             if (trajetType === "aller-retour") {
               flottantTexte.textContent = "Aller-Retour : " + tarifFinal.toFixed(2) + " € • " + distanceTotale + " km (" + dureeTotale + ")";
             } else {
               flottantTexte.textContent = "Estimation : " + tarifFinal.toFixed(2) + " € • " + distanceKm + " km";
             }
-            flottant.style.display = "flex";
+            flottant.style.setProperty('display', 'flex', 'important');
           }
 
           if (directionsService && directionsRenderer) {
@@ -818,7 +836,6 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCA5J7_7fNdWgVsGRLWRfQZaO6qgCEqq_Y&callback=initMap&libraries=places" async defer></script>
 
   <script>
-    /* --- CORRECTIF : Masque l'écran de chargement dès que la page HTML est lue --- */
     window.addEventListener("DOMContentLoaded", () => {
       const splash = document.getElementById("splash-screen");
       if (splash) {
