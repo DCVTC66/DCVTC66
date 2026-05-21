@@ -18,7 +18,11 @@ self.addEventListener("install", (event) => {
         return await cache.addAll(FILES_TO_CACHE);
       } catch (e) {
         console.warn("Échec de la mise en cache complète, tentative de secours sans offline.html...", e);
-        return await cache.addAll(FILES_TO_CACHE.filter((f) => f !== "/offline.html"));
+        try {
+          return await cache.addAll(FILES_TO_CACHE.filter((f) => f !== "/offline.html"));
+        } catch (err) {
+          console.error("Échec critique de la mise en cache initiale :", err);
+        }
       }
     })
   );
@@ -55,14 +59,17 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(
       fetch(req)
         .then((res) => {
-          const copy = res.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put("/index.html", copy));
+          if (res.status === 200) {
+            const copy = res.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put("/index.html", copy));
+          }
           return res;
         })
         .catch(async () => {
           // Si pas de réseau, on cherche l'index en cache, sinon la page hors-ligne dédiée
           const cached = await caches.match("/index.html");
-          return cached || caches.match("/offline.html") || Response.error();
+          const offline = await caches.match("/offline.html");
+          return cached || offline || Response.error();
         })
     );
     return;
@@ -84,7 +91,7 @@ self.addEventListener("fetch", (event) => {
             return res;
           })
           .catch(() => {
-            // Si une image ou un asset est manquant hors-ligne, on renvoie une erreur vide propre
+            // Si une image ou un asset est manquant hors-ligne, on renvoie une erreur propre
             return new Response("Ressource indisponible hors-ligne", { status: 503, statusText: "Service Unavailable" });
           });
       })
