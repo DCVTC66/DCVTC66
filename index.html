@@ -736,17 +736,12 @@
           let tarifFinal = tarif;
 
           if (trajectoryType === "aller-retour") {
-            // --- LOGIQUE MODIFIÉE POUR LE RETOUR ---
-            let tarifRetour = 0;
+            let tarifRetour = BASE_TARIF;
             if (distanceKm > BASE_KM) {
-              // Si la course fait + de 7km, le retour compte TOUTE la distance (17km) à 1.70€ sans forfait
-              tarifRetour = distanceKm * SUPP_PAR_KM;
-            } else {
-              // Si la course fait 7km ou moins, on applique le forfait de base normal (20€)
-              tarifRetour = BASE_TARIF;
+              let miles = distanceKm - BASE_KM;
+              tarifRetour += miles * SUPP_PAR_KM;
             }
             
-            // L'aller complet + le retour avec réduction de 10%
             tarifFinal = tarif + (tarifRetour * 0.9);
             tarifFinal = Math.round(tarifFinal * 100) / 100;
             distanceTotale = Math.round((distanceKm * 2) * 10) / 10;
