@@ -98,10 +98,10 @@
       background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 22px !important; /* Réduit pour plus de compacité sur PC */
+      padding: 22px !important; 
       border-radius: 20px;
       margin: 1.5rem auto 0 auto;
-      max-width: 650px !important; /* Un peu moins large pour un meilleur équilibre */
+      max-width: 650px !important; 
       width: 100%;
       box-sizing: border-box;
     }
@@ -124,7 +124,7 @@
     }
     .btn-fast-calc {
       width: 100%;
-      padding: 11px 22px !important; /* Moins haut sur PC */
+      padding: 11px 22px !important; 
       border-radius: 14px;
       border: none;
       background: #16a34a;
@@ -252,17 +252,14 @@
       .hero-actions { gap: 0.6rem; max-width: 100%; }
       .hero-actions a.btn-primary { font-size: 0.75rem; padding: 0.75rem 0.3rem; }
       
-      /* ==========================================
-          OPTIMISATION MOBILE STAGIAIRE / ENCOMBREMENT
-          ========================================== */
       .hero-fast-estimate { 
-        padding: 12px !important; /* Carré bleu très compact */
+        padding: 12px !important; 
         margin-top: 1.2rem; 
       }
       .hero-fast-fields { grid-template-columns: 1fr; gap: 0.6rem; margin-bottom: 0.6rem; }
       .hero-fast-fields input { padding: 0.85rem 1rem !important; font-size: 1rem; } 
       .btn-fast-calc { 
-        padding: 9px 15px !important; /* Bouton vert beaucoup plus fin */
+        padding: 9px 15px !important; 
         font-size: 1rem; 
         height: auto !important;
       }
@@ -501,9 +498,9 @@
       const hourMatch = text.match(/(\d+)\s*(h|heure)/i);
       const minMatch = text.match(/(\d+)\s*(m|min|minute)/i);
       
-      if (hourMatch) totalMinutes += parseInt(hourMatch[1], 10) * 60;
+      if (hourMatch) totalMinutes += parseInt(hourMatch, 10) * 60;
       if (minMatch) {
-        totalMinutes += parseInt(minMatch[1], 10);
+        totalMinutes += parseInt(minMatch, 10);
       } else if (!hourMatch) {
         const fallback = parseInt(text, 10);
         if (!isNaN(fallback)) totalMinutes = fallback;
@@ -698,92 +695,128 @@
 
       document.getElementById('reservation').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
+      // 1. CALCUL DE LA DISTANCE D'APPROCHE (Depuis ton adresse pivot à Cabestany)
+      const adresseGarage = "Cabestany, France";
+
       distanceService.getDistanceMatrix(
         {
-          origins: [depart],
-          destinations: [arrivee],
+          origins: [adresseGarage],
+          destinations: [depart],
           travelMode: google.maps.TravelMode.DRIVING,
           unitSystem: google.maps.UnitSystem.METRIC,
         },
-        (response, status) => {
-          if (status !== "OK") {
-            resDiv.style.display = "none";
-            errDiv.textContent = "Erreur Google Maps : " + status;
-            errDiv.style.display = "block";
-            return;
-          }
+        (approcheResponse, approcheStatus) => {
+          let fraisApproche = 0;
+          
+          if (approcheStatus === "OK" && approcheResponse.rows.elements.status === "OK") {
+            const distanceApprocheMetres = approcheResponse.rows.elements.distance.value;
+            const distanceApprocheKm = distanceApprocheMetres / 1000;
 
-          const element = response.rows[0].elements[0];
-          if (element.status !== "OK") {
-            resDiv.style.display = "none";
-            errDiv.textContent = "Adresse introuvable. Vérifiez l'orthographe.";
-            errDiv.style.display = "block";
-            return;
-          }
+            // SÉCURITÉ : S'IL Y A LE MOT "PERPIGNAN" DANS LE DÉPART -> ZÉRO FRAIS D'APPROCHE
+            const departMinuscule = depart.toLowerCase();
+            const estPerpignan = departMinuscule.includes("perpignan");
 
-          const distanceMetres = element.distance.value;
-          let distanceKm = Math.round((distanceMetres / 1000) * 10) / 10;
-          const dureeTexte = element.duration.text;
-
-          let tarif = BASE_TARIF;
-          if (distanceKm > BASE_KM) {
-            let miles = distanceKm - BASE_KM;
-            tarif += miles * SUPP_PAR_KM;
-          }
-
-          let distanceTotale = distanceKm;
-          let dureeTotale = dureeTexte;
-          let tarifFinal = tarif;
-
-          if (trajectoryType === "aller-retour") {
-            let tarifRetour = BASE_TARIF;
-            if (distanceKm > BASE_KM) {
-              let miles = distanceKm - BASE_KM;
-              tarifRetour += miles * SUPP_PAR_KM;
+            // SI LE DÉPART EST À PLUS DE 12 KM ET CE N'EST PAS PERPIGNAN -> +20€
+            if (distanceApprocheKm > 12 && !estPerpignan) {
+              fraisApproche = 20; 
             }
-            
-            tarifFinal = tarif + (tarifRetour * 0.9);
-            tarifFinal = Math.round(tarifFinal * 100) / 100;
-            distanceTotale = Math.round((distanceKm * 2) * 10) / 10;
-            
-            let minutesUnitaire = parseGoogleDuration(dureeTexte);
-            dureeTotale = formatMinutesToText(minutesUnitaire * 2);
-          } else {
-            tarifFinal = Math.round(tarif * 100) / 100;
           }
 
-          derniereEstimation = { distanceKm, distanceTotale, dureeTexte, dureeTotale, tarif: tarifFinal, trajetType: trajectoryType };
+          // 2. CALCUL DE LA COURSE DU CLIENT
+          distanceService.getDistanceMatrix(
+            {
+              origins: [depart],
+              destinations: [arrivee],
+              travelMode: google.maps.TravelMode.DRIVING,
+              unitSystem: google.maps.UnitSystem.METRIC,
+            },
+            (response, status) => {
+              if (status !== "OK") {
+                resDiv.style.display = "none";
+                errDiv.textContent = "Erreur Google Maps : " + status;
+                errDiv.style.display = "block";
+                return;
+              }
 
-          let affichage = "";
-          if (trajectoryType === "aller-retour") {
-            affichage = "Distance totale (A/R) : <strong>" + distanceTotale + " km</strong><br>" +
-                        "Durée totale (A/R) : <strong>" + dureeTotale + "</strong><br>" +
-                        "Estimation Aller-Retour : <strong>" + tarifFinal.toFixed(2) + " €</strong><br>" +
-                        "<small>(réduction de 10% sur le trajet retour)</small>";
-          } else {
-            affichage = "Distance : <strong>" + distanceKm + " km</strong><br>" +
-                        "Durée : <strong>" + dureeTexte + "</strong><br>" +
-                        "Estimation Aller simple : <strong>" + tarifFinal.toFixed(2) + " €</strong>";
-          }
+              const element = response.rows.elements;
+              if (element.status !== "OK") {
+                resDiv.style.display = "none";
+                errDiv.textContent = "Adresse introuvable. Vérifiez l'orthographe.";
+                errDiv.style.display = "block";
+                return;
+              }
 
-          resDiv.style.display = "block";
-          resDiv.innerHTML = affichage;
+              const distanceMetres = element.distance.value;
+              let distanceKm = Math.round((distanceMetres / 1000) * 10) / 10;
+              const dureeTexte = element.duration.text;
 
-          if (flottant && flottantTexte) {
-            if (trajectoryType === "aller-retour") {
-              flottantTexte.textContent = "Aller-Retour : " + tarifFinal.toFixed(2) + " € • " + distanceTotale + " km (" + dureeTotale + ")";
-            } else {
-              flottantTexte.textContent = "Estimation : " + tarifFinal.toFixed(2) + " € • " + distanceKm + " km";
+              let tarif = BASE_TARIF;
+              if (distanceKm > BASE_KM) {
+                let miles = distanceKm - BASE_KM;
+                tarif += miles * SUPP_PAR_KM;
+              }
+
+              // Injection des frais d'approche (0€ si Perpignan ou proche, 20€ si loin)
+              tarif += fraisApproche;
+
+              let distanceTotale = distanceKm;
+              let dureeTotale = dureeTexte;
+              let tarifFinal = tarif;
+
+              if (trajectoryType === "aller-retour") {
+                let tarifRetour = BASE_TARIF;
+                if (distanceKm > BASE_KM) {
+                  let miles = distanceKm - BASE_KM;
+                  tarifRetour += miles * SUPP_PAR_KM;
+                }
+                
+                tarifFinal = tarif + (tarifRetour * 0.9);
+                tarifFinal = Math.round(tarifFinal * 100) / 100;
+                distanceTotale = Math.round((distanceKm * 2) * 10) / 10;
+                
+                let minutesUnitaire = parseGoogleDuration(dureeTexte);
+                dureeTotale = formatMinutesToText(minutesUnitaire * 2);
+              } else {
+                tarifFinal = Math.round(tarif * 100) / 100;
+              }
+
+              derniereEstimation = { distanceKm, distanceTotale, dureeTexte, dureeTotale, tarif: tarifFinal, trajetType: trajectoryType };
+
+              let affichage = "";
+              if (trajectoryType === "aller-retour") {
+                affichage = "Distance totale (A/R) : <strong>" + distanceTotale + " km</strong><br>" +
+                            "Durée totale (A/R) : <strong>" + dureeTotale + "</strong><br>" +
+                            "Estimation Aller-Retour : <strong>" + tarifFinal.toFixed(2) + " €</strong><br>" +
+                            "<small>(réduction de 10% sur le trajet retour - frais d'approche inclus si applicables)</small>";
+              } else {
+                affichage = "Distance : <strong>" + distanceKm + " km</strong><br>" +
+                            "Durée : <strong>" + dureeTexte + "</strong><br>" +
+                            "Estimation Aller simple : <strong>" + tarifFinal.toFixed(2) + " €</strong>";
+                if (fraisApproche > 0) {
+                  affichage += "<br><small>(frais d'approche inclus pour zone éloignée)</small>";
+                }
+              }
+
+              resDiv.style.display = "block";
+              resDiv.innerHTML = affichage;
+
+              if (flottant && flottantTexte) {
+                if (trajectoryType === "aller-retour") {
+                  flottantTexte.textContent = "Aller-Retour : " + tarifFinal.toFixed(2) + " € • " + distanceTotale + " km (" + dureeTotale + ")";
+                } else {
+                  flottantTexte.textContent = "Estimation : " + tarifFinal.toFixed(2) + " € • " + distanceKm + " km";
+                }
+                flottant.style.setProperty('display', 'flex', 'important');
+              }
+
+              if (directionsService && directionsRenderer) {
+                directionsService.route(
+                  { origin: depart, destination: arrivee, travelMode: google.maps.TravelMode.DRIVING },
+                  (result, statusDir) => { if (statusDir === "OK") directionsRenderer.setDirections(result); }
+                );
+              }
             }
-            flottant.style.setProperty('display', 'flex', 'important');
-          }
-
-          if (directionsService && directionsRenderer) {
-            directionsService.route(
-              { origin: depart, destination: arrivee, travelMode: google.maps.TravelMode.DRIVING },
-              (result, statusDir) => { if (statusDir === "OK") directionsRenderer.setDirections(result); }
-            );
-          }
+          );
         }
       );
     }
