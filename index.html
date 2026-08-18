@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DCVTC66 | VTC Perpignan - Tarifs Transparents - Alternative au Taxi</title>
-  <meta name="description" content="DCVTC66, votre chauffeur privé VTC et alternative idéale au taxi à Perpignan et dans toutes les Pyrénées-Orientales (66). Profitez d'un tarif transparent et connu à l'avance." />
+  <title>DCVTC66 | Chauffeur Privé VTC Perpignan & Pyrénées-Orientales</title>
+  <meta name="description" content="DCVTC66, votre chauffeur privé VTC à Perpignan et dans toutes les Pyrénées-Orientales (66). Transferts gares, aéroports et trajets toutes distances au meilleur tarif." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=500;700&family=Poppins:wght=300;400;500;600&display=swap" rel="stylesheet">
@@ -303,7 +303,7 @@
       <div class="branding">
         <img src="LOGO DCVTC66.png" alt="Logo DCVTC66" class="logo">
         <h1 class="site-title">DCVTC66</h1>
-        <p class="site-subtitle">CHAUFFEUR VTC PRIVÉ À PERPIGNAN • TARIFS TRANSPARENTS<br>ALTERNATIVE AU TAXI DANS TOUTES LES PYRÉNÉES-ORIENTALES (66)</p>
+        <p class="site-subtitle">Chauffeur VTC privé à Perpignan et dans toutes les Pyrénées-Orientales (66)</p>
 
         <div class="hero-actions">
           <a href="tel:0663463716" class="btn-primary">📞 APPELER</a>
@@ -375,7 +375,7 @@
 
         <label>Nombre de passagers
           <select name="Passagers" required>
-            <option value="" disabled selected>Sélectionner</option>
+            <option value="" selected>Sélectionner</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -385,7 +385,7 @@
 
         <label>Mode de paiement
           <select name="Paiement" required>
-            <option value="" disabled selected>Sélectionner</option>
+            <option value="" selected>Sélectionner</option>
             <option value="Lien sécurisé (CB)">Lien sécurisé (CB)</option>
             <option value="CB à bord">CB à bord</option>
             <option value="Espèces à bord">Espèces à bord</option>
@@ -487,30 +487,6 @@
       return value.replace("T", " à "); 
     }
 
-    function parseGoogleDuration(text) {
-      let totalMinutes = 0;
-      const hourMatch = text.match(/(\d+)\s*(h|heure)/i);
-      const minMatch = text.match(/(\d+)\s*(m|min|minute)/i);
-      
-      if (hourMatch) totalMinutes += parseInt(hourMatch[1], 10) * 60;
-      if (minMatch) {
-        totalMinutes += parseInt(minMatch[1], 10);
-      } else if (!hourMatch) {
-        const fallback = parseInt(text, 10);
-        if (!isNaN(fallback)) totalMinutes = fallback;
-      }
-      return totalMinutes;
-    }
-
-    function formatMinutesToText(totalMinutes) {
-      if (totalMinutes >= 60) {
-        const h = Math.floor(totalMinutes / 60);
-        const m = totalMinutes % 60;
-        return m > 0 ? `${h} heure${h > 1 ? 's' : ''} et ${m} minute${m > 1 ? 's' : ''}` : `${h} heure${h > 1 ? 's' : ''}`;
-      }
-      return `${totalMinutes} minute${totalMinutes > 1 ? 's' : ''}`;
-    }
-
     let derniereEstimation = null;
 
     const form = document.getElementById('reservation-form');
@@ -532,7 +508,9 @@
     trajetSelect.addEventListener('change', toggleDateRetour);
     toggleDateRetour();
 
-    function construireTexteMessage() {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
       const nom = form.Nom.value;
       const tel = form["Téléphone"].value;
       const depart = form["Départ"].value;
@@ -545,39 +523,81 @@
       const trajetType = trajetSelect.value;
       const trajetTexte = trajetType === "aller-retour" ? "Aller-Retour" : "Aller simple";
 
-      let texte = "Nouvelle demande – DCVTC66 :\n\n";
-      texte += "Nom : " + nom + "\n";
-      texte += "Téléphone : " + tel + "\n";
-      texte += "Départ : " + depart + "\n";
-      texte += "Arrivée : " + arrivee + "\n";
-      texte += "Date & heure aller : " + dateAller + "\n";
+      let sms = "Nouvelle demande – DCVTC66 :\n\n";
+      sms += "Nom : " + nom + "\n";
+      sms += "Téléphone : " + tel + "\n";
+      sms += "Départ : " + depart + "\n";
+      sms += "Arrivée : " + arrivee + "\n";
+      sms += "Date & heure aller : " + dateAller + "\n";
       if (trajetType === "aller-retour" && dateRetour) {
-        texte += "Date & heure retour : " + dateRetour + "\n";
+        sms += "Date & heure retour : " + dateRetour + "\n";
       }
-      texte += "Passagers : " + passagers + "\n";
-      texte += "Paiement : " + paiement + "\n";
-      texte += "Trajet : " + trajetTexte + "\n";
-      if (messageClient.trim() !== "") texte += "Infos : " + messageClient + "\n";
+      sms += "Passagers : " + passagers + "\n";
+      sms += "Paiement : " + paiement + "\n";
+      sms += "Trajet : " + trajetTexte + "\n";
+      if (messageClient.trim() !== "") sms += "Infos : " + messageClient + "\n";
 
       if (derniereEstimation) {
-        texte += "\n--- Estimation ---\n";
-        texte += "Distance : " + (derniereEstimation.distanceTotale || derniereEstimation.distanceKm) + " km\n";
-        texte += "Durée : " + (derniereEstimation.dureeTotale || derniereEstimation.dureeTexte) + "\n";
-        texte += "Tarif " + (derniereEstimation.trajetType === "aller-retour" ? "Aller-Retour" : "") + " : " + derniereEstimation.tarif.toFixed(2) + " €\n";
+        sms += "\n--- Estimation ---\n";
+        sms += "Distance : " + (derniereEstimation.distanceTotale || derniereEstimation.distanceKm) + " km\n";
+        sms += "Durée : " + (derniereEstimation.dureeTotale || derniereEstimation.dureeTexte) + "\n";
+        if (derniereEstimation.trajetType === "aller-retour") {
+          sms += "Tarif Aller-Retour : " + derniereEstimation.tarif.toFixed(2) + " €\n";
+        } else {
+          sms += "Tarif : " + derniereEstimation.tarif.toFixed(2) + " €\n";
+        }
       }
-      return texte;
-    }
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const smsBody = construireTexteMessage();
       const numero = "+33663463716";
-      window.location.href = "sms:" + numero + "?&body=" + encodeURIComponent(smsBody);
+      window.location.href = "sms:" + numero + "?&body=" + encodeURIComponent(sms);
     });
+  </script>
+
+  <script>
+    function buildWhatsAppMessage() {
+      const nom = form.Nom.value;
+      const tel = form["Téléphone"].value;
+      const depart = form["Départ"].value;
+      const arrivee = form["Arrivee"].value;
+      const dateAller = formatDateHeureFR(form["DateHeureAller"].value);
+      const dateRetour = trajetSelect.value === 'aller-retour' ? formatDateHeureFR(dateRetourInput.value) : '';
+      const passagers = form["Passagers"].value;
+      const paiement = form["Paiement"].value;
+      const messageClient = form["Message"].value;
+      const trajetType = trajetSelect.value;
+      const trajetTexte = trajetType === "aller-retour" ? "Aller-Retour" : "Aller simple";
+
+      let msg = "Nouvelle demande – DCVTC66 :\n\n";
+      msg += "Nom : " + nom + "\n";
+      msg += "Téléphone : " + tel + "\n";
+      msg += "Départ : " + depart + "\n";
+      msg += "Arrivée : " + arrivee + "\n";
+      msg += "Date & heure aller : " + dateAller + "\n";
+      if (trajetType === "aller-retour" && dateRetour) {
+        msg += "Date & heure retour : " + dateRetour + "\n";
+      }
+      msg += "Passagers : " + passagers + "\n";
+      msg += "Paiement : " + paiement + "\n";
+      msg += "Trajet : " + trajetTexte + "\n";
+      if (messageClient.trim() !== "") msg += "Infos : " + messageClient + "\n";
+
+      if (derniereEstimation) {
+        msg += "\n--- Estimation ---\n";
+        msg += "Distance : " + (derniereEstimation.distanceTotale || derniereEstimation.distanceKm) + " km\n";
+        msg += "Durée : " + (derniereEstimation.dureeTotale || derniereEstimation.dureeTexte) + "\n";
+        if (derniereEstimation.trajetType === "aller-retour") {
+          msg += "Tarif Aller-Retour : " + derniereEstimation.tarif.toFixed(2) + " €\n";
+        } else {
+          msg += "Tarif : " + derniereEstimation.tarif.toFixed(2) + " €\n";
+        }
+      }
+
+      return msg;
+    }
 
     function openWhatsAppPrefilled() {
       const numeroWA = "33663463716";
-      const url = "https://wa.me/" + numeroWA + "?text=" + encodeURIComponent(construireTexteMessage());
+      const url = "https://wa.me/" + numeroWA + "?text=" + encodeURIComponent(buildWhatsAppMessage());
       window.open(url, "_blank");
     }
 
@@ -643,7 +663,7 @@
       const btnFastCalc = document.getElementById("btn-fast-calc");
       if (btnFastCalc) {
         btnFastCalc.addEventListener("click", () => {
-          if (fastDepart && fastArrivee && fastDepart.value.trim() && fastArrivee.value.trim()) {
+          if (fastDepart && fastArrivee) {
             form["Départ"].value = fastDepart.value;
             form["Arrivee"].value = fastArrivee.value;
             
@@ -652,16 +672,17 @@
               maintenant.setMinutes(maintenant.getMinutes() - maintenant.getTimezoneOffset());
               form["DateHeureAller"].value = maintenant.toISOString().slice(0, 16);
             }
+            
             calculerTarif();
-          } else {
-            const errDiv = document.getElementById("erreur-tarif");
-            if (errDiv) {
-              errDiv.textContent = "Veuillez renseigner le départ et l'arrivée dans les champs rapides.";
-              errDiv.style.display = "block";
-            }
           }
         });
       }
+    }
+
+    function getHeureFromDateTime(dateTimeValue) {
+      if (!dateTimeValue) return 12;
+      const dateObj = new Date(dateTimeValue);
+      return dateObj.getHours();
     }
 
     function calculerTarif() {
@@ -717,6 +738,7 @@
           const dureeTexte = element.duration.text;
 
           let tarif = BASE_TARIF;
+
           if (distanceKm > BASE_KM) {
             let miles = distanceKm - BASE_KM;
             tarif += miles * SUPP_PAR_KM;
@@ -737,8 +759,27 @@
             tarifFinal = Math.round(tarifFinal * 100) / 100;
             distanceTotale = Math.round((distanceKm * 2) * 10) / 10;
             
-            let minutesUnitaire = parseGoogleDuration(dureeTexte);
-            dureeTotale = formatMinutesToText(minutesUnitaire * 2);
+            let totalMinutes = 0;
+            if (dureeTexte.includes('heure')) {
+              let heures = parseInt(dureeTexte);
+              totalMinutes = heures * 60;
+            } else {
+              let minutes = parseInt(dureeTexte);
+              totalMinutes = minutes;
+            }
+            
+            let totalMinutesDouble = totalMinutes * 2;
+            
+            if (totalMinutesDouble >= 60) {
+              let heuresTotal = Math.floor(totalMinutesDouble / 60);
+              let minutesTotal = totalMinutesDouble % 60;
+              dureeTotale = heuresTotal + " heure" + (heuresTotal > 1 ? "s" : "");
+              if (minutesTotal > 0) {
+                dureeTotale += " et " + minutesTotal + " minute" + (minutesTotal > 1 ? "s" : "");
+              }
+            } else {
+              dureeTotale = totalMinutesDouble + " minute" + (totalMinutesDouble > 1 ? "s" : "");
+            }
           } else {
             tarifFinal = Math.round(tarif * 100) / 100;
           }
@@ -746,6 +787,7 @@
           derniereEstimation = { distanceKm, distanceTotale, dureeTexte, dureeTotale, tarif: tarifFinal, trajetType: trajectoryType };
 
           let affichage = "";
+
           if (trajectoryType === "aller-retour") {
             affichage = "Distance totale (A/R) : <strong>" + distanceTotale + " km</strong><br>" +
                         "Durée totale (A/R) : <strong>" + dureeTotale + "</strong><br>" +
@@ -760,6 +802,7 @@
           resDiv.style.display = "block";
           resDiv.innerHTML = affichage;
 
+          /* --- AFFICHAGE DU FLOTTEUR --- */
           if (flottant && flottantTexte) {
             if (trajectoryType === "aller-retour") {
               flottantTexte.textContent = "Aller-Retour : " + tarifFinal.toFixed(2) + " € • " + distanceTotale + " km (" + dureeTotale + ")";
@@ -785,7 +828,9 @@
   <script>
     window.addEventListener("DOMContentLoaded", () => {
       const splash = document.getElementById("splash-screen");
-      if (splash) splash.style.display = "none";
+      if (splash) {
+        splash.style.display = "none";
+      }
     });
 
     if ("serviceWorker" in navigator) {
@@ -795,7 +840,10 @@
     let deferredPrompt = null;
     const btnInstall = document.getElementById("btn-install");
 
-    const isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+    const isStandalone =
+      window.matchMedia("(display-mode: standalone)").matches ||
+      window.navigator.standalone === true;
+
     if (isStandalone && btnInstall) btnInstall.style.display = "none";
 
     window.addEventListener("beforeinstallprompt", (e) => {
