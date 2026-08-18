@@ -39,21 +39,29 @@
       margin-bottom: 1rem !important;
     }
 
-    /* --- CARRÉ BLEU CENTRAL ET FORMULAIRE ÉLARGIS SUR PC (Alignés sur .grid des services) --- */
+    /* --- CARRÉ BLEU CENTRAL ET FORMULAIRE ÉLARGIS SUR PC (Alignés sur la grille des services) --- */
+    .header-inner {
+      max-width: 1200px !important;
+      width: 100% !important;
+      margin: 0 auto !important;
+      padding: 0 1.5rem !important;
+      box-sizing: border-box !important;
+    }
+
     .branding {
       padding: 3rem 2.5rem !important;
-      max-width: 1200px !important;
-      width: 100%;
+      max-width: 100% !important;
+      width: 100% !important;
       margin: 0.5rem auto 0 auto !important;
       border-radius: 24px;
-      box-sizing: border-box;
+      box-sizing: border-box !important;
     }
 
     .form-compact { 
       max-width: 1200px !important;
-      width: 100%; 
-      margin: 0 auto; 
-      box-sizing: border-box;
+      width: 100% !important; 
+      margin: 0 auto !important; 
+      box-sizing: border-box !important;
     }
 
     /* Logo calé en haut */
@@ -233,15 +241,15 @@
       .header { padding-top: 0.5rem !important; }
       .section, .section-alt { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; padding-left: 0.8rem; padding-right: 0.8rem; box-sizing: border-box; }
       .nav-inner ul { justify-content: center; flex-wrap: wrap; text-align: center; }
-      .header-inner, .branding { text-align: center; }
+      .header-inner, .branding { text-align: center; padding-left: 1rem !important; padding-right: 1rem !important; max-width: 100% !important; }
       
       .branding { 
         padding: 2.2rem 1.2rem !important; 
-        max-width: 96% !important; 
+        max-width: 100% !important; 
         margin: 0.2rem auto 0 auto !important; 
       }
       .form-compact { 
-        max-width: 96% !important; 
+        max-width: 100% !important; 
       }
       
       .site-title { font-size: 1.9rem; }
@@ -782,7 +790,7 @@
       navigator.serviceWorker.register("/sw.js");
     }
 
-    let deferredPrompt = null;
+    let deferredPrompt = `null`;
     const btnInstall = document.getElementById("btn-install");
 
     const isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
