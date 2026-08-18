@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=500;700&family=Poppins:wght=300;400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=99" />
+  <link rel="stylesheet" href="styles.css?v=100" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#2563eb">
@@ -42,7 +42,7 @@
     /* --- CARRÉ BLEU CENTRAL ET FORMULAIRE AGRANDIS (PC) --- */
     .branding {
       padding: 3rem 2.5rem !important;
-      max-width: 1100px !important;
+      max-width: 1150px !important;
       width: 100%;
       margin: 0.5rem auto 0 auto !important;
       border-radius: 24px;
@@ -50,7 +50,7 @@
     }
 
     .form-compact { 
-      max-width: 1100px !important;
+      max-width: 1150px !important;
       width: 100%; 
       margin: 0 auto; 
       box-sizing: border-box;
@@ -67,18 +67,19 @@
     .site-title { margin-bottom: 0.2rem; font-size: 2.4rem; }
     .site-subtitle { margin-top: 0; font-size: 1.05rem; max-width: 85%; margin-left: auto; margin-right: auto; opacity: 0.9; }
 
-    /* Boutons jaunes */
+    /* Boutons d'action alignés en haut */
     .hero-actions { 
       display: grid; 
-      grid-template-columns: repeat(3, 1fr); 
-      gap: 1.5rem; 
+      grid-template-columns: repeat(4, 1fr); 
+      gap: 1rem; 
       margin-top: 1.8rem; 
       justify-content: center; 
-      max-width: 600px;
+      max-width: 900px;
       margin-left: auto;
       margin-right: auto;
     }
-    .hero-actions a.btn-primary { 
+    .hero-actions a.btn-primary,
+    .hero-actions button.btn-primary { 
       display: inline-flex; 
       align-items: center; 
       justify-content: center; 
@@ -89,11 +90,11 @@
       white-space: nowrap; 
       font-weight: 600;
       letter-spacing: 0.03em;
+      border: none;
+      cursor: pointer;
     }
 
-    /* ==========================================
-       ZONE D'ESTIMATION MODIFIÉE (PC PAR DÉFAUT)
-       ========================================== */
+    /* ZONE D'ESTIMATION MODIFIÉE (PC PAR DÉFAUT) */
     .hero-fast-estimate {
       background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(8px);
@@ -101,7 +102,7 @@
       padding: 22px !important;
       border-radius: 20px;
       margin: 1.5rem auto 0 auto;
-      max-width: 750px !important;
+      max-width: 950px !important;
       width: 100%;
       box-sizing: border-box;
     }
@@ -136,14 +137,7 @@
     }
     .btn-fast-calc:hover { background: #15803d; }
 
-    #btn-install.btn-primary {
-      margin-top: 1.2rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-    }
-
-    /* --- TARIF FLOTTANT AGRANDI ET CENTRÉ --- */
+    /* TARIF FLOTTANT AGRANDI ET CENTRÉ */
     #tarif-flottant {
       position: fixed; 
       top: 24px; 
@@ -231,6 +225,7 @@
     /* Responsive Mobile & Tablette */
     @media (max-width: 930px) {
       .branding, .form-compact { max-width: 96% !important; } 
+      .hero-actions { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
     }
 
     @media (max-width: 768px) {
@@ -249,8 +244,9 @@
       }
       
       .site-title { font-size: 1.9rem; }
-      .hero-actions { gap: 0.6rem; max-width: 100%; }
-      .hero-actions a.btn-primary { font-size: 0.75rem; padding: 0.75rem 0.3rem; }
+      .hero-actions { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; max-width: 100%; }
+      .hero-actions a.btn-primary,
+      .hero-actions button.btn-primary { font-size: 0.75rem; padding: 0.75rem 0.3rem; }
       
       .hero-fast-estimate { 
         padding: 12px !important;
@@ -277,8 +273,6 @@
         font-size: 0.95rem; 
       }
       .map-wrapper-inner{ height: 280px; }
-      #btn-install.btn-primary{ width: 100%; max-width: 320px; margin-left: auto !important; margin-right: auto !important; }
-      
       .container { padding: 0 0.5rem; }
       .form-compact { padding-left: 0.8rem; padding-right: 0.8rem; }
       .form-compact input, .form-compact select, .form-compact textarea { padding: 0.9rem 1rem; font-size: 1rem; }
@@ -319,6 +313,7 @@
           <a href="tel:0663463716" class="btn-primary">📞 APPELER</a>
           <a href="https://wa.me/33663463716" target="_blank" class="btn-primary">💬 WHATSAPP</a>
           <a href="#reservation" class="btn-primary">📝 RÉSERVER</a>
+          <button id="btn-install" class="btn-primary" style="display:none;">📲 INSTALLER L'APPLICATION</button>
         </div>
 
         <div class="hero-fast-estimate">
@@ -328,10 +323,6 @@
           </div>
           <button type="button" id="btn-fast-calc" class="btn-fast-calc">💰 Estimer mon trajet en 1 clic</button>
         </div>
-
-        <button id="btn-install" class="btn-primary" style="display:none;">
-          📲 Installer l'application
-        </button>
 
         <div class="hero-badges">
           <span>✔ 7j/7</span>
