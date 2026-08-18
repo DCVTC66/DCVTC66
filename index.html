@@ -67,7 +67,7 @@
     .site-title { margin-bottom: 0.2rem; font-size: 2.4rem; }
     .site-subtitle { margin-top: 0; font-size: 1.05rem; max-width: 85%; margin-left: auto; margin-right: auto; opacity: 0.9; }
 
-    /* Boutons actions d'en-tête */
+    /* Boutons jaunes */
     .hero-actions { 
       display: grid; 
       grid-template-columns: repeat(3, 1fr); 
@@ -98,10 +98,10 @@
       background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 22px !important;
+      padding: 22px !important; /* Réduit pour plus de compacité sur PC */
       border-radius: 20px;
       margin: 1.5rem auto 0 auto;
-      max-width: 650px !important;
+      max-width: 650px !important; /* Un peu moins large pour un meilleur équilibre */
       width: 100%;
       box-sizing: border-box;
     }
@@ -124,7 +124,7 @@
     }
     .btn-fast-calc {
       width: 100%;
-      padding: 11px 22px !important;
+      padding: 11px 22px !important; /* Moins haut sur PC */
       border-radius: 14px;
       border: none;
       background: #16a34a;
@@ -252,15 +252,17 @@
       .hero-actions { gap: 0.6rem; max-width: 100%; }
       .hero-actions a.btn-primary { font-size: 0.75rem; padding: 0.75rem 0.3rem; }
       
-      /* Optimisation mobile pour l'encombrement */
+      /* ==========================================
+          OPTIMISATION MOBILE STAGIAIRE / ENCOMBREMENT
+          ========================================== */
       .hero-fast-estimate { 
-        padding: 12px !important; 
+        padding: 12px !important; /* Carré bleu très compact */
         margin-top: 1.2rem; 
       }
       .hero-fast-fields { grid-template-columns: 1fr; gap: 0.6rem; margin-bottom: 0.6rem; }
       .hero-fast-fields input { padding: 0.85rem 1rem !important; font-size: 1rem; } 
       .btn-fast-calc { 
-        padding: 9px 15px !important; 
+        padding: 9px 15px !important; /* Bouton vert beaucoup plus fin */
         font-size: 1rem; 
         height: auto !important;
       }
