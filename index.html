@@ -12,53 +12,57 @@
   <link rel="stylesheet" href="styles.css?v=101" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
   <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#0b1d3a">
   <link rel="apple-touch-icon" href="/icon-192.png">
   
   <link rel="canonical" href="https://www.dcvtc66.fr/" />
 
   <style>
-    html, body { margin: 0; padding: 0; overflow-x: hidden; background-color: #f8fafc; color: #1e293b; font-family: 'Poppins', sans-serif; }
+    /* Global Theme : Bleu Sombre Premium sans blocs blancs cassés */
+    html, body { 
+      margin: 0; 
+      padding: 0; 
+      overflow-x: hidden; 
+      background-color: #0b1d3a; 
+      color: #f1f5f9; 
+      font-family: 'Poppins', sans-serif; 
+    }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; box-sizing: border-box; }
 
-    /* Navigation sobre et épurée */
-    .nav { background-color: #ffffff; border-bottom: 1px solid #e2e8f0; }
-    .nav-inner ul { display: flex; gap: 1.5rem; list-style: none; padding-left: 0; margin: 0; justify-content: center; }
-    .nav-inner ul li a { text-decoration: none; color: #0b1d3a; font-weight: 600; font-size: 0.95rem; }
+    /* Navigation sobre sur fond sombre */
+    .nav { background-color: #08152b; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 1rem 0; }
+    .nav-inner ul { display: flex; gap: 2rem; list-style: none; padding-left: 0; margin: 0; justify-content: center; }
+    .nav-inner ul li a { text-decoration: none; color: #e2e8f0; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
     .nav-inner ul li a:hover { color: #c59b27; }
 
-    /* En-tête sur fond clair continu */
+    /* En-tête continu */
     .header {
-      padding-top: 2rem !important;
+      padding-top: 2.5rem !important;
       padding-bottom: 2rem !important;
-      background-color: #f8fafc;
-      color: #1e293b;
+      background-color: #0b1d3a;
+      color: #ffffff;
     }
     
-    .section {
-      background-color: #ffffff;
-    }
-
-    .section-alt {
-      background-color: #f8fafc;
-    }
+    .section { background-color: #0b1d3a; }
+    .section-alt { background-color: #0f274d; }
 
     .section, .section-alt {
-      padding-top: 2.5rem !important; 
-      padding-bottom: 2.5rem !important;
+      padding-top: 3rem !important; 
+      padding-bottom: 3rem !important;
     }
 
     .section-title {
       margin-top: 0 !important;
       margin-bottom: 0.8rem !important;
-      color: #0b1d3a;
+      color: #ffffff;
       font-weight: 700;
       text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
     }
 
-    /* Branding parfaitement fondu dans la page */
     .branding {
-      padding: 1.5rem 1rem !important;
+      padding: 1rem !important;
       max-width: 850px !important;
       width: 100%;
       margin: 0 auto !important;
@@ -66,16 +70,17 @@
       text-align: center;
     }
 
+    /* Formulaire fondu dans la page sombre */
     .form-compact { 
       max-width: 850px !important;
       width: 100%; 
       margin: 0 auto; 
       box-sizing: border-box;
-      background: #ffffff;
-      padding: 2rem;
+      background: #08152b;
+      padding: 2.2rem;
       border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      border: 1px solid #e2e8f0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     .logo {
@@ -85,10 +90,10 @@
       display: block;
     }
 
-    .site-title { margin-bottom: 0.2rem; font-size: 2.2rem; color: #0b1d3a; font-weight: 700; letter-spacing: 0.05em; }
-    .site-subtitle { margin-top: 0.3rem; font-size: 0.95rem; max-width: 90%; margin-left: auto; margin-right: auto; color: #475569; font-weight: 500; }
+    .site-title { margin-bottom: 0.2rem; font-size: 2.3rem; color: #ffffff; font-weight: 700; letter-spacing: 0.05em; font-family: 'Playfair Display', serif; }
+    .site-subtitle { margin-top: 0.4rem; font-size: 0.92rem; max-width: 90%; margin-left: auto; margin-right: auto; color: #cbd5e1; font-weight: 400; line-height: 1.5; }
 
-    /* Boutons Doré Mât Premium */
+    /* Boutons Dorés */
     .hero-actions { 
       display: grid; 
       grid-template-columns: repeat(3, 1fr); 
@@ -124,30 +129,29 @@
       display: flex;
       justify-content: center;
       gap: 1.2rem;
-      margin-top: 1.5rem;
-      color: #0b1d3a;
-      font-weight: 600;
+      margin-top: 1.8rem;
+      color: #e2e8f0;
+      font-weight: 500;
       font-size: 0.88rem;
     }
     .hero-badges span {
-      background: #ffffff;
-      padding: 0.4rem 0.8rem;
+      background: rgba(255,255,255,0.05);
+      padding: 0.4rem 0.9rem;
       border-radius: 20px;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
-    /* Bloc estimation rapide clair et élégant */
+    /* Bloc estimation rapide sombre */
     .hero-fast-estimate {
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
+      background: #08152b;
+      border: 1px solid rgba(255,255,255,0.12);
       padding: 20px !important;
       border-radius: 16px;
-      margin: 1.5rem auto 0 auto;
+      margin: 1.8rem auto 0 auto;
       max-width: 650px !important;
       width: 100%;
       box-sizing: border-box;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
     }
     .hero-fast-fields {
       display: grid;
@@ -158,18 +162,19 @@
     .hero-fast-fields input {
       padding: 0.9rem 1.1rem !important; 
       border-radius: 8px;
-      border: 1px solid #cbd5e1;
-      background: #f8fafc;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: #0f274d;
       font-size: 0.95rem; 
-      color: #0b1d3a;
+      color: #ffffff;
       width: 100%;
       box-sizing: border-box;
-      font-weight: 500;
+      font-weight: 400;
     }
+    .hero-fast-fields input::placeholder { color: #94a3b8; }
     .hero-fast-fields input:focus {
       outline: 2px solid #c59b27;
       border-color: transparent;
-      background: #ffffff;
+      background: #132f5d;
     }
     .btn-fast-calc {
       width: 100%;
@@ -178,8 +183,8 @@
       border: none;
       background: #059669;
       color: white;
-      font-weight: 700;
-      font-size: 1rem; 
+      font-weight: 600;
+      font-size: 0.98rem; 
       cursor: pointer;
       transition: background 0.2s;
     }
@@ -190,56 +195,36 @@
       padding: 0.75rem 1.5rem;
       border-radius: 999px;
       font-size: 0.85rem;
-      background-color: #0b1d3a;
+      background-color: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
     }
 
-    /* Tarif flottant */
-    #tarif-flottant {
-      position: fixed; 
-      top: 24px; 
-      left: 50%; 
-      transform: translateX(-50%) scale(1);
-      z-index: 9999; 
-      display: none !important; 
-      align-items: center; 
-      justify-content: center;
-      gap: 1rem;
-      padding: 1rem 2.2rem; 
-      border-radius: 999px; 
-      background: #059669;
-      color: #ffffff; 
-      box-shadow: 0 15px 35px rgba(5, 150, 105, 0.35); 
-      font-size: 1.2rem; 
-      font-weight: 700; 
-      width: max-content;
-      max-width: 90vw;
-      border: 2px solid #ffffff;
-      animation: pulseTarifCentrer 1.8s ease-in-out infinite;
-    }
-    #tarif-flottant .icon { font-size: 1.5rem; }
-    
-    @keyframes pulseTarifCentrer {
-      0% { transform: translateX(-50%) scale(1); box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3); }
-      50% { transform: translateX(-50%) scale(1.03); box-shadow: 0 20px 40px rgba(5, 150, 105, 0.5); }
-      100% { transform: translateX(-50%) scale(1); box-shadow: 0 10px 25px rgba(5, 150, 105, 0.3); }
-    }
-
-    .section-intro { margin-bottom: 0.75rem; color: #64748b; text-align: center; }
+    /* Formulaire labels et inputs sombres */
+    .section-intro { margin-bottom: 1rem; color: #94a3b8; text-align: center; }
     .form-compact .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-compact label { display: flex; flex-direction: column; gap: .35rem; font-size: .88rem; font-weight: 600; color: #334155; margin-bottom: 0.5rem; }
-    .form-compact input, .form-compact textarea, .form-compact select { padding: 0.85rem 1rem; border-radius: 8px; font-size: .95rem; border: 1px solid #cbd5e1; background-color: #f8fafc; color: #0b1d3a; font-weight: 500; }
-    .form-compact input:focus, .form-compact select:focus, .form-compact textarea:focus { outline: 2px solid #c59b27; border-color: transparent; background: #ffffff; }
+    .form-compact label { display: flex; flex-direction: column; gap: .35rem; font-size: .88rem; font-weight: 500; color: #cbd5e1; margin-bottom: 0.6rem; }
+    .form-compact input, .form-compact textarea, .form-compact select { 
+      padding: 0.85rem 1rem; 
+      border-radius: 8px; 
+      font-size: .95rem; 
+      border: 1px solid rgba(255,255,255,0.15); 
+      background-color: #0f274d; 
+      color: #ffffff; 
+      font-weight: 400; 
+    }
+    .form-compact select option { background-color: #0f274d; color: #ffffff; }
+    .form-compact input:focus, .form-compact select:focus, .form-compact textarea:focus { outline: 2px solid #c59b27; border-color: transparent; background: #132f5d; }
     .form-compact textarea { resize: vertical; min-height: 72px; }
 
     .btn-estimate {
-      background-color: #0b1d3a;
+      background-color: #c59b27;
       color: #ffffff;
       border: none;
       cursor: pointer;
       transition: background-color 0.2s;
     }
     .btn-estimate:hover {
-      background-color: #1e3a8a;
+      background-color: #a37f1e;
     }
 
     .dates-retour-container {
@@ -253,7 +238,7 @@
     }
 
     details.opt { margin-top: .6rem; }
-    details.opt summary { cursor: pointer; font-weight: 600; margin: .35rem 0 .25rem; color: #c59b27; }
+    details.opt summary { cursor: pointer; font-weight: 500; margin: .35rem 0 .25rem; color: #c59b27; }
 
     .actions-compact {
       display: grid;
@@ -265,7 +250,7 @@
     .actions-compact .btn-estimate {
       border-radius: 8px;
       padding: 0.95rem;
-      font-weight: 700;
+      font-weight: 600;
       letter-spacing: .02em;
     }
 
@@ -277,79 +262,69 @@
       align-items: center;
       border-radius: 8px;
       padding: 0.95rem;
-      font-weight: 700;
+      font-weight: 600;
       letter-spacing: .02em;
-      background-color: #16a34a !important;
+      background-color: #25d366 !important;
       color: #ffffff !important;
     }
     .email-action:hover {
-      background-color: #15803d !important;
+      background-color: #1eb956 !important;
     }
 
     .result-compact, .error-compact { margin-top:.8rem; padding:.85rem 1rem; border-radius:8px; font-size:.9rem; line-height:1.4; }
-    .result-compact { background:#ecfdf5; color:#065f46; border: 1px solid #a7f3d0; }
-    .error-compact { background:#fef2f2; color:#991b1b; border: 1px solid #fecaca; }
+    .result-compact { background:rgba(5, 150, 105, 0.2); color:#6ee7b7; border: 1px solid rgba(5, 150, 105, 0.4); }
+    .error-compact { background:rgba(220, 38, 38, 0.2); color:#fca5a5; border: 1px solid rgba(220, 38, 38, 0.4); }
 
-    .map-wrapper { margin-top: 1rem; border-radius: 12px; overflow: hidden; border: 1px solid #cbd5e1; }
+    .map-wrapper { margin-top: 1rem; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.15); }
     .map-wrapper-inner { position:relative; width:100%; height:320px; }
     #map { width:100%; height:100%; }
 
-    /* Cards services */
+    /* Cartes Services fondues */
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-    .card { background: #ffffff; padding: 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 2px 8px rgba(0,0,0,0.03); text-align: center; }
-    .card h3 { color: #0b1d3a; margin-top: 0; font-size: 1.1rem; }
-    .card p { color: #64748b; font-size: 0.9rem; margin-bottom: 0; }
+    .card { background: #08152b; padding: 1.8rem 1.5rem; border-radius: 14px; border: 1px solid rgba(255,255,255,0.08); text-align: center; }
+    .card h3 { color: #ffffff; margin-top: 0; font-size: 1.1rem; }
+    .card p { color: #94a3b8; font-size: 0.9rem; margin-bottom: 0; }
 
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; background: #ffffff; padding: 1.8rem; border-radius: 12px; border: 1px solid #e2e8f0; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; background: #08152b; padding: 2rem; border-radius: 14px; border: 1px solid rgba(255,255,255,0.08); }
     .contact-grid a { color: #c59b27; text-decoration: none; }
 
-    /* Footer chic */
+    /* Footer */
     .footer {
-      background-color: #0b1d3a;
-      color: #cbd5e1;
+      background-color: #050d1a;
+      color: #94a3b8;
       padding: 2.5rem 0;
       text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
     }
     .footer-links a {
-      color: #ffffff;
+      color: #cbd5e1;
       text-decoration: none;
       margin: 0 0.5rem;
     }
-    .footer-links a:hover { text-decoration: underline; }
+    .footer-links a:hover { color: #c59b27; }
 
-    /* Responsive Mobile & Tablette */
+    /* Mobile */
     @media (max-width: 768px) {
-      .header { padding-top: 1rem !important; padding-bottom: 1rem !important; }
-      .section, .section-alt { padding-top: 1.8rem !important; padding-bottom: 1.8rem !important; padding-left: 0.8rem; padding-right: 0.8rem; box-sizing: border-box; }
+      .header { padding-top: 1.5rem !important; padding-bottom: 1rem !important; }
+      .section, .section-alt { padding-top: 2rem !important; padding-bottom: 2rem !important; padding-left: 1rem; padding-right: 1rem; box-sizing: border-box; }
       .nav-inner ul { justify-content: center; flex-wrap: wrap; text-align: center; }
-      
-      .branding { padding: 1rem 0.5rem !important; }
       .site-title { font-size: 1.8rem; }
-      
       .hero-actions { gap: 0.6rem; max-width: 100%; }
       .hero-actions a.btn-primary { font-size: 0.8rem; padding: 0.75rem 0.4rem; }
-      
-      .hero-fast-estimate { padding: 12px !important; margin-top: 1.2rem; }
+      .hero-fast-estimate { padding: 14px !important; margin-top: 1.2rem; }
       .hero-fast-fields { grid-template-columns: 1fr; gap: 0.6rem; margin-bottom: 0.6rem; }
-      .hero-fast-fields input { padding: 0.85rem 1rem !important; font-size: 0.95rem; } 
-      .btn-fast-calc { padding: 10px 15px !important; font-size: 0.95rem; }
       .contact-grid { grid-template-columns: 1fr; text-align: center; }
       .hero-badges { flex-wrap: wrap; gap: 0.5rem; }
     }
 
     @media (max-width: 520px){
       .form-compact .row{ grid-template-columns: 1fr; }
-      #tarif-flottant { left: 50%; top: 15px; width: 92vw; padding: 0.8rem 1rem; font-size: 1rem; }
       .actions-compact{ grid-template-columns: 1fr; gap: .55rem; }
       .actions-compact .btn-primary,
       .actions-compact .btn-estimate,
-      .email-action{ 
-        width: 100%; 
-        padding: 0.9rem 1rem; 
-        font-size: 0.95rem; 
-      }
+      .email-action{ width: 100%; padding: 0.9rem 1rem; font-size: 0.95rem; }
       .map-wrapper-inner{ height: 280px; }
-      .form-compact { padding: 1.2rem 1rem; }
+      .form-compact { padding: 1.4rem 1rem; }
     }
   </style>
 </head>
@@ -520,7 +495,7 @@
     <div class="container">
       <h2 class="section-title">Contact</h2>
 
-      <div class="contact-grid" style="margin-top:1rem;">
+      <div class="contact-grid">
         <div>
           <p>📞 <a href="tel:+33663463716"><strong>+33 6 63 46 37 16</strong></a></p>
           <p>💬 <a href="https://wa.me/33663463716" target="_blank"><strong>Contacter via WhatsApp</strong></a></p>
@@ -543,11 +518,6 @@
       </p>
     </div>
   </footer>
-
-  <div id="tarif-flottant">
-    <span class="icon">💰</span>
-    <span id="tarif-flottant-texte">Estimation en cours…</span>
-  </div>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
@@ -736,8 +706,6 @@
     function calculerTarif() {
       const resDiv = document.getElementById("resultat-tarif");
       const errDiv = document.getElementById("erreur-tarif");
-      const flottant = document.getElementById("tarif-flottant");
-      const flottantTexte = document.getElementById("tarif-flottant-texte");
 
       const depart = form["Départ"].value.trim();
       const arrivee = form["Arrivee"].value.trim();
@@ -745,7 +713,6 @@
 
       errDiv.style.display = "none"; errDiv.textContent = "";
       resDiv.style.display = "none"; resDiv.textContent = "";
-      if (flottant) flottant.style.setProperty('display', 'none', 'important');
 
       if (!depart || !arrivee) {
         errDiv.textContent = "Veuillez renseigner le départ et l'arrivée.";
@@ -828,15 +795,6 @@
 
           resDiv.style.display = "block";
           resDiv.innerHTML = affichage;
-
-          if (flottant && flottantTexte) {
-            if (trajectoryType === "aller-retour") {
-              flottantTexte.textContent = "Aller-Retour : " + tarifFinal.toFixed(2) + " € • " + distanceTotale + " km (" + dureeTotale + ")";
-            } else {
-              flottantTexte.textContent = "Estimation : " + tarifFinal.toFixed(2) + " € • " + distanceKm + " km";
-            }
-            flottant.style.setProperty('display', 'flex', 'important');
-          }
 
           if (directionsService && directionsRenderer) {
             directionsService.route(
