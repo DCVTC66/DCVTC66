@@ -30,7 +30,7 @@ body {
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1250px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
@@ -74,7 +74,7 @@ body {
    3. BLOC DE MARQUE (Branding & Logo)
    ========================================================================== */
 .header { 
-  padding: 2.5rem 0 2rem; 
+  padding: 1.5rem 0 1rem; 
 }
 
 .header-inner { 
@@ -84,7 +84,8 @@ body {
 
 .branding {
   text-align: center;
-  max-width: 650px;
+  max-width: 1150px;
+  width: 100%;
   background: rgba(16, 42, 92, 0.95);
   border-radius: 1.6rem;
   padding: 2.5rem 2rem;
@@ -98,7 +99,8 @@ body {
   border: 2px solid var(--primary);
   padding: 4px;
   background: var(--bg-main);
-  margin-bottom: 1.2rem;
+  margin: 0 auto 1.2rem auto;
+  display: block;
 }
 
 .site-title {
@@ -106,6 +108,7 @@ body {
   font-size: 2.3rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+  margin-bottom: 0.4rem;
 }
 
 .site-subtitle {
@@ -117,42 +120,86 @@ body {
 }
 
 /* ==========================================================================
-   4. BOUTONS ACTION & BADGES (Hero section)
+   4. BOUTONS ACTION, BADGES & ESTIMATION RAPIDE (Hero section)
    ========================================================================== */
 .hero-actions {
-  display: flex;
-  gap: 0.6rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
   justify-content: center;
-  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 1.4rem auto 0 auto;
 }
 
 .btn-primary {
   background: linear-gradient(135deg, #fde047, #facc15);
   color: #0b1733;
-  padding: 0.6rem 1.1rem;
+  padding: 0.75rem 0.6rem;
   border-radius: 999px;
   font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   text-decoration: none;
   border: none;
   cursor: pointer;
-  box-shadow: 0 12px 28px rgba(250, 204, 21, 0.45);
+  box-shadow: 0 12px 28px rgba(250, 204, 21, 0.35);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
 }
 
 .btn-primary:hover { 
   transform: translateY(-2px); 
 }
 
-#btn-tarif {
-  background: linear-gradient(135deg, #25D366, #1ebe5d);
-  color: #0b1733;
+.hero-fast-estimate {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 22px;
+  border-radius: 20px;
+  margin: 1.5rem auto 0 auto;
+  max-width: 950px;
+  width: 100%;
+}
+
+.hero-fast-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.hero-fast-fields input {
+  padding: 1rem 1.2rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  color: #333;
+  width: 100%;
+  font-weight: 500;
+}
+
+.btn-fast-calc {
+  width: 100%;
+  padding: 11px 22px;
+  border-radius: 14px;
+  border: none;
+  background: #16a34a;
+  color: white;
+  font-weight: 700;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-fast-calc:hover {
+  background: #15803d;
 }
 
 .hero-badges {
@@ -175,7 +222,7 @@ body {
    5. SECTIONS & GRILLES DE CONTENU (Services & Contact)
    ========================================================================== */
 .section { 
-  padding: 3rem 0; 
+  padding: 2.5rem 0; 
 }
 
 .section-alt {
@@ -186,6 +233,8 @@ body {
   text-align: center;
   font-family: "Playfair Display", serif;
   font-size: 1.8rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 .section-intro {
@@ -241,17 +290,18 @@ body {
 /* ==========================================================================
    6. FORMULAIRE & ESTIMATEUR DE TARIF
    ========================================================================== */
-.form {
-  max-width: 560px;
+.form-compact {
+  max-width: 1150px;
+  width: 100%;
   margin: 0 auto;
   background: rgba(255,255,255,0.06);
-  padding: 1.3rem 1.2rem;
+  padding: 1.6rem;
   border-radius: 1.4rem;
   border: 1px solid var(--border-soft);
   box-shadow: var(--shadow-soft);
 }
 
-.form label {
+.form-compact label {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -259,24 +309,24 @@ body {
   font-size: 0.85rem;
 }
 
-.form input, .form textarea, .form select {
-  padding: 0.75rem 0.85rem;
+.form-compact input, .form-compact textarea, .form-compact select {
+  padding: 0.85rem 1rem;
   border-radius: 14px;
   border: 1px solid var(--border-soft);
-  background: rgba(11,23,51,0.35) !important;
+  background: rgba(11,23,51,0.5) !important;
   color: var(--text-main) !important;
   font-family: inherit;
 }
 
-.form input:focus, .form textarea:focus, .form select:focus {
+.form-compact input:focus, .form-compact textarea:focus, .form-compact select:focus {
   outline: none;
   border-color: var(--primary);
 }
 
-.form .row { 
+.form-compact .row { 
   display: grid; 
   grid-template-columns: 1fr 1fr; 
-  gap: 0.6rem; 
+  gap: 1rem; 
 }
 
 details.opt summary { 
@@ -288,8 +338,8 @@ details.opt summary {
 .actions-compact {
   display: grid;
   grid-template-columns: 1fr 1.15fr;
-  gap: 0.6rem;
-  margin-top: 0.6rem;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .btn-estimate {
@@ -301,7 +351,7 @@ details.opt summary {
   border: none;
   cursor: pointer;
   text-transform: uppercase;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   letter-spacing: 0.05em;
   transition: transform 0.2s ease;
 }
@@ -310,20 +360,32 @@ details.opt summary {
   transform: translateY(-1px); 
 }
 
+.email-action {
+  margin-top: 0.8rem;
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.9rem 1rem;
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+
 /* Placeholders et validation du formulaire */
-.form input::placeholder,
-.form select,
-.form input[type="datetime-local"]::-webkit-datetime-edit { 
+.form-compact input::placeholder,
+.form-compact select,
+.form-compact input[type="datetime-local"]::-webkit-datetime-edit { 
   color: rgba(182, 204, 255, 0.75); 
 }
 
-.form select option {
+.form-compact select option {
   background: #0b1733;
   color: var(--text-main);
 }
 
-.form select:valid,
-.form input[type="datetime-local"]:valid::-webkit-datetime-edit { 
+.form-compact select:valid,
+.form-compact input[type="datetime-local"]:valid::-webkit-datetime-edit { 
   color: var(--text-main) !important; 
 }
 
@@ -334,6 +396,7 @@ details.opt summary {
   margin-top: 0.8rem;
   font-size: 0.85rem;
   text-align: center;
+  line-height: 1.4;
 }
 
 .result-compact {
@@ -348,34 +411,55 @@ details.opt summary {
   color: #fca5a5;
 }
 
+/* Carte Google Maps */
+.map-wrapper { 
+  margin-top: 1rem; 
+  border-radius: 16px; 
+  overflow: hidden; 
+  border: 1px solid var(--border-soft);
+}
+
+.map-wrapper-inner { 
+  position: relative; 
+  width: 100%; 
+  height: 320px; 
+}
+
+#map { 
+  width: 100%; 
+  height: 100%; 
+}
+
 /* ==========================================================================
-   7. ÉLÉMENTS FIXES (FABs, Splash Screen & Footer)
+   7. ÉLÉMENTS FIXES (TARIF FLOTTANT, SPLASH SCREEN & FOOTER)
    ========================================================================== */
-.fab {
-  position: fixed;
-  right: 1.2rem;
-  width: 52px;
-  height: 52px;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
+#tarif-flottant {
+  position: fixed; 
+  top: 24px; 
+  left: 50%; 
+  transform: translateX(-50%) scale(1);
+  z-index: 9999; 
+  display: none !important; 
+  align-items: center; 
   justify-content: center;
-  font-size: 1.4rem;
-  z-index: 20;
-  text-decoration: none;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  gap: 1rem;
+  padding: 1.2rem 2.5rem; 
+  border-radius: 999px; 
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: #022c22; 
+  box-shadow: 0 20px 50px rgba(22, 163, 74, 0.8); 
+  font-size: 1.3rem; 
+  font-weight: 700; 
+  width: max-content;
+  max-width: 90vw;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  animation: pulseTarifCentrer 1.8s ease-in-out infinite;
 }
 
-.fab-call {
-  bottom: 1.2rem;
-  background: linear-gradient(135deg, #fde047, #facc15);
-  color: #0b1733;
-}
-
-.fab-whatsapp {
-  bottom: 4.5rem;
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-  color: #ecfdf5;
+@keyframes pulseTarifCentrer {
+  0% { transform: translateX(-50%) scale(1); box-shadow: 0 15px 35px rgba(22, 163, 74, 0.6); }
+  50% { transform: translateX(-50%) scale(1.04); box-shadow: 0 25px 55px rgba(22, 163, 74, 0.9); }
+  100% { transform: translateX(-50%) scale(1); box-shadow: 0 15px 35px rgba(22, 163, 74, 0.6); }
 }
 
 #splash-screen {
@@ -428,34 +512,90 @@ details.opt summary {
 /* ==========================================================================
    8. RESPONSIVE (Tablettes et Mobiles)
    ========================================================================== */
-@media (max-width: 900px) {
+@media (max-width: 930px) {
   .grid, .contact-grid { 
     grid-template-columns: 1fr; 
+  }
+
+  .branding, .form-compact { 
+    max-width: 96% !important; 
+  } 
+
+  .hero-actions { 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 0.8rem; 
+  }
+}
+
+@media (max-width: 768px) {
+  .header { padding-top: 0.5rem !important; }
+  .section, .section-alt { padding: 1.5rem 0.8rem !important; }
+  
+  .branding { 
+    padding: 2.2rem 1.2rem !important; 
+  }
+
+  .site-title { font-size: 1.9rem; }
+
+  .hero-actions { 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 0.6rem; 
+  }
+
+  .hero-actions a.btn-primary,
+  .hero-actions button.btn-primary { 
+    font-size: 0.75rem; 
+    padding: 0.75rem 0.3rem; 
+  }
+
+  .hero-fast-estimate { 
+    padding: 12px !important;
+    margin-top: 1.2rem; 
+  }
+
+  .hero-fast-fields { 
+    grid-template-columns: 1fr; 
+    gap: 0.6rem; 
+  }
+
+  .hero-fast-fields input { 
+    padding: 0.85rem 1rem !important; 
+  }
+
+  .btn-fast-calc { 
+    padding: 9px 15px !important; 
+    font-size: 1rem; 
   }
 }
 
 @media (max-width: 520px) {
-  .form .row { 
+  .form-compact .row { 
     grid-template-columns: 1fr; 
   }
 
-  .hero-actions {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.55rem;
-    width: 100%;
-    max-width: 320px;
-    margin: 1.05rem auto 0;
+  #tarif-flottant { 
+    left: 50%; 
+    top: 20px; 
+    width: 92vw; 
+    padding: 1rem 1rem; 
+    font-size: 1.05rem; 
   }
 
-  .hero-actions .btn-primary, 
-  #btn-install.btn-primary {
-    display: flex;
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
-    padding: 0.65rem 0.9rem;
-    font-size: 0.82rem;
+  .actions-compact { 
+    grid-template-columns: 1fr; 
+    gap: 0.55rem; 
+  }
+
+  .actions-compact .btn-primary,
+  .actions-compact .btn-estimate,
+  .email-action { 
+    width: 100%; 
+    padding: 0.9rem 1rem; 
+    font-size: 0.95rem; 
+  }
+
+  .map-wrapper-inner { 
+    height: 280px; 
   }
 }
 
@@ -463,66 +603,30 @@ details.opt summary {
    9. OPTIMISATIONS POUR ÉCRANS PC (Min-width: 1024px)
    ========================================================================== */
 @media (min-width: 1024px) {
-  .header { 
-    padding: 3.2rem 0 2.4rem; 
+  .container { 
+    max-width: 1250px !important; 
   }
 
   .branding {
-    max-width: 900px;
-    padding: 3.4rem 3.2rem;
-    border-radius: 2.2rem;
+    max-width: 1150px;
+    padding: 3rem 2.5rem;
+    border-radius: 24px;
   }
 
   .logo { 
-    width: 150px; 
-    margin-bottom: 1.4rem; 
+    width: 130px; 
   }
   
   .site-title { 
-    font-size: 2.9rem; 
+    font-size: 2.6rem; 
   }
   
   .site-subtitle { 
     font-size: 1.05rem; 
-    margin-bottom: 1.7rem; 
   }
 
-  /* Formulaire élargi pour le confort sur PC */
-  .section .container { 
-    max-width: 1200px; 
-  }
-  
-  .form { 
-    max-width: 760px; 
-    padding: 2rem 2rem; 
-    border-radius: 1.6rem; 
-  }
-  
-  .form label { 
-    font-size: 0.95rem; 
-    margin-bottom: 0.75rem; 
-  }
-  
-  .form input, .form textarea, .form select { 
-    padding: 0.95rem 1rem; 
-    font-size: 1rem; 
-  }
-  
-  .actions-compact { 
-    margin-top: 0.9rem; 
-    gap: 0.75rem; 
-  }
-  
-  .btn-estimate, .actions-compact .btn-primary { 
-    padding: 1.05rem 1.2rem; 
-    font-size: 1rem; 
-  }
-
-  /* Alignement fixe à la même taille pour les 4 boutons principaux */
-  .hero-actions a.btn-primary,
-  #btn-install.btn-primary {
-    width: 190px;
-    justify-content: center;
-    text-align: center;
+  .form-compact { 
+    max-width: 1150px; 
+    padding: 2rem; 
   }
 }
