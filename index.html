@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=500;700&family=Poppins:wght=300;400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=100" />
+  <link rel="stylesheet" href="styles.css?v=99" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#2563eb">
@@ -19,16 +19,19 @@
 
   <style>
     html, body { margin: 0; padding: 0; overflow-x: hidden; }
-    .container { max-width: 1250px; margin: 0 auto; padding: 0 1.5rem; box-sizing: border-box; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; box-sizing: border-box; }
 
     .nav-inner ul { display: flex; gap: 1rem; list-style: none; padding-left: 0; margin: 0; }
     .nav-inner ul li a { text-decoration: none; }
 
-    .header { padding-top: 1rem !important; }
+    /* --- REMONTÉE GÉNÉRALE DES SECTIONS --- */
+    .header {
+      padding-top: 1rem !important;
+    }
     
     .section, .section-alt {
       padding-top: 2rem !important; 
-      padding-bottom: 2.2rem !important;
+      padding-bottom: 2rem !important;
     }
 
     .section-title {
@@ -36,9 +39,10 @@
       margin-bottom: 1rem !important;
     }
 
+    /* --- CARRÉ BLEU CENTRAL ET FORMULAIRE AGRANDIS (PC) --- */
     .branding {
       padding: 3rem 2.5rem !important;
-      max-width: 1150px !important;
+      max-width: 960px !important;
       width: 100%;
       margin: 0.5rem auto 0 auto !important;
       border-radius: 24px;
@@ -46,12 +50,13 @@
     }
 
     .form-compact { 
-      max-width: 1150px !important;
+      max-width: 960px !important;
       width: 100%; 
       margin: 0 auto; 
       box-sizing: border-box;
     }
 
+    /* Logo calé en haut */
     .logo {
       max-width: 120px !important;
       height: auto;
@@ -62,43 +67,41 @@
     .site-title { margin-bottom: 0.2rem; font-size: 2.4rem; }
     .site-subtitle { margin-top: 0; font-size: 1.05rem; max-width: 85%; margin-left: auto; margin-right: auto; opacity: 0.9; }
 
+    /* Boutons jaunes */
     .hero-actions { 
       display: grid; 
-      grid-template-columns: repeat(4, 1fr); /* 4 colonnes fixes sur PC */
-      gap: 0.8rem; 
+      grid-template-columns: repeat(3, 1fr); 
+      gap: 1.5rem; 
       margin-top: 1.8rem; 
       justify-content: center; 
-      max-width: 1050px; /* Élargi pour répartir l'espace confortablement */
+      max-width: 600px;
       margin-left: auto;
       margin-right: auto;
     }
-    .hero-actions a.btn-primary,
-    .hero-actions button.btn-primary { 
+    .hero-actions a.btn-primary { 
       display: inline-flex; 
       align-items: center; 
       justify-content: center; 
-      padding: 0 0.3rem; /* Padding horizontal réduit pour épouser les largeurs de texte */
-      height: 48px;
-      font-size: 0.72rem; /* Taille de police optimisée pour les libellés longs sur PC */
+      padding: 0.85rem 0.5rem; 
+      font-size: 0.85rem; 
       border-radius: 999px; 
       text-align: center; 
       white-space: nowrap; 
-      font-weight: 700;
-      letter-spacing: 0.01em;
-      border: none;
-      cursor: pointer;
-      width: 100%;
-      box-sizing: border-box;
+      font-weight: 600;
+      letter-spacing: 0.03em;
     }
 
+    /* ==========================================
+       ZONE D'ESTIMATION MODIFIÉE (PC PAR DÉFAUT)
+       ========================================== */
     .hero-fast-estimate {
       background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 22px !important;
+      padding: 22px !important; /* Réduit pour plus de compacité sur PC */
       border-radius: 20px;
       margin: 1.5rem auto 0 auto;
-      max-width: 950px !important;
+      max-width: 650px !important; /* Un peu moins large pour un meilleur équilibre */
       width: 100%;
       box-sizing: border-box;
     }
@@ -121,7 +124,7 @@
     }
     .btn-fast-calc {
       width: 100%;
-      padding: 11px 22px !important;
+      padding: 11px 22px !important; /* Moins haut sur PC */
       border-radius: 14px;
       border: none;
       background: #16a34a;
@@ -133,6 +136,14 @@
     }
     .btn-fast-calc:hover { background: #15803d; }
 
+    #btn-install.btn-primary {
+      margin-top: 1.2rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    /* --- TARIF FLOTTANT AGRANDI ET CENTRÉ --- */
     #tarif-flottant {
       position: fixed; 
       top: 24px; 
@@ -217,9 +228,9 @@
     .map-wrapper-inner { position:relative; width:100%; height:320px; }
     #map { width:100%; height:100%; }
 
+    /* Responsive Mobile & Tablette */
     @media (max-width: 930px) {
       .branding, .form-compact { max-width: 96% !important; } 
-      .hero-actions { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
     }
 
     @media (max-width: 768px) {
@@ -238,18 +249,20 @@
       }
       
       .site-title { font-size: 1.9rem; }
-      .hero-actions { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; max-width: 100%; }
-      .hero-actions a.btn-primary,
-      .hero-actions button.btn-primary { font-size: 0.68rem; padding: 0 0.2rem; height: 44px; }
+      .hero-actions { gap: 0.6rem; max-width: 100%; }
+      .hero-actions a.btn-primary { font-size: 0.75rem; padding: 0.75rem 0.3rem; }
       
+      /* ==========================================
+          OPTIMISATION MOBILE STAGIAIRE / ENCOMBREMENT
+          ========================================== */
       .hero-fast-estimate { 
-        padding: 12px !important;
+        padding: 12px !important; /* Carré bleu très compact */
         margin-top: 1.2rem; 
       }
       .hero-fast-fields { grid-template-columns: 1fr; gap: 0.6rem; margin-bottom: 0.6rem; }
       .hero-fast-fields input { padding: 0.85rem 1rem !important; font-size: 1rem; } 
       .btn-fast-calc { 
-        padding: 9px 15px !important; 
+        padding: 9px 15px !important; /* Bouton vert beaucoup plus fin */
         font-size: 1rem; 
         height: auto !important;
       }
@@ -267,14 +280,15 @@
         font-size: 0.95rem; 
       }
       .map-wrapper-inner{ height: 280px; }
+      #btn-install.btn-primary{ width: 100%; max-width: 320px; margin-left: auto !important; margin-right: auto !important; }
+      
       .container { padding: 0 0.5rem; }
       .form-compact { padding-left: 0.8rem; padding-right: 0.8rem; }
       .form-compact input, .form-compact select, .form-compact textarea { padding: 0.9rem 1rem; font-size: 1rem; }
     }
 
     @media (min-width: 1024px){
-      .container { max-width: 1250px !important; }
-      #reservation .container { max-width: 1250px !important; }
+      #reservation .container{ max-width: 1200px; }
     }
   </style>
 </head>
@@ -307,7 +321,6 @@
           <a href="tel:0663463716" class="btn-primary">📞 APPELER</a>
           <a href="https://wa.me/33663463716" target="_blank" class="btn-primary">💬 WHATSAPP</a>
           <a href="#reservation" class="btn-primary">📝 RÉSERVER</a>
-          <button id="btn-install" class="btn-primary" style="display:none;">📲 INSTALLER L'APPLICATION</button>
         </div>
 
         <div class="hero-fast-estimate">
@@ -317,6 +330,10 @@
           </div>
           <button type="button" id="btn-fast-calc" class="btn-fast-calc">💰 Estimer mon trajet en 1 clic</button>
         </div>
+
+        <button id="btn-install" class="btn-primary" style="display:none;">
+          📲 Installer l'application
+        </button>
 
         <div class="hero-badges">
           <span>✔ 7j/7</span>
@@ -575,6 +592,14 @@
 
     const btnWhatsAppForm = document.getElementById("btn-whatsapp-form");
     if (btnWhatsAppForm) btnWhatsAppForm.addEventListener("click", openWhatsAppPrefilled);
+
+    const fabWhatsApp = document.getElementById("fab-whatsapp");
+    if (fabWhatsApp) {
+      fabWhatsApp.addEventListener("click", function (e) {
+        e.preventDefault();
+        openWhatsAppPrefilled();
+      });
+    }
   </script>
 
   <script>
@@ -702,8 +727,8 @@
 
           let tarif = BASE_TARIF;
           if (distanceKm > BASE_KM) {
-            let kmSupplementaires = distanceKm - BASE_KM;
-            tarif += kmSupplementaires * SUPP_PAR_KM;
+            let miles = distanceKm - BASE_KM;
+            tarif += miles * SUPP_PAR_KM;
           }
 
           let distanceTotale = distanceKm;
@@ -713,8 +738,8 @@
           if (trajectoryType === "aller-retour") {
             let tarifRetour = BASE_TARIF;
             if (distanceKm > BASE_KM) {
-              let kmSupplementaires = distanceKm - BASE_KM;
-              tarifRetour += kmSupplementaires * SUPP_PAR_KM;
+              let miles = distanceKm - BASE_KM;
+              tarifRetour += miles * SUPP_PAR_KM;
             }
             
             tarifFinal = tarif + (tarifRetour * 0.9);
