@@ -124,7 +124,7 @@ body {
    ========================================================================== */
 .hero-actions {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Grille 2x2 parfaite */
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.6rem;
   justify-content: center;
   max-width: 600px;
@@ -135,10 +135,10 @@ body {
 .btn-primary {
   background: linear-gradient(135deg, #fde047, #facc15);
   color: #0b1733;
-  height: 48px; /* Hauteur fixe pour que TOUS les boutons soient identiquement grands */
+  height: 48px;
   padding: 0 0.5rem;
   border-radius: 999px;
-  font-size: 0.72rem; /* Taille ajustée pour aligner parfaitement "INSTALLER L'APPLICATION" */
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.01em;
   text-transform: uppercase;
@@ -567,7 +567,7 @@ details.opt summary {
   }
 
   .btn-primary { 
-    height: 44px; /* Ajustement de la hauteur uniforme sur mobile */
+    height: 44px; 
     font-size: 0.68rem; 
     padding: 0 0.2rem; 
   }
@@ -657,12 +657,13 @@ details.opt summary {
   }
 
   .hero-actions {
-    grid-template-columns: repeat(4, 1fr); /* Alignés sur 1 seule ligne sur PC */
-    max-width: 900px;
+    grid-template-columns: repeat(4, 1fr); /* 4 boutons sur une seule ligne sur PC */
+    max-width: 1050px; /* Élargi pour donner plus d'espace aux textes */
   }
 
   .btn-primary {
-    font-size: 0.78rem;
+    font-size: 0.72rem; /* Légèrement ajusté pour que le texte long rentre sans dépasser */
+    padding: 0 0.4rem;
     height: 48px;
   }
 
