@@ -124,10 +124,10 @@ body {
    ========================================================================== */
 .hero-actions {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr); /* Grille 2x2 parfaite */
   gap: 0.6rem;
   justify-content: center;
-  max-width: 900px;
+  max-width: 600px;
   margin: 1.4rem auto 0 auto;
   width: 100%;
 }
@@ -135,19 +135,21 @@ body {
 .btn-primary {
   background: linear-gradient(135deg, #fde047, #facc15);
   color: #0b1733;
-  padding: 0.75rem 0.5rem;
+  height: 48px; /* Hauteur fixe pour que TOUS les boutons soient identiquement grands */
+  padding: 0 0.5rem;
   border-radius: 999px;
-  font-size: 0.8rem;
+  font-size: 0.72rem; /* Taille ajustée pour aligner parfaitement "INSTALLER L'APPLICATION" */
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
   text-decoration: none;
   border: none;
   cursor: pointer;
-  box-shadow: 0 12px 28px rgba(250, 204, 21, 0.35);
+  box-shadow: 0 8px 20px rgba(250, 204, 21, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   gap: 0.3rem;
   width: 100%;
   box-sizing: border-box;
@@ -473,7 +475,6 @@ details.opt summary {
   border: 2px solid rgba(255, 255, 255, 0.4);
   animation: pulseTarifCentrer 1.8s ease-in-out infinite;
   
-  /* Gestion fluide de l'affichage via JS */
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -548,11 +549,6 @@ details.opt summary {
   .branding, .form-compact { 
     max-width: 96% !important; 
   } 
-
-  .hero-actions { 
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 0.6rem; 
-  }
 }
 
 @media (max-width: 768px) {
@@ -571,9 +567,9 @@ details.opt summary {
   }
 
   .btn-primary { 
-    font-size: 0.7rem; 
-    padding: 0.7rem 0.3rem; 
-    white-space: nowrap;
+    height: 44px; /* Ajustement de la hauteur uniforme sur mobile */
+    font-size: 0.68rem; 
+    padding: 0 0.2rem; 
   }
 
   .hero-fast-estimate { 
@@ -619,6 +615,7 @@ details.opt summary {
     width: 100%; 
     padding: 0.9rem 1rem; 
     font-size: 0.95rem; 
+    height: auto;
   }
 
   .map-wrapper-inner { 
@@ -628,8 +625,8 @@ details.opt summary {
 
 @media (max-width: 380px) {
   .btn-primary {
-    font-size: 0.65rem;
-    padding: 0.65rem 0.2rem;
+    font-size: 0.62rem;
+    height: 42px;
   }
 }
 
@@ -657,6 +654,16 @@ details.opt summary {
   
   .site-subtitle { 
     font-size: 1.05rem; 
+  }
+
+  .hero-actions {
+    grid-template-columns: repeat(4, 1fr); /* Alignés sur 1 seule ligne sur PC */
+    max-width: 900px;
+  }
+
+  .btn-primary {
+    font-size: 0.78rem;
+    height: 48px;
   }
 
   .form-compact { 
