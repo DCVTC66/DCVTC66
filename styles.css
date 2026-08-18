@@ -77,21 +77,32 @@ body {
   padding: 2.5rem 0 2rem; 
 }
 
+/* Forcé en pleine largeur pour éviter la limitation du container d'origine */
+.header .container {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
 .header-inner { 
   display: flex; 
   justify-content: center; 
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .branding {
   text-align: center;
   width: 100%;
-  max-width: 100%;
+  max-width: 100% !important;
   background: rgba(16, 42, 92, 0.95);
   border-radius: 1.6rem;
   padding: 2.5rem 2rem;
   box-shadow: var(--shadow-soft);
   border: 1px solid var(--border-soft);
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
 .logo {
@@ -470,7 +481,7 @@ details.opt summary {
   }
 
   .branding {
-    max-width: 1100px; /* Aligné parfaitement avec la largeur du container */
+    max-width: 100% !important;
     padding: 3.4rem 3.2rem;
     border-radius: 2.2rem;
   }
@@ -528,9 +539,8 @@ details.opt summary {
     text-align: center;
   }
 }
+
 /* Forcer le bloc bleu et le formulaire à s'élargir sur toute la largeur */
-.header-inner, 
-.branding, 
 .form-compact {
   max-width: 100% !important;
   width: 100% !important;
