@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=500;700&family=Poppins:wght=300;400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=99" />
+  <link rel="stylesheet" href="styles.css?v=100" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#2563eb">
@@ -39,10 +39,10 @@
       margin-bottom: 1rem !important;
     }
 
-    /* --- CARRÉ BLEU CENTRAL ET FORMULAIRE AGRANDIS (PC) --- */
+    /* --- CARRÉ BLEU CENTRAL ET FORMULAIRE ÉLARGIS (Alignés sur les services du bas) --- */
     .branding {
       padding: 3rem 2.5rem !important;
-      max-width: 960px !important;
+      max-width: 1040px !important; /* Élargi pour correspondre aux blocs du bas */
       width: 100%;
       margin: 0.5rem auto 0 auto !important;
       border-radius: 24px;
@@ -50,7 +50,7 @@
     }
 
     .form-compact { 
-      max-width: 960px !important;
+      max-width: 1040px !important; /* Élargi pour correspondre aux blocs du bas */
       width: 100%; 
       margin: 0 auto; 
       box-sizing: border-box;
@@ -92,16 +92,16 @@
     }
 
     /* ==========================================
-        ZONE D'ESTIMATION MODIFIÉE (PC PAR DÉFAUT)
+        ZONE D'ESTIMATION RAPIDE
         ========================================== */
     .hero-fast-estimate {
       background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 22px !important; /* Réduit pour plus de compacité sur PC */
+      padding: 22px !important;
       border-radius: 20px;
       margin: 1.5rem auto 0 auto;
-      max-width: 650px !important; /* Un peu moins large pour un meilleur équilibre */
+      max-width: 650px !important;
       width: 100%;
       box-sizing: border-box;
     }
@@ -124,7 +124,7 @@
     }
     .btn-fast-calc {
       width: 100%;
-      padding: 11px 22px !important; /* Moins haut sur PC */
+      padding: 11px 22px !important;
       border-radius: 14px;
       border: none;
       background: #16a34a;
@@ -143,7 +143,7 @@
       font-size: 0.85rem;
     }
 
-    /* --- TARIF FLOTTANT AGRANDI ET CENTRÉ --- */
+    /* --- TARIF FLOTTANT --- */
     #tarif-flottant {
       position: fixed; 
       top: 24px; 
@@ -229,7 +229,7 @@
     #map { width:100%; height:100%; }
 
     /* Responsive Mobile & Tablette */
-    @media (max-width: 930px) {
+    @media (max-width: 1100px) {
       .branding, .form-compact { max-width: 96% !important; } 
     }
 
@@ -252,17 +252,14 @@
       .hero-actions { gap: 0.6rem; max-width: 100%; }
       .hero-actions a.btn-primary { font-size: 0.75rem; padding: 0.75rem 0.3rem; }
       
-      /* ==========================================
-          OPTIMISATION MOBILE STAGIAIRE / ENCOMBREMENT
-          ========================================== */
       .hero-fast-estimate { 
-        padding: 12px !important; /* Carré bleu très compact */
+        padding: 12px !important;
         margin-top: 1.2rem; 
       }
       .hero-fast-fields { grid-template-columns: 1fr; gap: 0.6rem; margin-bottom: 0.6rem; }
       .hero-fast-fields input { padding: 0.85rem 1rem !important; font-size: 1rem; } 
       .btn-fast-calc { 
-        padding: 9px 15px !important; /* Bouton vert beaucoup plus fin */
+        padding: 9px 15px !important;
         font-size: 1rem; 
         height: auto !important;
       }
