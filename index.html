@@ -24,10 +24,7 @@
     .nav-inner ul { display: flex; gap: 1rem; list-style: none; padding-left: 0; margin: 0; }
     .nav-inner ul li a { text-decoration: none; }
 
-    /* --- REMONTÉE GÉNÉRALE DES SECTIONS --- */
-    .header {
-      padding-top: 1rem !important;
-    }
+    .header { padding-top: 1rem !important; }
     
     .section, .section-alt {
       padding-top: 2rem !important; 
@@ -39,7 +36,6 @@
       margin-bottom: 1rem !important;
     }
 
-    /* --- CARRÉ BLEU CENTRAL ET FORMULAIRE AGRANDIS (PC) --- */
     .branding {
       padding: 3rem 2.5rem !important;
       max-width: 1150px !important;
@@ -56,7 +52,6 @@
       box-sizing: border-box;
     }
 
-    /* Logo calé en haut */
     .logo {
       max-width: 120px !important;
       height: auto;
@@ -67,7 +62,6 @@
     .site-title { margin-bottom: 0.2rem; font-size: 2.4rem; }
     .site-subtitle { margin-top: 0; font-size: 1.05rem; max-width: 85%; margin-left: auto; margin-right: auto; opacity: 0.9; }
 
-    /* Boutons d'action alignés en haut */
     .hero-actions { 
       display: grid; 
       grid-template-columns: repeat(4, 1fr); 
@@ -94,7 +88,6 @@
       cursor: pointer;
     }
 
-    /* ZONE D'ESTIMATION MODIFIÉE (PC PAR DÉFAUT) */
     .hero-fast-estimate {
       background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(8px);
@@ -137,7 +130,6 @@
     }
     .btn-fast-calc:hover { background: #15803d; }
 
-    /* TARIF FLOTTANT AGRANDI ET CENTRÉ */
     #tarif-flottant {
       position: fixed; 
       top: 24px; 
@@ -222,7 +214,6 @@
     .map-wrapper-inner { position:relative; width:100%; height:320px; }
     #map { width:100%; height:100%; }
 
-    /* Responsive Mobile & Tablette */
     @media (max-width: 930px) {
       .branding, .form-compact { max-width: 96% !important; } 
       .hero-actions { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
@@ -581,14 +572,6 @@
 
     const btnWhatsAppForm = document.getElementById("btn-whatsapp-form");
     if (btnWhatsAppForm) btnWhatsAppForm.addEventListener("click", openWhatsAppPrefilled);
-
-    const fabWhatsApp = document.getElementById("fab-whatsapp");
-    if (fabWhatsApp) {
-      fabWhatsApp.addEventListener("click", function (e) {
-        e.preventDefault();
-        openWhatsAppPrefilled();
-      });
-    }
   </script>
 
   <script>
@@ -716,8 +699,8 @@
 
           let tarif = BASE_TARIF;
           if (distanceKm > BASE_KM) {
-            let miles = distanceKm - BASE_KM;
-            tarif += miles * SUPP_PAR_KM;
+            let kmSupplementaires = distanceKm - BASE_KM;
+            tarif += kmSupplementaires * SUPP_PAR_KM;
           }
 
           let distanceTotale = distanceKm;
@@ -727,8 +710,8 @@
           if (trajectoryType === "aller-retour") {
             let tarifRetour = BASE_TARIF;
             if (distanceKm > BASE_KM) {
-              let miles = distanceKm - BASE_KM;
-              tarifRetour += miles * SUPP_PAR_KM;
+              let kmSupplementaires = distanceKm - BASE_KM;
+              tarifRetour += kmSupplementaires * SUPP_PAR_KM;
             }
             
             tarifFinal = tarif + (tarifRetour * 0.9);
