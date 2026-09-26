@@ -30,7 +30,7 @@ body {
 }
 
 .container {
-  max-width: 900px; /* Aligné pour que le conteneur global gère la même largeur maximale pour le haut et le bas */
+  max-width: 900px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
@@ -249,7 +249,7 @@ body {
    6. FORMULAIRE & ESTIMATEUR DE TARIF
    ========================================================================== */
 .form {
-  width: 100%; /* S'adapte à 100% du conteneur parent pour épouser exactement la largeur du bloc du haut */
+  width: 100%;
   max-width: 100% !important; 
   margin: 0 auto;
   background: rgba(255,255,255,0.06);
@@ -472,15 +472,22 @@ details.opt summary {
    ========================================================================== */
 @media (min-width: 1024px) {
   .container {
-    max-width: 900px; /* Force une même largeur maximale cohérente pour tout le site sur PC */
+    max-width: 900px;
   }
 
   .header { 
     padding: 3.2rem 0 2.4rem; 
   }
 
+  /* On réduit la largeur du haut sur PC pour qu'il corresponde au formulaire */
+  .header .container {
+    max-width: 760px !important;
+  }
+
   .branding {
-    max-width: 100% !important;
+    max-width: 760px !important;
+    margin-left: auto;
+    margin-right: auto;
     padding: 3.4rem 3.2rem;
     border-radius: 2.2rem;
   }
@@ -500,7 +507,7 @@ details.opt summary {
   }
   
   .form { 
-    max-width: 100% !important; /* S'assure qu'il remplit tout l'espace du container de la même manière que le haut */
+    max-width: 100% !important;
     padding: 2rem 2rem; 
     border-radius: 1.6rem; 
   }
@@ -525,29 +532,10 @@ details.opt summary {
     font-size: 1rem; 
   }
 
-  /* Alignement fixe à la même taille pour les 4 boutons principaux */
   .hero-actions a.btn-primary,
   #btn-install.btn-primary {
     width: 190px;
     justify-content: center;
     text-align: center;
-  }
-}
-/* Forcer la section du formulaire à adopter la même largeur maximale que le haut */
-.section .container {
-  max-width: 100% !important;
-}
-/* Raccourcir le bloc du haut sur PC pour qu'il ait la même largeur que le formulaire */
-@media (min-width: 1024px) {
-  /* On limite la largeur du conteneur du header à 760px (comme le formulaire) */
-  .header .container {
-    max-width: 760px !important;
-  }
-
-  /* On s'assure que le bloc bleu du haut respecte cette même largeur */
-  .branding {
-    max-width: 760px !important;
-    margin-left: auto;
-    margin-right: auto;
   }
 }
