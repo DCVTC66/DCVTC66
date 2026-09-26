@@ -671,8 +671,8 @@
 
           let tarif = BASE_TARIF;
           if (distanceKm > BASE_KM) {
-            let miles = distanceKm - BASE_KM;
-            tarif += miles * SUPP_PAR_KM;
+            let kmExtra = distanceKm - BASE_KM;
+            tarif += kmExtra * SUPP_PAR_KM;
           }
 
           let distanceTotale = distanceKm;
@@ -682,8 +682,8 @@
           if (trajectoryType === "aller-retour") {
             let tarifRetour = BASE_TARIF;
             if (distanceKm > BASE_KM) {
-              let miles = distanceKm - BASE_KM;
-              tarifRetour += miles * SUPP_PAR_KM;
+              let kmExtra = distanceKm - BASE_KM;
+              tarifRetour += kmExtra * SUPP_PAR_KM;
             }
             
             tarifFinal = tarif + (tarifRetour * 0.9);
@@ -771,7 +771,5 @@
       });
     }
   </script>
-
-  <script src="script.js"></script>
 </body>
 </html>
