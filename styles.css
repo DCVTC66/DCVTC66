@@ -537,3 +537,17 @@ details.opt summary {
 .section .container {
   max-width: 100% !important;
 }
+/* Raccourcir le bloc du haut sur PC pour qu'il ait la même largeur que le formulaire */
+@media (min-width: 1024px) {
+  /* On limite la largeur du conteneur du header à 760px (comme le formulaire) */
+  .header .container {
+    max-width: 760px !important;
+  }
+
+  /* On s'assure que le bloc bleu du haut respecte cette même largeur */
+  .branding {
+    max-width: 760px !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
