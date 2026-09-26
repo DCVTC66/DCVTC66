@@ -30,7 +30,7 @@ body {
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 900px; /* Aligné pour que le conteneur global gère la même largeur maximale pour le haut et le bas */
   margin: 0 auto;
   padding: 0 1.5rem;
 }
@@ -77,26 +77,20 @@ body {
   padding: 2.5rem 0 2rem; 
 }
 
-/* Forcé en pleine largeur pour éviter la limitation du container d'origine */
 .header .container {
-  max-width: 100% !important;
+  max-width: 900px !important;
   width: 100% !important;
-  padding-left: 1rem !important;
-  padding-right: 1rem !important;
 }
 
 .header-inner { 
   display: flex; 
   justify-content: center; 
-  max-width: 100% !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
+  width: 100%;
 }
 
 .branding {
   text-align: center;
   width: 100%;
-  max-width: 100% !important;
   background: rgba(16, 42, 92, 0.95);
   border-radius: 1.6rem;
   padding: 2.5rem 2rem;
@@ -255,7 +249,8 @@ body {
    6. FORMULAIRE & ESTIMATEUR DE TARIF
    ========================================================================== */
 .form {
-  max-width: 560px;
+  width: 100%; /* S'adapte à 100% du conteneur parent pour épouser exactement la largeur du bloc du haut */
+  max-width: 100% !important; 
   margin: 0 auto;
   background: rgba(255,255,255,0.06);
   padding: 1.3rem 1.2rem;
@@ -476,6 +471,10 @@ details.opt summary {
    9. OPTIMISATIONS POUR ÉCRANS PC (Min-width: 1024px)
    ========================================================================== */
 @media (min-width: 1024px) {
+  .container {
+    max-width: 900px; /* Force une même largeur maximale cohérente pour tout le site sur PC */
+  }
+
   .header { 
     padding: 3.2rem 0 2.4rem; 
   }
@@ -499,14 +498,9 @@ details.opt summary {
     font-size: 1.05rem; 
     margin-bottom: 1.7rem; 
   }
-
-  /* Formulaire élargi pour le confort sur PC */
-  .section .container { 
-    max-width: 1200px; 
-  }
   
   .form { 
-    max-width: 760px; 
+    max-width: 100% !important; /* S'assure qu'il remplit tout l'espace du container de la même manière que le haut */
     padding: 2rem 2rem; 
     border-radius: 1.6rem; 
   }
@@ -538,11 +532,4 @@ details.opt summary {
     justify-content: center;
     text-align: center;
   }
-}
-
-/* Forcer le bloc bleu et le formulaire à s'élargir sur toute la largeur */
-.form-compact {
-  max-width: 100% !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
 }
