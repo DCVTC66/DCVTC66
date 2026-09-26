@@ -533,3 +533,7 @@ details.opt summary {
     text-align: center;
   }
 }
+/* Forcer la section du formulaire à adopter la même largeur maximale que le haut */
+.section .container {
+  max-width: 100% !important;
+}
