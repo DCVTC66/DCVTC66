@@ -591,10 +591,3 @@ details.opt summary {
     text-align: center;
   }
 }
-
-/* Forcer le bloc bleu et le formulaire à s'élargir sur toute la largeur */
-.form-compact {
-  max-width: 100% !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
