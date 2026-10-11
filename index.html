@@ -198,7 +198,7 @@
     .map-wrapper-inner { position:relative; width:100%; height:320px; }
     #map { width:100%; height:100%; }
 
-    /* STLES POUR LA ZONE D'INTERVENTION (DARK THEME) */
+    /* STYLES POUR LA ZONE D'INTERVENTION (DARK THEME) */
     .zones-intervention-dark {
       padding: 40px 20px;
       text-align: center;
@@ -241,6 +241,16 @@
     }
     .ville-tag-dark:hover {
       background-color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* CORRECTION DE LA LARGEUR DU BLOC BLEU HAUT SUR PC (Aligné sur le formulaire de 760px) */
+    @media (min-width: 1024px) {
+      .branding {
+        max-width: 760px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        box-sizing: border-box !important;
+      }
     }
 
     @media (max-width: 768px) {
@@ -291,34 +301,37 @@
   </nav>
 
   <header class="header">
-    <div class="header-inner">
-      <div class="branding">
-        <img src="LOGO DCVTC66.png" alt="Logo DCVTC66" class="logo">
-        <h1 class="site-title">DCVTC66</h1>
-        <p class="site-subtitle">CHAUFFEUR VTC PRIVÉ À PERPIGNAN • TARIFS TRANSPARENTS<br>ALTERNATIVE AU TAXI DANS TOUTES LES PYRÉNÉES-ORIENTALES (66)</p>
+    <!-- Utilisation de la classe container pour restreindre et centrer comme le formulaire du bas -->
+    <div class="container">
+      <div class="header-inner">
+        <div class="branding">
+          <img src="LOGO DCVTC66.png" alt="Logo DCVTC66" class="logo">
+          <h1 class="site-title">DCVTC66</h1>
+          <p class="site-subtitle">CHAUFFEUR VTC PRIVÉ À PERPIGNAN • TARIFS TRANSPARENTS<br>ALTERNATIVE AU TAXI DANS TOUTES LES PYRÉNÉES-ORIENTALES (66)</p>
 
-        <div class="hero-actions">
-          <a href="tel:0663463716" class="btn-primary">📞 APPELER</a>
-          <a href="https://wa.me/33663463716" target="_blank" class="btn-primary">💬 WHATSAPP</a>
-          <a href="#reservation" class="btn-primary">📝 RÉSERVER</a>
-        </div>
-
-        <div class="hero-fast-estimate">
-          <div class="hero-fast-fields">
-            <input type="text" id="fast-depart" placeholder="📍 Adresse de départ" autocomplete="off">
-            <input type="text" id="fast-arrivee" placeholder="🏁 Adresse d'arrivée" autocomplete="off">
+          <div class="hero-actions">
+            <a href="tel:0663463716" class="btn-primary">📞 APPELER</a>
+            <a href="https://wa.me/33663463716" target="_blank" class="btn-primary">💬 WHATSAPP</a>
+            <a href="#reservation" class="btn-primary">📝 RÉSERVER</a>
           </div>
-          <button type="button" id="btn-fast-calc" class="btn-fast-calc">💰 Estimer mon trajet en 1 clic</button>
-        </div>
 
-        <button id="btn-install" class="btn-primary" style="display:none;">
-          📲 Installer l'application
-        </button>
+          <div class="hero-fast-estimate">
+            <div class="hero-fast-fields">
+              <input type="text" id="fast-depart" placeholder="📍 Adresse de départ" autocomplete="off">
+              <input type="text" id="fast-arrivee" placeholder="🏁 Adresse d'arrivée" autocomplete="off">
+            </div>
+            <button type="button" id="btn-fast-calc" class="btn-fast-calc">💰 Estimer mon trajet en 1 clic</button>
+          </div>
 
-        <div class="hero-badges">
-          <span>✔ 7j/7</span>
-          <span>✔ Ponctuel</span>
-          <span>✔ Confort</span>
+          <button id="btn-install" class="btn-primary" style="display:none;">
+            📲 Installer l'application
+          </button>
+
+          <div class="hero-badges">
+            <span>✔ 7j/7</span>
+            <span>✔ Ponctuel</span>
+            <span>✔ Confort</span>
+          </div>
         </div>
       </div>
     </div>
@@ -435,7 +448,7 @@
     </div>
   </section>
 
-  <!-- NOUVELLE SECTION : ZONES D'INTERVENTION -->
+  <!-- SECTION : ZONES D'INTERVENTION -->
   <section class="zones-intervention-dark">
     <div class="container">
       <h2>PYRÉNÉES-ORIENTALES</h2>
