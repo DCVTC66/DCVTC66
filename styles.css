@@ -77,14 +77,13 @@ body {
   padding: 2.5rem 0 2rem; 
 }
 
-/* Aligné sur la même largeur que le formulaire (.form) */
+/* Forcé à la même largeur max que le formulaire (560px sur mobile) */
 .header .container {
   max-width: 560px !important;
   width: 100% !important;
   padding-left: 1rem !important;
   padding-right: 1rem !important;
   margin: 0 auto !important;
-  box-sizing: border-box;
 }
 
 .header-inner { 
@@ -558,13 +557,13 @@ details.opt summary {
     margin-bottom: 1.5rem; 
   }
 
-  /* Formulaire élargi pour le confort sur PC */
-  .section .container { 
-    max-width: 1200px; 
+  /* Formulaire élargi pour le confort sur PC (760px) */
+  #reservation .container { 
+    max-width: 760px !important; 
   }
-  
+
   .form { 
-    max-width: 760px; 
+    max-width: 100% !important; 
     padding: 2rem 2rem; 
     border-radius: 1.6rem; 
   }
