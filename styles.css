@@ -535,6 +535,7 @@ details.opt summary {
   /* Aligné sur la largeur exacte du formulaire PC (760px) */
   .header .container {
     max-width: 760px !important;
+    width: 760px !important;
   }
 
   .branding {
@@ -557,13 +558,17 @@ details.opt summary {
     margin-bottom: 1.5rem; 
   }
 
-  /* Formulaire élargi pour le confort sur PC (760px) */
+  /* Formulaire et conteneur de réservation calés à 760px sur PC */
   #reservation .container { 
-    max-width: 760px !important; 
+    max-width: 760px !important;
+    width: 760px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 
   .form { 
-    max-width: 100% !important; 
+    max-width: 100% !important;
+    width: 100% !important;
     padding: 2rem 2rem; 
     border-radius: 1.6rem; 
   }
