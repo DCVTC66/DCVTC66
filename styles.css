@@ -557,9 +557,10 @@ details.opt summary {
     margin-bottom: 1.5rem; 
   }
 
-  /* Section de réservation et son conteneur calés à 760px sur PC */
+  /* Section de réservation et son conteneur calés à 760px sur PC (alignés avec le header) */
   section#reservation {
     max-width: 760px !important;
+    width: 760px !important;
     margin-left: auto !important;
     margin-right: auto !important;
     padding-left: 0 !important;
