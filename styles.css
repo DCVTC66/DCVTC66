@@ -527,7 +527,7 @@ details.opt summary {
 /* ==========================================================================
    9. OPTIMISATIONS POUR ÉCRANS PC (Min-width: 1024px)
    ========================================================================== */
-@media (min-width: 1024px) {
+@media (min-width: 760px) {
   .header { 
     padding: 3.2rem 0 2.4rem; 
   }
