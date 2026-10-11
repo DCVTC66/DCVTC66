@@ -77,17 +77,18 @@ body {
   padding: 2.5rem 0 2rem; 
 }
 
+/* Forcé en pleine largeur pour éviter la limitation du container d'origine */
 .header .container {
-  max-width: 560px !important;
+  max-width: 100% !important;
   width: 100% !important;
   padding-left: 1rem !important;
   padding-right: 1rem !important;
-  margin: 0 auto !important;
 }
 
 .header-inner { 
   display: flex; 
   justify-content: center; 
+  max-width: 100% !important;
   width: 100% !important;
   box-sizing: border-box !important;
 }
@@ -97,7 +98,7 @@ body {
   width: 100%;
   max-width: 100% !important;
   background: rgba(16, 42, 92, 0.95);
-  border-radius: 1.4rem;
+  border-radius: 1.6rem;
   padding: 2.5rem 2rem;
   box-shadow: var(--shadow-soft);
   border: 1px solid var(--border-soft);
@@ -531,56 +532,33 @@ details.opt summary {
     padding: 3.2rem 0 2.4rem; 
   }
 
-  /* Header calé exactement à 760px sur PC */
-  .header .container {
-    max-width: 760px !important;
-    width: 760px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-
   .branding {
     max-width: 100% !important;
-    padding: 2.5rem 2rem;
-    border-radius: 1.6rem;
+    padding: 3.4rem 3.2rem;
+    border-radius: 2.2rem;
   }
 
   .logo { 
-    width: 130px; 
-    margin-bottom: 1.2rem; 
+    width: 150px; 
+    margin-bottom: 1.4rem; 
   }
   
   .site-title { 
-    font-size: 2.5rem; 
+    font-size: 2.9rem; 
   }
   
   .site-subtitle { 
-    font-size: 1rem; 
-    margin-bottom: 1.5rem; 
+    font-size: 1.05rem; 
+    margin-bottom: 1.7rem; 
   }
 
-  /* Section de réservation et son conteneur calés à 760px sur PC (alignés avec le header) */
-  section#reservation {
-    max-width: 760px !important;
-    width: 760px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+  /* Formulaire élargi pour le confort sur PC */
+  .section .container { 
+    max-width: 1200px; 
   }
-
-  section#reservation .container { 
-    max-width: 760px !important; 
-    width: 760px !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-
+  
   .form { 
-    max-width: 100% !important; 
-    width: 100% !important; 
+    max-width: 760px; 
     padding: 2rem 2rem; 
     border-radius: 1.6rem; 
   }
@@ -614,6 +592,7 @@ details.opt summary {
   }
 }
 
+/* Forcer le bloc bleu et le formulaire à s'élargir sur toute la largeur */
 .form-compact {
   max-width: 100% !important;
   width: 100% !important;
