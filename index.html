@@ -215,6 +215,51 @@
     .map-wrapper-inner { position:relative; width:100%; height:320px; }
     #map { width:100%; height:100%; }
 
+    /* STLES POUR LA ZONE D'INTERVENTION (DARK THEME) */
+    .zones-intervention-dark {
+      padding: 40px 20px;
+      text-align: center;
+      color: #ffffff;
+    }
+    .zones-intervention-dark h2 {
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: #a0c4ff;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .zones-intervention-dark h3 {
+      font-size: 26px;
+      margin: 10px 0;
+      color: #ffffff;
+    }
+    .zones-intervention-dark p {
+      color: #d0d0d0;
+      font-size: 15px;
+      margin-bottom: 25px;
+    }
+    .villes-container-dark {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .ville-tag-dark {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 8px 16px;
+      font-size: 14px;
+      color: #ffffff;
+      backdrop-filter: blur(5px);
+      transition: background-color 0.3s;
+    }
+    .ville-tag-dark:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+
     @media (max-width: 768px) {
       .header { padding-top: 0.5rem !important; }
       .section, .section-alt { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; padding-left: 0.8rem; padding-right: 0.8rem; box-sizing: border-box; }
@@ -403,6 +448,30 @@
           <h3>🎉 Mise à disposition</h3>
           <p>Événements, mariages, soirées & mise à disposition à la journée.</p>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOUVELLE SECTION : ZONES D'INTERVENTION -->
+  <section class="zones-intervention-dark">
+    <div class="container">
+      <h2>PYRÉNÉES-ORIENTALES</h2>
+      <h3>Une prise en charge proche de chez vous</h3>
+      <p>DCVTC66 intervient à Perpignan et dans les communes environnantes, sur réservation.</p>
+
+      <div class="villes-container-dark">
+        <span class="ville-tag-dark">Perpignan</span>
+        <span class="ville-tag-dark">Canet-en-Roussillon</span>
+        <span class="ville-tag-dark">Saint-Estève</span>
+        <span class="ville-tag-dark">Cabestany</span>
+        <span class="ville-tag-dark">Argelès-sur-Mer</span>
+        <span class="ville-tag-dark">Saint-Cyprien</span>
+        <span class="ville-tag-dark">Le Barcarès</span>
+        <span class="ville-tag-dark">Rivesaltes</span>
+        <span class="ville-tag-dark">Saleilles</span>
+        <span class="ville-tag-dark">Le Soler</span>
+        <span class="ville-tag-dark">Toulouges</span>
+        <span class="ville-tag-dark">Pyrénées-Orientales</span>
       </div>
     </div>
   </section>
