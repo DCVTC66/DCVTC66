@@ -29,12 +29,19 @@
     .section, .section-alt { padding-top: 2rem !important; padding-bottom: 2rem !important; }
     .section-title { margin-top: 0 !important; margin-bottom: 1rem !important; }
 
-    /* --- CARRÉ BLEU ET FORMULAIRE FORCÉS À LA MÊME LARGEUR QUE LES SERVICES --- */
+    /* --- CARRÉ BLEU FORCÉ À LA MÊME LARGEUR QUE LE FORMULAIRE --- */
+    .header .container {
+      max-width: 560px !important; /* Même largeur que le formulaire sur mobile */
+      margin: 0 auto !important;
+      padding: 0 1rem !important;
+      box-sizing: border-box;
+    }
+
     .branding {
-      padding: 3rem 2.5rem !important;
+      padding: 2.5rem 2rem !important;
       max-width: 100% !important;
       width: 100% !important;
-      margin: 0.5rem auto 0 auto !important;
+      margin: 0 auto !important;
       border-radius: 24px;
       box-sizing: border-box;
     }
@@ -260,6 +267,13 @@
       background-color: rgba(255, 255, 255, 0.25);
     }
 
+    /* --- ADAPTATION POUR PC (Écrans larges) --- */
+    @media (min-width: 1024px) {
+      .header .container {
+        max-width: 760px !important; /* Aligné sur la largeur du formulaire PC */
+      }
+    }
+
     @media (max-width: 768px) {
       .header { padding-top: 0.5rem !important; }
       .section, .section-alt { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; padding-left: 0.8rem; padding-right: 0.8rem; box-sizing: border-box; }
@@ -308,34 +322,36 @@
   </nav>
 
   <header class="header">
-    <div class="header-inner">
-      <div class="branding">
-        <img src="LOGO DCVTC66.png" alt="Logo DCVTC66" class="logo">
-        <h1 class="site-title">DCVTC66</h1>
-        <p class="site-subtitle">CHAUFFEUR VTC PRIVÉ À PERPIGNAN • TARIFS TRANSPARENTS<br>ALTERNATIVE AU TAXI DANS TOUTES LES PYRÉNÉES-ORIENTALES (66)</p>
+    <div class="container">
+      <div class="header-inner">
+        <div class="branding">
+          <img src="LOGO DCVTC66.png" alt="Logo DCVTC66" class="logo">
+          <h1 class="site-title">DCVTC66</h1>
+          <p class="site-subtitle">CHAUFFEUR VTC PRIVÉ À PERPIGNAN • TARIFS TRANSPARENTS<br>ALTERNATIVE AU TAXI DANS TOUTES LES PYRÉNÉES-ORIENTALES (66)</p>
 
-        <div class="hero-actions">
-          <a href="tel:0663463716" class="btn-primary">📞 APPELER</a>
-          <a href="https://wa.me/33663463716" target="_blank" class="btn-primary">💬 WHATSAPP</a>
-          <a href="#reservation" class="btn-primary">📝 RÉSERVER</a>
-        </div>
-
-        <div class="hero-fast-estimate">
-          <div class="hero-fast-fields">
-            <input type="text" id="fast-depart" placeholder="📍 Adresse de départ" autocomplete="off">
-            <input type="text" id="fast-arrivee" placeholder="🏁 Adresse d'arrivée" autocomplete="off">
+          <div class="hero-actions">
+            <a href="tel:0663463716" class="btn-primary">📞 APPELER</a>
+            <a href="https://wa.me/33663463716" target="_blank" class="btn-primary">💬 WHATSAPP</a>
+            <a href="#reservation" class="btn-primary">📝 RÉSERVER</a>
           </div>
-          <button type="button" id="btn-fast-calc" class="btn-fast-calc">💰 Estimer mon trajet en 1 clic</button>
-        </div>
 
-        <button id="btn-install" class="btn-primary" style="display:none;">
-          📲 Installer l'application
-        </button>
+          <div class="hero-fast-estimate">
+            <div class="hero-fast-fields">
+              <input type="text" id="fast-depart" placeholder="📍 Adresse de départ" autocomplete="off">
+              <input type="text" id="fast-arrivee" placeholder="🏁 Adresse d'arrivée" autocomplete="off">
+            </div>
+            <button type="button" id="btn-fast-calc" class="btn-fast-calc">💰 Estimer mon trajet en 1 clic</button>
+          </div>
 
-        <div class="hero-badges">
-          <span>✔ 7j/7</span>
-          <span>✔ Ponctuel</span>
-          <span>✔ Confort</span>
+          <button id="btn-install" class="btn-primary" style="display:none;">
+            📲 Installer l'application
+          </button>
+
+          <div class="hero-badges">
+            <span>✔ 7j/7</span>
+            <span>✔ Ponctuel</span>
+            <span>✔ Confort</span>
+          </div>
         </div>
       </div>
     </div>
