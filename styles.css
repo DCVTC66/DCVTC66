@@ -77,7 +77,6 @@ body {
   padding: 2.5rem 0 2rem; 
 }
 
-/* Forcé en pleine largeur pour éviter la limitation du container d'origine */
 .header .container {
   max-width: 100% !important;
   width: 100% !important;
@@ -96,7 +95,8 @@ body {
 .branding {
   text-align: center;
   width: 100%;
-  max-width: 100% !important;
+  max-width: 560px !important; /* Alignée sur la largeur de base du formulaire */
+  margin: 0 auto;
   background: rgba(16, 42, 92, 0.95);
   border-radius: 1.6rem;
   padding: 2.5rem 2rem;
@@ -530,6 +530,11 @@ details.opt summary {
 @media (min-width: 1024px) {
   .header { 
     padding: 3.2rem 0 2.4rem; 
+  }
+
+  /* Ajout de la largeur maximale alignée sur le formulaire (.form) pour PC */
+  .branding {
+    max-width: 760px !important;
   }
 
   .logo { 
