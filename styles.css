@@ -526,9 +526,11 @@ details.opt summary {
    9. OPTIMISATIONS POUR ÉCRANS PC (Min-width: 1024px)
    ========================================================================== */
 @media (min-width: 1024px) {
-  .header .container {
-    max-width: 1100px !important; /* Même largeur maximale que le conteneur du bas */
+  .branding {
+    max-width: 100% !important; /* Il s'étirera sur toute la largeur disponible */
+    margin: 0 1.5rem; /* Pour garder les mêmes marges sur les côtés que le formulaire */
   }
+}
 
   .branding {
     max-width: 100% !important;
