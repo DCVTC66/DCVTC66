@@ -526,8 +526,10 @@ details.opt summary {
    9. OPTIMISATIONS POUR ÉCRANS PC (Min-width: 1024px)
    ========================================================================== */
 @media (min-width: 1024px) {
-  .header .container {
-    max-width: 760px !important;
+  .branding {
+    max-width: 100% !important; /* On lui redonne toute la largeur disponible */
+    padding: 3.4rem 3.2rem;
+    border-radius: 2.2rem;
   }
 
   .branding {
