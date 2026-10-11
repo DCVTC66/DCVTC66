@@ -587,3 +587,15 @@ details.opt summary {
     text-align: center;
   }
 }
+/* Forçage absolu de la largeur du header pour qu'il corresponde au formulaire */
+@media (min-width: 1024px) {
+  header.header, 
+  .header .container, 
+  .header-inner, 
+  .branding {
+    max-width: 760px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+}
