@@ -77,23 +77,10 @@ body {
   padding: 2.5rem 0 2rem; 
 }
 
-.header .container {
-  max-width: 1024px !important;
-  width: 100% !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-.header-inner { 
-  display: block; 
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
 .branding {
   text-align: center;
   width: 100%;
-  max-width: 560px; /* Aligné sur la largeur de base du formulaire */
+  max-width: 560px;
   margin: 0 auto;
   background: rgba(16, 42, 92, 0.95);
   border-radius: 1.6rem;
@@ -414,61 +401,6 @@ details.opt summary {
 /* ==========================================================================
    7. ÉLÉMENTS FIXES (FABs, Splash Screen & Footer)
    ========================================================================== */
-.fab {
-  position: fixed;
-  right: 1.2rem;
-  width: 52px;
-  height: 52px;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
-  z-index: 20;
-  text-decoration: none;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-}
-
-.fab-call {
-  bottom: 1.2rem;
-  background: linear-gradient(135deg, #fde047, #facc15);
-  color: #0b1733;
-}
-
-.fab-whatsapp {
-  bottom: 4.5rem;
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-  color: #ecfdf5;
-}
-
-#splash-screen {
-  position: fixed;
-  inset: 0;
-  background: #0b1224;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 99999;
-}
-
-#splash-screen img {
-  width: 96px;
-  border-radius: 18px;
-  animation: splash 1.6s ease-in-out infinite;
-}
-
-#splash-screen p {
-  color: var(--primary);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-}
-
-@keyframes splash {
-  0%, 100% { transform: scale(0.98); opacity: 0.85; }
-  50% { transform: scale(1.04); opacity: 1; }
-}
-
 .footer {
   padding: 1.6rem 0;
   text-align: center;
@@ -527,7 +459,7 @@ details.opt summary {
    ========================================================================== */
 @media (min-width: 1024px) {
   .branding {
-    max-width: 760px !important; /* Même largeur maximale que .form sur PC pour s'aligner parfaitement */
+    max-width: 760px !important; /* Même largeur exacte que .form sur PC */
     padding: 3.4rem 3.2rem;
     border-radius: 2.2rem;
     margin-left: auto !important;
@@ -549,7 +481,7 @@ details.opt summary {
   }
 
   .form { 
-    max-width: 760px; 
+    max-width: 760px !important; /* Même largeur exacte que .branding sur PC */
     padding: 2rem 2rem; 
     border-radius: 1.6rem; 
   }
@@ -579,13 +511,5 @@ details.opt summary {
     width: 190px;
     justify-content: center;
     text-align: center;
-  }
-  
-  header.header, 
-  .header-inner {
-    max-width: 760px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    box-sizing: border-box !important;
   }
 }
