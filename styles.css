@@ -185,7 +185,7 @@ body {
 }
 
 /* ==========================================================================
-   5. SECTIONS & GRILLES DE CONTENU (Services & Contact)
+   5. SECTIONS & GRILLES DE CONTENU (Services, Zones & Contact)
    ========================================================================== */
 .section { 
   padding: 3rem 0; 
@@ -233,6 +233,58 @@ body {
   margin: 0; 
   color: var(--text-muted); 
   line-height: 1.45; 
+}
+
+/* STYLE SECTION ZONES D'INTERVENTION */
+.zones-intervention-dark {
+  padding: 40px 20px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.zones-intervention-dark h2 {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--primary);
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.zones-intervention-dark h3 {
+  font-size: 26px;
+  margin: 10px 0;
+  color: #ffffff;
+  font-family: "Playfair Display", serif;
+}
+
+.zones-intervention-dark p {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin-bottom: 25px;
+}
+
+.villes-container-dark {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.ville-tag-dark {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-soft);
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #ffffff;
+  backdrop-filter: blur(5px);
+  transition: background-color 0.3s;
+}
+
+.ville-tag-dark:hover {
+  background-color: rgba(255, 255, 255, 0.25);
 }
 
 .contact-grid {
