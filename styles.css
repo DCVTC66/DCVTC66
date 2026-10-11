@@ -78,7 +78,7 @@ body {
 }
 
 .header .container {
-  max-width: 760px !important; /* On l'aligne sur la largeur du formulaire */
+  max-width: 760px !important;
   width: 100% !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
@@ -93,7 +93,7 @@ body {
 .branding {
   text-align: center;
   width: 100%;
-  max-width: 560px; /* Aligné sur la largeur de base du formulaire */
+  max-width: 560px;
   margin: 0 auto;
   background: rgba(16, 42, 92, 0.95);
   border-radius: 1.6rem;
@@ -531,14 +531,13 @@ details.opt summary {
   }
 
   .branding {
-    max-width: 760px; /* Même taille que .form sur PC */
+    max-width: 760px !important;
     padding: 3.4rem 3.2rem;
     border-radius: 2.2rem;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
   
-  /* Le reste de vos styles PC... */
-}
-
   .logo { 
     width: 150px; 
     margin-bottom: 1.4rem; 
@@ -579,20 +578,15 @@ details.opt summary {
     font-size: 1rem; 
   }
 
-  /* Alignement fixe à la même taille pour les 4 boutons principaux */
   .hero-actions a.btn-primary,
   #btn-install.btn-primary {
     width: 190px;
     justify-content: center;
     text-align: center;
   }
-}
-/* Forçage absolu de la largeur du header pour qu'il corresponde au formulaire */
-@media (min-width: 1024px) {
+  
   header.header, 
-  .header .container, 
-  .header-inner, 
-  .branding {
+  .header-inner {
     max-width: 760px !important;
     margin-left: auto !important;
     margin-right: auto !important;
