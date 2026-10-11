@@ -77,18 +77,19 @@ body {
   padding: 2.5rem 0 2rem; 
 }
 
-/* Forcé en pleine largeur pour éviter la limitation du container d'origine */
+/* Aligné sur la même largeur que le formulaire (.form) */
 .header .container {
-  max-width: 100% !important;
+  max-width: 560px !important;
   width: 100% !important;
   padding-left: 1rem !important;
   padding-right: 1rem !important;
+  margin: 0 auto !important;
+  box-sizing: border-box;
 }
 
 .header-inner { 
   display: flex; 
   justify-content: center; 
-  max-width: 100% !important;
   width: 100% !important;
   box-sizing: border-box !important;
 }
@@ -98,7 +99,7 @@ body {
   width: 100%;
   max-width: 100% !important;
   background: rgba(16, 42, 92, 0.95);
-  border-radius: 1.6rem;
+  border-radius: 1.4rem;
   padding: 2.5rem 2rem;
   box-shadow: var(--shadow-soft);
   border: 1px solid var(--border-soft);
@@ -532,24 +533,29 @@ details.opt summary {
     padding: 3.2rem 0 2.4rem; 
   }
 
+  /* Aligné sur la largeur exacte du formulaire PC (760px) */
+  .header .container {
+    max-width: 760px !important;
+  }
+
   .branding {
     max-width: 100% !important;
-    padding: 3.4rem 3.2rem;
-    border-radius: 2.2rem;
+    padding: 2.5rem 2rem;
+    border-radius: 1.6rem;
   }
 
   .logo { 
-    width: 150px; 
-    margin-bottom: 1.4rem; 
+    width: 130px; 
+    margin-bottom: 1.2rem; 
   }
   
   .site-title { 
-    font-size: 2.9rem; 
+    font-size: 2.5rem; 
   }
   
   .site-subtitle { 
-    font-size: 1.05rem; 
-    margin-bottom: 1.7rem; 
+    font-size: 1rem; 
+    margin-bottom: 1.5rem; 
   }
 
   /* Formulaire élargi pour le confort sur PC */
