@@ -457,11 +457,11 @@ details.opt summary {
 /* ==========================================================================
    9. OPTIMISATIONS POUR ÉCRANS PC (Min-width: 1024px)
    ========================================================================== */
-@media (min-width: 1024px) {
+@media (min-width: 760px) {
   .header .container,
   .branding, 
   .form {
-    max-width: 520px !important;
+    max-width: 760px !important;
     width: 100% !important;
     margin-left: auto !important;
     margin-right: auto !important;
