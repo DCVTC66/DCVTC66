@@ -457,18 +457,6 @@ details.opt summary {
 /* ==========================================================================
    9. OPTIMISATIONS POUR ÉCRANS PC (Min-width: 1024px)
    ========================================================================== */
-/* Force le bloc bleu du haut et le formulaire du bas à avoir exactement la même taille sur PC */
-@media (min-width: 1024px) {
-  header .branding, 
-  .form {
-    max-width: 760px !important;
-    width: 760px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    box-sizing: border-box !important;
-  }
-}
-}
 /* Règle définitive pour forcer le bloc bleu et le formulaire à avoir la même largeur sur PC */
 @media (min-width: 1024px) {
   header .container,
