@@ -466,3 +466,13 @@ details.opt summary {
     box-sizing: border-box !important;
   }
 }
+/* Alignement exact des 2 blocs du haut sur la largeur de la section Services (1100px) */
+@media (min-width: 1024px) {
+  .header .container,
+  #reservation .container {
+    max-width: 1100px !important;
+  }
+  .branding {
+    max-width: 100% !important;
+  }
+}
