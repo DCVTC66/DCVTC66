@@ -457,7 +457,7 @@ details.opt summary {
 /* ==========================================================================
    9. OPTIMISATIONS POUR ÉCRANS PC (Min-width: 1024px)
    ========================================================================== */
-@media (min-width: 760px) {
+@media (min-width: 1024px) {
   .header .container,
   .branding, 
   .form {
