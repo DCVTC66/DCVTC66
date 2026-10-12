@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=500;700&family=Poppins:wght=300;400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=101" />
+  <link rel="stylesheet" href="styles.css?v=102" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#2563eb">
@@ -243,13 +243,14 @@
       background-color: rgba(255, 255, 255, 0.25);
     }
 
-    /* CORRECTION DE LA LARGEUR DU BLOC BLEU HAUT SUR PC (Aligné sur le formulaire de 760px) */
+    /* ALIGNEMENT STRICT DES DEUX BLOCS SUR PC (Largeur identique) */
     @media (min-width: 1024px) {
-      .branding {
+      .header .container,
+      #reservation .container {
         max-width: 760px !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        box-sizing: border-box !important;
+      }
+      .branding {
+        max-width: 100% !important;
       }
     }
 
@@ -301,8 +302,9 @@
   </nav>
 
   <header class="header">
-    <div class="header-inner">
-      <div class="branding">
+    <div class="container">
+      <div class="header-inner">
+        <div class="branding">
           <img src="LOGO DCVTC66.png" alt="Logo DCVTC66" class="logo">
           <h1 class="site-title">DCVTC66</h1>
           <p class="site-subtitle">CHAUFFEUR VTC PRIVÉ À PERPIGNAN • TARIFS TRANSPARENTS<br>ALTERNATIVE AU TAXI DANS TOUTES LES PYRÉNÉES-ORIENTALES (66)</p>
