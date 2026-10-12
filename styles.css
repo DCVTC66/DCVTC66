@@ -469,3 +469,16 @@ details.opt summary {
   }
 }
 }
+/* Règle définitive pour forcer le bloc bleu et le formulaire à avoir la même largeur sur PC */
+@media (min-width: 1024px) {
+  header .container,
+  .header .container,
+  .branding, 
+  .form {
+    max-width: 760px !important;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+}
