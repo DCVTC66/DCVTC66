@@ -460,7 +460,7 @@ details.opt summary {
 @media (min-width: 1024px) {
   .branding, 
   .form {
-    max-width: 760px !important;
+    max-width: 880px !important;
     margin-left: auto !important;
     margin-right: auto !important;
     box-sizing: border-box !important;
