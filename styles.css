@@ -461,7 +461,7 @@ details.opt summary {
   .header .container,
   .branding, 
   .form {
-    max-width: 760px !important;
+    max-width: 520px !important;
     width: 100% !important;
     margin-left: auto !important;
     margin-right: auto !important;
