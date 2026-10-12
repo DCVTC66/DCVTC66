@@ -458,7 +458,12 @@ details.opt summary {
    9. OPTIMISATIONS POUR ÉCRANS PC (Min-width: 1024px)
    ========================================================================== */
 @media (min-width: 1024px) {
-  .header .container,
+  /* On force le conteneur du haut à s'aligner sur 760px comme le formulaire */
+  header .container {
+    max-width: 760px !important;
+    padding: 0 !important;
+  }
+
   .branding, 
   .form {
     max-width: 760px !important;
