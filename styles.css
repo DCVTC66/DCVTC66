@@ -453,3 +453,14 @@ details.opt summary {
     font-size: 0.82rem;
   }
 }
+/* ==========================================================================
+   9. OPTIMISATIONS POUR ÉCRANS PC (Min-width: 1024px)
+   ========================================================================== */
+@media (min-width: 1024px) {
+  .branding, .form {
+    max-width: 760px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+}
