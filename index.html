@@ -725,19 +725,43 @@
       const flottant = document.getElementById("tarif-flottant");
       const flottantTexte = document.getElementById("tarif-flottant-texte");
 
-      const depart = form["Départ"].value.trim();
-      const arrivee = form["Arrivee"].value.trim();
       const trajectoryType = trajetSelect.value;
 
       errDiv.style.display = "none"; errDiv.textContent = "";
       resDiv.style.display = "none"; resDiv.textContent = "";
       if (flottant) flottant.style.setProperty('display', 'none', 'important');
 
+      // --- CAS MISE À DISPOSITION ---
+      if (trajectoryType === "mise-a-disposition") {
+        const dureeMADSelect = document.getElementById('duree-mad');
+        const dureeChoisie = dureeMADSelect ? dureeMADSelect.options[dureeMADSelect.selectedIndex].text : "durée sélectionnée";
+
+        resDiv.style.display = "block";
+        resDiv.innerHTML = "<strong>Mise à disposition (" + dureeChoisie + ")</strong><br>" +
+                            "Prestation sur mesure avec chauffeur dédié.<br>" +
+                            "<small>Cliquez sur SMS ou WhatsApp pour envoyer votre demande et recevoir un devis exact immédiatement.</small>";
+
+        if (flottant && flottantTexte) {
+          flottantTexte.textContent = "Mise à disposition : " + dureeChoisie + " (Sur devis)";
+          flottant.style.setProperty('display', 'flex', 'important');
+        }
+
+        document.getElementById('reservation').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return; // On arrête la fonction ici (pas besoin d'adresses d'arrivée ni de Google Maps)
+      }
+
+      // --- SUITE DE TON CODE HABITUEL POUR LES ALLERS SIMPLES & ALLER-RETOUR ---
+      const depart = form["Départ"].value.trim();
+      const inputArrivee = document.getElementById('input-arrivee');
+      const arrivee = inputArrivee ? inputArrivee.value.trim() : "";
+
       if (!depart || !arrivee) {
         errDiv.textContent = "Veuillez renseigner le départ et l'arrivée.";
         errDiv.style.display = "block";
         return;
       }
+
+      // ... le reste du calcul de calculTarif() reste inchangé
 
       resDiv.style.display = "block";
       resDiv.innerHTML = "Calcul en cours…";
