@@ -558,8 +558,16 @@
     const datesRetourContainer = document.getElementById('dates-retour-container');
     const dateRetourInput = document.getElementById('date-retour');
 
+    // --- C'est ici que tu ajoutes tes constantes et ta nouvelle fonction ---
+    const containerMAD = document.getElementById('container-mad');
+    const mapWrapper = document.getElementById('map-wrapper');
+    const arriveeLabelParent = document.querySelector('input[name="Arrivee"]').closest('label');
+
     function toggleDateRetour() {
-      if (trajetSelect.value === 'aller-retour') {
+      const val = trajetSelect.value;
+
+      // 1. Gestion Aller-Retour
+      if (val === 'aller-retour') {
         datesRetourContainer.style.display = 'block';
         dateRetourInput.required = true;
       } else {
@@ -567,11 +575,26 @@
         dateRetourInput.required = false;
         dateRetourInput.value = '';
       }
+
+      // 2. Gestion Mise à disposition
+      if (val === 'mise-a-disposition') {
+        if (arriveeLabelParent) arriveeLabelParent.style.display = 'none';
+        document.querySelector('input[name="Arrivee"]').required = false;
+        if (containerMAD) containerMAD.style.display = 'block';
+        if (mapWrapper) mapWrapper.style.display = 'none';
+      } else {
+        if (arriveeLabelParent) arriveeLabelParent.style.display = 'flex';
+        document.querySelector('input[name="Arrivee"]').required = true;
+        if (containerMAD) containerMAD.style.display = 'none';
+        if (mapWrapper) mapWrapper.style.display = 'block';
+      }
     }
+    // ------------------------------------------------------------------------
 
     trajetSelect.addEventListener('change', toggleDateRetour);
     toggleDateRetour();
 
+    // ... la suite de ton code existant (construireTexteMessage, etc.)
     function construireTexteMessage() {
       const nom = form.Nom.value;
       const tel = form["Téléphone"].value;
