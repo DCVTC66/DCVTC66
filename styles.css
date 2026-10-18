@@ -1,18 +1,18 @@
 /* ==========================================================================
-   1. VARIABLES & CONFIGURATION GLOBALE (:root & Reset)
+   1. VARIABLES & CONFIGURATION GLOBALE (Thème Gris Anthracite & Blanc)
    ========================================================================== */
 :root {
-  --bg-main: #0b1733;       /* Arrière-plan général */
-  --bg-light: #102a5c;      /* Second dégradé de fond */
-  --bg-alt: #1e4696;        /* Troisième dégradé de fond */
-  --primary: #facc15;       /* Couleur principale (boutons, titres, accents) */
-  --primary-soft: rgba(250, 204, 21, 0.22);
-  --text-main: #f8fafc;     /* Couleur des textes principaux */
-  --text-muted: #b6ccff;    /* Couleur des textes secondaires */
-  --card-bg: rgba(16, 42, 92, 0.88);  /* Fond des cartes et encadrés */
-  --border-soft: rgba(186, 204, 255, 0.35); /* Bordures */
+  --bg-main: #121212;
+  --bg-light: #1a1a1a;
+  --bg-alt: #222222;
+  --primary: #ffffff;
+  --primary-soft: rgba(255, 255, 255, 0.15);
+  --text-main: #f8fafc;
+  --text-muted: #a1a1aa;
+  --card-bg: rgba(30, 30, 30, 0.95);
+  --border-soft: rgba(255, 255, 255, 0.15);
   --error: #f87171;
-  --shadow-soft: 0 20px 50px rgba(2, 6, 23, 0.6);
+  --shadow-soft: 0 20px 50px rgba(0, 0, 0, 0.6);
 }
 
 *, *::before, *::after { 
@@ -23,10 +23,7 @@ body {
   margin: 0;
   font-family: "Poppins", system-ui, sans-serif;
   color: var(--text-main);
-  background:
-    radial-gradient(circle at 15% 10%, rgba(250, 204, 21, 0.25), transparent 45%),
-    radial-gradient(circle at 85% 20%, rgba(56, 189, 248, 0.45), transparent 50%),
-    linear-gradient(to bottom, var(--bg-main), var(--bg-light) 45%, var(--bg-alt));
+  background: var(--bg-main);
 }
 
 .container {
@@ -36,7 +33,7 @@ body {
 }
 
 /* ==========================================================================
-   2. NAVIGATION (Header et Navbar)
+   2. NAVIGATION
    ========================================================================== */
 .nav {
   position: sticky;
@@ -44,7 +41,7 @@ body {
   z-index: 10;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  background: rgba(11, 23, 51, 0.85);
+  background: rgba(18, 18, 18, 0.9);
   border-bottom: 1px solid var(--border-soft);
 }
 
@@ -82,7 +79,7 @@ body {
   width: 100%;
   max-width: 100%;
   margin: 0 auto;
-  background: rgba(16, 42, 92, 0.95);
+  background: var(--card-bg);
   border-radius: 1.6rem;
   padding: 2.5rem 2rem;
   box-shadow: var(--shadow-soft);
@@ -93,7 +90,7 @@ body {
 .logo {
   width: 120px;
   border-radius: 999px;
-  border: 2px solid var(--primary);
+  border: 2px solid var(--border-soft);
   padding: 4px;
   background: var(--bg-main);
   margin-bottom: 1.2rem;
@@ -115,7 +112,7 @@ body {
 }
 
 /* ==========================================================================
-   4. BOUTONS ACTION & BADGES (Hero section)
+   4. BOUTONS ACTION & BADGES
    ========================================================================== */
 .hero-actions {
   display: flex;
@@ -125,8 +122,8 @@ body {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #fde047, #facc15);
-  color: #0b1733;
+  background: #ffffff;
+  color: #121212;
   padding: 0.6rem 1.1rem;
   border-radius: 999px;
   font-size: 0.8rem;
@@ -136,21 +133,22 @@ body {
   text-decoration: none;
   border: none;
   cursor: pointer;
-  box-shadow: 0 12px 28px rgba(250, 204, 21, 0.45);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .btn-primary:hover { 
   transform: translateY(-2px); 
+  opacity: 0.9;
 }
 
 #btn-tarif {
-  background: linear-gradient(135deg, #25D366, #1ebe5d);
-  color: #0b1733;
+  background: #ffffff;
+  color: #121212;
 }
 
 .hero-badges {
@@ -166,18 +164,18 @@ body {
   padding: 0.45rem 0.9rem;
   border-radius: 999px;
   border: 1px solid var(--border-soft);
-  background: rgba(16, 42, 92, 0.85);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 /* ==========================================================================
-   5. SECTIONS & GRILLES DE CONTENU (Services, Zones & Contact)
+   5. SECTIONS & GRILLES DE CONTENU
    ========================================================================== */
 .section { 
   padding: 3rem 0; 
 }
 
 .section-alt {
-  background: radial-gradient(circle at top, rgba(56,189,248,0.25), rgba(16,42,92,0.95));
+  background: var(--bg-light);
 }
 
 .section-title {
@@ -225,12 +223,13 @@ body {
   padding: 40px 20px;
   text-align: center;
   color: #ffffff;
+  background: var(--bg-main);
 }
 
 .zones-intervention-dark h2 {
   font-size: 13px;
   letter-spacing: 2px;
-  color: var(--primary);
+  color: var(--text-muted);
   text-transform: uppercase;
   margin-bottom: 5px;
 }
@@ -258,7 +257,7 @@ body {
 }
 
 .ville-tag-dark {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--card-bg);
   border: 1px solid var(--border-soft);
   border-radius: 20px;
   padding: 8px 16px;
@@ -269,7 +268,7 @@ body {
 }
 
 .ville-tag-dark:hover {
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 .contact-grid {
@@ -280,7 +279,7 @@ body {
 }
 
 .contact-grid a { 
-  color: var(--primary); 
+  color: #ffffff; 
   text-decoration: none; 
 }
 
@@ -294,7 +293,7 @@ body {
 .form {
   max-width: 100%;
   margin: 0 auto;
-  background: rgba(255,255,255,0.06);
+  background: var(--card-bg);
   padding: 1.3rem 1.2rem;
   border-radius: 1.4rem;
   border: 1px solid var(--border-soft);
@@ -313,14 +312,14 @@ body {
   padding: 0.75rem 0.85rem;
   border-radius: 14px;
   border: 1px solid var(--border-soft);
-  background: rgba(11,23,51,0.35) !important;
+  background: #1a1a1a !important;
   color: var(--text-main) !important;
   font-family: inherit;
 }
 
 .form input:focus, .form textarea:focus, .form select:focus {
   outline: none;
-  border-color: var(--primary);
+  border-color: #ffffff;
 }
 
 .form .row { 
@@ -343,8 +342,8 @@ details.opt summary {
 }
 
 .btn-estimate {
-  background: linear-gradient(135deg, #ff6f00, #ff9100);
-  color: #fff;
+  background: #ffffff;
+  color: #121212;
   border-radius: 999px;
   padding: 0.9rem 1rem;
   font-weight: 800;
@@ -353,22 +352,23 @@ details.opt summary {
   text-transform: uppercase;
   font-size: 0.8rem;
   letter-spacing: 0.05em;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .btn-estimate:hover { 
   transform: translateY(-1px); 
+  opacity: 0.9;
 }
 
 /* Placeholders et validation du formulaire */
 .form input::placeholder,
 .form select,
 .form input[type="datetime-local"]::-webkit-datetime-edit { 
-  color: rgba(182, 204, 255, 0.75); 
+  color: var(--text-muted); 
 }
 
 .form select option {
-  background: #0b1733;
+  background: #1a1a1a;
   color: var(--text-main);
 }
 
@@ -387,9 +387,9 @@ details.opt summary {
 }
 
 .result-compact {
-  background: rgba(40, 167, 69, 0.15);
-  border: 1px solid #28a745;
-  color: #85e89d;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-soft);
+  color: #ffffff;
 }
 
 .error-compact {
@@ -399,14 +399,14 @@ details.opt summary {
 }
 
 /* ==========================================================================
-   7. ÉLÉMENTS FIXES (FABs, Splash Screen & Footer)
+   7. FOOTER
    ========================================================================== */
 .footer {
   padding: 1.6rem 0;
   text-align: center;
   font-size: 0.8rem;
   color: var(--text-muted);
-  background: rgba(11, 23, 51, 0.65);
+  background: var(--bg-main);
   border-top: 1px solid var(--border-soft);
 }
 
@@ -421,7 +421,7 @@ details.opt summary {
 }
 
 /* ==========================================================================
-   8. RESPONSIVE (Tablettes et Mobiles)
+   8. RESPONSIVE
    ========================================================================== */
 @media (max-width: 900px) {
   .grid, .contact-grid { 
@@ -455,7 +455,7 @@ details.opt summary {
 }
 
 /* ==========================================================================
-   9. OPTIMISATIONS POUR ÉCRANS PC (Min-width: 1024px)
+   9. OPTIMISATIONS ÉCRANS PC
    ========================================================================== */
 @media (min-width: 1024px) {
   .branding, 
@@ -465,9 +465,7 @@ details.opt summary {
     margin-right: auto !important;
     box-sizing: border-box !important;
   }
-}
-/* Alignement exact des 2 blocs du haut sur la largeur de la section Services (1100px) */
-@media (min-width: 1024px) {
+
   .header .container,
   #reservation .container {
     max-width: 1100px !important;
