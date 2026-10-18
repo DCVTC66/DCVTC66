@@ -746,8 +746,11 @@
         
         let tarifEstime = "";
         let kmMax = "";
-
-        if (dureeValeur === "2h") {
+        
+      if (dureeValeur === "1h") {
+          tarifEstime = "60 €";
+          kmMax = "25 km inclus";
+        } else if (dureeValeur === "2h") {
           tarifEstime = "130 €";
           kmMax = "50 km inclus";
         } else if (dureeValeur === "3h") {
