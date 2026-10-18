@@ -353,10 +353,11 @@
           </label>
         </div>
 
-        <label>Type de trajet
+        <label>Type de prestation
           <select name="Trajet" id="trajet-type">
             <option value="simple">Aller simple</option>
             <option value="aller-retour">Aller-Retour (réduction 10% sur le retour)</option>
+            <option value="mise-a-disposition">Mise à disposition (chauffeur dédié)</option>
           </select>
         </label>
 
@@ -367,6 +368,19 @@
         <label>Arrivée
           <input type="text" name="Arrivee" placeholder="Adresse de destination" required>
         </label>
+        
+        <!-- CHAMP DURÉE (Affiché uniquement si mise à disposition) -->
+        <div id="container-mad" style="display: none;">
+          <label>Durée souhaitée
+            <select name="DureeMAD" id="duree-mad">
+              <option value="2h">2 Heures</option>
+              <option value="3h">3 Heures</option>
+              <option value="4h (demi-journée)">4 Heures (Demi-journée)</option>
+              <option value="8h (journée)">8 Heures (Journée entière)</option>
+              <option value="sur-mesure">Plus / Sur mesure</option>
+            </select>
+          </label>
+        </div>
 
         <label>Date & heure aller
           <input type="datetime-local" name="DateHeureAller" id="date-aller" required>
