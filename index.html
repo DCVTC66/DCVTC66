@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=500;700&family=Poppins:wght=300;400;500;600&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=106" />
+  <link rel="stylesheet" href="styles.css?v=103" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#2563eb">
@@ -66,9 +66,9 @@
 
     /* ZONE D'ESTIMATION RAPIDE */
     .hero-fast-estimate {
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid var(--border-soft);
       padding: 22px !important;
       border-radius: 20px;
       margin: 1.5rem auto 0 auto;
@@ -85,10 +85,10 @@
     .hero-fast-fields input {
       padding: 1rem 1.2rem !important; 
       border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--border-soft);
+      background: #ffffff;
       font-size: 1rem; 
-      color: #333;
+      color: #1a1a1a;
       width: 100%;
       box-sizing: border-box;
       font-weight: 500;
@@ -98,14 +98,14 @@
       padding: 11px 22px !important;
       border-radius: 14px;
       border: none;
-      background: #16a34a;
-      color: white;
+      background: var(--primary);
+      color: #121212;
       font-weight: 700;
       font-size: 1.05rem; 
       cursor: pointer;
-      transition: background 0.2s;
+      transition: opacity 0.2s;
     }
-    .btn-fast-calc:hover { background: #15803d; }
+    .btn-fast-calc:hover { opacity: 0.9; }
 
     #btn-install.btn-primary {
       margin-top: 1.2rem;
@@ -127,22 +127,22 @@
       gap: 1rem;
       padding: 1.2rem 2.5rem; 
       border-radius: 999px; 
-      background: linear-gradient(135deg, #16a34a, #22c55e);
-      color: #022c22; 
-      box-shadow: 0 20px 50px rgba(22, 163, 74, 0.8); 
+      background: var(--primary);
+      color: #121212; 
+      box-shadow: var(--shadow-soft); 
       font-size: 1.3rem; 
       font-weight: 700; 
       width: max-content;
       max-width: 90vw;
-      border: 2px solid rgba(255, 255, 255, 0.4);
+      border: 2px solid var(--border-soft);
       animation: pulseTarifCentrer 1.8s ease-in-out infinite;
     }
     #tarif-flottant .icon { font-size: 1.7rem; }
     
     @keyframes pulseTarifCentrer {
-      0% { transform: translateX(-50%) scale(1); box-shadow: 0 15px 35px rgba(22, 163, 74, 0.6); }
-      50% { transform: translateX(-50%) scale(1.04); box-shadow: 0 25px 55px rgba(22, 163, 74, 0.9); }
-      100% { transform: translateX(-50%) scale(1); box-shadow: 0 15px 35px rgba(22, 163, 74, 0.6); }
+      0% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.04); }
+      100% { transform: translateX(-50%) scale(1); }
     }
 
     .section-intro { margin-bottom: 0.75rem; }
@@ -191,33 +191,33 @@
     }
 
     .result-compact, .error-compact{ margin-top:.6rem; padding:.65rem .75rem; border-radius:12px; font-size:.85rem; line-height:1.35; }
-    .result-compact{ background:#f0f7ff; color:#1b3b68; }
-    .error-compact{ background:#ffecec; color:#a40000; }
+    .result-compact{ background:rgba(255, 255, 255, 0.1); color:var(--text-main); border:1px solid var(--border-soft); }
+    .error-compact{ background:rgba(248, 113, 113, 0.15); color:var(--error); border:1px solid var(--error); }
 
     .map-wrapper { margin-top: .7rem; border-radius: 16px; overflow: hidden; }
     .map-wrapper-inner { position:relative; width:100%; height:320px; }
     #map { width:100%; height:100%; }
 
-    /* STYLES POUR LA ZONE D'INTERVENTION (DARK THEME) */
+    /* STYLES POUR LA ZONE D'INTERVENTION */
     .zones-intervention-dark {
       padding: 40px 20px;
       text-align: center;
-      color: #ffffff;
+      color: var(--text-main);
     }
     .zones-intervention-dark h2 {
       font-size: 13px;
       letter-spacing: 2px;
-      color: #a0c4ff;
+      color: var(--primary);
       text-transform: uppercase;
       margin-bottom: 5px;
     }
     .zones-intervention-dark h3 {
       font-size: 26px;
       margin: 10px 0;
-      color: #ffffff;
+      color: var(--text-main);
     }
     .zones-intervention-dark p {
-      color: #d0d0d0;
+      color: var(--text-muted);
       font-size: 15px;
       margin-bottom: 25px;
     }
@@ -230,20 +230,20 @@
       margin: 0 auto;
     }
     .ville-tag-dark {
-      background-color: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-soft);
       border-radius: 20px;
       padding: 8px 16px;
       font-size: 14px;
-      color: #ffffff;
+      color: var(--text-main);
       backdrop-filter: blur(5px);
       transition: background-color 0.3s;
     }
     .ville-tag-dark:hover {
-      background-color: rgba(255, 255, 255, 0.25);
+      background-color: rgba(255, 255, 255, 0.15);
     }
 
-    /* ALIGNEMENT STRICT DES DEUX BLOCS SUR PC (Largeur identique) */
+    /* ALIGNEMENT STRICT DES DEUX BLOCS SUR PC */
     @media (min-width: 1024px) {
       .header .container,
       #reservation .container {
@@ -353,11 +353,10 @@
           </label>
         </div>
 
-        <label>Type de prestation
+        <label>Type de trajet
           <select name="Trajet" id="trajet-type">
             <option value="simple">Aller simple</option>
             <option value="aller-retour">Aller-Retour (réduction 10% sur le retour)</option>
-            <option value="mise-a-disposition">Mise à disposition (chauffeur dédié)</option>
           </select>
         </label>
 
@@ -365,25 +364,9 @@
           <input type="text" name="Départ" placeholder="Adresse de prise en charge" required>
         </label>
 
-        <!-- CHAMP ARRIVÉE (Masqué si mise à disposition) -->
-        <div id="container-arrivee">
-          <label>Arrivée
-            <input type="text" name="Arrivee" id="input-arrivee" placeholder="Adresse de destination" required>
-          </label>
-        </div>
-
-        <!-- CHAMP DURÉE (Affiché uniquement si mise à disposition) -->
-        <div id="container-mad" style="display: none;">
-          <label>Durée souhaitée
-            <select name="DureeMAD" id="duree-mad">
-              <option value="2h">2 Heures</option>
-              <option value="3h">3 Heures</option>
-              <option value="4h (demi-journée)">4 Heures (Demi-journée)</option>
-              <option value="8h (journée)">8 Heures (Journée entière)</option>
-              <option value="sur-mesure">Plus / Sur mesure</option>
-            </select>
-          </label>
-        </div>
+        <label>Arrivée
+          <input type="text" name="Arrivee" placeholder="Adresse de destination" required>
+        </label>
 
         <label>Date & heure aller
           <input type="datetime-local" name="DateHeureAller" id="date-aller" required>
@@ -561,16 +544,8 @@
     const datesRetourContainer = document.getElementById('dates-retour-container');
     const dateRetourInput = document.getElementById('date-retour');
 
-    const containerArrivee = document.getElementById('container-arrivee');
-    const inputArrivee = document.getElementById('input-arrivee');
-    const containerMAD = document.getElementById('container-mad');
-    const mapWrapper = document.getElementById('map-wrapper');
-
-    function gererAffichageFormulaire() {
-      const val = trajetSelect.value;
-
-      // 1. Gestion Aller-Retour
-      if (val === 'aller-retour') {
+    function toggleDateRetour() {
+      if (trajetSelect.value === 'aller-retour') {
         datesRetourContainer.style.display = 'block';
         dateRetourInput.required = true;
       } else {
@@ -578,66 +553,43 @@
         dateRetourInput.required = false;
         dateRetourInput.value = '';
       }
-
-      // 2. Gestion Mise à disposition
-      if (val === 'mise-a-disposition') {
-        containerArrivee.style.display = 'none';
-        inputArrivee.required = false;
-        inputArrivee.value = '';
-        containerMAD.style.display = 'block';
-        if (mapWrapper) mapWrapper.style.display = 'none';
-      } else {
-        containerArrivee.style.display = 'block';
-        inputArrivee.required = true;
-        containerMAD.style.display = 'none';
-        if (mapWrapper) mapWrapper.style.display = 'block';
-      }
     }
 
-    trajetSelect.addEventListener('change', gererAffichageFormulaire);
-    gererAffichageFormulaire();
+    trajetSelect.addEventListener('change', toggleDateRetour);
+    toggleDateRetour();
 
     function construireTexteMessage() {
       const nom = form.Nom.value;
       const tel = form["Téléphone"].value;
       const depart = form["Départ"].value;
-      const arrivee = inputArrivee ? inputArrivee.value : "";
-      const dureeMAD = document.getElementById('duree-mad') ? document.getElementById('duree-mad').value : "";
+      const arrivee = form["Arrivee"].value;
       const dateAller = formatDateHeureFR(form["DateHeureAller"].value);
       const dateRetour = trajetSelect.value === 'aller-retour' ? formatDateHeureFR(dateRetourInput.value) : '';
       const passagers = form["Passagers"].value;
       const paiement = form["Paiement"].value;
       const messageClient = form["Message"].value;
       const trajetType = trajetSelect.value;
+      const trajetTexte = trajetType === "aller-retour" ? "Aller-Retour" : "Aller simple";
 
       let texte = "Nouvelle demande – DCVTC66 :\n\n";
       texte += "Nom : " + nom + "\n";
       texte += "Téléphone : " + tel + "\n";
-
-      if (trajetType === "mise-a-disposition") {
-        texte += "Prestation : Mise à disposition (" + dureeMAD + ")\n";
-        texte += "Départ : " + depart + "\n";
-        texte += "Date & heure début : " + dateAller + "\n";
-      } else {
-        const trajetTexte = trajetType === "aller-retour" ? "Aller-Retour" : "Aller simple";
-        texte += "Départ : " + depart + "\n";
-        texte += "Arrivée : " + arrivee + "\n";
-        texte += "Date & heure aller : " + dateAller + "\n";
-        if (trajetType === "aller-retour" && dateRetour) {
-          texte += "Date & heure retour : " + dateRetour + "\n";
-        }
-        texte += "Trajet : " + trajetTexte + "\n";
+      texte += "Départ : " + depart + "\n";
+      texte += "Arrivée : " + arrivee + "\n";
+      texte += "Date & heure aller : " + dateAller + "\n";
+      if (trajetType === "aller-retour" && dateRetour) {
+        texte += "Date & heure retour : " + dateRetour + "\n";
       }
-
       texte += "Passagers : " + passagers + "\n";
       texte += "Paiement : " + paiement + "\n";
+      texte += "Trajet : " + trajetTexte + "\n";
       if (messageClient.trim() !== "") texte += "Infos : " + messageClient + "\n";
 
-      if (derniereEstimation && trajetType !== "mise-a-disposition") {
+      if (derniereEstimation) {
         texte += "\n--- Estimation ---\n";
         texte += "Distance : " + (derniereEstimation.distanceTotale || derniereEstimation.distanceKm) + " km\n";
-        texte += "Durée : " + (dernieroEstimation?.dureeTotale || derniereEstimation.dureeTexte) + "\n";
-        texte += "Tarif : " + derniereEstimation.tarif.toFixed(2) + " €\n";
+        texte += "Durée : " + (derniereEstimation.dureeTotale || derniereEstimation.dureeTexte) + "\n";
+        texte += "Tarif " + (derniereEstimation.trajetType === "aller-retour" ? "Aller-Retour" : "") + " : " + derniereEstimation.tarif.toFixed(2) + " €\n";
       }
       return texte;
     }
@@ -737,18 +689,12 @@
       const flottantTexte = document.getElementById("tarif-flottant-texte");
 
       const depart = form["Départ"].value.trim();
-      const arrivee = inputArrivee ? inputArrivee.value.trim() : "";
+      const arrivee = form["Arrivee"].value.trim();
       const trajectoryType = trajetSelect.value;
 
       errDiv.style.display = "none"; errDiv.textContent = "";
       resDiv.style.display = "none"; resDiv.textContent = "";
       if (flottant) flottant.style.setProperty('display', 'none', 'important');
-
-      if (trajectoryType === "mise-a-disposition") {
-        resDiv.style.display = "block";
-        resDiv.innerHTML = "Mise à disposition sélectionnée : tarif sur devis / selon durée.";
-        return;
-      }
 
       if (!depart || !arrivee) {
         errDiv.textContent = "Veuillez renseigner le départ et l'arrivée.";
