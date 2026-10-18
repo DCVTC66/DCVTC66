@@ -40,7 +40,7 @@
     .site-title { margin-bottom: 0.2rem; font-size: 2.4rem; }
     .site-subtitle { margin-top: 0; font-size: 1.05rem; max-width: 85%; margin-left: auto; margin-right: auto; opacity: 0.9; }
 
-    /* Boutons d'action */
+    /* Boutons principaux */
     .hero-actions { 
       display: grid; 
       grid-template-columns: repeat(3, 1fr); 
@@ -66,7 +66,7 @@
 
     /* ZONE D'ESTIMATION RAPIDE */
     .hero-fast-estimate {
-      background: var(--card-bg);
+      background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(8px);
       border: 1px solid var(--border-soft);
       padding: 22px !important;
@@ -86,9 +86,9 @@
       padding: 1rem 1.2rem !important; 
       border-radius: 14px;
       border: 1px solid var(--border-soft);
-      background: rgba(255, 255, 255, 0.9);
+      background: #ffffff;
       font-size: 1rem; 
-      color: #333;
+      color: #1a1a1a;
       width: 100%;
       box-sizing: border-box;
       font-weight: 500;
@@ -99,7 +99,7 @@
       border-radius: 14px;
       border: none;
       background: var(--primary);
-      color: var(--bg-main);
+      color: #121212;
       font-weight: 700;
       font-size: 1.05rem; 
       cursor: pointer;
@@ -128,7 +128,7 @@
       padding: 1.2rem 2.5rem; 
       border-radius: 999px; 
       background: var(--primary);
-      color: var(--bg-main); 
+      color: #121212; 
       box-shadow: var(--shadow-soft); 
       font-size: 1.3rem; 
       font-weight: 700; 
@@ -191,7 +191,7 @@
     }
 
     .result-compact, .error-compact{ margin-top:.6rem; padding:.65rem .75rem; border-radius:12px; font-size:.85rem; line-height:1.35; }
-    .result-compact{ background:rgba(40, 167, 69, 0.15); color:var(--text-main); border:1px solid #28a745; }
+    .result-compact{ background:rgba(255, 255, 255, 0.1); color:var(--text-main); border:1px solid var(--border-soft); }
     .error-compact{ background:rgba(248, 113, 113, 0.15); color:var(--error); border:1px solid var(--error); }
 
     .map-wrapper { margin-top: .7rem; border-radius: 16px; overflow: hidden; }
@@ -240,7 +240,7 @@
       transition: background-color 0.3s;
     }
     .ville-tag-dark:hover {
-      background-color: var(--primary-soft);
+      background-color: rgba(255, 255, 255, 0.15);
     }
 
     /* ALIGNEMENT STRICT DES DEUX BLOCS SUR PC */
