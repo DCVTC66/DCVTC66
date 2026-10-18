@@ -739,15 +739,15 @@
       resDiv.style.display = "none"; resDiv.textContent = "";
       if (flottant) flottant.style.setProperty('display', 'none', 'important');
 
-      // --- CAS MISE À DISPOSITION ---
+     // --- CAS MISE À DISPOSITION ---
       if (trajectoryType === "mise-a-disposition") {
         const dureeMADSelect = document.getElementById('duree-mad');
         const dureeValeur = dureeMADSelect ? dureeMADSelect.value : "";
         
         let tarifEstime = "";
         let kmMax = "";
-        
-      if (dureeValeur === "1h") {
+
+        if (dureeValeur === "1h") {
           tarifEstime = "60 €";
           kmMax = "25 km inclus";
         } else if (dureeValeur === "2h") {
@@ -775,7 +775,7 @@
                            "<small>Dépassement kilométrique : +1,70 € par km supplémentaire</small><br>" +
                            "<small>Cliquez sur SMS ou WhatsApp pour envoyer votre demande.</small>";
 
-       if (flottant && flottantTexte) {
+        if (flottant && flottantTexte) {
           flottantTexte.textContent = "MAD " + dureeTexte + " : " + tarifEstime + " (" + kmMax + " • +1,70 €/km sup)";
           flottant.style.setProperty('display', 'flex', 'important');
         }
