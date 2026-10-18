@@ -365,19 +365,21 @@
           <input type="text" name="Départ" placeholder="Adresse de prise en charge" required>
         </label>
 
-        <label>Arrivée
-          <input type="text" name="Arrivee" placeholder="Adresse de destination" required>
-        </label>
-        
-        <!-- CHAMP DURÉE (Affiché uniquement si mise à disposition) -->
+        <!-- CHAMP ARRIVÉE -->
+        <div id="container-arrivee">
+          <label>Arrivée
+            <input type="text" name="Arrivee" id="input-arrivee" placeholder="Adresse de destination" required>
+          </label>
+        </div>
+
+        <!-- CHAMP DURÉE (Mise à disposition) -->
         <div id="container-mad" style="display: none;">
           <label>Durée souhaitée
             <select name="DureeMAD" id="duree-mad">
-              <option value="2h">2 Heures</option>
-              <option value="3h">3 Heures</option>
-              <option value="4h (demi-journée)">4 Heures (Demi-journée)</option>
-              <option value="8h (journée)">8 Heures (Journée entière)</option>
-              <option value="sur-mesure">Plus / Sur mesure</option>
+              <option value="2h">2 Heures (50 km inclus)</option>
+              <option value="3h">3 Heures (75 km inclus)</option>
+              <option value="4h (demi-journée)">4 Heures / Demi-journée (100 km inclus)</option>
+              <option value="8h (journée)">8 Heures / Journée (200 km inclus)</option>
             </select>
           </label>
         </div>
@@ -428,6 +430,7 @@
         <div id="erreur-tarif" class="error-compact" style="display:none;"></div>
         <div id="resultat-tarif" class="result-compact" style="display:none;"></div>
 
+        <!-- CARTE GOOGLE MAPS BIEN PRÉSENTE -->
         <div class="map-wrapper" id="map-wrapper">
           <div class="map-wrapper-inner">
             <div id="map"></div>
@@ -558,12 +561,12 @@
     const datesRetourContainer = document.getElementById('dates-retour-container');
     const dateRetourInput = document.getElementById('date-retour');
 
-    // --- C'est ici que tu ajoutes tes constantes et ta nouvelle fonction ---
+    const containerArrivee = document.getElementById('container-arrivee');
+    const inputArrivee = document.getElementById('input-arrivee');
     const containerMAD = document.getElementById('container-mad');
     const mapWrapper = document.getElementById('map-wrapper');
-    const arriveeLabelParent = document.querySelector('input[name="Arrivee"]').closest('label');
 
-    function toggleDateRetour() {
+    function gererAffichageFormulaire() {
       const val = trajetSelect.value;
 
       // 1. Gestion Aller-Retour
@@ -578,28 +581,30 @@
 
       // 2. Gestion Mise à disposition
       if (val === 'mise-a-disposition') {
-        if (arriveeLabelParent) arriveeLabelParent.style.display = 'none';
-        document.querySelector('input[name="Arrivee"]').required = false;
+        if (containerArrivee) containerArrivee.style.display = 'none';
+        if (inputArrivee) {
+          inputArrivee.required = false;
+          inputArrivee.value = '';
+        }
         if (containerMAD) containerMAD.style.display = 'block';
         if (mapWrapper) mapWrapper.style.display = 'none';
       } else {
-        if (arriveeLabelParent) arriveeLabelParent.style.display = 'flex';
-        document.querySelector('input[name="Arrivee"]').required = true;
+        if (containerArrivee) containerArrivee.style.display = 'block';
+        if (inputArrivee) inputArrivee.required = true;
         if (containerMAD) containerMAD.style.display = 'none';
         if (mapWrapper) mapWrapper.style.display = 'block';
       }
     }
-    // ------------------------------------------------------------------------
 
-    trajetSelect.addEventListener('change', toggleDateRetour);
-    toggleDateRetour();
+    trajetSelect.addEventListener('change', gererAffichageFormulaire);
+    gererAffichageFormulaire();
 
-    // ... la suite de ton code existant (construireTexteMessage, etc.)
     function construireTexteMessage() {
       const nom = form.Nom.value;
       const tel = form["Téléphone"].value;
       const depart = form["Départ"].value;
-      const arrivee = form["Arrivee"].value;
+      const arrivee = inputArrivee ? inputArrivee.value : "";
+      const dureeMAD = document.getElementById('duree-mad') ? document.getElementById('duree-mad').value : "";
       const dateAller = formatDateHeureFR(form["DateHeureAller"].value);
       const dateRetour = trajetSelect.value === 'aller-retour' ? formatDateHeureFR(dateRetourInput.value) : '';
       const passagers = form["Passagers"].value;
@@ -611,22 +616,31 @@
       let texte = "Nouvelle demande – DCVTC66 :\n\n";
       texte += "Nom : " + nom + "\n";
       texte += "Téléphone : " + tel + "\n";
-      texte += "Départ : " + depart + "\n";
-      texte += "Arrivée : " + arrivee + "\n";
-      texte += "Date & heure aller : " + dateAller + "\n";
-      if (trajetType === "aller-retour" && dateRetour) {
-        texte += "Date & heure retour : " + dateRetour + "\n";
+
+      if (trajetType === "mise-a-disposition") {
+        texte += "Prestation : Mise à disposition (" + dureeMAD + ")\n";
+        texte += "Départ : " + depart + "\n";
+        texte += "Date & heure début : " + dateAller + "\n";
+        texte += "Condition km : Dépassement à 1,70 € / km sup.\n";
+      } else {
+        texte += "Départ : " + depart + "\n";
+        texte += "Arrivée : " + arrivee + "\n";
+        texte += "Date & heure aller : " + dateAller + "\n";
+        if (trajetType === "aller-retour" && dateRetour) {
+          texte += "Date & heure retour : " + dateRetour + "\n";
+        }
+        texte += "Trajet : " + trajetTexte + "\n";
       }
+
       texte += "Passagers : " + passagers + "\n";
       texte += "Paiement : " + paiement + "\n";
-      texte += "Trajet : " + trajetTexte + "\n";
       if (messageClient.trim() !== "") texte += "Infos : " + messageClient + "\n";
 
-      if (derniereEstimation) {
+      if (derniereEstimation && trajetType !== "mise-a-disposition") {
         texte += "\n--- Estimation ---\n";
         texte += "Distance : " + (derniereEstimation.distanceTotale || derniereEstimation.distanceKm) + " km\n";
         texte += "Durée : " + (derniereEstimation.dureeTotale || derniereEstimation.dureeTexte) + "\n";
-        texte += "Tarif " + (derniereEstimation.trajetType === "aller-retour" ? "Aller-Retour" : "") + " : " + derniereEstimation.tarif.toFixed(2) + " €\n";
+        texte += "Tarif : " + derniereEstimation.tarif.toFixed(2) + " €\n";
       }
       return texte;
     }
@@ -678,7 +692,7 @@
       });
 
       const inputDepart = document.querySelector('input[name="Départ"]');
-      const inputArrivee = document.querySelector('input[name="Arrivee"]');
+      const inputArrivee = document.getElementById('input-arrivee');
       const fastDepart = document.getElementById('fast-depart');
       const fastArrivee = document.getElementById('fast-arrivee');
 
@@ -700,7 +714,7 @@
         btnFastCalc.addEventListener("click", () => {
           if (fastDepart && fastArrivee && fastDepart.value.trim() && fastArrivee.value.trim()) {
             form["Départ"].value = fastDepart.value;
-            form["Arrivee"].value = fastArrivee.value;
+            if (inputArrivee) inputArrivee.value = fastArrivee.value;
             
             if (!form["DateHeureAller"].value) {
               const maintenant = new Date();
@@ -761,22 +775,20 @@
         resDiv.style.display = "block";
         resDiv.innerHTML = "<strong>Mise à disposition (" + dureeTexte + ")</strong><br>" +
                            "Tarif estimé : <strong>" + tarifEstime + "</strong> (" + kmMax + ")<br>" +
-                           "<small style='color: var(--primary);'>Dépassement kilométrique : +1,70 € par km supplémentaire</small><br>" +
-                           "<small>Cliquez sur SMS ou WhatsApp pour envoyer votre demande de réservation.</small>";
+                           "<small>Dépassement kilométrique : +1,70 € par km supplémentaire</small><br>" +
+                           "<small>Cliquez sur SMS ou WhatsApp pour envoyer votre demande.</small>";
 
         if (flottant && flottantTexte) {
-          flottantTexte.textContent = "MAD " + dureeTexte + " : " + tarifEstime + " (" + kmMax + " • +1.70€/km sup)";
+          flottantTexte.textContent = "MAD " + dureeTexte + " : " + tarifEstime + " (" + kmMax + ")";
           flottant.style.setProperty('display', 'flex', 'important');
         }
 
         document.getElementById('reservation').scrollIntoView({ behavior: 'smooth', block: 'start' });
         return;
       }
-      }
 
-      // --- SUITE DE TON CODE HABITUEL POUR LES ALLERS SIMPLES & ALLER-RETOUR ---
+      // --- CAS TRAJET SIMPLE / ALLER-RETOUR ---
       const depart = form["Départ"].value.trim();
-      const inputArrivee = document.getElementById('input-arrivee');
       const arrivee = inputArrivee ? inputArrivee.value.trim() : "";
 
       if (!depart || !arrivee) {
@@ -784,8 +796,6 @@
         errDiv.style.display = "block";
         return;
       }
-
-      // ... le reste du calcul de calculTarif() reste inchangé
 
       resDiv.style.display = "block";
       resDiv.innerHTML = "Calcul en cours…";
