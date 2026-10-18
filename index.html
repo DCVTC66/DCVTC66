@@ -17,7 +17,7 @@
   
   <link rel="canonical" href="https://www.dcvtc66.fr/" />
 
- <style>
+  <style>
     html, body { margin: 0; padding: 0; overflow-x: hidden; }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; box-sizing: border-box; }
 
@@ -114,7 +114,7 @@
       font-size: 0.85rem;
     }
 
-   /* TARIF FLOTTANT VERT LISIBLE */
+    /* TARIF FLOTTANT VERT LISIBLE */
     #tarif-flottant {
       position: fixed; 
       top: 24px; 
@@ -127,8 +127,8 @@
       gap: 1rem;
       padding: 1.2rem 2.5rem; 
       border-radius: 999px; 
-      background: #22c55e; /* Vert menthe / émeraude très dynamique */
-      color: #052e16;      /* Texte vert très foncé pour un contraste maximal */
+      background: #22c55e;
+      color: #052e16;
       box-shadow: 0 10px 30px rgba(34, 197, 94, 0.5); 
       font-size: 1.3rem; 
       font-weight: 800; 
@@ -281,6 +281,7 @@
       .container { padding: 0 0.5rem; }
       .form-compact input, .form-compact select, .form-compact textarea { padding: 0.9rem 1rem; font-size: 1rem; }
     }
+  </style>
 </head>
 
 <body>
@@ -568,7 +569,6 @@
     function gererAffichageFormulaire() {
       const val = trajetSelect.value;
 
-      // 1. Gestion Aller-Retour
       if (val === 'aller-retour') {
         datesRetourContainer.style.display = 'block';
         dateRetourInput.required = true;
@@ -578,7 +578,6 @@
         dateRetourInput.value = '';
       }
 
-      // 2. Gestion Mise à disposition
       if (val === 'mise-a-disposition') {
         if (containerArrivee) containerArrivee.style.display = 'none';
         if (inputArrivee) {
