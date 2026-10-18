@@ -734,20 +734,44 @@
       // --- CAS MISE À DISPOSITION ---
       if (trajectoryType === "mise-a-disposition") {
         const dureeMADSelect = document.getElementById('duree-mad');
-        const dureeChoisie = dureeMADSelect ? dureeMADSelect.options[dureeMADSelect.selectedIndex].text : "durée sélectionnée";
+        const dureeValeur = dureeMADSelect ? dureeMADSelect.value : "";
+        
+        let tarifEstime = "";
+        let kmMax = "";
+
+        if (dureeValeur === "2h") {
+          tarifEstime = "130 €";
+          kmMax = "50 km inclus";
+        } else if (dureeValeur === "3h") {
+          tarifEstime = "190 €";
+          kmMax = "75 km inclus";
+        } else if (dureeValeur === "4h (demi-journée)") {
+          tarifEstime = "250 €";
+          kmMax = "100 km inclus";
+        } else if (dureeValeur === "8h (journée)") {
+          tarifEstime = "480 €";
+          kmMax = "200 km inclus";
+        } else {
+          tarifEstime = "Sur devis";
+          kmMax = "Sur-mesure";
+        }
+
+        const dureeTexte = dureeMADSelect ? dureeMADSelect.options[dureeMADSelect.selectedIndex].text : "";
 
         resDiv.style.display = "block";
-        resDiv.innerHTML = "<strong>Mise à disposition (" + dureeChoisie + ")</strong><br>" +
-                            "Prestation sur mesure avec chauffeur dédié.<br>" +
-                            "<small>Cliquez sur SMS ou WhatsApp pour envoyer votre demande et recevoir un devis exact immédiatement.</small>";
+        resDiv.innerHTML = "<strong>Mise à disposition (" + dureeTexte + ")</strong><br>" +
+                           "Tarif estimé : <strong>" + tarifEstime + "</strong> (" + kmMax + ")<br>" +
+                           "<small style='color: var(--primary);'>Dépassement kilométrique : +1,70 € par km supplémentaire</small><br>" +
+                           "<small>Cliquez sur SMS ou WhatsApp pour envoyer votre demande de réservation.</small>";
 
         if (flottant && flottantTexte) {
-          flottantTexte.textContent = "Mise à disposition : " + dureeChoisie + " (Sur devis)";
+          flottantTexte.textContent = "MAD " + dureeTexte + " : " + tarifEstime + " (" + kmMax + " • +1.70€/km sup)";
           flottant.style.setProperty('display', 'flex', 'important');
         }
 
         document.getElementById('reservation').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        return; // On arrête la fonction ici (pas besoin d'adresses d'arrivée ni de Google Maps)
+        return;
+      }
       }
 
       // --- SUITE DE TON CODE HABITUEL POUR LES ALLERS SIMPLES & ALLER-RETOUR ---
