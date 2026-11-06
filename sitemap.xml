@@ -14,33 +14,7 @@
   </url>
 
   <url>
-    <loc>https://www.dcvtc66.fr/plan-du-site.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://www.dcvtc66.fr/mentions-legales.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://www.dcvtc66.fr/politique-confidentialite.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <url>
-    <loc>https://www.dcvtc66.fr/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://www.dcvtc66.fr/aeroport-perpignan.html</loc>
+    <loc>https://www.dcvtc66.fr/gare-perpignan.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -62,10 +36,5 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-<url>
-  <loc>https://www.dcvtc66.fr/gare-perpignan.html</loc>
-  <changefreq>monthly</changefreq>
-  <priority>0.8</priority>
-</url>
 
 </urlset>
