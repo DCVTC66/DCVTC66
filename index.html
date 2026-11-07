@@ -283,6 +283,48 @@
     }
     .card h3 a { color: inherit; text-decoration: none; }
 .card h3 a:hover { text-decoration: underline; }
+    /* ===== MOBILE : haut de page raccourci + barre d'appel fixe ===== */
+.call-bar { display: none; }
+
+@media (max-width: 768px) {
+  .nav-inner ul { gap: .7rem !important; flex-wrap: wrap; }
+  .nav a { font-size: .68rem !important; letter-spacing: .06em !important; }
+
+  .header { padding-bottom: 1rem !important; }
+  .branding { padding: 1.2rem 1rem !important; }
+  .logo { width: 80px !important; max-width: 80px !important; margin-bottom: .6rem !important; }
+  .site-title { font-size: 1.6rem !important; letter-spacing: .12em !important; }
+  .site-subtitle { font-size: .72rem !important; letter-spacing: .05em !important; max-width: 100% !important; margin-bottom: .8rem !important; }
+  .sub-extra { display: none; }
+  .hero-actions { display: none !important; }
+  .hero-fast-estimate { margin-top: .8rem !important; }
+  .hero-badges { margin-top: .7rem; gap: .35rem; }
+  .hero-badges span { font-size: .72rem; padding: .3rem .6rem; }
+
+  body { padding-bottom: 76px; }
+  .call-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .5rem;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 9998;
+    padding: .5rem .6rem calc(.5rem + env(safe-area-inset-bottom, 0px));
+    background: rgba(11, 23, 51, .96);
+    border-top: 1px solid var(--border-soft);
+  }
+  .call-bar a {
+    background: linear-gradient(135deg, #fde047, #facc15);
+    color: #121212;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 700;
+    font-size: .8rem;
+    padding: .75rem .3rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+}
   </style>
 </head>
 
