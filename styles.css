@@ -1,18 +1,17 @@
 /* ==========================================================================
-   1. VARIABLES & CONFIGURATION GLOBALE (Thème Gris Anthracite & Blanc)
+   1. VARIABLES & CONFIGURATION GLOBALE (Thème Anthracite & Or)
    ========================================================================== */
 :root {
-  --bg-main: #0b1733;       /* Bleu nuit principal */
-  --bg-light: #102a5c;      /* Bleu secondaire */
-  --bg-alt: #1e4696;        /* Bleu accentué */
-  --primary: #facc15;       /* Jaune pour les boutons et titres */
-  --primary-soft: rgba(250, 204, 21, 0.22);
-  --text-main: #f8fafc;     /* Texte blanc */
-  --text-muted: #b6ccff;    /* Texte bleu clair */
-  --card-bg: rgba(16, 42, 92, 0.88); /* Fond des cartes en bleu foncé */
-  --border-soft: rgba(186, 204, 255, 0.35);
+  --bg-main: #1c1c1c;       /* Gris anthracite principal */
+  --bg-light: #262626;      /* Gris anthracite plus clair */
+  --primary: #d4af37;       /* Or pour les titres et bordures */
+  --primary-soft: rgba(212, 175, 55, 0.22);
+  --text-main: #f5f5f5;     /* Texte blanc */
+  --text-muted: #cfd3da;    /* Texte gris clair */
+  --card-bg: #1f1f1f;       /* Fond des cartes */
+  --border-soft: rgba(212, 175, 55, 0.35);
   --error: #f87171;
-  --shadow-soft: 0 20px 50px rgba(2, 6, 23, 0.6);
+  --shadow-soft: 0 20px 50px rgba(0, 0, 0, 0.6);
 }
 
 *, *::before, *::after { 
@@ -41,7 +40,7 @@ body {
   z-index: 10;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  background: rgba(18, 18, 18, 0.9);
+  background: rgba(19, 28, 46, 0.95);
   border-bottom: 1px solid var(--border-soft);
 }
 
@@ -79,7 +78,7 @@ body {
   width: 100%;
   max-width: 100%;
   margin: 0 auto;
-  background: var(--card-bg);
+  background: #142c5e;
   border-radius: 1.6rem;
   padding: 2.5rem 2rem;
   box-shadow: var(--shadow-soft);
@@ -90,7 +89,7 @@ body {
 .logo {
   width: 120px;
   border-radius: 999px;
-  border: 2px solid var(--border-soft);
+  border: 2px solid var(--primary);
   padding: 4px;
   background: var(--bg-main);
   margin-bottom: 1.2rem;
@@ -122,7 +121,7 @@ body {
 }
 
 .btn-primary {
-  background: #ffffff;
+  background: linear-gradient(135deg, #fde047, #facc15);
   color: #121212;
   padding: 0.6rem 1.1rem;
   border-radius: 999px;
@@ -133,7 +132,7 @@ body {
   text-decoration: none;
   border: none;
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 20px rgba(250, 204, 21, 0.3);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -147,8 +146,8 @@ body {
 }
 
 #btn-tarif {
-  background: #ffffff;
-  color: #121212;
+  background: #22c55e;
+  color: #052e16;
 }
 
 .hero-badges {
@@ -175,6 +174,15 @@ body {
 }
 
 .section-alt {
+  background: var(--bg-light);
+}
+
+/* Section Réservation : dégradé bleu-vert vers bleu nuit */
+#reservation.section-alt {
+  background: linear-gradient(180deg, #3d7580 0%, #2b5577 50%, #0c1b3d 100%);
+}
+
+#contact {
   background: var(--bg-light);
 }
 
@@ -223,13 +231,13 @@ body {
   padding: 40px 20px;
   text-align: center;
   color: #ffffff;
-  background: var(--bg-main);
+  background: var(--bg-light);
 }
 
 .zones-intervention-dark h2 {
   font-size: 13px;
   letter-spacing: 2px;
-  color: var(--text-muted);
+  color: var(--primary);
   text-transform: uppercase;
   margin-bottom: 5px;
 }
@@ -279,7 +287,7 @@ body {
 }
 
 .contact-grid a { 
-  color: #ffffff; 
+  color: var(--primary); 
   text-decoration: none; 
 }
 
@@ -293,7 +301,7 @@ body {
 .form {
   max-width: 100%;
   margin: 0 auto;
-  background: var(--card-bg);
+  background: rgba(255, 255, 255, 0.08);
   padding: 1.3rem 1.2rem;
   border-radius: 1.4rem;
   border: 1px solid var(--border-soft);
@@ -312,14 +320,14 @@ body {
   padding: 0.75rem 0.85rem;
   border-radius: 14px;
   border: 1px solid var(--border-soft);
-  background: #1a1a1a !important;
+  background: rgba(12, 28, 60, 0.55) !important;
   color: var(--text-main) !important;
   font-family: inherit;
 }
 
 .form input:focus, .form textarea:focus, .form select:focus {
   outline: none;
-  border-color: #ffffff;
+  border-color: var(--primary);
 }
 
 .form .row { 
@@ -342,8 +350,8 @@ details.opt summary {
 }
 
 .btn-estimate {
-  background: #ffffff;
-  color: #121212;
+  background: #22c55e;
+  color: #052e16;
   border-radius: 999px;
   padding: 0.9rem 1rem;
   font-weight: 800;
@@ -361,14 +369,17 @@ details.opt summary {
 }
 
 /* Placeholders et validation du formulaire */
-.form input::placeholder,
+.form input::placeholder { 
+  color: #a5b4e6; 
+}
+
 .form select,
 .form input[type="datetime-local"]::-webkit-datetime-edit { 
   color: var(--text-muted); 
 }
 
 .form select option {
-  background: #1a1a1a;
+  background: #15213f;
   color: var(--text-main);
 }
 
@@ -406,7 +417,7 @@ details.opt summary {
   text-align: center;
   font-size: 0.8rem;
   color: var(--text-muted);
-  background: var(--bg-main);
+  background: #161b33;
   border-top: 1px solid var(--border-soft);
 }
 
