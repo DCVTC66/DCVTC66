@@ -48,6 +48,37 @@
       .hero-actions a.btn-primary { font-size: 0.75rem; padding: 0.75rem 0.3rem; }
       .section, .section-alt { padding-left: 0.8rem; padding-right: 0.8rem; box-sizing: border-box; }
     }
+    /* ===== MOBILE : barre d'appel fixe + menu compact ===== */
+.call-bar { display: none; }
+
+@media (max-width: 768px) {
+  .nav-inner ul { gap: .7rem !important; }
+  .nav a { font-size: .68rem !important; letter-spacing: .06em !important; }
+
+  body { padding-bottom: 76px; }
+  .call-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .5rem;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 9998;
+    padding: .5rem .6rem calc(.5rem + env(safe-area-inset-bottom, 0px));
+    background: rgba(11, 23, 51, .96);
+    border-top: 1px solid var(--border-soft);
+  }
+  .call-bar a {
+    background: linear-gradient(135deg, #fde047, #facc15);
+    color: #121212;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 700;
+    font-size: .8rem;
+    padding: .75rem .3rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+}
   </style>
 
   <script type="application/ld+json">
