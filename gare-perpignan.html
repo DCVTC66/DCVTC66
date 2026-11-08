@@ -49,37 +49,38 @@
       .section, .section-alt { padding-left: 0.8rem; padding-right: 0.8rem; box-sizing: border-box; }
     }
     .text-block > p a { color: inherit; font-weight: 600; text-decoration: underline; }
+
     /* ===== MOBILE : barre d'appel fixe + menu compact ===== */
-.call-bar { display: none; }
+    .call-bar { display: none; }
 
-@media (max-width: 768px) {
-  .nav-inner ul { gap: .7rem !important; }
-  .nav a { font-size: .68rem !important; letter-spacing: .06em !important; }
+    @media (max-width: 768px) {
+      .nav-inner ul { gap: .7rem !important; }
+      .nav a { font-size: .68rem !important; letter-spacing: .06em !important; }
 
-  body { padding-bottom: 76px; }
-  .call-bar {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: .5rem;
-    position: fixed;
-    left: 0; right: 0; bottom: 0;
-    z-index: 9998;
-    padding: .5rem .6rem calc(.5rem + env(safe-area-inset-bottom, 0px));
-    background: rgba(11, 23, 51, .96);
-    border-top: 1px solid var(--border-soft);
-  }
-  .call-bar a {
-    background: linear-gradient(135deg, #fde047, #facc15);
-    color: #121212;
-    text-decoration: none;
-    text-align: center;
-    font-weight: 700;
-    font-size: .8rem;
-    padding: .75rem .3rem;
-    border-radius: 999px;
-    white-space: nowrap;
-  }
-}
+      body { padding-bottom: 76px; }
+      .call-bar {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: .5rem;
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 9998;
+        padding: .5rem .6rem calc(.5rem + env(safe-area-inset-bottom, 0px));
+        background: rgba(11, 23, 51, .96);
+        border-top: 1px solid var(--border-soft);
+      }
+      .call-bar a {
+        background: linear-gradient(135deg, #fde047, #facc15);
+        color: #121212;
+        text-decoration: none;
+        text-align: center;
+        font-weight: 700;
+        font-size: .8rem;
+        padding: .75rem .3rem;
+        border-radius: 999px;
+        white-space: nowrap;
+      }
+    }
   </style>
 
   <script type="application/ld+json">
@@ -129,6 +130,8 @@
         <li><a href="/">Accueil</a></li>
         <li><a href="/#reservation">Réservation</a></li>
         <li><a href="/#services">Services</a></li>
+        <li><a href="aeroport-perpignan.html">Aéroport</a></li>
+        <li><a href="gare-perpignan.html">Gare</a></li>
         <li><a href="/#contact">Contact</a></li>
       </ul>
     </div>
@@ -250,11 +253,13 @@
       </p>
     </div>
   </footer>
-<div class="call-bar">
-  <a href="tel:+33663463716">📞 Appeler</a>
-  <a href="https://wa.me/33663463716" target="_blank" rel="noopener">💬 WhatsApp</a>
-  <a href="/#reservation">📝 Réserver</a>
-</div>
+
+  <div class="call-bar">
+    <a href="tel:+33663463716">📞 Appeler</a>
+    <a href="https://wa.me/33663463716" target="_blank" rel="noopener">💬 WhatsApp</a>
+    <a href="/#reservation">📝 Réserver</a>
+  </div>
+
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>
