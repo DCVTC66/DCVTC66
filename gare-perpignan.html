@@ -50,12 +50,20 @@
     }
     .text-block > p a { color: inherit; font-weight: 600; text-decoration: underline; }
 
-    /* ===== MOBILE : barre d'appel fixe + menu compact ===== */
+    /* ===== MOBILE : barre d'appel fixe + menu et haut de page compacts ===== */
     .call-bar { display: none; }
 
     @media (max-width: 768px) {
       .nav-inner ul { gap: .7rem !important; }
       .nav a { font-size: .68rem !important; letter-spacing: .06em !important; }
+      .nav .hide-m { display: none; }
+
+      .hero-actions { display: none !important; }
+      .header { padding-bottom: .5rem !important; }
+      .branding { padding: 1.2rem 1rem !important; }
+      .logo { max-width: 80px !important; margin-bottom: .6rem !important; }
+      .site-title { font-size: 1.4rem !important; letter-spacing: .08em !important; line-height: 1.25; }
+      .site-subtitle { font-size: .75rem !important; letter-spacing: .04em !important; max-width: 100% !important; margin-bottom: 0 !important; }
 
       body { padding-bottom: 76px; }
       .call-bar {
@@ -128,7 +136,7 @@
     <div class="container nav-inner">
       <ul>
         <li><a href="/">Accueil</a></li>
-        <li><a href="/#reservation">Réservation</a></li>
+        <li class="hide-m"><a href="/#reservation">Réservation</a></li>
         <li><a href="/#services">Services</a></li>
         <li><a href="aeroport-perpignan.html">Aéroport</a></li>
         <li><a href="gare-perpignan.html">Gare</a></li>
