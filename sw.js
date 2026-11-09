@@ -1,4 +1,4 @@
-const CACHE_NAME = "dcvtc66-v15"; // 🚀 Augmente ce numéro à chaque modification de ton CSS ou HTML
+const CACHE_NAME = "dcvtc66-v16"; // 🚀 Augmente ce numéro à chaque modification de ton CSS ou HTML
 
 const FILES_TO_CACHE = [
   "/",
