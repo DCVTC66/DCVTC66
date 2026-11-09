@@ -13,7 +13,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=104" />
   <link rel="icon" type="image/png" href="LOGO DCVTC66.png">
-
+  
+.branding { position: relative; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; z-index: 0; }
+.hero-bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(20,44,94,.60), rgba(20,44,94,.80)); }
+.branding > *:not(.hero-bg) { position: relative; z-index: 1; }
   <style>
     html, body { margin: 0; padding: 0; overflow-x: hidden; }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; box-sizing: border-box; }
@@ -154,6 +159,7 @@
     <div class="container">
       <div class="header-inner">
         <div class="branding">
+          <div class="hero-bg" aria-hidden="true"><img src="fond-gare.webp" alt=""></div>
           <img src="LOGO DCVTC66.png" alt="Logo DCVTC66" class="logo">
           <h1 class="site-title">VTC Gare de Perpignan</h1>
           <p class="site-subtitle">Transfert privé 7j/7 depuis ou vers la gare de Perpignan. Tarif annoncé avant la course.</p>
