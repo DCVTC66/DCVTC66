@@ -93,11 +93,12 @@
   .prix-table { font-size: .82rem; }
   .prix-table th, .prix-table td { padding: .55rem .4rem; }
 }
-   .branding { position: relative; overflow: hidden; }
-.hero-bg { position: absolute; inset: 0; z-index: 0; }
-.hero-bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(20,44,94,.60), rgba(20,44,94,.80)); }
-.branding > *:not(.hero-bg) { position: relative; z-index: 1; } 
+    /* ===== FOND PHOTO DU BLOC D'ACCUEIL ===== */
+    .branding { position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(20,44,94,.60), rgba(20,44,94,.80)); }
+    .branding > *:not(.hero-bg) { position: relative; z-index: 1; }
   </style>
 
   <script type="application/ld+json">
@@ -122,7 +123,7 @@
       {
         "@type": "Question",
         "name": "Combien coûte un VTC vers l'aéroport de Perpignan-Rivesaltes ?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Le tarif commence à 20 € jusqu'à 7 km, puis 1,70 € par km supplémentaire. Il est annoncé avant la course et ne change pas en cours de route." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Le tarif démarre à partir de 20 €, selon la distance. Il est annoncé avant la course et ne change pas en cours de route." }
       },
       {
         "@type": "Question",
@@ -230,7 +231,7 @@
     <div class="container">
       <div class="text-block">
         <h2 class="section-title">Tarif</h2>
-        <p>Le prix démarre à <strong>20 € jusqu'à 7 km</strong>, puis <strong>1,70 € par km supplémentaire</strong>. L'aller-retour bénéficie de <strong>10 % de réduction sur le retour</strong>.</p>
+        <p>Le prix démarre <strong>à partir de 20 €</strong>, selon la distance de votre trajet. L'aller-retour bénéficie de <strong>10 % de réduction sur le retour</strong>.</p>
         <div class="table-wrap">
           <table class="prix-table">
             <thead>
@@ -270,7 +271,7 @@
         <h2 class="section-title">Questions fréquentes</h2>
         <details>
           <summary>Combien coûte un VTC vers l'aéroport de Perpignan-Rivesaltes ?</summary>
-          <p>Le tarif commence à 20 € jusqu'à 7 km, puis 1,70 € par km supplémentaire. Il est annoncé avant la course et ne change pas en cours de route.</p>
+          <p>Le tarif démarre à partir de 20 €, selon la distance. Il est annoncé avant la course et ne change pas en cours de route.</p>
         </details>
         <details>
           <summary>Comment réserver mon transfert vers l'aéroport ?</summary>
