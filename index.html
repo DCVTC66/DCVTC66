@@ -343,6 +343,33 @@
     .btn-locate { display: block; margin: 0 auto .6rem; padding: .55rem 1rem; border-radius: 999px; border: 1px solid rgba(255,255,255,.5); background: rgba(255,255,255,.12); color: #fff; font: inherit; font-size: .85rem; cursor: pointer; }
     .btn-locate:disabled { opacity: .6; cursor: wait; }
     .locate-msg { text-align: center; font-size: .8rem; min-height: 1em; margin-bottom: .5rem; opacity: .95; }
+
+    /* ===== BON DE RÉSERVATION ===== */
+    .bon-overlay { position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,.75); overflow-y: auto; padding: 16px; box-sizing: border-box; overscroll-behavior: contain; }
+    .bon-card { background: #fff; max-width: 480px; margin: 0 auto; border-radius: 16px; padding: 20px; box-sizing: border-box; }
+    .bon-card, .bon-card p, .bon-card h3, .bon-card th, .bon-card td, .bon-card strong, .bon-card span { color: #111; text-align: left; }
+    .bon-head { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem; border-bottom: 2px solid #d4af37; padding-bottom: .5rem; margin-bottom: .8rem; }
+    .bon-head strong { font-size: 1.3rem; letter-spacing: .08em; }
+    .bon-head span { font-size: .8rem; color: #555; }
+    .bon-card h3 { margin: .2rem 0; font-size: 1.15rem; }
+    .bon-card .bon-num { font-weight: 700; margin: .2rem 0; }
+    .bon-card .bon-date { font-size: .8rem; color: #555; margin: 0 0 .8rem; }
+    .bon-table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    .bon-table th, .bon-table td { vertical-align: top; padding: .45rem .3rem; border-bottom: 1px solid #e5e5e5; background: transparent; }
+    .bon-table th { width: 38%; color: #444; font-weight: 600; }
+    .bon-card .bon-note { font-size: .78rem; color: #444; margin: .8rem 0 .3rem; line-height: 1.4; }
+    .bon-card .bon-contact { font-size: .85rem; font-weight: 600; margin: .2rem 0 1rem; }
+    .bon-actions { display: grid; gap: .55rem; }
+    .bon-actions button { padding: .85rem 1rem; border-radius: 999px; border: none; font: inherit; font-weight: 700; font-size: .95rem; cursor: pointer; }
+    .bon-actions .b-main { background: linear-gradient(135deg, #fde047, #facc15); color: #121212; }
+    .bon-actions .b-close { background: #eee; color: #333; }
+    @media print {
+      body > *:not(#bon-overlay) { display: none !important; }
+      #bon-overlay { position: static !important; display: block !important; background: #fff !important; padding: 0 !important; overflow: visible !important; }
+      .bon-card { box-shadow: none; max-width: 100%; padding: 0; }
+      .no-print { display: none !important; }
+      body { padding-bottom: 0 !important; }
+    }
   </style>
 </head>
 
@@ -489,10 +516,8 @@
 
         <div class="actions-compact">
           <button type="button" id="btn-tarif" class="btn-estimate">Estimer</button>
-          <button type="submit" class="btn-primary">📩 Envoyer par SMS</button>
+          <button type="submit" class="btn-primary">📄 Envoyer ma demande</button>
         </div>
-
-        <button type="button" id="btn-whatsapp-form" class="btn-primary email-action">💬 Envoyer par WhatsApp</button>
 
         <div id="erreur-tarif" class="error-compact" style="display:none;"></div>
         <div id="resultat-tarif" class="result-compact" style="display:none;"></div>
@@ -627,6 +652,26 @@
   <a href="https://wa.me/33663463716" target="_blank" rel="noopener">💬 WhatsApp</a>
   <a href="/#reservation">📝 Réserver</a>
 </div>
+
+  <!-- BON / DEMANDE DE RÉSERVATION -->
+  <div id="bon-overlay" class="bon-overlay" style="display:none;">
+    <div class="bon-card">
+      <div class="bon-head"><strong>DCVTC66</strong><span>Chauffeur VTC – Perpignan</span></div>
+      <h3>Demande de réservation</h3>
+      <p class="bon-num">N° <span id="bon-num"></span></p>
+      <p class="bon-date">Émise le <span id="bon-emis"></span></p>
+      <table class="bon-table" id="bon-table"></table>
+      <p class="bon-note">Demande à confirmer par DCVTC66. Le prix indiqué est une estimation, annoncé et validé avant la course.</p>
+      <p class="bon-contact">📞 06 63 46 37 16 · www.dcvtc66.fr</p>
+      <div class="bon-actions no-print">
+        <button type="button" id="bon-wa" class="b-main">💬 Envoyer par WhatsApp</button>
+        <button type="button" id="bon-sms" class="b-main">📩 Envoyer par SMS</button>
+        <button type="button" id="bon-pdf" class="b-main">⬇️ Télécharger en PDF</button>
+        <button type="button" id="bon-close" class="b-close">Fermer</button>
+      </div>
+    </div>
+  </div>
+
   <div id="tarif-flottant">
     <span class="icon">💰</span>
     <span id="tarif-flottant-texte">Estimation en cours…</span>
@@ -707,7 +752,7 @@
     trajetSelect.addEventListener('change', gererAffichageFormulaire);
     gererAffichageFormulaire();
 
-    function construireTexteMessage() {
+    function construireTexteMessage(ref) {
       const nom = form.Nom.value;
       const tel = form["Téléphone"].value;
       const depart = form["Départ"].value;
@@ -721,7 +766,7 @@
       const trajetType = trajetSelect.value;
       const trajetTexte = trajetType === "aller-retour" ? "Aller-Retour" : "Aller simple";
 
-      let texte = "Nouvelle demande – DCVTC66 :\n\n";
+      let texte = "Nouvelle demande – DCVTC66" + (ref ? " (n° " + ref + ")" : "") + " :\n\n";
       texte += "Nom : " + nom + "\n";
       texte += "Téléphone : " + tel + "\n";
 
@@ -755,19 +800,84 @@
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      const smsBody = construireTexteMessage();
-      const numero = "+33663463716";
-      window.location.href = "sms:" + numero + "?&body=" + encodeURIComponent(smsBody);
+      ouvrirBon();
     });
 
-    function openWhatsAppPrefilled() {
-      const numeroWA = "33663463716";
-      const url = "https://wa.me/" + numeroWA + "?text=" + encodeURIComponent(construireTexteMessage());
-      window.open(url, "_blank");
+    /* ===== BON DE RÉSERVATION ===== */
+    const bonOverlay = document.getElementById('bon-overlay');
+    let bonRef = "";
+
+    function genererReference() {
+      const d = new Date();
+      const p = n => String(n).padStart(2, '0');
+      const rnd = String(Math.floor(Math.random() * 10000)).padStart(4, '0');
+      return "DC-" + d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + "-" + rnd;
     }
 
-    const btnWhatsAppForm = document.getElementById("btn-whatsapp-form");
-    if (btnWhatsAppForm) btnWhatsAppForm.addEventListener("click", openWhatsAppPrefilled);
+    function dateBon(v) {
+      if (!v) return "";
+      const m = v.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}:\d{2})/);
+      return m ? m[3] + "/" + m[2] + "/" + m[1] + " à " + m[4] : v;
+    }
+
+    function ouvrirBon() {
+      if (!form.reportValidity()) return;
+      bonRef = genererReference();
+      const type = trajetSelect.value;
+      const lignes = [];
+      lignes.push(["Nom", form.Nom.value]);
+      lignes.push(["Téléphone", form["Téléphone"].value]);
+
+      if (type === "mise-a-disposition") {
+        const duree = document.getElementById('duree-mad').value;
+        const tarifsMAD = { "1h": "60 €", "2h": "130 €", "3h": "190 €", "4h (demi-journée)": "250 €", "8h (journée)": "480 €" };
+        lignes.push(["Prestation", "Mise à disposition (" + duree + ")"]);
+        lignes.push(["Départ", form["Départ"].value]);
+        lignes.push(["Date & heure début", dateBon(form["DateHeureAller"].value)]);
+        if (tarifsMAD[duree]) lignes.push(["Tarif", tarifsMAD[duree] + " (dépassement : 1,70 € par km sup.)"]);
+      } else {
+        lignes.push(["Prestation", type === "aller-retour" ? "Aller-Retour" : "Aller simple"]);
+        lignes.push(["Départ", form["Départ"].value]);
+        lignes.push(["Arrivée", inputArrivee ? inputArrivee.value : ""]);
+        lignes.push(["Date & heure aller", dateBon(form["DateHeureAller"].value)]);
+        if (type === "aller-retour" && dateRetourInput.value) {
+          lignes.push(["Date & heure retour", dateBon(dateRetourInput.value)]);
+        }
+        if (derniereEstimation && derniereEstimation.trajetType === type) {
+          lignes.push(["Prix estimé", derniereEstimation.tarif.toFixed(2).replace(".", ",") + " €"]);
+        }
+      }
+      lignes.push(["Passagers", form["Passagers"].value]);
+      lignes.push(["Paiement", form["Paiement"].value]);
+      if (form["Message"].value.trim()) lignes.push(["Informations", form["Message"].value.trim()]);
+
+      const table = document.getElementById('bon-table');
+      table.innerHTML = "";
+      lignes.forEach(function (l) {
+        const tr = document.createElement('tr');
+        const th = document.createElement('th'); th.textContent = l[0];
+        const td = document.createElement('td'); td.textContent = l[1];
+        tr.appendChild(th); tr.appendChild(td); table.appendChild(tr);
+      });
+      document.getElementById('bon-num').textContent = bonRef;
+      document.getElementById('bon-emis').textContent = new Date().toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' });
+      bonOverlay.style.display = 'block';
+      bonOverlay.scrollTop = 0;
+    }
+
+    document.getElementById('bon-close').addEventListener('click', function () { bonOverlay.style.display = 'none'; });
+    document.getElementById('bon-wa').addEventListener('click', function () {
+      window.open("https://wa.me/33663463716?text=" + encodeURIComponent(construireTexteMessage(bonRef)), "_blank");
+    });
+    document.getElementById('bon-sms').addEventListener('click', function () {
+      window.location.href = "sms:+33663463716?&body=" + encodeURIComponent(construireTexteMessage(bonRef));
+    });
+    document.getElementById('bon-pdf').addEventListener('click', function () {
+      const ancienTitre = document.title;
+      document.title = "Demande-reservation-" + bonRef;
+      window.addEventListener('afterprint', function () { document.title = ancienTitre; }, { once: true });
+      window.print();
+    });
   </script>
 
   <script>
@@ -917,7 +1027,7 @@
         resDiv.innerHTML = "<strong>Mise à disposition (" + dureeTexte + ")</strong><br>" +
                            "Tarif estimé : <strong>" + tarifEstime + "</strong> (" + kmMax + ")<br>" +
                            "<small>Dépassement kilométrique : +1,70 € par km supplémentaire</small><br>" +
-                           "<small>Cliquez sur SMS ou WhatsApp pour envoyer votre demande.</small>";
+                           "<small>Cliquez sur « Envoyer ma demande » pour finaliser.</small>";
 
         if (flottant && flottantTexte) {
           flottantTexte.textContent = "MAD " + dureeTexte + " : " + tarifEstime + " (" + kmMax + " • +1,70 €/km sup)";
